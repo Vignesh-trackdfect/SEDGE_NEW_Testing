@@ -38,7 +38,7 @@ public class Config extends Keywords {
 		if (browserName.equals("Chrome")) {
 			
 			//System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\driver\\chromedriver.exe");
-            WebDriverManager.chromedriver().setup();
+                        WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--force-device-scale-factor=0.8");
 			//options.addArguments("--headless");
@@ -50,8 +50,9 @@ public class Config extends Keywords {
 			WebDriver driver = new ChromeDriver(options);
 			System.out.println("Chrome Browser launched...");
 			setDriver(driver);
-			driver.manage().window().maximize();
-//			setZoomLevel(driver);
+			//driver.manage().window().maximize();
+			Dimension dimension = new Dimension(1930, 1090);
+			driver.manage().window().setSize(dimension);
 			Map<String, Object> prefs = new HashMap<String, Object>();
 			prefs.put("profile.default_content_setting_values.notifications", 1);
 			prefs.put("download.default_directory", System.getProperty("user.dir") + "\\DownloadedFiles");
