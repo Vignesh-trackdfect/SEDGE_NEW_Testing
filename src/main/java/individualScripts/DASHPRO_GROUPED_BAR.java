@@ -1398,11 +1398,10 @@ public class DASHPRO_GROUPED_BAR extends Keywords{
 	          	 	CHART_TITLE chartTitle=new CHART_TITLE();
 	               chartTitle.chartTitleTest(driver, TypeBackgroundColor1, TypeTextColor1, Change_FontFamily_ChartTitle, ChangeFontSize_ChartTitle,ChangeChartTitleName);       	
 	           }
-	          // ******************** ChartTitle Validation End *******************
-	           setTestCaseID("");
+	         // ******************** ChartTitle Validation End *******************
+	          
      	 	
-     	 	
-     	 //********** ChartStyle Validation Start *************************
+     	    //********** ChartStyle Validation Start *************************
             
 	        setTestCaseID("TC_GROUP_BAR_086");
             verifyElementDisplayed(driver,Chart_FormatSec);

@@ -700,7 +700,7 @@ public interface SEDGE_Locators {
     public static String NotificationMessage="Notification Message>//h6[@class='custom-notification-title']/ancestor::div[1]/span";
     public static String OutlierDelete="Outlier delete>//img[@title='Delete outlier']";
     public static String helpDocIcon="Help Doc Icon>//button[@pochelpkey='Advancedstatistics']";
-    public static String ChangeNumberBins="Change Number of Bins>//label//i[@class='flaticon2-gear']";
+    public static String ChangeNumberBins="Change Number of Bins>//a/i[@class='flaticon2-gear']";
     public static String StackTargetVariable="Stack with Target Variable>//span[not(@mattooltip)]//button";
     public static String ShowEmptyBins="Show Empty Bin>//label[@title='Show Empty Bins']//button";
     public static String firstNumeric="FirstNumeric>(//ag-grid-angular[@id='myGridColumnDtTable']//div[@role='gridcell'])[1]";
@@ -1528,5 +1528,24 @@ public interface SEDGE_Locators {
     public static String Y1_Value_Chart="Y1 Value in Chart>(//div[@id='RPE_Preview']//*[@font-family and @font-size and @fill]//*[name()='tspan'])";
     public static String X_Label_Value_Chart="X_Label Value Chart>((//div[@id='RPE_Preview']//*[name()='g' and @aria-hidden and @font-family])[2]//*[@font-size and not(@stroke-opacity)])";
     public static String Y_Label_Value_Chart="Y Label Value Chart>(//div[@id='RPE_Preview']//*[name()='g' and @transform]/*[name()='g']/*[@font-size and not(@stroke-opacity) and not(@display)])";
-  
+    public static String Y_Labe_Value_Chart_Right="Y Label Value Right Side>(//div[@id='RPE_Preview']//*[@font-family and @font-size]/*/*[@font-size and not(@stroke-opacity) and not(@display)])";
+    public static String Synchronise_Axis="Snchronise Axis toggle>//input[@id='RPE_syncaxis']";
+    public static String Synchronise_Axis_Toggle="Synchronise Axis Toggle>//input[@id='RPE_syncaxis']/ancestor::label/span";
+    public static String Synchronise_Text="Synchronise text>//label[text()='Synchronize axis']";
+    
+    public static String Line_Stroke_Input="Line Stroke Input>//input[@id='RPE_LineStroke']";
+    public static String Line_Stroke_Pointer="Line Stroke Pointer>//input[@id='RPE_LineStroke']//following::div[contains(@class,'evo-pointer')][1]";
+    public static String Line_Stroke_text="Line Stroke Text>//div[@id='RPE_LineBulletStroke']//label";
+    public static String Line_bullet_Input="Line Bullet input>//input[@id='RPE_LineBullet']";
+    public static String Line_bullet_Input_Pointer="Line Bullet input>//input[@id='RPE_LineBullet']//following::div[contains(@class,'evo-pointer')][1]";
+    public static String Line_bullet_Text="Line bullet Text>//div[@id='RPE_LineBulletColor']//label";
+    public static String BulletType_Input="Bullet Type Input>//select[@id='RPE_bulletType']";
+    public static String BulletType_Text="Bullet Type Text>//div[@id='RPE_LineBulletType']//label";
+    public static String Stroke_Width_Input="Stroke With Input>//select[@id='RPE_linestrokewidth']";
+    public static String Stroke_Width_text="Stroke With text>//div[@id='RPE_cFLinestrokewidth']//label";
+    public static String Line_Style_Input="Line Style Input>//select[@id='RPE_linestyle']";
+    public static String Line_Style_text="Line Style Text>//div[@id='RPE_cFLinestyle']//label";
+    public static String Line_Stroke_Chart="Line Stroke in Chart>(//div[@id='RPE_Preview']//*[@stroke-dasharray and @stroke])[1]";
+    
+    
 }    

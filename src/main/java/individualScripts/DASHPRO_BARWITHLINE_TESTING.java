@@ -27,6 +27,14 @@ public class DASHPRO_BARWITHLINE_TESTING extends Keywords{
 
 		String defaultRotation_X=Utils.getDataFromTestData("SmokeTesting_UI", "DefaultRotation_Column_AxisTitle_X");
 		String defaultRotation_Y=Utils.getDataFromTestData("AxisTitle", "default_Rotation_Value");
+		
+		//Chart Style
+		String ChartFormatColorExp=Utils.getDataFromTestData("ChartFormat_ChartStyle", "ChartFormatColorExp");
+		String ChartStylingColor_Exp=Utils.getDataFromTestData("ChartFormat_ChartStyle", "ChartStylingColor_Exp");
+		String DefaultThemeValue_Exp=Utils.getDataFromTestData("ChartFormat_ChartStyle", "defaultThemeValue_Exp");
+		String Highlight_ColorStyle_Exp=Utils.getDataFromTestData("ChartFormat_ChartStyle", "HighlightColor_Exp");
+		String Default_Line_Stroke_Exp=Utils.getDataFromTestData("SmokeTesting_UI", "Default_LineStroke_BarWithLine");	
+		String Default_Line_Bullet_Exp=Utils.getDataFromTestData("SmokeTesting_UI", "Default_LineBullet_BarWithLine");	
 
 		//Iteration Inputs
 		//Axes
@@ -53,6 +61,22 @@ public class DASHPRO_BARWITHLINE_TESTING extends Keywords{
 		String X_Rotation_Input=Utils.getDataFromTestDataIteration(iteration,"BarWithLine_Widget_Testing", "X_Rotation_Input");
 		String Y_Rotation_Input=Utils.getDataFromTestDataIteration(iteration,"BarWithLine_Widget_Testing", "Y_Rotation_Input");
 
+		//Chart title
+		String TypeBackgroundColor1_ChartTitle=Utils.getDataFromTestDataIteration(iteration,"BarWithLine_Widget_Testing", "TypeBackgroundColor1_ChartTitle");
+		String TypeTextColor1_ChartTitle=Utils.getDataFromTestDataIteration(iteration,"BarWithLine_Widget_Testing", "TypeTextColor1_ChartTitle");
+		String Change_FontFamily_ChartTitle=Utils.getDataFromTestDataIteration(iteration,"BarWithLine_Widget_Testing", "Change_FontFamily_ChartTitle");
+		String ChangeFontSize_ChartTitle=Utils.getDataFromTestDataIteration(iteration,"BarWithLine_Widget_Testing", "ChangeFontSize_ChartTitle");
+		String ChangeChartTitleName=Utils.getDataFromTestDataIteration(iteration,"BarWithLine_Widget_Testing", "ChangeChartTitleName");
+	
+		//Chart Style
+		String Change_ChartTheme_ChartStyle=Utils.getDataFromTestDataIteration(iteration,"BarWithLine_Widget_Testing", "Change_ChartTheme_ChartStyle");
+		String Change_Line_Stroke_Color_Chart_Style=Utils.getDataFromTestDataIteration(iteration,"BarWithLine_Widget_Testing", "Change_Line_Stroke_Color_Chart_Style");
+		String Change_Line_Bullet_Color_Chart_Style=Utils.getDataFromTestDataIteration(iteration,"BarWithLine_Widget_Testing", "Change_Line_Bullet_Color_Chart_Style");
+		String Change_Bullet_Type_Chart_Style=Utils.getDataFromTestDataIteration(iteration,"BarWithLine_Widget_Testing", "Change_Bullet_Type_Chart_Style");
+		String Change_Stroke_Width_Chart_Style=Utils.getDataFromTestDataIteration(iteration,"BarWithLine_Widget_Testing", "Change_Stroke_Width_Chart_Style");
+//		String Change_ChartTheme_ChartStyle=Utils.getDataFromTestDataIteration(iteration,"BarWithLine_Widget_Testing", "Change_ChartTheme_ChartStyle");
+//		String Change_ChartTheme_ChartStyle=Utils.getDataFromTestDataIteration(iteration,"BarWithLine_Widget_Testing", "Change_ChartTheme_ChartStyle");
+		
 		
 		setTestCaseID(" ");
 		Actions action=new Actions(driver);
@@ -1412,70 +1436,589 @@ public class DASHPRO_BARWITHLINE_TESTING extends Keywords{
  	  		}
  	     	
  	     	
-// 	     	setTestCaseID("TC_GROUP_BAR_085");
-// 	       	verifyElementDisplayed(driver, switchSliderText);
-// 	     	if(verifyElementDisplayed(driver,switchSlider)){
-//	 	   		if(isToggleEnable(driver, switchSliderInput)) {
-//	 	   			fail(driver,"By default Start axis at 0 toggle enabled");
-//	 	   		}else {
-//	 	   			pass(driver,"By default Start axis at 0 toggle disabled");
-//	 	   			String Y_firstAscValue=getText1(driver,Y_Label_Value_Chart);
-////	 	   			if(!(Y_firstAscValue.equals("0"))) {
-////	 	      			pass(driver,"Y axis label value not started from '0' in the chart, When 'Start axis at 0' toggle is disabled");
-////	 	          	}else {
-////	 	      			pass(driver,"Y axis label value started from '0' in the chart, When 'Start axis at 0' toggle is disabled");
-////	 	          	}
-//	 	   			
-//	 	   			List<WebElement> yValues=getWebElements(driver,Y_Label_Value_Chart);
-//	 	       		int lastsize=yValues.size()-1;
-//	 	       		String y_firstDesValue=yValues.get(lastsize).getText();
-//	 	       		String y_firstAscValue=getText1(driver,Y_Label_Value_Chart);
-//	 	         	
-//	 	       		String sortOrderType=getAttribute1(driver,AscDes,"value");
-//	 	       		if(sortOrderType.equals("desc")) {
-//	 	       			if(!(y_firstAscValue.equals("0"))) {
-//	 	       				pass(driver,"Y axis label value not start from 0 in the chart, when toogle is disabled");
-//	 	       			}else {
-//	 	       				pass(driver,"Y axis label value started from 0 in the chart when toogle is disabled");
-//	 	       			}	
-//	 	       		}else {
-//	 	       			if(!(y_firstDesValue.equals("0"))) {
-//	 	       				pass(driver,"Y axis label value not start from 0 in the chart, when toogle is disabled");
-//	 	       			}else {
-//	 	       				pass(driver,"Y axis label value started from 0 in the chart when toogle is disabled");
-//	 	       			}
-//	 	          	
-//	 	       		}
-//	 	   		}
-//	 	         	    
-//	 	   		click(driver,switchSlider);
-//	            scrollUsingElement(driver, ApplyButton);
-//	   		  	click(driver,ApplyButton);
-//	 	  		elementnotvisible1(driver, RPE_Loading);
-//	 	  		verifyElementDisplayed(driver,Chart_Section);
-//	 	  		//waitForElement(driver, ChartBarDisplayCount);
-//	 	     	    
-//	      	    String x_firstAscValue=getText1(driver,Column_X_Labels_Chart);
-//	 	      	if((x_firstAscValue.equals("0"))) {
-//	 	  			pass(driver,"X axis label value started from '0' in the chart, After enbling the 'Start axis at 0' toggle");
-//	 	      	}else {
-//	 	  			pass(driver,"X axis label value not started from '0' in the chart, After enbling the 'Start axis at 0' toggle");
-//	 	      	}	
-// 	      	
-// 	   			String y_firstAscValue=getText1(driver,Column_Y_Labels_Chart);
-// 	     	
-//    			if((y_firstAscValue.equals("0"))) {
-//    				pass(driver,"Y axis label value started from '0' in the chart, After enbling the 'Start axis at 0' toggle");
-//    			}else {
-//    				pass(driver,"Y axis label value not started from '0' in the chart, After enbling the 'Start axis at 0' toggle");
-//    			}	
-// 	       }
+ 	     	setTestCaseID("TC_BARWITHLINE_ AXIS_TITLE_020");
+ 	       	verifyElementDisplayed(driver, switchSliderText);
+ 	     	if(verifyElementDisplayed(driver,switchSlider)){
+	 	   		if(isToggleEnable(driver, switchSliderInput)) {
+	 	   			fail(driver,"By default Start axis at 0 toggle enabled");
+	 	   		}else {
+	 	   			pass(driver,"By default Start axis at 0 toggle disabled");
+	 	   		}	    
+	 	   		//Clicking the Start Axis At 0 toggle to enable it
+	 	   		click(driver,switchSlider);
+	 	   		wait(driver,"1");
+		 	   	if(isToggleEnable(driver, switchSliderInput)) {
+	 	   			pass(driver,"Start axis at 0 toggle is enabled when enabling it");
+	 	   		}else {
+	 	   			fail(driver,"Start axis at 0 toggle is not enabled when enabling it");
+	 	   		}	
+	            scrollUsingElement(driver, ApplyButton);
+	   		  	click(driver,ApplyButton);
+	 	  		elementnotvisible1(driver, RPE_Loading);
+	 	  		verifyElementDisplayed(driver,Chart_Section);
+	 	  		
+	 	  		//Taking both Right And Side axis first Value, then Comparing both values if both equal to 0 then we can validate the Start Axis At 0 working fine
+	      	    String First_Start_Value_Left=getText1(driver,Y_Label_Value_Chart);
+	      	    String First_Start_Value_Right=getText1(driver,Y_Labe_Value_Chart_Right);
+
+	 	      	if(First_Start_Value_Left.equals("0") && First_Start_Value_Right.equals("0") ) {
+	 	  			pass(driver,"Axis Started from '0' correctly when the toggle is enabled");
+	 	      	}else {
+	 	  			fail(driver,"Axis not Started from '0' correctly when the toggle is enabled");
+	 	      	}	
+ 	       }
+ 	     	
+ 	       setTestCaseID("TC_BARWITHLINE_ AXIS_TITLE_021");
+ 	       verifyElementDisplayed(driver, Synchronise_Text);
+ 	       verifyElementDisplayed(driver,Synchronise_Axis_Toggle);
+ 	       if(isToggleEnable(driver, Synchronise_Axis)) {
+	   			fail(driver,"By default Synchronise Axis toggle enabled");
+	   	   }else {
+	   			pass(driver,"By default Synchronise Axis toggle disabled");
+	   	   }	
+ 	       
+ 	       click(driver,Synchronise_Axis_Toggle);
+ 	       wait(driver,"1");
+ 	       if(isToggleEnable(driver, Synchronise_Axis)) {
+	   			pass(driver,"Synchronise Axis toggle is enabled when enabling it");
+	   	   }else {
+	   			fail(driver,"Synchronise Axis toggle is not enabled when enabling it");
+	   	   }
+           scrollUsingElement(driver, ApplyButton);
+           click(driver,ApplyButton);
+           elementnotvisible1(driver, RPE_Loading);
+           verifyElementDisplayed(driver,Chart_Section);
+	     	    
+           // Taking Both Side Axis Values in the Chart And then Comparing both side Values to verify both are equal when the Synchronise Axis toggle is enabled
+           List<WebElement> RightSideLabels=getWebElements(driver,Y_Labe_Value_Chart_Right);
+           List<WebElement> LeftSideLabels=getWebElements(driver,Y_Label_Value_Chart);
+           //Intially set as True on boolean value and in the loop if any one value not equal, then set the boolean value false. 
+           boolean Synchronise=true;
+           for(int k=0;k<RightSideLabels.size();k++) {
+        	   String rightSideText=RightSideLabels.get(k).getText();
+        	   String leftSideText=LeftSideLabels.get(k).getText();
+        	   if(!rightSideText.equals(leftSideText)) {
+        		   //Checking the each value in the right side value with respect to left  side, if any one of the Value not equal, fails the report and stop checking the loop
+        		   fail(driver,"Synchronise Axis toggle is not working properly , RightSide Value : "+rightSideText+", leftSideValue : "+leftSideText);
+        		   Synchronise=false;
+        		   break;
+        	   }
+           }
+           
+           //After the loop, if the boolean value still true, then we can validate, it is pass.
+           if(Synchronise==true) {
+        	   pass(driver,"Synchronise Axis toggle is working properly When it is enabled");
+           }
  	     	
  		}
-            	// ******************** AxisTitle Validation End *******************
+         // ******************** AxisTitle Validation End *******************
      	
+	 	// ******************** ChartTitle Validation Start *******************
+	      String BarWithLine_Chart_Title= getCellValue("TestExecution","Testcase_Selection","BarWithLine_Chart_Title",Flag);
+	      if(BarWithLine_Chart_Title.equals("Yes") && AllTestcase==true) {
+	     	 	CHART_TITLE chartTitle=new CHART_TITLE();
+	            chartTitle.chartTitleTest(driver, TypeBackgroundColor1_ChartTitle, TypeTextColor1_ChartTitle, Change_FontFamily_ChartTitle, ChangeFontSize_ChartTitle,ChangeChartTitleName);       	
+	      }
+	    // ******************** ChartTitle Validation End *******************
+	    
+	  //********** ChartStyle Validation Start *************************
+        
+	    setTestCaseID("TC_BARWITHLINE_ CHART_STYLE_001");
+	    //verifying the Chart Format displayed and Clicking the Chart Format
+        verifyElementDisplayed(driver,Chart_FormatSec);
+		click(driver,Chart_FormatSec);
+		
+		//Taking the Input Condition from execution excel sheet for whether the BarWithLine Chart Style is Yes/No for execution.
+     	String BarWithLine_Chart_Style= getCellValue("TestExecution","Testcase_Selection","BarWithLine_Chart_Style",Flag);
+     	//If we provide Yes, then execute the code of the Chart Style Validation which developed inside the If condition 
+        if(BarWithLine_Chart_Style.equals("Yes")&&AllTestcase==true) {
+        	
+        	//Validating Chart Format is expanded or not 
+	      	 String ChartFormatOpenstatus=getAttribute1(driver, chartFormatExpand, "class");
+	  		 if(ChartFormatOpenstatus.contains("up")) {
+	  			pass(driver,"Chart Format is expanded when clicking the Chart Format");
+	  		 }else {
+	  			fail(driver,"Chart Format is not expanded when click the Chart Format");
+	  			
+	  		 }
+	  		 
+	  		 //Validating the Chart Format is blue Color or not after expanding it.
+	  		 String ChartFormatColor=getTextColor(driver, Chart_FormatSec);
+	  		 if(ChartFormatColor.equalsIgnoreCase(ChartFormatColorExp)) {
+	  			pass(driver,"Chart Format gets highlighted in blue Color after it expands");
+	  		 }else {
+	  			fail(driver,"Chart Format not highlighted in blue Color after it expands"); 
+	  		 }
+	  		 
+	  		 setTestCaseID("TC_BARWITHLINE_ CHART_STYLE_002");
+	  		 verifyElementDisplayed(driver,ChartStyling); 
+	  		 
+	  		 String ChartStylingExpand=getAttribute1(driver, ChartStyling_Expand, "class");
+  			 if(ChartStylingExpand.contains("up")) {
+  				pass(driver,"By default, Chart Styling gets Expanded");
+  			 }else {
+  				fail(driver,"By default, Chart Styling not gets Expand");
+  			 }
+  			 
+ 			 String ChartStylingColor_Act=getTextColor(driver, ChartStyling);
+ 			 if(ChartStylingColor_Exp.equalsIgnoreCase(ChartStylingColor_Act)) {
+ 				pass(driver,"Chart Styling gets highlighted in blue color ");
+ 			 }else {
+ 				fail(driver,"Chart Styling not highlighted in blue color"); 
+ 			 }
+
+ 			 setTestCaseID("TC_BARWITHLINE_ CHART_STYLE_003");
+  			 verifyElementDisplayed(driver,ChartThemeText);
+  			 verifyElementDisplayed(driver,ChartThemeInput);
+  			   	
+  			 verifyElementDisplayed(driver,Line_Stroke_text);
+ 			 verifyElementDisplayed(driver,Line_Stroke_Input);
+ 			  
+ 			 verifyElementDisplayed(driver,Line_bullet_Text);
+ 			 verifyElementDisplayed(driver,Line_bullet_Input);
+ 			  
+ 			 verifyElementDisplayed(driver,BulletType_Text);
+ 			 verifyElementDisplayed(driver,BulletType_Input);
+ 			 
+ 			 verifyElementDisplayed(driver,Stroke_Width_text);
+ 			 verifyElementDisplayed(driver,Stroke_Width_Input);
+ 			 
+ 			 verifyElementDisplayed(driver,Line_Style_text);
+ 			 verifyElementDisplayed(driver,Line_Style_Input);
+ 			 
+  			 verifyElementDisplayed(driver,X_ScrollText);
+  			 verifyElementDisplayed(driver,X_ScrollInputSlider);
+  			
+  			 verifyElementDisplayed(driver,Y_ScrollText);
+  			 verifyElementDisplayed(driver,Y_ScrollInputSlider);
+  			
+  			 verifyElementDisplayed(driver,Auto_ScrollText);
+  			 verifyElementDisplayed(driver,Auto_ScrollInputSlider);
+  			
+  			 verifyElementDisplayed(driver,EnableGridText);
+  			 verifyElementDisplayed(driver,EnableGrid_InputSlider);
+
+  			 verifyElementDisplayed(driver,X_Label_Position_Input);
+  			 verifyElementDisplayed(driver,Grid_Distance_Input);
+  			 
+  			 
+  			 setTestCaseID("TC_BARWITHLINE_ CHART_STYLE_004");
+  			 String defaultThemeValue_Act=getText1(driver,ChartThemeInput);
+  			 if(defaultThemeValue_Act.equals(DefaultThemeValue_Exp)) {
+  				 pass(driver,"By default, Chart theme selected the value as '"+DefaultThemeValue_Exp+"'");
+  			 }else {
+  				 fail(driver,"By default, '"+DefaultThemeValue_Exp+"' value not selected in the  Chart theme input");
+  			 }
+  			 setTestCaseID("");
+  			 click(driver,ChartThemeInput);
+  			 if(verifyElementDisplayed(driver,ChartThemeResults)) {
+  				 pass(driver,"Chart theme dropdown opened and displayed list of chart themes");
+  				 mouseOverToElement(driver,ThirdValue);
+  				 wait(driver,"1");
+  				 setTestCaseID("");
+  				 String mouseHighlightColor=getTextBackgroundColor(driver,ThirdValue);
+  				 if(Highlight_ColorStyle_Exp.equalsIgnoreCase(mouseHighlightColor)) {
+  					 pass(driver,"Mouse hovered value highlighted in blue color");
+  				 }else {
+  					 fail(driver,"Mouse hovered value not highlighted in blue color");
+  				 }
+  			
+  				 setTestCaseID("");
+  				 ScrollBarValidation1(driver,ChartThemeResults,"Chart_Theme_BarWithChart");
+  			
+  				 List<WebElement> beforeSearchResults=getWebElements(driver,chartThemeResultList);
+  				 int beforeSearchSize=beforeSearchResults.size();
+  				 setTestCaseID("TC_BARWITHLINE_ CHART_STYLE_005");
+  				 verifyElementIsPresent1(driver,dropdownInputsearchBox);
+  				 click(driver,dropdownInputsearchBox);
+  				 sendKeys(driver,dropdownInputsearchBox,"sdgffh");
+  				 String inValidResult=getText1(driver,chartThemeFirstResult);
+  				 if(inValidResult.equals("No results found")) {
+  					 pass(driver,"'No results found' displayed when user enter incorrect chart theme");
+  				 }else {
+  					 fail(driver,"'No results found' not displayed when user enter incorrect chart theme");
+  				 }
+  			       
+  				 clear1(driver,dropdownInputsearchBox);
+  				 sendKeys(driver,dropdownInputsearchBox,Change_ChartTheme_ChartStyle);
+  				 List<WebElement> afterSearchResults=getWebElements(driver,chartThemeResultList);
+  				 int afterSearchSize=afterSearchResults.size();
+  				 String resultText=getText1(driver,chartThemeFirstResult);
+  				 if((beforeSearchSize>afterSearchSize)&&resultText.equals(Change_ChartTheme_ChartStyle)) {
+  					 pass(driver,"Search input in the Chart Theme dropdown works properly");
+  				 }else {
+  					 fail(driver,"Search input in the Chart Theme dropdown not works properly");
+  				 }
+  			     
+  				 setTestCaseID("");
+  				 selectChartTheme(driver,Change_ChartTheme_ChartStyle);
+  				 wait(driver,"1");
+  				 if(isDisplayed2(driver,ChartThemeResults)) {
+  					 fail(driver,"Chart theme dropdown not closed after select the Theme");
+  				 }else {
+  					 pass(driver,"Chart theme dropdown closed automatically after select the Theme");
+  				 }
+  				 String selectedThemeValue=getText1(driver,ChartThemeInput);
+ 				 if(selectedThemeValue.equals(Change_ChartTheme_ChartStyle)) {
+ 					 pass(driver,"Selected Theme value  updated in the Chart Theme Input");
+ 				 }else {
+ 					 fail(driver,"Selected Theme value not updated in the Chart Theme Input");
+ 				 }  
+  				 
+ 				setTestCaseID("");
+  				click(driver,ChartThemeInput);
+  				waitForElement(driver,chartThemeResultList);
+  				wait(driver,"1");
+  				selectedColorAct=getTextBackgroundColor(driver,ListSelected);
+  				System.out.println("Highlight_color_Exp : "+Highlight_color_Exp+"selectedColorAct : "+selectedColorAct);
+  				highlightText=getText1(driver,ListSelectedText2);
+  				if((highlightText.contains(Change_ChartTheme_ChartStyle))&&Highlight_color_Exp.equalsIgnoreCase(selectedColorAct)) {
+  					pass(driver,"Selected Value ("+Change_ChartTheme_ChartStyle+") highlighted in blue color");
+  				}else {
+  					fail(driver,"Selected Value ("+Change_ChartTheme_ChartStyle+") not highlighted in blue color");
+  				}
+  				 mouseOverAndClick(driver, ChartThemeText);
+  				
+  			 }else {
+  				 fail(driver,"Chart theme dropdown not opened after click on it");
+  			 }
+  			 
+  			 setTestCaseID("TC_BARWITHLINE_ CHART_STYLE_007");
+  			 String defaultLineStroke_Act=getTextBackgroundColor(driver, Line_Stroke_Pointer);
+   	  		 if(defaultLineStroke_Act.equalsIgnoreCase(Default_Line_Stroke_Exp)) {
+   	  			 pass(driver,"By default "+Default_Line_Stroke_Exp+" is displayed in the Line Stroke Input");
+   	  		 }else {
+   	  			 fail(driver,"By default "+Default_Line_Stroke_Exp+" is not displayed in the Line Stroke Input"); 
+   	  		 }
+   	  		 
+   	  	     setTestCaseID("TC_BARWITHLINE_ CHART_STYLE_008");
+   	  		 click(driver,Line_Stroke_Input);
+   	  		 wait(driver,"1");
+	   	  	 action.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).perform();
+	         sendKeys(driver,Line_Stroke_Input,Change_Line_Stroke_Color_Chart_Style);
+	         click(driver,Line_Stroke_text);
+	         String Line_Stroke_Act=getTextBackgroundColor(driver, Line_Stroke_Pointer);
+	
+	         if((Line_Stroke_Act.equalsIgnoreCase(Change_Line_Stroke_Color_Chart_Style))) {
+	  			pass(driver,"Manually Enter the Color, "+Change_Line_Stroke_Color_Chart_Style+" updated in the Line Stroke Input");
+	         }else {
+	  			fail(driver,"Manually Enter the Color, "+Change_Line_Stroke_Color_Chart_Style+" not updated in the Line Stroke Input");
+	         }
+ 		
+	         scrollUsingElement(driver,ApplyButton);
+	 		 click(driver,ApplyButton);
+	         
+   	  		 String AppliedLineStroke_act=getTextColor(driver, Line_Stroke_Chart);
+   	  		 if(AppliedLineStroke_act.equalsIgnoreCase(Change_Line_Stroke_Color_Chart_Style)) {
+   	  			 pass(driver,"Selected "+Change_Line_Stroke_Color_Chart_Style+" color is applied in Line Stroke in the chart");
+   	  		 }else {
+   	  			 fail(driver,"Selected "+Change_Line_Stroke_Color_Chart_Style+" color is not applied in Line Stroke in the chart");
+   	  		 }
+   	  		 
+   	  	     setTestCaseID("");
+   	  	     click(driver,Line_Stroke_Input);
+   	         wait(driver,"1");
+   	         action.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).perform();
+   	         action.sendKeys(Keys.BACK_SPACE).build().perform();
+   	         wait(driver,"1");
+   	         click(driver,Line_Stroke_text);
+   	         String AfterRever_LineStroke=getTextBackgroundColor(driver, Line_Stroke_Pointer);
+   	         if((AfterRever_LineStroke.equalsIgnoreCase(Default_Line_Stroke_Exp))) {
+   	 			 pass(driver,"After revert all color selection default Color is updated in the Line Stroke Input");
+   	         }else {
+   	 			 fail(driver,"After revert all color selection default Color is not updated in the Line Stroke Input");
+   	         }
+   	         setTestCaseID("");
+   	         click3(driver,Line_Stroke_text);
+   	         click(driver,Line_Stroke_Input);
+   	         waitForElement(driver,ColorPickerOpen);
+   	         verifyElementIsPresent1(driver,ThemeColor);
+   	         verifyElementIsPresent1(driver,History);
+   	         mouseOverToElement(driver,Color6);
+   	         wait(driver,"1");
+   	         mouseOverToElement(driver,mouseOverColorHistory);
+   	         wait(driver,"1");
+   	         mouseOverToElement(driver,Color6);
+   	         String mouseOverHistoryColor=getText1(driver,mouseOverColorHistory);
+   	         doubleClick(driver,mouseOverColorHistory);
+   	         wait(driver,"1");
+   	         action.keyDown(Keys.CONTROL).sendKeys("c").keyUp(Keys.CONTROL).perform();
+   	         doubleClick(driver,Line_Stroke_Input);
+   	         wait(driver,"1");
+   	         action.keyDown(Keys.CONTROL).sendKeys("v").keyUp(Keys.CONTROL).perform();
+   	         wait(driver,"1");
+   	         click(driver,Line_Stroke_text);
+   	         String AfterPasteBackgroundColor=getTextBackgroundColor(driver, Line_Stroke_Pointer);
+   	         if(AfterPasteBackgroundColor.equalsIgnoreCase(mouseOverHistoryColor)) {
+	          	pass(driver,"Copy Paste Color value is working fine in Line Stroke Input");
+   	         }else {
+	          	fail(driver,"Copy Paste Color value is not working fine in Line Stroke Input");
+   	         }
+  			 
+   	         setTestCaseID("TC_BARWITHLINE_ CHART_STYLE_009");
+  			 String defaultLineBullet_Act=getTextBackgroundColor(driver, Line_bullet_Input_Pointer);
+   	  		 if(defaultLineBullet_Act.equalsIgnoreCase(Default_Line_Bullet_Exp)) {
+   	  			 pass(driver,"By default "+Default_Line_Bullet_Exp+" is displayed in the Line Bullet Input");
+   	  		 }else {
+   	  			 fail(driver,"By default "+Default_Line_Bullet_Exp+" is not displayed in the Line Bullet Input"); 
+   	  		 }
+   	  		 
+   	  	     setTestCaseID("TC_BARWITHLINE_ CHART_STYLE_010");
+   	  		 click(driver,Line_bullet_Input);
+   	  		 wait(driver,"1");
+	   	  	 action.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).perform();
+	         sendKeys(driver,Line_bullet_Input,Change_Line_Bullet_Color_Chart_Style);
+	         click(driver,Line_Stroke_text);
+	         String Line_Bullet_Act=getTextBackgroundColor(driver, Line_bullet_Input_Pointer);
+	
+	         if((Line_Bullet_Act.equalsIgnoreCase(Change_Line_Bullet_Color_Chart_Style))) {
+	  			pass(driver,"Manually Enter the Color, "+Change_Line_Bullet_Color_Chart_Style+" updated in the Line Bullet Input");
+	         }else {
+	  			fail(driver,"Manually Enter the Color, "+Change_Line_Bullet_Color_Chart_Style+" not updated in the Line Bullet Input");
+	         }
+ 		
+	         scrollUsingElement(driver,ApplyButton);
+	 		 click(driver,ApplyButton);
+	         
+//   	  		 String AppliedLineStroke_act=getTextColor(driver, Line_Stroke_Chart);
+//   	  		 if(AppliedLineStroke_act.equalsIgnoreCase(Change_Line_Stroke_Color_Chart_Style)) {
+//   	  			 pass(driver,"Selected "+Change_Line_Stroke_Color_Chart_Style+" color is applied in Line Stroke in the chart");
+//   	  		 }else {
+//   	  			 fail(driver,"Selected "+Change_Line_Stroke_Color_Chart_Style+" color is not applied in Line Stroke in the chart");
+//   	  		 }
+//   	  		 
+//   	  	     setTestCaseID("");
+//   	  	     click(driver,Line_Stroke_Input);
+//   	         wait(driver,"1");
+//   	         action.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).perform();
+//   	         action.sendKeys(Keys.BACK_SPACE).build().perform();
+//   	         wait(driver,"1");
+//   	         click(driver,Line_Stroke_text);
+//   	         String AfterRever_LineStroke=getTextBackgroundColor(driver, Line_Stroke_Pointer);
+//   	         if((AfterRever_LineStroke.equalsIgnoreCase(Default_Line_Stroke_Exp))) {
+//   	 			 pass(driver,"After revert all color selection default Color is updated in the Line Stroke Input");
+//   	         }else {
+//   	 			 fail(driver,"After revert all color selection default Color is not updated in the Line Stroke Input");
+//   	         }
+//   	         setTestCaseID("");
+//   	         click3(driver,Line_Stroke_text);
+//   	         click(driver,Line_Stroke_Input);
+//   	         waitForElement(driver,ColorPickerOpen);
+//   	         verifyElementIsPresent1(driver,ThemeColor);
+//   	         verifyElementIsPresent1(driver,History);
+//   	         mouseOverToElement(driver,Color6);
+//   	         wait(driver,"1");
+//   	         mouseOverToElement(driver,mouseOverColorHistory);
+//   	         wait(driver,"1");
+//   	         mouseOverToElement(driver,Color6);
+//   	         String mouseOverHistoryColor=getText1(driver,mouseOverColorHistory);
+//   	         doubleClick(driver,mouseOverColorHistory);
+//   	         wait(driver,"1");
+//   	         action.keyDown(Keys.CONTROL).sendKeys("c").keyUp(Keys.CONTROL).perform();
+//   	         doubleClick(driver,Line_Stroke_Input);
+//   	         wait(driver,"1");
+//   	         action.keyDown(Keys.CONTROL).sendKeys("v").keyUp(Keys.CONTROL).perform();
+//   	         wait(driver,"1");
+//   	         click(driver,Line_Stroke_text);
+//   	         String AfterPasteBackgroundColor=getTextBackgroundColor(driver, Line_Stroke_Pointer);
+//   	         if(AfterPasteBackgroundColor.equalsIgnoreCase(mouseOverHistoryColor)) {
+//	          	pass(driver,"Copy Paste Color value is working fine in Line Stroke Input");
+//   	         }else {
+//	          	fail(driver,"Copy Paste Color value is not working fine in Line Stroke Input");
+//   	         }
+//  			 
+//  			 
+//  			 
+//  			 
+//  			 
+//  			 
+//  			 
+//  			 
+//  			 
+//  			 
+//  			 
+//  			 
+//  			 
+//  			 
+//  			 
+//  			 
+//  			 
+//  			 
+//  			 
+//  			 
+//  			 
+//  			 
+//  			 
+//  			 
+//  			//Testing 
+// 			//String X_Selected=getText1(driver,X_Axis_Input);
+// 	        String Y_Selected=getText1(driver,Y_SelectedValue);
+// 	        
+// 	        setTestCaseID("TC_GROUP_BAR_098");
+//  			 if(isToggleEnable(driver,AutoScroll_toggle)) {
+//  				 pass(driver,"By default, 'AutoScroll' toggle is enabled");
+//  				 setTestCaseID("TC_GROUP_BAR_099");
+//  				 
+//  				 if(isToggleEnable(driver,X_Scroll_toggle)) {
+//  					 fail(driver,"X Scroll toggle not disabled when AutoScroll toggle is enabled for the X Value : "+Select_X_Axis_Value1+", "+Select_X_Axis_Value2+", "+Select_X_Axis_Value1);
+//  				 }else {
+//  					 pass(driver,"X Scroll toggle disabled when AutoScroll toggle is enabled");
+//  				 }
+//  			  		   
+//  				 if(isToggleEnable(driver,Y_Scroll_toggle)) {
+//  					 fail(driver,"Y Scroll toggle not disabled when AutoScroll toggle is enabled for the Y_Value : "+Y_Selected);
+//  				 }else {
+//  					 pass(driver,"Y Scroll toggle disabled when AutoScroll toggle is enabled for the Y_Value : "+Y_Selected);
+//  				 }
+//  			  		   
+//  			 }else {
+//  				 fail(driver,"By default, 'AutoScroll' toggle is not enabled");
+//  			 }
+//  			   	
+//  			 setTestCaseID("TC_GROUP_BAR_100");
+//  			 if(isToggleAccessible(driver,X_Scroll_toggle) && isToggleAccessible(driver,Y_Scroll_toggle)){
+//  				 fail(driver,"X Scroll and Y Scroll toggle accessible when AutoScroll toggle is enabled");
+//  			 }else {
+//  				 pass(driver,"X Scroll and Y Scroll toggle not accessible when AutoScroll toggle is enabled");
+//  			 }
+//  			 
+//  			 setTestCaseID("");
+//  			 click(driver,Auto_ScrollInputSlider);
+//  			 if(isToggleEnable(driver,AutoScroll_toggle)){
+//  				 fail(driver,"'Auto Scroll' toggle not disabled when click on it");
+//  			 }else {
+//  				 pass(driver,"'Auto Scroll' toggle disabled when click on it");
+//  			 }
+//  			   	
+//  			 if(isToggleAccessible(driver,X_Scroll_toggle) && isToggleAccessible(driver,Y_Scroll_toggle)){
+//  				 pass(driver,"X Scroll and Y Scroll toggle accessible when AutoScroll toggle is disabled");
+//  			 }else {
+//  				 fail(driver,"X Scroll and Y Scroll toggle not accessible when AutoScroll toggle is disabled");
+//  			 }
+//  			   	
+//  			setTestCaseID("TC_GROUP_BAR_101");
+//  			 boolean X_ScrollEnable=false;
+//  			 if(isToggleEnable(driver,X_Scroll_toggle)){
+//  				// pass(driver,"X Scroll toggle enabled when click on it");
+//  				X_ScrollEnable=true;
+//  			 }else {
+//  				click(driver,X_ScrollInputSlider);
+//  				if(isToggleEnable(driver, X_Scroll_toggle)) {
+//  					pass(driver,"X Scroll toggle enabled when enabling it");
+//  					 X_ScrollEnable=true;
+//  				}else {
+//  					fail(driver,"X Scroll toggle not enabled when enabling it");
+//  				}
+//  			 }
+//  			   	
+//  			 boolean Y_ScrollEnable=false;
+//   			 if(isToggleEnable(driver,Y_Scroll_toggle)){
+//   				 //pass(driver,"Y Scroll toggle enabled when click on it");
+//   				 Y_ScrollEnable=true;
+//   			 }else {
+//   				 //fail(driver,"Y Scroll toggle not enabled when click on it");
+//   				 click(driver,Y_ScrollInputSlider);
+//   				 wait(driver,"1");
+//   				 if(isToggleEnable(driver,Y_Scroll_toggle)){
+//   					 pass(driver,"Y Scroll toggle enabled when enabling it");
+//   					 Y_ScrollEnable=true;
+//   				 }else {
+//   					 fail(driver,"Y Scroll toggle not enabled when enabling it");
+//   				 }
+//   			 }
+//   			   	
+//  			   	
+//  			 scrollUsingElement(driver, ApplyButton);
+//  			 click(driver,ApplyButton);
+//  			 elementnotvisible1(driver, Loading);
+//  			 elementnotvisible1(driver, RPE_Loading);
+//  			 verifyElementDisplayed(driver,Chart_Section);
+//  			// waitForElement(driver, ChartBarDisplayCount);
+//  			
+//  			 if(X_ScrollEnable==true) {
+//  				if(isDisplayed(driver,X_Scroll_Bar1)) {
+//     				 pass(driver,"X Scroll Bar is displayed in the chart after enabling it");
+//     			 }else {
+//     				 fail(driver,"X Scroll Bar is not displayed in the chart after enabling it");
+//     			 }
+//  			 }
+//  			 
+//  			 
+//  			 if(Y_ScrollEnable==true) {
+//  				 if(isDisplayed(driver,Y_Scroll_Bar1)) {
+//  					 pass(driver,"Y Scroll Bar is displayed in the chart after enabling it");
+//  				 }else {
+//  					 fail(driver,"Y Scroll Bar is not displayed in the chart after enabling it");
+//  				 }
+//  			 }
+//  			 
+//  			 
+//  			 click(driver,Auto_ScrollInputSlider);
+//  			 wait(driver,"1");
+//  			   	
+//  			 if(isToggleEnable(driver,X_Scroll_toggle) && isToggleEnable(driver,Y_Scroll_toggle)){
+//  				 fail(driver,"X Scroll and Y Scroll toggle not automatically disabled when enabling the AutoScroll toggle");
+//  			 }else {
+//  				 pass(driver,"X Scroll and Y Scroll toggle automatically disabled when enabling the AutoScroll toggle");
+//  			 }
+//  			   	
+//  			setTestCaseID("TC_GROUP_BAR_102");
+//  			 if(isToggleEnable(driver,EnableGrid_toggle)) {
+//  				 pass(driver,"By default, 'Enable Grid' toggle is enabled");
+//  				 
+//  				 scrollUsingElement(driver, ApplyButton);
+//  	  			 click(driver,ApplyButton);
+//  	  			 elementnotvisible1(driver, Loading);
+//  	  			 elementnotvisible1(driver, RPE_Loading);
+//  	  			 verifyElementDisplayed(driver,Chart_Section);
+//  	  			
+//  	  			 if(isDisplayed(driver,Grid_Stacked_Column)) {
+//  	  				 pass(driver,"Grid is displayed in the chart when it is enable");
+//  	  			 }else {
+//  	  				 fail(driver,"Grid is not displayed in the chart when it is enable");
+//  	  			 }
+//  				
+//  	  			setTestCaseID("TC_GROUP_BAR_103");
+//  				 click(driver,EnableGrid_InputSlider);
+//  				 wait(driver,"1");
+//  				 if(isToggleEnable(driver,EnableGrid_toggle)){
+//  					 fail(driver,"'Enable Grid' toggle not disabled when click on it ");
+//  				 }else {
+//  					 pass(driver,"'Enable Grid' toggle disabled when click on it ");
+//  				 }
+//  			    		
+//  				 scrollUsingElement(driver, ApplyButton);
+//  	  			 click(driver,ApplyButton);
+//  	  			 elementnotvisible1(driver, Loading);
+//  	  			 elementnotvisible1(driver, RPE_Loading);
+//  	  			 verifyElementDisplayed(driver,Chart_Section);
+//  	  			
+//  	  			 if(isDisplayed(driver,Grid_Stacked_Column)) {
+//  	  				 fail(driver,"Grid is displayed in the chart when it is disable");
+//  	  			 }else {
+//  	  				 pass(driver,"Grid is not displayed in the chart when it is disable");
+//  	  			 }
+//  	  		     click(driver,EnableGrid_InputSlider);
+//  			 }else {
+//  				 fail(driver,"By default, 'Enable Grid' toggle is not enabled");
+//  			 }
+//  		
+//  			 setTestCaseID("TC_GROUP_BAR_104");
+//  			 click(driver,ChartStyling);
+//  			 wait(driver,"1");
+//  			 String chartStyleClose_Act=getAttribute1(driver, ChartStyling_Expand, "class");
+//  			 if(chartStyleClose_Act.contains("down")) {
+//  				 pass(driver,"Chart styling gets collapsed when click on it");
+//  			 }else {
+//  				 fail(driver,"Chart styling not gets collapsed when click on it");
+//  			 }
+	  		 
+       }
+		 //*********** ChartStyle validation end ************
         
         
+	      
+	      
         
     	
 	}
