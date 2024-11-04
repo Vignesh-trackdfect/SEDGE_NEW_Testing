@@ -22,6 +22,7 @@ public class Directory {
 	public static String REPORTSDIRName = "Lynk Reports";
 	public static String REPORTSDir = CURRENTDir + SEP + REPORTSDIRName;
 	public static String RESULTSDir = REPORTSDir + SEP + "Results";
+	public static String FAILED_REPORTSDir = REPORTSDir + SEP + "Email_Reports";
 	public static String HTMLDESIGNDIRName = "HTML_Design_Files";
 	public static String HTMLDESIGNDir = REPORTSDir + SEP + HTMLDESIGNDIRName;
 	public static String CSSDIRName = "CSS";
@@ -114,6 +115,7 @@ public class Directory {
 				if ((str1 != null) && (str1.length() > 0)) {
 					REPORTSDir = str1;
 					REPORTSDIRName = new File(REPORTSDir).getName();
+					FAILED_REPORTSDir=REPORTSDir+SEP+"Email_Reports";
 					RESULTSDir = REPORTSDir + SEP + "Results";
 					HTMLDESIGNDIRName = "HTML_Design_Files";
 					HTMLDESIGNDir = REPORTSDir + SEP + HTMLDESIGNDIRName;
@@ -152,6 +154,7 @@ public class Directory {
 	public  void verifyRequiredFiles() throws ATUReporterException {
 		init();
 		mkDirs(REPORTSDir);
+		mkDirs(FAILED_REPORTSDir);
 		if (!(exists(RESULTSDir))) {
 			mkDirs(RESULTSDir);
 			SettingsFile.initSettingsFile();

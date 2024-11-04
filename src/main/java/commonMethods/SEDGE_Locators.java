@@ -54,16 +54,22 @@ public interface SEDGE_Locators {
 	public static String default_delimeter="Default Delimeter value>(//*[contains(@class,'radio-checked')]//input)//following::div[1]";
 	public static String AddFiles="Add Files >//div[contains(@class,'select-value')]//following::button";
 	public static String DataSetTable="Dataset Table Loaded>//div[@role='grid']";
+	public static String ProjectName_Input_FileUpload="Project Name Input in FileUpload>//input[@matinput and @type='text']";
+	public static String Edit_Icon_FileName="Edit Option in File Name>//mat-icon[text()='edit']";
+	public static String FileName_Input_FileUpoad="File Name input File Upload>//table[@aria-label='File Uploader']//input";
+	public static String FileName_YesBtn="File Name Yes Button>//mat-icon[text()='check']";
+	public static String FileName_Output="FileName>//table[@aria-label='File Uploader']//div/span";
 	
-	public static String fileUploaded_3="File Uploaded alert3>//*[contains(text(),'Numerical columns with exactly two unique values are treated as Categorical')]";
-	public static String fileUploaded_2="File Uploaded alert2>//*[contains(text(),'In the column names Spaces are replaced with an underscore and Special characters are replaced with their short key-words.')]";
-	public static String fileUploaded_1="File Uploaded alert1>//*[contains(text(),'File uploaded successfully')]";
+	public static String fileUploaded_3="File Uploaded success notification3>//*[contains(text(),'Numerical columns with exactly two unique values are treated as Categorical')]";
+	public static String fileUploaded_2="File Uploaded success notification2>//*[contains(text(),'In the column names Spaces are replaced with an underscore and Special characters are replaced with their short key-words.')]";
+	public static String fileUploaded_1="File Uploaded success notification1>//*[contains(text(),'File uploaded successfully')]";
     public static String Statistics_icon="Statistics Options>//i[contains(@class,'statistics')]";
     public static String Visual_icon="Visual Analytics Option>//i[contains(@class,'visual')]";
     public static String visual_Analytics="Visual Analytics>//*[contains(text(),'Visual Analytics')]";
     public static String predictive_analytics="Predictive analytics option>//i[contains(@class,'predictions')]";
     public static String Preview="Preview>//i[contains(@class,'analysis')]";
     public static String DashPro_Option="DashPro Option>//a/span[text()='Dash Pro']";
+    public static String Data_Source="Data Source>//a//span[text()='Data Source ']";
     
     public static String targetNotSelectError="Target not select error>//span[text()=' Kindly choose target in profiling page']";
 	public static String closeTargeterror="Close target error>(//span[text()=' Kindly choose target in profiling page']//following::i)[1]";
@@ -80,7 +86,7 @@ public interface SEDGE_Locators {
 	public static String upload_wait="Uploading wait>//*[contains(text(),'Please wait while processing your file')]";
 	public static String Loading="Loading>//*[name()='circle' and @r='45']";
 	public static String Loading1="Loading>//*[name()='circle']";
-	public static String Preview_text="Preview text>//div[text()='Preview']";
+	public static String Preview_text="Preview page>//div[text()='Preview']";
 	public static String RPE_Loading="RPE Loading>//*[@id='RPE' and contains(@class,'Loading')]";
 	
     public static String Preview_option="Preview option>(//span[contains(@class,'menu') and text()='Preview'])[2]";
@@ -154,7 +160,7 @@ public interface SEDGE_Locators {
     public static String profile="Profile>(//img[@src='./assets/images/icon/User.png'])[1]";
     public static String Logout="Logout>//a[text()='SIGN OUT']";
     
-    // BAR WIDGET TEST CASES LOCATORS
+    // WIDGET TEST CASES LOCATORS
     public static String WidgetText="Widget Text>//div[contains(@id,'cdk-overlay-')]//div";
     public static String Table_widget="Table Widget>//div[@mattooltip='Table']//i";
     public static String Pivot_widget="Pivot Widget>//div[@mattooltip='Pivot']//i";
@@ -185,7 +191,7 @@ public interface SEDGE_Locators {
     public static String Population_Pyramid_widget="Population Pyramid Widget>//div[@mattooltip='Population Pyramid']//i";
     public static String Box_Plot_widget="Box Plot Widget>//div[@mattooltip='Box Plot']//i";
     public static String Text_widget="Text Widget>//div[@mattooltip='Text']//i";
-    public static String BarLine_Scatter_widget="Bar Line Scattter Widget>//div[@mattooltip='Bar with Line/Scatter']//i";
+    public static String BarLine_Scatter_widget="Bar with LineScatter Widget>//div[@mattooltip='Bar with Line/Scatter']//i";
     public static String Layered_Column_widget="Layered Column Widget>//div[@mattooltip='Layered Column']//i";
     public static String Bullet_widget="Bullet Widget>//div[@mattooltip='Bullet']//i";
     public static String Circose_widget="Circos Widget>//div[@mattooltip='Circos']//i";
@@ -230,6 +236,7 @@ public interface SEDGE_Locators {
     // new smoke
     public static String dataTypeImages="Data type image>//ul[contains(@id,'results')]//li//img";
     public static String AvailableList="Available Column Values>//ul[contains(@id,'results')]//li";
+    public static String AvailableList_Dropdown="Available List>//ul[contains(@id,'results')]//li[not(contains(@style,'display'))]";
     public static String CategoricalColumnAxisDropdown="Categorical Column in axes dropdown>(//ul//img[@src='./assets/images/Categorical.svg']//ancestor::div[1])[1]";
     public static String TextColumnAxisDropdown="Text Column in axes dropdown>(//ul//img[@src='./assets/images/Text.svg']//ancestor::div[1])[1]";
     public static String NoResultsFound="No result Found>//ul/li[text()='No results found']";
@@ -355,10 +362,13 @@ public interface SEDGE_Locators {
     public static String fontFamilyFirstResult="Font Family first resut>(//ul[contains(@id,'FontFamily-results')]//li)[1]";
     public static String titleFontSize="Title Font Size text>//select[@id='RPE_ChartTitleFontSize']//ancestor::td/descendant::label";
     public static String titleFontSizeDropdown="Title Font Size Dropdown>//select[@id='RPE_ChartTitleFontSize']";
+    public static String TitleFontSizeOptions="Title Font Size Options>//select[@id='RPE_ChartTitleFontSize']/option";
     public static String X_axisFontSizeDropdown="X Axis Font Size Dropdown>//select[@id='RPE_ChartLabelFontSize']";
+    public static String X_axisFontSizeDropdownOptions="X Axis Font Size Options>//select[@id='RPE_ChartLabelFontSize']/option";
     public static String X_axisFontSizeText="X axis Font Size text>//select[@id='RPE_ChartLabelFontSize']//ancestor::td/descendant::label";
     public static String Y_axisFontSizeText="Y axis Font Size text>//select[@id='RPE_ChartLabelFontSize1']//ancestor::td/descendant::label";
     public static String Y_axisFontSizeDropdown="Y axis Font Size Dropdown>//select[@id='RPE_ChartLabelFontSize1']";
+    public static String Y_axisFontSizeDropdownOptions="Y axis Font Size Options>//select[@id='RPE_ChartLabelFontSize1']/option";
     public static String X_RotationText="X Rotation text>//output[@id='RPE_rangeoutput']//ancestor::td/descendant::span";
     public static String X_RotationOutputValue="X Rotation Output field>//output[@id='RPE_rangeoutput']";
     public static String X_RotationInputSlider="X Rotation Input>//input[@id='RPE_rotation']";
@@ -378,8 +388,8 @@ public interface SEDGE_Locators {
     public static String Y_AxisLabel_chart_Full="Y Axis Label Values in chart>//div[@id='RPE_Preview']//*[name()='g' and @transform and @aria-label]//*[name()='tspan']";
     public static String Y_AxisLabel_chart_Values="Y Axis Label Values in chart>(//div[@id='RPE_Preview']//*[name()='g' and @transform]/*[name()='g']/*[@font-size and @aria-label and not(@display)])";
     public static String dropdownInputsearchBox="Search Input in dropdown>//span[contains(@class,'open')]//input[@type='search']";
-    public static String Column_Y_Labels_Chart="Y Lable Values Column Chart>(//div[@id='RPE_Preview']//*[@font-family and @aria-hidden]//*[name()='g' and @transform]/*[name()='g']/*[@font-size and not(@aria-label) and not(@display)])";
-    public static String Column_X_Labels_Chart="X Lable Values Column Chart>((//div[@id='RPE_Preview']//*[name()='g' and @aria-hidden and @font-family])[2]//*[name()='tspan'])[2]";
+    public static String Column_Y_Labels_Chart="Y Lable Values in Chart>(//div[@id='RPE_Preview']//*[@font-family and @aria-hidden]//*[name()='g' and @transform]/*[name()='g']/*[@font-size and not(@aria-label) and not(@display)])";
+    public static String Column_X_Labels_Chart="X Lable Values in Chart>((//div[@id='RPE_Preview']//*[name()='g' and @aria-hidden and @font-family])[2]//*[name()='tspan'])[2]";
 
     // Chart Title Test Cases
     public static String chartTitle="ChartTitle>//div[@id='RPE_widget_header_div']//a";
@@ -442,13 +452,13 @@ public interface SEDGE_Locators {
     public static String ChartThemeResults="ChartThemeResults>//ul[@id='select2-RPE_charttheme-results']";
     public static String chartThemeResultList="ChartThemeResultList>//ul[@id='select2-RPE_charttheme-results']//li";
     public static String X_ScrollText="X-Scroll text>(//div[@id='RPE_cFxScroll']//label)[1]";
-    public static String X_ScrollInputSlider="X Scroll Input silder>(//input[@id='RPE_xscroll']//following::span)[1]";
+    public static String X_ScrollInputSlider="X Scroll Toggle>(//input[@id='RPE_xscroll']//following::span)[1]";
     public static String Y_ScrollText="Y Scroll text>(//div[@id='RPE_cFyScroll']//label)[1]";
-    public static String Y_ScrollInputSlider="Y Scroll Input slider>(//input[@id='RPE_yscroll']//following::span)[1]";
+    public static String Y_ScrollInputSlider="Y Scroll Input Toggle>(//input[@id='RPE_yscroll']//following::span)[1]";
     public static String Auto_ScrollText="Auto-scroll text>(//div[@id='RPE_cFautoScroll']//label)[1]";
     public static String Auto_ScrollInputSlider="Auto Scroll Input Slider>(//input[@id='RPE_autoscroll']//following::span)[1]";
     public static String EnableGridText="Enable Grid Text>(//div[@id='RPE_cFGrid']//label)[1]";
-    public static String EnableGrid_InputSlider="EnableGrid InputSlider>(//input[@id='RPE_EnableGrid']//following::span)[1]";
+    public static String EnableGrid_InputSlider="EnableGrid Input Toggle>(//input[@id='RPE_EnableGrid']//following::span)[1]";
     public static String HighlightedTheme="Highlighted Theme>//li[contains(@class,'highlighted')]//div";
     public static String chartThemeFirstResult="Font Family first resut>(//ul[contains(@id,'select2-RPE_charttheme-results')]//li)[1]";
 
@@ -462,15 +472,17 @@ public interface SEDGE_Locators {
     public static String DataLabels_Expand="Datalabels Expand>//div[@id='RPE_datalabels_header_div']//i";
     public static String EnableValue_text="Enabel Value text>(//div[@id='RPE_cFlabelValue']//label)[1]";
     public static String EnableValue_Input="EnableValue Input >//input[@id='RPE_enablevalue']";
-    public static String EnableValue_InputSlider="EnableValue Input Slider>(//input[@id='RPE_enablevalue']//following::span)[1]";
+    public static String EnableValue_InputSlider="EnableValue Input toggle>(//input[@id='RPE_enablevalue']//following::span)[1]";
     public static String ValueFormat_text="ValueFormat Text>(//div[@id='RPE_cFvalueLabel']//label)[1]";
     public static String ValueFormatInput="ValueFormat Input>//select[@id='RPE_valueformat']";
     public static String Seperator_text="Seperator text>(//div[@id='RPE_Seperator']//label)[1]";
     public static String SeperatorInput="Seperator Input>//select[@id='RPE_SeperatorValue']";
     public static String ValueFontSize_text="Value Font Size text>(//div[@id='RPE_cFenableValueFontSize']//label)[1]";
     public static String ValueFontSizeInput="ValueFontSizeInput>//select[@id='RPE_enableValueFontSize']";
+    public static String ValueFontSizeOptions="ValueFontSize Options/Results >//select[@id='RPE_enableValueFontSize']/option";
     public static String RoundOffValue_text="Round Off Value text>(//div[@id='RPE_RoundVal']//label)[1]";
     public static String RoundOffValueInput="Round Off Value Input>//select[@id='RPE_RoundValue']";
+    public static String RoundOffValueOptions="Round Off Value Options>//select[@id='RPE_RoundValue']/option";
     public static String Position_text="Position text>(//div[@id='RPE_cFlabelPosition']//label)[1]";
     public static String PositionInput="Position Input>//select[@id='RPE_datalabelposition']";
     public static String BigNumberSuffix_text="Big Number Suffix text>(//div[@id='RPE_cFBigNumber']//label)[1]";
@@ -691,6 +703,7 @@ public interface SEDGE_Locators {
     public static String ChartContextDataLabel="Chart Context Menu in DataLabel>//div[@id='divRadialChart']//*[name()='g' and @stroke-linecap='round']";
     public static String ChartContextText="Chart Context Menu for Text>//div[@id='divcharttext']//*[name()='g' and @stroke-linecap='round']";
     
+    public static String SelectAll_CheckBox="Select All Checkbox>(//ag-grid-angular[@id='myGrid'])[2]//input[@aria-label='Press Space to toggle all rows selection (unchecked)']";
     public static String FirstColoumnDataLabel="FirstColumnInDataLabel>(//div[@col-id='value'])[2]";
     public static String deleteSuccessDataLabel="Delete Success In DataLabels>//*[contains(text(),'Factor is deleted')]";
     public static String mergeConfirmPopup="MergeConfirm Popup>//div[@class='operations-dialog']";
@@ -702,7 +715,7 @@ public interface SEDGE_Locators {
     public static String helpDocIcon="Help Doc Icon>//button[@pochelpkey='Advancedstatistics']";
     public static String ChangeNumberBins="Change Number of Bins>//a/i[@class='flaticon2-gear']";
     public static String StackTargetVariable="Stack with Target Variable>//span[not(@mattooltip)]//button";
-    public static String ShowEmptyBins="Show Empty Bin>//label[@title='Show Empty Bins']//button";
+    public static String ShowEmptyBins="Show Empty Bin>//span[@mattooltip='Show Empty Bins']//button";
     public static String firstNumeric="FirstNumeric>(//ag-grid-angular[@id='myGridColumnDtTable']//div[@role='gridcell'])[1]";
     public static String outlierDeleteSuccess="OutLier Delete Success>//*[contains(text(),'Outliers deleted successfully')]";
     public static String OutlierDeletePopup="Outlier Delete popup>//h6[@class='custom-notification-title']/ancestor::div/span";
@@ -784,9 +797,9 @@ public interface SEDGE_Locators {
     public static String Table_Theme_Results="Table theme results>//select[@id='RPE_TableTheme']//option";
     public static String Table_Theme_Input_1="Table Theme Input>//select[@id='RPE_TableTheme']//ancestor::div[1]";
     public static String TableThemeText="Table Theme Text>//div//label[contains(text(),'Table Theme')]";
-    public static String AddEven_toggle_TableFormat="ADD / Even toggle in Table Format>//input[@id='RPE_TableOdd']";
-    public static String AddEven_text_TableFormat="ADD/Even text in Table format>//div//label[contains(text(),'Odd/Even Colors')]";
-    public static String ADDEven_toggleTableFormat1="ADD/Even toogle>//input[@id='RPE_TableOdd']//ancestor::label/descendant::span";
+    public static String OddEven_toggle_TableFormat="ODD / Even toggle in Table Format>//input[@id='RPE_TableOdd']";
+    public static String OddEven_text_TableFormat="ODD/Even text in Table format>//div//label[contains(text(),'Odd/Even Colors')]";
+    public static String ODDEven_toggleTableFormat1="ODD/Even toogle>//input[@id='RPE_TableOdd']//ancestor::label/descendant::span";
     public static String FontFamily_Input_TableFormat="Font Family Input in Table Format>//span[@id='select2-RPE_TableFontFamily-container']";
     public static String FontFamilyText_TableFormat="Font Family Text in Table Format>//div[@id='RPE_TableFormat']//label[contains(text(),'Font Family')]";
     public static String FontFamilyExpand_TableFormat="FontFamily dropdown Expand>//ul[@id='select2-RPE_TableFontFamily-results']";
@@ -814,7 +827,9 @@ public interface SEDGE_Locators {
     public static String Alignmentcenter_TableFormat="Alignment center in Table Format>//div[@id='RPE_tableCTextAlign']//i[@data-align='center']";
     public static String AlignmentRight_TableFormat="Alignment Right in Table Format>//div[@id='RPE_tableCTextAlign']//i[@data-align='right']";
     public static String AlignmentText_TableFormat="AlignmentText in Table Format>//div//label[text()='Alignment']";
-
+    public static String Allignment_active="Alignment active>//div[@id='RPE_tableCTextAlign']//i[contains(@class,'active')]";
+    public static String Alignment_TableFormat="Allignment table Format>//div[@id='RPE_tableCTextAlign']";
+    
     public static String RowTotal_Input_TableFormat="Row Total Input in Table Format>//input[@id='RPE_Rowtotal']";
     public static String RowTotal_toggle_TableFormat="Row Total toggle in Table Format>//input[@id='RPE_Rowtotal']//ancestor::label/descendant::span";
     public static String RowTotal_text_TableFormat="Row Total text in Table Format>//div//label[text()='Row Total']";
@@ -854,6 +869,7 @@ public interface SEDGE_Locators {
     public static String PinColumnOption="Pin Column Option>//span[text()='Pin Column']";
     public static String AutoSizeColumnOption="AutoSize Column Option>//span[text()='Autosize This Column']";
     public static String AutoSizeAllColumnOption="AutoSize All Column Option>//span[text()='Autosize All Columns']";
+    public static String AutoSizeThisColumnOption="AutoSize This Column Option>//span[text()='Autosize This Column']";
     public static String ResetColumnOption="Reset Column Option>//span[text()='Reset Columns']";
     public static String ChangeHeaderOption="Change Header name option>//span[text()='Change header name']";
     public static String AllignOption="Allign option>//span[text()='Align']";
@@ -895,6 +911,7 @@ public interface SEDGE_Locators {
     public static String AppliedSeperatorColoumn="Applied Seperator Column>//div[@id='RPE_seperator_sel_showArea']//div[@data-value]";
     public static String SearchSeperatorColumnInput="Search Input SeperatorColumn>//span[@aria-owns='select2-RPE_seperator_sel-results']//input[@type='search']";
     public static String SepertorAvailableColumns="Seperator Available ColumnList>//ul[@id='select2-RPE_seperator_sel-results']//li";
+    public static String RemoveOption_Sepreator="Remove option in selected Seprator>//div[@id='RPE_seperator_sel_showArea']//div[@title]//span[@data-value]";
     
     public static String RoundOffInput_TableFormat="RoundOffInput Table Format>//select[@id='RPE_TableRoundValue']";
     public static String RountOffValueOptions_TableFormat="RoundOffValueOptions>//select[@id='RPE_TableRoundValue']//option";
@@ -903,7 +920,8 @@ public interface SEDGE_Locators {
     public static String AvailableRoundOffSelectColumn="Available Select Roundoff Columns>//ul[@id='select2-RPE_roundoffSel-results']//li";
     public static String AppliedRoundOffColumns="Applied RoundOff Columns>//div[@id='RPE_roundoffSel_showArea']//div[@data-value]";
     public static String SearchRoundOffColumnInput="Search Input RoundOff Column>//span[@aria-owns='select2-RPE_roundoffSel-results']//input[@type='search']";
-    
+    public static String RemoveOption_RoundOff="Remove option in selected RoundOff>//div[@id='RPE_roundoffSel_showArea']//div[@title]//span[@data-value]";
+
     public static String LocalFilterSec="Local filter section>//div[@id='RPE_LFilterTogglePanel']";
     public static String ChartTitleNameLocalFilter="Chart Tile name in Local filter sect>//label[@id='dashboardLRPE_wname']";
     public static String DatasetName_LocalFilter="DataSet Name in Local Filter>//label[@id='dashboardLRPE_filterDataset']";
@@ -1251,8 +1269,8 @@ public interface SEDGE_Locators {
     //AllCharts Bar
     public static String X_Axis_text_="X Axis text>//span[text()='X axis']";
     public static String Y_Axis_text_="Y Axis text>//span[text()='Y axis']";
-    public static String X_Axis_Input="X-Axis dropdown>//span[@id='select2-RPE_categorySel-container']";
-    public static String Y_Axis_Input="Y-Axis dropdown>//span[@id='select2-RPE_seriesSel-container']";
+    public static String X_Axis_Input="X-Axis Input>//span[@id='select2-RPE_categorySel-container']";
+    public static String Y_Axis_Input="Y-Axis Input>//span[@id='select2-RPE_seriesSel-container']";
     public static String X_Axis_dropdownResultsExp="X-Axis dropdown Results>//ul[@id='select2-RPE_categorySel-results']";
     public static String Y_Axis_dropdownResultsExp="Y-Axis dropdown Results>//ul[@id='select2-RPE_seriesSel-results']";
     public static String error="Error Message>//div[contains(@class,'alert')]";//div[contains(@class,'alert-dismissible')]
@@ -1310,7 +1328,7 @@ public interface SEDGE_Locators {
     public static String CardColumnSelect_Input="Card Column Select Input>//span[@id='select2-RPE_Cardcolumn-container']";
     public static String CardColumnSelect_dropdownResults="Card Column Select dropdownResult>//ul[@id='select2-RPE_Cardcolumn-results']";
     public static String Plus_button="Plus button>//button[@class='RPE_addCardvalFormula']";
-    public static String Card_Chart="Card Chart>//input[@id='RPE_WidgetName']//following::ul[@id='RPE_PreviewCard_card_data_div']";
+    public static String Card_Chart="Card Chart>//div[@id='RPE_Preview']//ul[@id='RPE_PreviewCard_card_data_div']";
     public static String Summary_Chart="Summary Chart>//input[@id='RPE_WidgetName']//following::div[contains(@class,'RPE_summary_values')]";
     public static String TimeLine_Input="Timeline dropdown>//span[@id='select2-RPE_categorySel-container']";
     public static String TimeLine_dropdownResultsExp="TimeLine dropdown Results>//ul[@id='select2-RPE_categorySel-results']";
@@ -1320,7 +1338,7 @@ public interface SEDGE_Locators {
     public static String Group_DropdownResults="Group dropdown results>//ul[@id='select2-RPE_seriesSel2NoAggMul-results']";
     public static String Period_input="Period Input>//select[@id='RPE_PeriodSel']";
     public static String Period_Count_Input="Period Count Input>//input[@id='RPE_periodCount']";
-    public static String KPI_Card_Chart="KPI Card Chart>//input[@id='RPE_WidgetName']//following::div[@id='RPE_Preview']//div[@ref='gridBody']";
+    public static String Tables_Chart="Chart>//input[@id='RPE_WidgetName']//following::div[@id='RPE_Preview']//div[@ref='gridBody']";
     public static String Groups_Input_CustomPivot="Groups Input >//div[@id='RPE_categoriesMul_showArea']";
     public static String Groups_DropdownResults_CustomPivot="Groups dropdown results>//ul[@id='select2-RPE_categoriesMul-results']";
     public static String Values_Input_CustomPivot="Values Input>//div[@id='RPE_seriesSel4_showArea']";
@@ -1370,10 +1388,10 @@ public interface SEDGE_Locators {
     public static String CancelButton_ColumnLabels="Cancel button Column Lables>(//span[text()='Column Labels']//ancestor::div[2]//div[@aria-label='Column Labels']//span[@ref='eButton'])[1]";
     public static String CancelButton_Values="Cancel button Values>(//span[text()='Values']//ancestor::div[2]//div[@aria-label='Values']//span[@ref='eButton'])[1]";
     public static String CancelButton_RowGroups="Cancel button RowGroups>(//span[text()='Row Groups']//ancestor::div[2]//div[@aria-label='Row Groups']//span[@ref='eButton'])[1]";
-    public static String FirstHeader_PivotChart="First Headed Pivot Chart>(//div[@id='RPE_Preview']//div[@role='columnheader'])[1]";
+    public static String FirstHeader_PivotChart="First Headed Pivot Chart>(//div[@id='RPE_Preview']//div[@role='columnheader' and @aria-colindex='1'])[1]";
     public static String SecondHeader_PivotChart="Second Headed Pivot Chart>(//div[@id='RPE_Preview']//div[@role='columnheader'])[2]";
-    public static String SecondHeaderMenuOption="Menu Option in Seacond Header>(//div[@id='RPE_Preview']//div[@role='columnheader'])[2]//span[@ref='eMenu']";
-    public static String FirstHeaderMenuOption="Menu Option in First Header>(//div[@id='RPE_Preview']//div[@role='columnheader'])[1]//span[@ref='eMenu']";
+    public static String SecondHeaderMenuOption="Menu Option in Second Header>(//div[@id='RPE_Preview']//div[@role='columnheader'])[2]//span[@ref='eMenu']";
+    public static String FirstHeaderMenuOption="Menu Option in First Header>(//div[@id='RPE_Preview']//div[@role='columnheader' and @aria-colindex='1'])[1]//span[@ref='eMenu']";
     public static String MenuList_Open="Column Menu Options Expand>//div[@id='RPE_Preview']//div[@aria-label='Column Menu']";
     public static String PinColumn_Option="Pin Column Option>//div[@id='RPE_Preview']//div[@aria-label='Column Menu']//span[text()='Pin Column']";
     public static String PinLeftOption="Pin Left Option>//div[@id='RPE_Preview']//span[text()='Pin Left']";
@@ -1387,9 +1405,27 @@ public interface SEDGE_Locators {
     public static String RightPinnedColumn_Menu="Right Pinned Column menu>//div[@id='RPE_Preview']//div[@role='presentation' and contains(@class,'pinned-right')]//div[@role='columnheader']//span[@ref='eMenu']";
     public static String FirstHeaderText_PivotChart="First Headed Pivot Chart>(//div[contains(@class,'RPE_Previewtableheader')])[1]//span[@ref='eText']";
     public static String FirstHeader_Sort="FirstHeader Sort>(//div[@id='RPE_Preview']//div[@role='columnheader'])[1]//span[@ref='eSortIndicator']/span[not(contains(@class,'ag-hidden'))]";
-    public static String FirstCell="First Cell>//div[@id='RPE_Preview']//div[@aria-rowindex='2']//div[@aria-colindex='1' and @col-id='ag-Grid-AutoColumn']";
-    public static String SecondCell="Second Cell>//div[@id='RPE_Preview']//div[@aria-rowindex='3']//div[@aria-colindex='1' and @col-id='ag-Grid-AutoColumn']";
-    public static String First_Row="First Row>//div[@id='RPE_Preview']//div[@aria-rowindex='2']//div[@aria-colindex='1' and @col-id='ag-Grid-AutoColumn']/ancestor::div[@role='row']";
+    //newly taken locators for Custome_Pivot Scripts 
+    public static String FirstCell="First Cell>//div[@id='RPE_Preview']//div[@aria-rowindex='2']//div[@aria-colindex='1' and @col-id]";
+    public static String SecondCell="Second Cell>//div[@id='RPE_Preview']//div[@aria-rowindex='3']//div[@aria-colindex='1' and @col-id]";
+    public static String Sorting_Icon="Sorting Icon>//span[@ref='eSortIndicator']/span[not(contains(@class,'ag-hidden'))]";
+    public static String First_Row="First Row>//div[@id='RPE_Preview']//div[@aria-rowindex='2']//div[@aria-colindex='1' and @col-id]/ancestor::div[@role='row']";
+    public static String PinnedRightColumns="Pinned Right Columns>//div[@class='ag-pinned-right-header']";
+    public static String PinnedLeft_Column="Pinned Left Columns>//div[@class='ag-pinned-left-header']";
+    public static String Align_Option="Align Option>//div[@id='RPE_Preview']//span[text()='Align']";
+    public static String RightAlign_Option="Right Align Option>//div[@id='RPE_Preview']//span[text()='Right']";
+    public static String Columns_option="Column Option>//div[@id='RPE_Preview']//span[@aria-label='columns']";
+    public static String Available_CheckBox_Columns="Available Checkbox Columns>//div[@ref='primaryColsListPanel']//input[@ref='eInput']";
+    public static String Available_List_Column="Available List Column>//div[@ref='primaryColsListPanel']//span[@ref='eLabel']";
+    public static String SearchInput_Columns="Search inputs Column>//input[@aria-label='Filter Columns Input']";
+    public static String HeaderRows_TabelChart="Header Rows in chart>//div[@id='RPE_Preview']//div[@role='columnheader']";
+    public static String Filter_option="Filter Option>//div[@id='RPE_Preview']//span[@aria-label='filter']";
+    public static String AvailableList_Filter="Available List Filter>//div[@aria-label='Filter List']//*[@ref='eLabel']";
+    public static String AvailableCheckBox_Filter="Available CheckBox Filter>//div[@aria-label='Filter List']//input[@ref='eInput']";
+    public static String Search_input_Filter="Search Input Filter>//input[@aria-label='Search filter values']";
+    public static String SecondValue_Filter="SecondValue_Filter>(//div[@aria-label='Filter List']//*[@ref='eLabel'])[2]";
+    public static String SecondValueCheckBox_Filter="SecondValue Checkbox_Filter>(//div[@aria-label='Filter List']//input[@ref='eInput'])[2]";
+
     
     //Pivot Chart Format
     public static String Hide_Agg_Header_inputToggle="Hide Aggreation Header input toggle>//input[@id='RPE_HideAggregationOnHeader']";
@@ -1431,6 +1467,7 @@ public interface SEDGE_Locators {
     //Column 
     public static String X_Label_Position_Input="X Label Position Input>//select[@id='RPE_labelposition']";
     public static String Grid_Distance_Input="Grid Distance Input>//select[@id='RPE_mingrddistance']";
+    public static String Grid_Distance_Results="Grid Distance Options>//select[@id='RPE_mingrddistance']/option";
     public static String Grid_Chart="Grid chart>(//div[@id='RPE_Preview']//*[name()='g' and @aria-label='Chart']//*[name()='g' and @transform and @style])[1]//*[name()='g' and @stroke='#000000' and not(@display) and not(@stroke-dasharray)]";
     public static String Grid_Stacked_Column="Grid Chart>//div[@id='RPE_Preview']//*[name()='g' and @aria-label='Chart']//*[name()='g' and @fill-opacity and @fill]/ancestor::*[name()='g' and @transform][1]//*[name()='g' and @stroke='#000000' and not(@display) and not(@stroke-dasharray)]";
     
@@ -1478,6 +1515,7 @@ public interface SEDGE_Locators {
     public static String Overlap_Input_toggle_deviation="Overlap Input toggle>//input[@id='RPE_deviationoverlap']/ancestor::label/span";
     public static String Seperator_Input_deviation="Seperator Input deviation>//select[@id='RPE_DeviationSeperatorValue']";
     public static String BigNumber_Suffix_toggle_deviation="BigNumber Suffix toggle>//input[@id='RPE_Deviationbignumber']";
+    public static String BigNumber_Toggle_Disabled="BigNumber Suffix toggle Disabled>//input[@id='RPE_Deviationbignumber' and @disabled]";
     public static String BigNumber_Suffix_Inputtoggle_deviation="BigNumber Suffix toggle>//input[@id='RPE_Deviationbignumber']/ancestor::label/span";
     public static String RoundOff_Input_Deviation="RoundOff Input in Deviation>//select[@id='RPE_DeviationRoundValue']";
     public static String Order_Deviation="Order in Deviation>//div[@id='RPE_DeviationColsOrder']";
@@ -1494,7 +1532,6 @@ public interface SEDGE_Locators {
     public static String Deviation_LabelValue="Deviation Label Value>//div[@id='RPE_Preview']//*[@aria-label='Chart']/*/*[name()='g' and @fill and @id]//*[name()='foreignObject']//div/span[not(contains(@style,'color'))]";
 
     //Gantt
-    public static String  AvailableList_Dropdown="Available List>//ul[contains(@id,'results')]//li[not(contains(@style,'display'))]";
     public static String Gantt_Y_Axis_Label="Y Axis Label Chart>((//div[@id='RPE_Preview']//*[name()='g'])//*[name()='g' and @font-size and @transform and not(@aria-label)])[1]";
     public static String Gantt_X_Axis_Label="X_Axis Label Chart>(//div[@id='RPE_Preview']//*[@transform]/*[name()='g' and @font-size])//*[name()='g' and @font-size and @transform and not(@aria-label)]";
     public static String FontFamily_Input_DataLabel="Font Family Input in Data Label>//span[@id='select2-RPE_enableValueFontFamily-container']";
@@ -1540,12 +1577,162 @@ public interface SEDGE_Locators {
     public static String Line_bullet_Input_Pointer="Line Bullet input>//input[@id='RPE_LineBullet']//following::div[contains(@class,'evo-pointer')][1]";
     public static String Line_bullet_Text="Line bullet Text>//div[@id='RPE_LineBulletColor']//label";
     public static String BulletType_Input="Bullet Type Input>//select[@id='RPE_bulletType']";
+    public static String Bullet_Type_Options="Bullet Type Options>//select[@id='RPE_bulletType']/option";
     public static String BulletType_Text="Bullet Type Text>//div[@id='RPE_LineBulletType']//label";
     public static String Stroke_Width_Input="Stroke With Input>//select[@id='RPE_linestrokewidth']";
     public static String Stroke_Width_text="Stroke With text>//div[@id='RPE_cFLinestrokewidth']//label";
+    public static String Stroke_Width_Options="Stroke Width Option>//select[@id='RPE_linestrokewidth']/option";
     public static String Line_Style_Input="Line Style Input>//select[@id='RPE_linestyle']";
+    public static String Line_Style_Options="Line Style Option>//select[@id='RPE_linestyle']/option";
     public static String Line_Style_text="Line Style Text>//div[@id='RPE_cFLinestyle']//label";
     public static String Line_Stroke_Chart="Line Stroke in Chart>(//div[@id='RPE_Preview']//*[@stroke-dasharray and @stroke])[1]";
+    public static String Line_Bullet_Chart="Line Bullet in chart>//div[@id='RPE_Preview']//*[@fill and @stroke][2]//*[@stroke and @stroke-width and @fill and not(@stroke-opacity)]";
+    public static String Circle_bullet_Type="Cricle Bullet Type in chart>//div[@id='RPE_Preview']//*[@fill and @stroke][2]//*[@stroke and @stroke-width and @fill and not(@stroke-opacity)]//*[name()='circle']";
+    public static String Rectangle_bullet_Type="Rectangle Bullet Type>//div[@id='RPE_Preview']//*[@fill and @stroke][2]//*[@stroke and @stroke-width and @fill and not(@stroke-opacity)]//*[name()='rect']";
+    public static String Triangle_Bullet_Type="Triangle Bullet Type>//div[@id='RPE_Preview']//*[@fill and @stroke][2]//*[@stroke and @stroke-width and @fill and not(@stroke-opacity)]//*[name()='path']";
+    public static String Enabled_Grid_Chart="Enabled Grid in chart>//div[@id='RPE_Preview']//*[name()='g' and @aria-label='Chart']//*[name()='g' and @fill-opacity and @fill]/ancestor::*[name()='g' and @transform][1]//*[name()='g' and @stroke='#000000' and not(@display) and not(@stroke-dasharray) and @fill='none']";
+    
+    //Card
+    public static String Card_SelectError="Card Select Error>//*[text()='Kindly select any column to perform Card']";
+    public static String Card_ApplyError="Card Apply Error>//*[text()='Kindly add column to perform Card']";
+    public static String Formula_Selected_Area="Formula Selected Values>//div[@id='cardformulagrid']//div[@ref='rootWrapperBody']";
+    public static String Aggregation_Input="Aggregation Input>//select[@id='RPE_Cardaggr']";
+    public static String Sum_AggCard="Sum in aggregation>//select[@id='RPE_Cardaggr']//option[text()='Sum']";
+    public static String Count_AggCard="Count in aggregation>//select[@id='RPE_Cardaggr']//option[text()='Count']";
+    public static String Average_AggCard="Average in aggregation>//select[@id='RPE_Cardaggr']//option[text()='Average']";
+    public static String Min_AggCard="Min in aggregation>//select[@id='RPE_Cardaggr']//option[text()='Min']";
+    public static String Max_AggCard="Max in aggregation>//select[@id='RPE_Cardaggr']//option[text()='Max']";
+    public static String Unique_AggCard="Unique in aggregation>//select[@id='RPE_Cardaggr']//option[text()='Unique']";
+    public static String FirstFormulaCell="First Formula cell>//div[@aria-rowindex='2']//div[@col-id='formula' and @role='gridcell']";
+    public static String FirstLabelCell="First Label Cell>//div[@aria-rowindex='2']//div[@col-id='label' and @role='gridcell']";
+    public static String FormulaValue_Chart="Formula Value in Chart>//ul[@id='RPE_PreviewCard_card_data_div']//div/p[1]";
+    public static String LabelValue_Chart="Label Value in Chart>//ul[@id='RPE_PreviewCard_card_data_div']//div/p[2]";
+    public static String DuplicateFormulaError="Duplicate Formula error>//*[text()='Formula already exists']";
+    public static String SecondFormulaCell="Second Formula cell>//div[@aria-rowindex='3']//div[@col-id='formula' and @role='gridcell']";
+    public static String SecodnLabelCell="Second Label Cell>//div[@aria-rowindex='3']//div[@col-id='label' and @role='gridcell']";
+    public static String FormulaValue2_Chart="Formula Value2 in Chart>(//ul[@id='RPE_PreviewCard_card_data_div']//div/p[1])[2]";
+    public static String LabelValue2_Chart="Label Value2 in Chart>(//ul[@id='RPE_PreviewCard_card_data_div']//div/p[2])[2]";
+    public static String ThirdFormulaCell="Third Formula cell>//div[@aria-rowindex='4']//div[@col-id='formula' and @role='gridcell']";
+    public static String ThirdLabelCell="Third Label Cell>//div[@aria-rowindex='4']//div[@col-id='label' and @role='gridcell']";
+    public static String FormulaValue3_Chart="Formula Value3 in Chart>(//ul[@id='RPE_PreviewCard_card_data_div']//div/p[1])[3]";
+    public static String LabelValue3_Chart="Label Value3 in Chart>(//ul[@id='RPE_PreviewCard_card_data_div']//div/p[2])[3]";
+    public static String FormulaTable="Formula Table>//div[@id='cardformulagrid']//div[@ref='eBodyViewport']";
+    public static String Drag_Icon_Table="Drag Icon in Formula Table>(//div[@id='cardformulagrid']//div[contains(@class,'ag-row-drag')])[1]";
+    public static String Goal_Input_Toggle="Goal Input Toggle>//input[@id='RPE_EnableCardTarget']";
+    public static String Goal_Toggle="Goal Toggle>//input[@id='RPE_EnableCardTarget']/ancestor::label/span";
+    public static String Goal_text="Goal text>//div[@id='RPE_CardTarget_div']//label[text()='Goal']";
+    public static String Horizontal_Scroll="Hrizontal Scroll>//div[@id='cardformulagrid']//div[@class='ag-body-horizontal-scroll-viewport']";
+    public static String GoalHeaderCell_Table="Goal Header in Formula table>//div[@id='cardformulagrid']//div[@col-id='target' and @role='columnheader']";
+    public static String First_GoalCell="First Goal cell>//div[@id='cardformulagrid']//div[@aria-rowindex='2']//div[@col-id='target' and @role='gridcell']";
+    public static String FirstGoalCell_Input="First Goal cell Input>//div[@id='cardformulagrid']//div[@aria-rowindex='2']//div[@col-id='target' and @role='gridcell']//input";
+    public static String Goal_text_Error="Goal Text input error>//*[text()='Please provide number for target']";
+    public static String Goal_Value_Chart="Goal Value Chart>//ul[@id='RPE_PreviewCard_card_data_div']//p[@class='RPE_summary_name']";
+    public static String InverseHeaderCell_Table="Inverse Header Cell >//div[@id='cardformulagrid']//div[@col-id='inverse' and @role='columnheader']";
+    public static String Goal_Result_Value="Goal Result Value>//ul[@id='RPE_PreviewCard_card_data_div']//p[@class='RPE_summary_name']//span";
+    public static String Prefix_Input_Toggle="Prefix input toggle>//input[@id='RPE_EnableCardPrefix']";
+    public static String Prefix_Toggle="Prefix toggle>//input[@id='RPE_EnableCardPrefix']/ancestor::label/span";
+    public static String Prefix_text="Prefix text>//*[@id='RPE_CardPrefix_div']//label[text()='Prefix']";
+    public static String InversionToggle="Inversion toggle>//label[contains(@id,'inverseCheckbox')]";
+    public static String InversionInputToggle="Inversion toggle>//label[contains(@id,'inverseCheckbox')]//input";
+    public static String PrefixHeaderCell_Table="Prefix Header in Formula table>//div[@id='cardformulagrid']//div[@col-id='prefix' and @role='columnheader']";
+    public static String First_PrefixCell="First Prefix cell>//div[@id='cardformulagrid']//div[@aria-rowindex='2']//div[@col-id='prefix' and @role='gridcell']";
+    public static String FirstPrefixCell_Input="First prefix cell Input>//div[@id='cardformulagrid']//div[@aria-rowindex='2']//div[@col-id='prefix' and @role='gridcell']//input";
+    public static String CardIcon_text="Card Icon text>//label[text()='Card Icon']";
+    public static String CardIcon_Inputs="Card Icon Inputs>//div[@class='RPE_Cardicon']";
+    public static String Icon_Chart="Icon in chart>//ul[@id='RPE_PreviewCard_card_data_div']/li[1]/div/i";
+    public static String Card_Position_Input="Card Position Input>//select[@id='RPE_IconPosition']";
+    public static String Card_Position_Options="Card Position Options>//select[@id='RPE_IconPosition']/option";
+    public static String Card_Position_Top="Card Position Top>//select[@id='RPE_IconPosition']/option[text()='Top']";
+    public static String Card_Position_Center="Card Position Center>//select[@id='RPE_IconPosition']/option[text()='Center']";
+    public static String Card_Position_Bottom="Card Position Bottom>//select[@id='RPE_IconPosition']/option[text()='Bottom']";
+    public static String Card_Icon_Chart="Card Icon chart>//ul[@id='RPE_PreviewCard_card_data_div']//div[@data-iconid]";
+    public static String CardSize_input="Card Size Input>//select[@id='RPE_IconSize']";
+    public static String CardSize_Options="Card Size Options>//select[@id='RPE_IconSize']/option";
+
+    // SparkLine 
+    public static String Date_text_Sparkline="Date Text in SparkLine Axes>//div[@id='RPE_xaxis_div']//span[text()='Date']";
+    public static String Categories_text_Sparkline="Categories Text in SparkLine Axes>//div[@id='RPE_seriesSel2NoAggMuldiv']//span[text()='Categories']";
+    public static String Numericals_text_Sparkline="Numericals Text in SparkLine Axes>//div[@id='RPE_MultipleSelection_div']//span[text()='Numericals ']";
+    public static String Period_text_Sparkline="Period Text in SparkLine Axes>//div[@id='RPE_periodNum_div']//span[text()='Period ']";
+    public static String Date_error_Sparkline="Date error SparkLine>//*[text()='Kindly select date column']";
+    public static String GroupInputError_Sparkline="Group Input error SparkLine>//*[text()='Kindly select atleast one column for categories']";
+    public static String Selected_CategoricalValues="Selected Categorical Values>//div[@id='RPE_seriesSel2NoAggMul_showArea']//div[@title]";
+    public static String RemoveOption="Remove Option>//div[@title]//span[@data-value]";
+    public static String Numerical_InputError="Numerical Input Error>//*[text()='Kindly select atleast one column for numericals']";
+    public static String ChartType_selectOption="Chart Type Select Option>//select[contains(@id,'_stype_select')]";
+    public static String Aggregation_SelectOption="Aggregation Select Option>//select[contains(@id,'_agg_select')]";
+    public static String Selected_NumericalValue="Selected Numerical Value>//div[@id='RPE_MultipleSelection_showArea']//div[@title]";
+    public static String Selected_numericalValue2="Selected Numerical Value2>(//div[@id='RPE_MultipleSelection_showArea']//div[@title])[2]";
+    public static String SparkLineChart="SparkLine Chart>//input[@id='RPE_WidgetName']//following::div[@id='RPE_Preview']//div[@ref='gridBody']";
+    public static String SparkLineTable_Headers="SparkLine Table Headers>//div[@id='RPE_Preview']//div[@aria-rowindex='2']//div[@role='columnheader']";
+    public static String SparkLineTable_NumericHead="SparkLine Numeric header>//div[@id='RPE_Preview']//div[@role='columnheader']//div[@ref='agContainer']";
+    public static String Periods_Header="Periods header in chart>//div[@id='RPE_Preview']//div[@role='columnheader' and contains(@col-id,'periods')]";
+    public static String NumericalListOptions="Numerical List Options>//img[contains(@src,'Numerical')]//following::span[1]";
+    public static String SparkLine_FormatSec="SparkLine Format Sec>//a[@id='RPE_sparkline_format_div_a']";
+    public static String SparkLine_Expand="SparkLine Format Sec Expand>//a[@id='RPE_sparkline_format_div_a']/i";
+    public static String ColorStyling="Color Styling>//div[@id='RPE_SColor_div']/a";
+    public static String ColorStylingExpand="Color Styling Expand>//div[@id='RPE_SColor_div']/a/i";
+    public static String Chart_Theme_ColorStyling="Chart Theme Color Styling>//span[@id='select2-RPE_sparklinetheme-container']";
+    public static String ChartTheme_Text="Chart theme text>//div[@id='RPE_Sparklinetheme_div']//label[text()='Chart Theme']";
+    public static String ChartTheme_Results_ColorStyle="Chart Theme Results Color Style>//ul[@id='select2-RPE_sparklinetheme-results']";
+    
+    public static String EnableValue_SparkLine="Enable Value SparkLine>//div[@id='RPE_EnableValue_div']/a";
+    public static String EnableValue_Expand="Enable Value expand>//div[@id='RPE_EnableValue_div']/a/i";
+    public static String EnableValue_Inputtoggle_SparkLine="Enable Value Toggle SparkLine>//input[@id='RPE_SLenablevalue']";
+    public static String EnableValue_Toggle_SparkLine="Enable Value Toggle>//input[@id='RPE_SLenablevalue']/ancestor::label/span";
+    public static String SeperatorInput_SparkLine="Seperator Input SparkLine>//select[@id='RPE_SLSeperatorV']";
+    public static String RoundOffInput_SparkLine="RoundOff SparkLine>//select[@id='RPE_SLRoundValue']";
+    public static String BigNumberSuffix_InputToggle="BigNumber Suffix toggle>//input[@id='RPE_SLbignumber']";
+    public static String BigNumberToggle_Disabled="BigNumber toggle disabled>//input[@id='RPE_SLbignumber' and @disabled]";
+    public static String BigNumberSuffix_toggle="BigNumber Suffix toggle SparkLine>//input[@id='RPE_SLbignumber']/ancestor::label/span";
+    public static String LabelFormating_SparkLine="Label Formating SparkLine>//div[@id='RPE_SLFormatting']";
+    public static String LabelFormatingDisabled="Label Formating disabled>//div[@id='RPE_SLFormatting' and @disabled]";
+    public static String Bold_LabelFormating="Bold Label Formating>//i[@id='RPE_SLFormattingBold']";
+    public static String Italic_LabelFormating="Italic Label Formating>//i[@id='RPE_SLFormattingItalic']";
+    public static String ToolTip_SparkLine="Tooltip sparkLine>//div[@class='ag-sparkline-tooltip-wrapper']//div[@class='tooltip-title']";
+    public static String FontColor_Input="Font color input SparkLine>//input[@id='RPE_SLDataValueC']";
+    public static String FontColor_InputPointer="Font Color Input Pointer>//input[@id='RPE_SLDataValueC']//following::div[1]";
+    public static String Cursor_inputToggle_SparkLine="Cursor Input Toggle SparkLine>//input[@id='RPE_SLCursor']";
+    public static String Cursor_Toggle_SparkLine="Cursor toggle SparkLine>//input[@id='RPE_SLCursor']/ancestor::label/span";
+    public static String PointOfInterest_sec="Point of Interest Section>//div[@id='RPE_SPointofInterest_div']";
+    public static String FirstPOI_ColorInput="First point of interest Color input>//input[@id='RPE_FirstSLPC']";
+    public static String FirstPOI_ColorPointer="First POI Color pointer>//input[@id='RPE_FirstSLPC']//following::div[1]";//following::div[1]
+    public static String MinPOI_ColorInput="Min point of interest Color input>//input[@id='RPE_MinSLPC']";
+    public static String MinPOI_ColorInputPointer="Min point of interest Color input Pointer>//input[@id='RPE_MinSLPC']//following::div[1]";
+    public static String LastPOI_ColorInput="Last point of interest Color input>//input[@id='RPE_LastSLPC']";
+    public static String LastPOI_ColorInputPointer="Last point of interest Color input pointer>//input[@id='RPE_LastSLPC']//following::div[1]";
+    public static String MaxPOI_ColorInput="Max point of interest Color input>//input[@id='RPE_MaxSLPC']";
+    public static String MaxPOI_ColorInputPointer="Max point of interest Color input pointer>//input[@id='RPE_MaxSLPC']//following::div[1]";
+
+    public static String SparkLine1=">//span[@ref='eSparkline']";
+    public static String SparkLine2=">//span[@ref='eSparkline']/canvas";
+    public static String SparkLine3=">//div[@class='ag-sparkline-wrapper']";
+    
+    //Custom Pivot
+    public static String CustomPivotError="Custom Pivot Error>//*[contains(text(),'Kindly select atleast one column for groups')]";
+    public static String SelectedGroupValue="Selected Group Value>//div[@id='RPE_categoriesMul_showArea']//div[@title]";
+    public static String Groups_Text="Groups text>//span[text()='Groups']";
+    public static String RemoveValuesInput="Remove Values Input>//div[@id='yaxis_multiple_div_select']//div[@title]//span[@data-value]";
+    public static String SelectedValuesInput="Selected Values Input column>//div[@id='yaxis_multiple_div_select']//div[@title]";
+    public static String AggregationInput="AggregationInputs>//ul[contains(@id,'results')]//li//select[contains(@id,'agg_select')]";
+    public static String Sum_InputToggle="Sum Input Toggle>//input[@id='RPE_sum']";
+    public static String Sum_Toggle="Sum Toggle>//input[@id='RPE_sum']//ancestor::label/span";
+    public static String TotalRow_Chart="Total Column Chart>//div[@col-id='TOTAL' and @role='gridcell']";
+    public static String Difference_InputToggle="Difference Input toggle>//input[@id='RPE_diff']";
+    public static String Difference_Toggle="Difference Toggle>//input[@id='RPE_diff']/ancestor::label/span";
+    public static String From_input_Difference="From Input in Difference>//span[@id='select2-RPE_groupSel-container']";
+    public static String From_DropdownResults="From Dropdown Results>//ul[@id='select2-RPE_groupSel-results']//li[not(contains(@style,'display'))]";
+    public static String To_input_Difference="To Input in Difference>//span[@id='select2-RPE_secondcategorySel-container']";
+    public static String To_DropdownResults="To Dropdown Results>//ul[@id='select2-RPE_secondcategorySel-results']//li[not(contains(@style,'display'))]";
+    public static String FromTo_Error="From To Error>//*[text()='Kindly select from column to find difference']";
+    public static String To_Error_Diff="To error >//*[text()='Kindly select to column to find difference']";
+    public static String Same_FromTo_Input_Error="Same From To Input Error>//*[text()='Kindly check and select different columns for from and to']";
+    public static String Difference_Column_Chart="Difference Column Chart>//div[@col-id='Difference' and @role='gridcell']";
+    
+    //file page
+    public static String SearchInput="Search input>//input[@data-placeholder='Search ']";
+    public static String Expand_Button="Expand button>//tbody[@role='rowgroup']/tr[1]/td//button";
+    public static String DashPro_icon_File="DashPro Icon>(//button//span/i[contains(@class,'dashpro')])[1]";
     
     
 }    

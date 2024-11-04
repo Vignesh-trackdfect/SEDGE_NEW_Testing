@@ -12,45 +12,41 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import org.testng.internal.TestResult;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 import atu.testng.reports.listeners.ATUReportsListener;
 import atu.testng.reports.listeners.ConfigurationListener;
 import atu.testng.reports.listeners.MethodListener;
 import atu.testng.reports.logging.LogAs;
-import individualScripts.DASHPRO_ADMIN_SMOKE_TESTING;
-import individualScripts.DASHPRO_BARWITHLINE_TESTING;
-import individualScripts.DASHPRO_BAR_SMOKE_TESTING;
-import individualScripts.DASHPRO_COLUMN_SMOKE_TESTING;
-import individualScripts.DASHPRO_GANTT_TESTING;
-import individualScripts.DASHPRO_GROUPED_BAR;
-import individualScripts.DASHPRO_GROUPED_COLUMN_TESTING;
-import individualScripts.DASHPRO_LINE_TESTING;
-import individualScripts.DASHPRO_PIVOT_SMOKE_TESTING;
-import individualScripts.DASHPRO_SMOKE_TESTING;
-import individualScripts.DASHPRO_STACKED_BAR;
-import individualScripts.DASHPRO_STACKED_COLUMN_TESTING;
-import individualScripts.DASHPRO_TABLES_SMOKE_TESTING;
-import individualScripts.DASHPRO_TEXT_TESTING;
-import individualScripts.DB_CONNECTION_SMOKE_TESTING;
-import individualScripts.LOGIN;
-import individualScripts.LOGIN_SMOKE_TESTING;
-import individualScripts.PREVIEW_SMOKE_TESTING;
-import individualScripts.SMOKE_TESTING_ALL_CHARTS;
-import individualScripts.STATISTICS_SMOKE_TESTING;
-import scripts.Axis_Title;
-import scripts.BAR_WIDGET_Test;
-import scripts.Chart_Format_Others;
-import scripts.Chart_Styling_Test;
-import scripts.Chart_Title_Test;
-import scripts.Data_Labels_Test;
-import scripts.LoginPageTest;
-import scripts.SmokeTesting_01;
+import scripts.DASHPRO_ADMIN_SMOKE_TESTING;
+import scripts.DASHPRO_BARWITHLINE_TESTING;
+import scripts.DASHPRO_BAR_SMOKE_TESTING;
+import scripts.DASHPRO_CARD_TESTING;
+import scripts.DASHPRO_COLUMN_SMOKE_TESTING;
+import scripts.DASHPRO_CUSTOM_PIVOT_TESTING;
+import scripts.DASHPRO_GANTT_TESTING;
+import scripts.DASHPRO_GROUPED_BAR;
+import scripts.DASHPRO_GROUPED_COLUMN_TESTING;
+import scripts.DASHPRO_LINE_TESTING;
+import scripts.DASHPRO_PIVOT_SMOKE_TESTING;
+import scripts.DASHPRO_SMOKE_TESTING;
+import scripts.DASHPRO_SPARKLINE_TESTING;
+import scripts.DASHPRO_STACKED_BAR;
+import scripts.DASHPRO_STACKED_COLUMN_TESTING;
+import scripts.DASHPRO_TABLES_SMOKE_TESTING;
+import scripts.DASHPRO_TEXT_TESTING;
+import scripts.DASHPRO_WATERFALL_TESTING;
+import scripts.DB_CONNECTION_SMOKE_TESTING;
+import scripts.FILE_UPLOAD_TESTING;
+import scripts.LOGIN;
+import scripts.LOGIN_SMOKE_TESTING;
+import scripts.PREVIEW_SMOKE_TESTING;
+import scripts.PROJECT_SELECTION;
+import scripts.SMOKE_TESTING_ALL_CHARTS;
+import scripts.STATISTICS_SMOKE_TESTING;
 import scripts.TestCase_DP01;
 
 @Listeners({ ATUReportsListener.class, ConfigurationListener.class, MethodListener.class })
@@ -72,16 +68,6 @@ public class Testcases extends Config {
 	public String buildname = "null";
 	boolean log = false;
 
-	LoginPageTest lp=new LoginPageTest();
-	BAR_WIDGET_Test bar=new BAR_WIDGET_Test();
-	
-	Axis_Title axis=new Axis_Title();
-	
-	Chart_Title_Test chart=new Chart_Title_Test();
-	Chart_Styling_Test cs=new Chart_Styling_Test();
-	Data_Labels_Test dl=new Data_Labels_Test();
-	Chart_Format_Others others=new Chart_Format_Others();
-	SmokeTesting_01 smoke1=new SmokeTesting_01();
 	TestCase_DP01 dp01=new TestCase_DP01();
 	
 	LOGIN loginTest=new LOGIN();
@@ -104,7 +90,12 @@ public class Testcases extends Config {
 	DASHPRO_GANTT_TESTING ganttwidget=new DASHPRO_GANTT_TESTING();
 	DASHPRO_TEXT_TESTING textwidget=new DASHPRO_TEXT_TESTING();
 	DASHPRO_BARWITHLINE_TESTING barWithLine=new DASHPRO_BARWITHLINE_TESTING();
-	
+	DASHPRO_CARD_TESTING cardTest=new DASHPRO_CARD_TESTING();
+	DASHPRO_SPARKLINE_TESTING da=new DASHPRO_SPARKLINE_TESTING();
+	PROJECT_SELECTION project=new PROJECT_SELECTION();
+	DASHPRO_CUSTOM_PIVOT_TESTING customPivot=new DASHPRO_CUSTOM_PIVOT_TESTING();
+	FILE_UPLOAD_TESTING fileUpload=new FILE_UPLOAD_TESTING();
+	DASHPRO_WATERFALL_TESTING waterFall=new DASHPRO_WATERFALL_TESTING();
 	
 	@BeforeMethod
 	public void getDataFromConfig() throws Exception {
@@ -122,268 +113,6 @@ public class Testcases extends Config {
 	public void Teardown() throws Throwable {
 //     	driver.quit();   // command this line, If we need to activate the chrome browser after completed the execution.
 	}
-	
-	
-	@DataProvider(name = "LoginTestingDataProvider")
-    public Object[][] LoginPageTestData() {
-    	
-		
-    	List<String> SelectedUrl = getdata(driver, "LoginPageTest", "Iteration_Sheet", "TestcaseName", "Condition", "Environment");
-		List<Object[]> data = new ArrayList<>();
-
-		int size = SelectedUrl.size();
-		for (int i = 0; i < size; i++) {
-			String RunName="LoginPageTest_Run_"+(i+1);
-			String URL = SelectedUrl.get(i);
-			data.add(new Object[] {URL,RunName});
-		}
-
-		Object[][] dataArray = new Object[data.size()][];
-		data.toArray(dataArray);
-		
-		return dataArray;
-    }
-	
-	
-	
-	
-	@Test(dataProvider = "LoginTestingDataProvider")
-	public void LoginPageTest(String URL, String methodName) throws Exception {
-
-		try {
-			ITestResult result = Reporter.getCurrentTestResult();
-	        result.setAttribute("name", methodName);
-	        result.setAttribute("Url", URL);
-	        result.setAttribute("ModuleName", "LoginPageTest");
-			lp.loginPage(driver,URL);
-			pass(driver,"*****Script Executed Completely*****");
-		} catch (Exception e) {
-			fail(driver,"Script not executed Completely.."+e.getLocalizedMessage());
-			e.printStackTrace();
-		}
-		
-	}
-	
-	
-	@DataProvider(name = "BarWidgetDataProvider")
-    public Object[][] BarWidgetTestData() {
-    	
-    	List<String> SelectedUrl = getdata(driver, "BarWidget", "Iteration_Sheet", "TestcaseName", "Condition", "Environment");
-		List<Object[]> data = new ArrayList<>();
-
-		int size = SelectedUrl.size();
-		for (int i = 0; i < size; i++) {
-			String RunName="BarWidget_Run_"+(i+1);
-			String URL = SelectedUrl.get(i);
-			data.add(new Object[] {URL,RunName});
-		}
-
-		Object[][] dataArray = new Object[data.size()][];
-		data.toArray(dataArray);
-		
-		return dataArray;
-    }
-	
-	@Test(dataProvider = "BarWidgetDataProvider")
-	public void BarWidget(String URL, String methodName) throws Exception {
-
-		try {
-			ITestResult result = Reporter.getCurrentTestResult();
-	        result.setAttribute("name", methodName);
-	        result.setAttribute("Url", URL);
-	        result.setAttribute("ModuleName", "BarWidget");
-			bar.barWidgetTest(driver,URL);
-			pass(driver,"*****Script Executed Completely*****");
-		} catch (Exception e) {
-			fail(driver,"Script not executed Completely.."+e.getLocalizedMessage());
-			e.printStackTrace();
-		}
-		
-	}
-	
-	@DataProvider(name = "AxisTitleDataProvider")
-    public Object[][] AxisTitleTestData() {
-    	
-    	List<String> SelectedUrl = getdata(driver, "AxisTitle", "Iteration_Sheet", "TestcaseName", "Condition", "Environment");
-		List<Object[]> data = new ArrayList<>();
-
-		int size = SelectedUrl.size();
-		for (int i = 0; i < size; i++) {
-			String RunName="AxisTitle_Run_"+(i+1);
-			String URL = SelectedUrl.get(i);
-			data.add(new Object[] {URL,RunName});
-		}
-
-		Object[][] dataArray = new Object[data.size()][];
-		data.toArray(dataArray);
-		
-		return dataArray;
-    }
-	
-	@Test(dataProvider="AxisTitleDataProvider")
-	public void AxisTitle(String URL, String methodName) throws Exception {
-
-		try {
-			ITestResult result = Reporter.getCurrentTestResult();
-	        result.setAttribute("name", methodName);
-	        result.setAttribute("Url", URL);
-	        result.setAttribute("ModuleName", "AxisTitle");
-			axis.axisTitle(driver,URL);
-			pass(driver,"*****Script Executed Completely*****");
-		} catch (Exception e) {
-			fail(driver,"Script not executed Completely.."+e.getLocalizedMessage());
-			e.printStackTrace();
-		}
-		
-	}
-	
-	
-	@DataProvider(name = "ChartTitleDataProvider")
-    public Object[][] ChartTitleTestData() {
-    	
-    	List<String> SelectedUrl = getdata(driver, "ChartTitle", "Iteration_Sheet", "TestcaseName", "Condition", "Environment");
-		List<Object[]> data = new ArrayList<>();
-
-		int size = SelectedUrl.size();
-		for (int i = 0; i < size; i++) {
-			String RunName="ChartTitle_Run_"+(i+1);
-			String URL = SelectedUrl.get(i);
-			data.add(new Object[] {URL,RunName});
-		}
-
-		Object[][] dataArray = new Object[data.size()][];
-		data.toArray(dataArray);
-		
-		return dataArray;
-    }
-	
-	@Test(dataProvider="ChartTitleDataProvider")
-	public void ChartTitle(String URL, String methodName) throws Exception {
-
-		try {
-			ITestResult result = Reporter.getCurrentTestResult();
-	        result.setAttribute("name", methodName);
-	        result.setAttribute("Url", URL);
-	        result.setAttribute("ModuleName", "ChartTitle");
-			chart.chartTitleTest(driver,URL);
-			pass(driver,"*****Script Executed Completely*****");
-		} catch (Exception e) {
-			fail(driver,"Script not executed Completely.."+e.getLocalizedMessage());
-			e.printStackTrace();
-		}
-		
-	}
-	
-	
-	@DataProvider(name = "ChartStyleDataProvider")
-    public Object[][] ChartStyleTestData() {
-    	
-    	List<String> SelectedUrl = getdata(driver, "ChartStyle", "Iteration_Sheet", "TestcaseName", "Condition", "Environment");
-		List<Object[]> data = new ArrayList<>();
-
-		int size = SelectedUrl.size();
-		for (int i = 0; i < size; i++) {
-			String RunName="ChartStyle_Run_"+(i+1);
-			String URL = SelectedUrl.get(i);
-			data.add(new Object[] {URL,RunName});
-		}
-
-		Object[][] dataArray = new Object[data.size()][];
-		data.toArray(dataArray);
-		
-		return dataArray;
-    }
-	
-	@Test(dataProvider="ChartStyleDataProvider")
-	public void ChartStyle(String URL, String methodName) throws Exception {
-
-		try {
-			ITestResult result = Reporter.getCurrentTestResult();
-	        result.setAttribute("name", methodName);
-	        result.setAttribute("Url", URL);
-	        result.setAttribute("ModuleName", "ChartStyle");
-			cs.chartStyling(driver,URL);
-			pass(driver,"*****Script Executed Completely*****");
-		} catch (Exception e) {
-			fail(driver,"Script not executed Completely.."+e.getLocalizedMessage());
-			e.printStackTrace();
-		}
-		
-	}
-	
-	@DataProvider(name = "DataLabelsDataProvider")
-    public Object[][] DataLabelsTestData() {
-    	
-    	List<String> SelectedUrl = getdata(driver, "DataLabels", "Iteration_Sheet", "TestcaseName", "Condition", "Environment");
-		List<Object[]> data = new ArrayList<>();
-
-		int size = SelectedUrl.size();
-		for (int i = 0; i < size; i++) {
-			String RunName="DataLabels_Run_"+(i+1);
-			String URL = SelectedUrl.get(i);
-			data.add(new Object[] {URL,RunName});
-		}
-
-		Object[][] dataArray = new Object[data.size()][];
-		data.toArray(dataArray);
-		
-		return dataArray;
-    }
-	
-	@Test(dataProvider="DataLabelsDataProvider")
-	public void DataLabels(String URL, String methodName) throws Exception {
-
-		try {
-			ITestResult result = Reporter.getCurrentTestResult();
-	        result.setAttribute("name", methodName);
-	        result.setAttribute("Url", URL);
-	        result.setAttribute("ModuleName", "DataLabels");
-			dl.dataLabels_Test(driver,URL);
-			pass(driver,"*****Script Executed Completely*****");
-		} catch (Exception e) {
-			fail(driver,"Script not executed Completely.."+e.getLocalizedMessage());
-			e.printStackTrace();
-		}
-		
-	}
-	
-	
-	@DataProvider(name = "ChartFormatOthersDataProvider")
-    public Object[][] ChartFormatOthersTestData() {
-    	
-    	List<String> SelectedUrl = getdata(driver, "ChartFormatOthers", "Iteration_Sheet", "TestcaseName", "Condition", "Environment");
-		List<Object[]> data = new ArrayList<>();
-
-		int size = SelectedUrl.size();
-		for (int i = 0; i < size; i++) {
-			String RunName="ChartFormatOthers_Run_"+(i+1);
-			String URL = SelectedUrl.get(i);
-			data.add(new Object[] {URL,RunName});
-		}
-
-		Object[][] dataArray = new Object[data.size()][];
-		data.toArray(dataArray);
-		
-		return dataArray;
-    }
-	
-	@Test(dataProvider="ChartFormatOthersDataProvider")
-	public void ChartFormatOthers(String URL, String methodName) throws Exception {
-
-		try {
-			ITestResult result = Reporter.getCurrentTestResult();
-	        result.setAttribute("name", methodName);
-	        result.setAttribute("Url", URL);
-	        result.setAttribute("ModuleName", "ChartFormatOthers");
-			others.chart_Format_Others(driver,URL);
-			pass(driver,"*****Script Executed Completely*****");
-		} catch (Exception e) {
-			fail(driver,"Script not executed Completely.."+e.getLocalizedMessage());
-			e.printStackTrace();
-		}
-		
-	}
-	
 	
     @DataProvider(name = "SmokeTestingDataProvider")
     public Object[][] smokeTestingData() {
@@ -433,72 +162,76 @@ public class Testcases extends Config {
     @Test(dataProvider = "SmokeTestingDataProvider")
 	public void SmokeTesting(String URL,int iteration,String TestCaseSelectionFlag,String TestDataFileName) throws Exception {
 
-				try {
-					String methodName="SmokeTesting_Data_"+iteration+"_"+TestCaseSelectionFlag;
-					Utils.InputDataFileName(TestDataFileName);
-					ITestResult result = Reporter.getCurrentTestResult();
-					result.setAttribute("iteration", String.valueOf(iteration));
-			        result.setAttribute("name", methodName);
-			        result.setAttribute("flag", TestCaseSelectionFlag);
-			        result.setAttribute("Url", URL);
-			        result.setAttribute("ModuleName", "SmokeTesting");
-			        ATUReportsListener.createReportDir1(result);
-					String Login = getCellValue("TestExecution","Testcase_Selection","Login",TestCaseSelectionFlag);
-					String LoginPage_Run = getCellValue("TestExecution","Testcase_Selection","Login_Page_Validation",TestCaseSelectionFlag);
-					String DB_Connection_Run = getCellValue("TestExecution","Testcase_Selection","DB_Connection",TestCaseSelectionFlag);
-					String FileUpload_Run = getCellValue("TestExecution","Testcase_Selection","File_Upload",TestCaseSelectionFlag);
-					String Preview_Run = getCellValue("TestExecution","Testcase_Selection","Preview",TestCaseSelectionFlag);
-					String Statistics_Run =getCellValue("TestExecution","Testcase_Selection","Statistics",TestCaseSelectionFlag);          
-			        String DashPro_Run=getCellValue("TestExecution","Testcase_Selection","DashPro",TestCaseSelectionFlag);   
-			        String DashPro_All_Charts=getCellValue("TestExecution","Testcase_Selection","DashPro_All_Charts",TestCaseSelectionFlag);
-			        String DashPro_Admin=getCellValue("TestExecution","Testcase_Selection","DashPro_Admin",TestCaseSelectionFlag);  
-			        boolean AllTestcase=false;
-			        
-			        setTestCaseID(""); 
-			        
-			        if(Login.contains("Yes")) {
-			        	loginTest.login(driver, iteration,URL);
-					}else if(LoginPage_Run.contains("Yes")) {
-						login_Page.loginPage(driver, iteration,URL);
-					}else {
-						System.out.println("Please Select Any one of the Login Page Script...!!!!!!");
-						add1(driver, "Please Select Any one of the Login Page Script...!!!!!!" , LogAs.FAILED, true, "");
-						Assert.fail();
-					}
-						
-					if(DB_Connection_Run.contains("Yes")) {
+			try {
+				String methodName="SmokeTesting_Data_"+iteration+"_"+TestCaseSelectionFlag;
+				Utils.InputDataFileName(TestDataFileName);
+				ITestResult result = Reporter.getCurrentTestResult();
+				result.setAttribute("iteration", String.valueOf(iteration));
+		        result.setAttribute("name", methodName);
+		        result.setAttribute("flag", TestCaseSelectionFlag);
+		        result.setAttribute("Url", URL);
+		        result.setAttribute("ModuleName", "SmokeTesting");
+		        ATUReportsListener.createReportDir1(result);
+				String Login = getCellValue("TestExecution","Testcase_Selection","Login",TestCaseSelectionFlag);
+				String LoginPage_Run = getCellValue("TestExecution","Testcase_Selection","Login_Page_Validation",TestCaseSelectionFlag);
+				String DB_Connection_Run = getCellValue("TestExecution","Testcase_Selection","DB_Connection",TestCaseSelectionFlag);
+				String FileUpload_Run = getCellValue("TestExecution","Testcase_Selection","File_Upload",TestCaseSelectionFlag);
+				String Preview_Run = getCellValue("TestExecution","Testcase_Selection","Preview",TestCaseSelectionFlag);
+				String Statistics_Run =getCellValue("TestExecution","Testcase_Selection","Statistics",TestCaseSelectionFlag);          
+		        String DashPro_Run=getCellValue("TestExecution","Testcase_Selection","DashPro",TestCaseSelectionFlag);   
+		        String DashPro_All_Charts=getCellValue("TestExecution","Testcase_Selection","DashPro_All_Charts",TestCaseSelectionFlag);
+		        String DashPro_Admin=getCellValue("TestExecution","Testcase_Selection","DashPro_Admin",TestCaseSelectionFlag);  
+		        String Project_Selection=getCellValue("TestExecution","Testcase_Selection","Project_Selection",TestCaseSelectionFlag);  		        
+		        
+		        setTestCaseID(""); 
+		        
+		        if(Login.contains("Yes")) {
+		        	loginTest.login(driver, iteration,URL);
+				}else if(LoginPage_Run.contains("Yes")) {
+					login_Page.loginPage(driver, iteration,URL);
+				}else {
+					System.out.println("Please Select Any one of the Login Page Script...!!!!!!");
+					add1(driver, "Please Select Any one of the Login Page Script...!!!!!!" , LogAs.FAILED, true, "");
+					Assert.fail();
+				}
+					
+		        if(Project_Selection.contains("Yes")) {
+		        	project.projectSelection(driver, iteration);
+		        }else {
+		        	if(DB_Connection_Run.contains("Yes")) {
 						DB_Connection.dbConnection(driver, iteration);
 					}else if(FileUpload_Run.contains("Yes")) {
-						
+						fileUpload.file_uploading(driver, iteration);
+					}else {
+						fail(driver,"Please select 'Yes' in DB Connection or File Upload Script");
 					}
-		            
-					if(Preview_Run.contains("Yes")) {
+		        	
+		        	if(Preview_Run.contains("Yes")) {
 						preview_page.previewPageTest(driver, iteration);
 					}
 					
 					if(Statistics_Run.contains("Yes")) {
 						statistics_page.statisticsTest(driver, iteration);
 					}
-					
-					if(DashPro_Run.contains("Yes")) {
-						dashPro_page.dashProPage(driver, iteration);
-					}
-					
-					if(DashPro_All_Charts.contains("Yes")) {
-						Allchart.allCharts(driver, iteration);
-					}
+		        }
+				
+				if(DashPro_Run.contains("Yes")) {
+					dashPro_page.dashProPage(driver, iteration);
+				}
+				
+				if(DashPro_All_Charts.contains("Yes")) {
+					Allchart.allCharts(driver, iteration);
+				}
 
-					if(DashPro_Admin.contains("Yes")) {
-						dash_Admin.dashProAdmin(driver, iteration);
-					}
-			        
-					pass(driver,"*****Script Executed Completely*****");
-				} catch (Exception e) {
-					System.out.println("Execution failed for Iteration : " + iteration);
-	                add1(driver, "Execution failed  :  " + e.getLocalizedMessage(), LogAs.FAILED, true, "");
-				} 
-		
-				setTestCaseID("");
+				if(DashPro_Admin.contains("Yes")) {
+					dash_Admin.dashProAdmin(driver, iteration);
+				}
+				pass(driver,"*****Script Executed Completely*****");
+			} catch (Exception e) {
+				System.out.println("Execution failed for Iteration : " + iteration);
+                add1(driver, "Execution failed  :  " + e.getLocalizedMessage(), LogAs.FAILED, true, "");
+			} 
+		setTestCaseID("");
 	}
     
     
@@ -578,11 +311,14 @@ public class Testcases extends Config {
 	        String DashPro_Grouped_Column=getCellValue("TestExecution","Testcase_Selection","Grouped_Column_Axes",TestCaseSelectionFlag); 
 	        String DashPro_Line=getCellValue("TestExecution","Testcase_Selection","Line_Axes",TestCaseSelectionFlag); 
 	        String DashPro_Gantt=getCellValue("TestExecution","Testcase_Selection","Gantt_Axes",TestCaseSelectionFlag); 
-	        String DashPro_Text=getCellValue("TestExecution","Testcase_Selection","Text_Background",TestCaseSelectionFlag); 
+	        String DashPro_Text=getCellValue("TestExecution","Testcase_Selection","DashPro_Text",TestCaseSelectionFlag); 
 	        String DashPro_BarWithLine=getCellValue("TestExecution","Testcase_Selection","BarWithLine_Axes",TestCaseSelectionFlag); 
+	        String DashPro_Card=getCellValue("TestExecution","Testcase_Selection","DashPro_Card",TestCaseSelectionFlag); 
+	        String DashPro_SparkLine=getCellValue("TestExecution","Testcase_Selection","DashPro_SparkLine",TestCaseSelectionFlag); 
+	        String Project_Selection=getCellValue("TestExecution","Testcase_Selection","Project_Selection",TestCaseSelectionFlag); 
+	        String DashPro_Custom_Pivot=getCellValue("TestExecution","Testcase_Selection","Custom_Pivot_Axes",TestCaseSelectionFlag); 
+	        String DashPro_WaterFall=getCellValue("TestExecution","Testcase_Selection","WaterFall_Axes",TestCaseSelectionFlag); 
 
-	        boolean AllTestcase=true;
-	        
 	        setTestCaseID("");
 	        if(Login.contains("Yes")) {
 	        	loginTest.login(driver, iteration,URL);
@@ -594,74 +330,96 @@ public class Testcases extends Config {
 				Assert.fail();
 			}
 				
-			if(DB_Connection_Run.contains("Yes")) {
-				DB_Connection.dbConnection(driver, iteration);
-			}else if(FileUpload_Run.contains("Yes")) {
+	        if(Project_Selection.contains("Yes")) {
+	        	project.projectSelection(driver, iteration);
+	        }else {
+	        	if(DB_Connection_Run.contains("Yes")) {
+					DB_Connection.dbConnection(driver, iteration);
+				}else if(FileUpload_Run.contains("Yes")) {
+					fileUpload.file_uploading(driver, iteration);
+				}else {
+					fail(driver,"Please select 'Yes' in 'DB Connection' or 'File Upload' Script");
+				}
+	        	
+	        	if(Preview_Run.contains("Yes")) {
+					preview_page.previewPageTest(driver, iteration);
+				}
 				
-			}
-            
-			if(Preview_Run.contains("Yes")) {
-				preview_page.previewPageTest(driver, iteration);
-			}
-			
-			if(Statistics_Run.contains("Yes")) {
-				statistics_page.statisticsTest(driver, iteration);
-			}
-			
-			if(DashPro_Run.contains("Yes")) {
-				dashPro_page.dashProPage(driver, iteration);
-			}
+				if(Statistics_Run.contains("Yes")) {
+					statistics_page.statisticsTest(driver, iteration);
+				}
+				
+				if(DashPro_Run.contains("Yes")) {
+					dashPro_page.dashProPage(driver, iteration);
+				}
+	        }
 			
 			if(DashPro_All_Charts.contains("Yes")) {
 				Allchart.allCharts(driver, iteration);
 			}
 			
 			if(DashPro_Tables_Run.contains("Yes")) {
-				dash_Table.tablesDashProTest(driver, iteration,TestCaseSelectionFlag,AllTestcase);
+				dash_Table.tablesDashProTest(driver, iteration,TestCaseSelectionFlag);
 			}
 			
 			if(DashPro_Pivot_Run.contains("Yes")) {
-				dashPro_pivot.pivot_testing(driver, iteration,TestCaseSelectionFlag,AllTestcase);
+				dashPro_pivot.pivot_testing(driver, iteration,TestCaseSelectionFlag);
 			}
 			
 			if(DashPro_Bar_Run.contains("Yes")) {
-				dash_Bar.barwidgetTest(driver, iteration,TestCaseSelectionFlag,AllTestcase);
+				dash_Bar.barwidgetTest(driver, iteration,TestCaseSelectionFlag);
 			}
 			
 			if(DashPro_Stacked_Bar.contains("Yes")) {
-				StackBar.StackedBarwidgetTest(driver, iteration,TestCaseSelectionFlag,AllTestcase);
+				StackBar.StackedBarwidgetTest(driver, iteration,TestCaseSelectionFlag);
 			}
 			
 			if(DashPro_Grouped_Bar.contains("Yes")) {
-				groupedBar.groupedBarwidgetTest(driver, iteration,TestCaseSelectionFlag,AllTestcase);
+				groupedBar.groupedBarwidgetTest(driver, iteration,TestCaseSelectionFlag);
 			}
 			
 			if(DashPro_Column.contains("Yes")) {
-				dashPro_column.column_testing(driver, iteration,TestCaseSelectionFlag,AllTestcase);
+				dashPro_column.column_testing(driver, iteration,TestCaseSelectionFlag);
 			}
 			
 			if(DashPro_Stacked_Column.contains("Yes")) {
-				stackedColumn.stacked_column_testing(driver, iteration,TestCaseSelectionFlag,AllTestcase);
+				stackedColumn.stacked_column_testing(driver, iteration,TestCaseSelectionFlag);
 			}
 			
 			if(DashPro_Grouped_Column.contains("Yes")) {
-				groupedColumn.groupedColumn(driver, iteration,TestCaseSelectionFlag,AllTestcase);
+				groupedColumn.groupedColumn(driver, iteration,TestCaseSelectionFlag);
 			}
 			
 			if(DashPro_Line.contains("Yes")) {
-				linewidget.line_widget_testing(driver, iteration,TestCaseSelectionFlag,AllTestcase);
+				linewidget.line_widget_testing(driver, iteration,TestCaseSelectionFlag);
 			}
 			
 			if(DashPro_Gantt.contains("Yes")) {
-				ganttwidget.gantt_widget_testing(driver, iteration,TestCaseSelectionFlag,AllTestcase);
+				ganttwidget.gantt_widget_testing(driver, iteration,TestCaseSelectionFlag);
 			}
 			
 			if(DashPro_Text.contains("Yes")) {
-				textwidget.text_widget_testing(driver, iteration,TestCaseSelectionFlag,AllTestcase);
+				textwidget.text_widget_testing(driver, iteration,TestCaseSelectionFlag);
 			}
 			
 			if(DashPro_BarWithLine.contains("Yes")) {
-				barWithLine.barWithLine_testing(driver, iteration,TestCaseSelectionFlag,AllTestcase);
+				barWithLine.barWithLine_testing(driver, iteration,TestCaseSelectionFlag);
+			}
+			
+			if(DashPro_Card.contains("Yes")) {
+				cardTest.card_testing(driver, iteration,TestCaseSelectionFlag);
+			}
+			
+			if(DashPro_SparkLine.contains("Yes")) {
+				da.sparkLine_testing(driver, iteration,TestCaseSelectionFlag);
+			}
+			
+			if(DashPro_Custom_Pivot.contains("Yes")) {
+				customPivot.custom_pivot_testing(driver, iteration,TestCaseSelectionFlag);
+			}
+			
+			if(DashPro_WaterFall.contains("Yes")) {
+				waterFall.waterfallTesting(driver, iteration, TestCaseSelectionFlag);
 			}
 			
 			if(DashPro_Admin.contains("Yes")) {

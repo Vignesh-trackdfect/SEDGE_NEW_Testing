@@ -1,0 +1,165 @@
+ // 7th validation 1st 
+		 public int columnCountValue(WebDriver driver) {
+			 List<WebElement> elements = driver.findElements(By.xpath("(//div[@ref='rightContainer'])[1]/preceding::div[@aria-colindex and @tabindex='-1']"));
+			 	String colId;  int colCount=0;  int act;
+			 	
+			 	for(WebElement element:elements) {
+			 		 colId = element.getAttribute("aria-colindex");
+				     act=Integer.parseInt(colId.trim());
+				     if(colCount<=act) {
+				    	 colCount=act;
+				     }
+			 	}
+			 	System.out.println("Final Column Count : " + colCount);
+		     
+			 	return colCount;
+		 }
+		 
+		 // 7th validation 2nd 
+		 public int RowCountValue(WebDriver driver) {
+			 
+			    WebElement ele= driver.findElement(By.xpath("(//div[@class='ag-row ag-row-no-focus ag-row-even ag-row-level-0 ag-row-position-absolute ag-row-last'])[2]"));
+			 	String rowValue=ele.getAttribute("aria-rowindex");
+			 	int lastRowCount=Integer.parseInt(rowValue);
+			 	System.out.println("Last row count : "+lastRowCount);
+			 	
+			 	return lastRowCount;
+		 }
+		 
+		 // 7th validation 3rd
+		 public ArrayList<String> headerValueList(WebDriver driver,int colCount){
+			 
+			 ArrayList<String> headerValues=new ArrayList<String>();
+			 	
+			 	for(int i=1;i<=colCount;i++) {
+			 		WebElement headElement=driver.findElement(By.xpath("((//div[@ref='rightContainer'])[1]/preceding::div[@aria-colindex='"+i+"'])[1]"));
+			 		String header=headElement.getAttribute("col-id");
+			 		headerValues.add(header);
+			 	}
+			 	
+			 	return headerValues;
+		 }
+		 
+		 // 7th validation 4th
+		 public Map<String,ArrayList<String>> cellListMap(WebDriver driver,int colCount,int lastRowCount,ArrayList<String> headerValues){
+			 
+				Map<String,ArrayList<String>> cellvalues=new HashMap<String,ArrayList<String>>();
+
+			 	for(int j=0;j<colCount;j++) {
+				 	ArrayList<String> firstColoumn=new ArrayList<String>();
+			 		String head=headerValues.get(j);
+		
+			 		for(int l=1;l<lastRowCount;l++) {
+			 			
+			 			
+				 		WebElement CelElement=driver.findElement(By.xpath("(//div[@class='ag-cell ag-cell-not-inline-editing ag-cell-auto-height ag-cell-value' and @col-id='"+head+"'])["+l+"]"));
+				 		String CellText=CelElement.getText();
+				 		firstColoumn.add(CellText);
+			 		}
+				 		cellvalues.put(head, firstColoumn);
+				 		//System.out.println("Text taken and stored...");
+			 		}
+			 	
+			 return cellvalues;
+		 }
+		 
+		 //7th validation 5th
+		 public void createExcelForContainerPool(int colCount,int lastRowCount,ArrayList<String> headerValues,Map<String,ArrayList<String>> cellvalues, String filePath) {
+			 
+				int rowCount = lastRowCount; 
+		        int columnCount = colCount;
+		        
+		        Workbook workbook=new XSSFWorkbook();
+		        Sheet sheet=workbook.createSheet("Sheet1");	        
+		        
+		        for (int rowIndex = 0; rowIndex < rowCount; rowIndex++) {
+		            Row row = sheet.createRow(rowIndex);
+		            if(rowIndex==0) {
+		            	
+		            	for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
+		            	
+		            		Cell cell = row.createCell(columnIndex);
+			                cell.setCellValue(headerValues.get(columnIndex));
+		            	}
+		            	
+	            	}else {
+	            		
+	            		for(int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
+		        		 		String key=headerValues.get(columnIndex);
+		        		 		ArrayList<String> value=cellvalues.get(key);
+		        		 		String b=value.get(rowIndex-1);
+		        		 		Cell cell = row.createCell(columnIndex);
+				                cell.setCellValue(b);
+	           		
+	            		}
+	            	}
+		            
+		        }
+		        
+		        try (FileOutputStream outputStream = new FileOutputStream(filePath)) {
+		            workbook.write(outputStream);
+		            System.out.println("Excel sheet created successfully at: " + filePath);
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        } finally {
+		            try {
+		                workbook.close();
+		            } catch (IOException e) {
+		                e.printStackTrace();
+		            }
+		        }
+		      
+			 
+		 }
+		 
+		 
+		 public void CompareContainerData(String mastFilePath,String testFilePath) throws Exception {
+			 
+			 Fillo fillo =new Fillo();
+				
+//				System.setProperty("Row", "2");
+				
+				Connection connection1=fillo.getConnection(mastFilePath);
+				Connection connection2=fillo.getConnection(testFilePath);
+				
+				Recordset recordset1=connection1.executeQuery("Select * from `Sheet1`");
+				Recordset recordset2=connection2.executeQuery("Select * from `Sheet1`");
+				
+				List<String> columnsToCompare1 = recordset1.getFieldNames();
+			    List<String> columnsToCompare2 = recordset2.getFieldNames();
+
+			    // Compare column counts
+			    if (columnsToCompare1.size() != columnsToCompare2.size()) {
+			        System.out.println("Column count mismatch between two sheets.");
+			        
+			    }
+
+			    while (recordset1.next()) {
+			        recordset2.next(); // Move to the next row in recordset2
+			        for (String columnName : columnsToCompare1) {
+			            // Check if the column exists in connection2
+			            if (!columnsToCompare2.contains(columnName)) {
+			                System.out.println("Column '" + columnName + "' is present in connection1 but not in connection2");
+			                continue; // Skip this column and proceed to the next one
+			            }
+
+			            String valueSheet1Column = recordset1.getField(columnName);
+			            String valueSheet2Column = recordset2.getField(columnName);
+
+			            // Perform comparison
+			            if (valueSheet1Column.equals(valueSheet2Column)) {
+//			                System.out.println("Matched - POD Name: " + recordset1.getField("sPod") + " || Column name: " + columnName + " || Expected value: " + valueSheet1Column + " || Actual value: " + valueSheet2Column);
+			            } else {
+			                System.out.println("Not matched - POD Name: " + recordset1.getField("sPod") + " || Column name: " + columnName + " || Expected value: " + valueSheet1Column + " || Actual value: " + valueSheet2Column);
+			            }
+			        }
+			    }
+
+			    recordset1.close();
+			    recordset2.close();
+			    connection1.close();
+			    connection2.close();
+				
+				
+				
+			}

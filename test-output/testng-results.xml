@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="9" total="10" passed="0" failed="1" skipped="0">
+<testng-results ignored="2" total="4" passed="1" failed="1" skipped="0">
   <reporter-output>
     <line>
       <![CDATA[STEP1]]>
@@ -1651,248 +1651,17 @@
     <line>
       <![CDATA[STEP550]]>
     </line>
-    <line>
-      <![CDATA[STEP551]]>
-    </line>
-    <line>
-      <![CDATA[STEP552]]>
-    </line>
-    <line>
-      <![CDATA[STEP553]]>
-    </line>
-    <line>
-      <![CDATA[STEP554]]>
-    </line>
-    <line>
-      <![CDATA[STEP555]]>
-    </line>
-    <line>
-      <![CDATA[STEP556]]>
-    </line>
-    <line>
-      <![CDATA[STEP557]]>
-    </line>
-    <line>
-      <![CDATA[STEP558]]>
-    </line>
-    <line>
-      <![CDATA[STEP559]]>
-    </line>
-    <line>
-      <![CDATA[STEP560]]>
-    </line>
-    <line>
-      <![CDATA[STEP561]]>
-    </line>
-    <line>
-      <![CDATA[STEP562]]>
-    </line>
-    <line>
-      <![CDATA[STEP563]]>
-    </line>
-    <line>
-      <![CDATA[STEP564]]>
-    </line>
-    <line>
-      <![CDATA[STEP565]]>
-    </line>
-    <line>
-      <![CDATA[STEP566]]>
-    </line>
-    <line>
-      <![CDATA[STEP567]]>
-    </line>
-    <line>
-      <![CDATA[STEP568]]>
-    </line>
-    <line>
-      <![CDATA[STEP569]]>
-    </line>
-    <line>
-      <![CDATA[STEP570]]>
-    </line>
-    <line>
-      <![CDATA[STEP571]]>
-    </line>
-    <line>
-      <![CDATA[STEP572]]>
-    </line>
-    <line>
-      <![CDATA[STEP573]]>
-    </line>
-    <line>
-      <![CDATA[STEP574]]>
-    </line>
-    <line>
-      <![CDATA[STEP575]]>
-    </line>
-    <line>
-      <![CDATA[STEP576]]>
-    </line>
-    <line>
-      <![CDATA[STEP577]]>
-    </line>
-    <line>
-      <![CDATA[STEP578]]>
-    </line>
-    <line>
-      <![CDATA[STEP579]]>
-    </line>
-    <line>
-      <![CDATA[STEP580]]>
-    </line>
-    <line>
-      <![CDATA[STEP581]]>
-    </line>
-    <line>
-      <![CDATA[STEP582]]>
-    </line>
-    <line>
-      <![CDATA[STEP583]]>
-    </line>
-    <line>
-      <![CDATA[STEP584]]>
-    </line>
-    <line>
-      <![CDATA[STEP585]]>
-    </line>
-    <line>
-      <![CDATA[STEP586]]>
-    </line>
-    <line>
-      <![CDATA[STEP587]]>
-    </line>
-    <line>
-      <![CDATA[STEP588]]>
-    </line>
-    <line>
-      <![CDATA[STEP589]]>
-    </line>
-    <line>
-      <![CDATA[STEP590]]>
-    </line>
-    <line>
-      <![CDATA[STEP591]]>
-    </line>
-    <line>
-      <![CDATA[STEP592]]>
-    </line>
-    <line>
-      <![CDATA[STEP593]]>
-    </line>
-    <line>
-      <![CDATA[STEP594]]>
-    </line>
-    <line>
-      <![CDATA[STEP595]]>
-    </line>
-    <line>
-      <![CDATA[STEP596]]>
-    </line>
-    <line>
-      <![CDATA[STEP597]]>
-    </line>
-    <line>
-      <![CDATA[STEP598]]>
-    </line>
-    <line>
-      <![CDATA[STEP599]]>
-    </line>
-    <line>
-      <![CDATA[STEP600]]>
-    </line>
-    <line>
-      <![CDATA[STEP601]]>
-    </line>
-    <line>
-      <![CDATA[STEP602]]>
-    </line>
-    <line>
-      <![CDATA[STEP603]]>
-    </line>
-    <line>
-      <![CDATA[STEP604]]>
-    </line>
-    <line>
-      <![CDATA[STEP605]]>
-    </line>
-    <line>
-      <![CDATA[STEP606]]>
-    </line>
-    <line>
-      <![CDATA[STEP607]]>
-    </line>
-    <line>
-      <![CDATA[STEP608]]>
-    </line>
-    <line>
-      <![CDATA[STEP609]]>
-    </line>
-    <line>
-      <![CDATA[STEP610]]>
-    </line>
-    <line>
-      <![CDATA[STEP611]]>
-    </line>
-    <line>
-      <![CDATA[STEP612]]>
-    </line>
-    <line>
-      <![CDATA[STEP613]]>
-    </line>
-    <line>
-      <![CDATA[STEP614]]>
-    </line>
-    <line>
-      <![CDATA[STEP615]]>
-    </line>
-    <line>
-      <![CDATA[STEP616]]>
-    </line>
-    <line>
-      <![CDATA[STEP617]]>
-    </line>
-    <line>
-      <![CDATA[STEP618]]>
-    </line>
-    <line>
-      <![CDATA[STEP619]]>
-    </line>
-    <line>
-      <![CDATA[STEP620]]>
-    </line>
-    <line>
-      <![CDATA[STEP621]]>
-    </line>
-    <line>
-      <![CDATA[STEP622]]>
-    </line>
-    <line>
-      <![CDATA[STEP623]]>
-    </line>
-    <line>
-      <![CDATA[STEP624]]>
-    </line>
-    <line>
-      <![CDATA[STEP625]]>
-    </line>
-    <line>
-      <![CDATA[STEP626]]>
-    </line>
-    <line>
-      <![CDATA[STEP627]]>
-    </line>
   </reporter-output>
-  <suite started-at="2024-10-04T19:52:22 IST" name="Suite" finished-at="2024-10-04T20:10:53 IST" duration-ms="1110577">
+  <suite started-at="2024-11-04T18:15:13 IST" name="Suite" finished-at="2024-11-04T18:25:21 IST" duration-ms="608057">
     <groups>
     </groups>
-    <test started-at="2024-10-04T19:52:22 IST" name="Test" finished-at="2024-10-04T20:10:53 IST" duration-ms="1110577">
+    <test started-at="2024-11-04T18:15:13 IST" name="Test" finished-at="2024-11-04T18:25:21 IST" duration-ms="608057">
       <class name="commonMethods.Testcases">
-        <test-method is-config="true" signature="getDataFromConfig()[pri:0, instance:commonMethods.Testcases@ec2cc4]" started-at="2024-10-04T19:52:23 IST" name="getDataFromConfig" finished-at="2024-10-04T19:52:27 IST" duration-ms="3161" status="PASS">
+        <test-method is-config="true" signature="getDataFromConfig()[pri:0, instance:commonMethods.Testcases@19648c40]" started-at="2024-11-04T18:15:17 IST" name="getDataFromConfig" finished-at="2024-11-04T18:15:34 IST" duration-ms="17302" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getDataFromConfig -->
-        <test-method signature="ComprehensiveTesting(java.lang.String,int,java.lang.String,java.lang.String)[pri:0, instance:commonMethods.Testcases@ec2cc4]" started-at="2024-10-04T19:52:27 IST" name="ComprehensiveTesting" data-provider="ComprehensiveDataProvider" finished-at="2024-10-04T20:10:52 IST" duration-ms="1105706" status="FAIL">
+        <test-method signature="ComprehensiveTesting(java.lang.String,int,java.lang.String,java.lang.String)[pri:0, instance:commonMethods.Testcases@19648c40]" started-at="2024-11-04T18:15:35 IST" name="ComprehensiveTesting" data-provider="ComprehensiveDataProvider" finished-at="2024-11-04T18:20:15 IST" duration-ms="280707" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -1901,7 +1670,7 @@
             </param>
             <param index="1">
               <value>
-                <![CDATA[2]]>
+                <![CDATA[1]]>
               </value>
             </param>
             <param index="2">
@@ -1915,38 +1684,6 @@
               </value>
             </param>
           </params>
-          <exception class="atu.testng.reports.exceptions.ATUReporterStepFailedException">
-            <full-stacktrace>
-              <![CDATA[[ATU Custom Reporter Step Failed Exception]
-at atu.testng.reports.listeners.ATUReportsListener.onTestSuccess(ATUReportsListener.java:76)
-at org.testng.internal.TestListenerHelper.runTestListeners(TestListenerHelper.java:100)
-at org.testng.internal.TestInvoker.runTestResultListener(TestInvoker.java:219)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:656)
-at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:794)
-at org.testng.TestRunner.run(TestRunner.java:596)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
-at org.testng.SuiteRunner.run(SuiteRunner.java:276)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
-at org.testng.TestNG.runSuites(TestNG.java:1063)
-at org.testng.TestNG.run(TestNG.java:1031)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- atu.testng.reports.exceptions.ATUReporterStepFailedException -->
           <reporter-output>
             <line>
               <![CDATA[STEP1]]>
@@ -2776,6 +2513,72 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
             <line>
               <![CDATA[STEP276]]>
             </line>
+          </reporter-output>
+        </test-method> <!-- ComprehensiveTesting -->
+        <test-method is-config="true" signature="Teardown()[pri:0, instance:commonMethods.Testcases@19648c40]" started-at="2024-11-04T18:20:15 IST" name="Teardown" finished-at="2024-11-04T18:20:15 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Teardown -->
+        <test-method is-config="true" signature="getDataFromConfig()[pri:0, instance:commonMethods.Testcases@19648c40]" started-at="2024-11-04T18:20:15 IST" name="getDataFromConfig" finished-at="2024-11-04T18:20:16 IST" duration-ms="822" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getDataFromConfig -->
+        <test-method signature="ComprehensiveTesting(java.lang.String,int,java.lang.String,java.lang.String)[pri:0, instance:commonMethods.Testcases@19648c40]" started-at="2024-11-04T18:20:16 IST" name="ComprehensiveTesting" data-provider="ComprehensiveDataProvider" finished-at="2024-11-04T18:25:21 IST" duration-ms="304696" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[https://analysis.sedge.ai]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[2]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Flag3]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Iteration_TestData]]>
+              </value>
+            </param>
+          </params>
+          <exception class="atu.testng.reports.exceptions.ATUReporterStepFailedException">
+            <full-stacktrace>
+              <![CDATA[[ATU Custom Reporter Step Failed Exception]
+at atu.testng.reports.listeners.ATUReportsListener.onTestSuccess(ATUReportsListener.java:79)
+at org.testng.internal.TestListenerHelper.runTestListeners(TestListenerHelper.java:100)
+at org.testng.internal.TestInvoker.runTestResultListener(TestInvoker.java:219)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:656)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- atu.testng.reports.exceptions.ATUReporterStepFailedException -->
+          <reporter-output>
             <line>
               <![CDATA[STEP277]]>
             </line>
@@ -3598,240 +3401,9 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
             <line>
               <![CDATA[STEP550]]>
             </line>
-            <line>
-              <![CDATA[STEP551]]>
-            </line>
-            <line>
-              <![CDATA[STEP552]]>
-            </line>
-            <line>
-              <![CDATA[STEP553]]>
-            </line>
-            <line>
-              <![CDATA[STEP554]]>
-            </line>
-            <line>
-              <![CDATA[STEP555]]>
-            </line>
-            <line>
-              <![CDATA[STEP556]]>
-            </line>
-            <line>
-              <![CDATA[STEP557]]>
-            </line>
-            <line>
-              <![CDATA[STEP558]]>
-            </line>
-            <line>
-              <![CDATA[STEP559]]>
-            </line>
-            <line>
-              <![CDATA[STEP560]]>
-            </line>
-            <line>
-              <![CDATA[STEP561]]>
-            </line>
-            <line>
-              <![CDATA[STEP562]]>
-            </line>
-            <line>
-              <![CDATA[STEP563]]>
-            </line>
-            <line>
-              <![CDATA[STEP564]]>
-            </line>
-            <line>
-              <![CDATA[STEP565]]>
-            </line>
-            <line>
-              <![CDATA[STEP566]]>
-            </line>
-            <line>
-              <![CDATA[STEP567]]>
-            </line>
-            <line>
-              <![CDATA[STEP568]]>
-            </line>
-            <line>
-              <![CDATA[STEP569]]>
-            </line>
-            <line>
-              <![CDATA[STEP570]]>
-            </line>
-            <line>
-              <![CDATA[STEP571]]>
-            </line>
-            <line>
-              <![CDATA[STEP572]]>
-            </line>
-            <line>
-              <![CDATA[STEP573]]>
-            </line>
-            <line>
-              <![CDATA[STEP574]]>
-            </line>
-            <line>
-              <![CDATA[STEP575]]>
-            </line>
-            <line>
-              <![CDATA[STEP576]]>
-            </line>
-            <line>
-              <![CDATA[STEP577]]>
-            </line>
-            <line>
-              <![CDATA[STEP578]]>
-            </line>
-            <line>
-              <![CDATA[STEP579]]>
-            </line>
-            <line>
-              <![CDATA[STEP580]]>
-            </line>
-            <line>
-              <![CDATA[STEP581]]>
-            </line>
-            <line>
-              <![CDATA[STEP582]]>
-            </line>
-            <line>
-              <![CDATA[STEP583]]>
-            </line>
-            <line>
-              <![CDATA[STEP584]]>
-            </line>
-            <line>
-              <![CDATA[STEP585]]>
-            </line>
-            <line>
-              <![CDATA[STEP586]]>
-            </line>
-            <line>
-              <![CDATA[STEP587]]>
-            </line>
-            <line>
-              <![CDATA[STEP588]]>
-            </line>
-            <line>
-              <![CDATA[STEP589]]>
-            </line>
-            <line>
-              <![CDATA[STEP590]]>
-            </line>
-            <line>
-              <![CDATA[STEP591]]>
-            </line>
-            <line>
-              <![CDATA[STEP592]]>
-            </line>
-            <line>
-              <![CDATA[STEP593]]>
-            </line>
-            <line>
-              <![CDATA[STEP594]]>
-            </line>
-            <line>
-              <![CDATA[STEP595]]>
-            </line>
-            <line>
-              <![CDATA[STEP596]]>
-            </line>
-            <line>
-              <![CDATA[STEP597]]>
-            </line>
-            <line>
-              <![CDATA[STEP598]]>
-            </line>
-            <line>
-              <![CDATA[STEP599]]>
-            </line>
-            <line>
-              <![CDATA[STEP600]]>
-            </line>
-            <line>
-              <![CDATA[STEP601]]>
-            </line>
-            <line>
-              <![CDATA[STEP602]]>
-            </line>
-            <line>
-              <![CDATA[STEP603]]>
-            </line>
-            <line>
-              <![CDATA[STEP604]]>
-            </line>
-            <line>
-              <![CDATA[STEP605]]>
-            </line>
-            <line>
-              <![CDATA[STEP606]]>
-            </line>
-            <line>
-              <![CDATA[STEP607]]>
-            </line>
-            <line>
-              <![CDATA[STEP608]]>
-            </line>
-            <line>
-              <![CDATA[STEP609]]>
-            </line>
-            <line>
-              <![CDATA[STEP610]]>
-            </line>
-            <line>
-              <![CDATA[STEP611]]>
-            </line>
-            <line>
-              <![CDATA[STEP612]]>
-            </line>
-            <line>
-              <![CDATA[STEP613]]>
-            </line>
-            <line>
-              <![CDATA[STEP614]]>
-            </line>
-            <line>
-              <![CDATA[STEP615]]>
-            </line>
-            <line>
-              <![CDATA[STEP616]]>
-            </line>
-            <line>
-              <![CDATA[STEP617]]>
-            </line>
-            <line>
-              <![CDATA[STEP618]]>
-            </line>
-            <line>
-              <![CDATA[STEP619]]>
-            </line>
-            <line>
-              <![CDATA[STEP620]]>
-            </line>
-            <line>
-              <![CDATA[STEP621]]>
-            </line>
-            <line>
-              <![CDATA[STEP622]]>
-            </line>
-            <line>
-              <![CDATA[STEP623]]>
-            </line>
-            <line>
-              <![CDATA[STEP624]]>
-            </line>
-            <line>
-              <![CDATA[STEP625]]>
-            </line>
-            <line>
-              <![CDATA[STEP626]]>
-            </line>
-            <line>
-              <![CDATA[STEP627]]>
-            </line>
           </reporter-output>
         </test-method> <!-- ComprehensiveTesting -->
-        <test-method is-config="true" signature="Teardown()[pri:0, instance:commonMethods.Testcases@ec2cc4]" started-at="2024-10-04T20:10:53 IST" name="Teardown" finished-at="2024-10-04T20:10:53 IST" duration-ms="3" status="PASS">
+        <test-method is-config="true" signature="Teardown()[pri:0, instance:commonMethods.Testcases@19648c40]" started-at="2024-11-04T18:25:21 IST" name="Teardown" finished-at="2024-11-04T18:25:21 IST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Teardown -->

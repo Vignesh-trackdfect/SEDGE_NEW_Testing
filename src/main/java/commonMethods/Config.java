@@ -50,14 +50,10 @@ public class Config extends Keywords {
 			WebDriver driver = new ChromeDriver(options);
 			System.out.println("Chrome Browser launched...");
 			setDriver(driver);
-			//driver.manage().window().maximize();
-			Dimension dimension = new Dimension(1930, 1090);
-			driver.manage().window().setSize(dimension);
+			driver.manage().window().maximize();
+//			Dimension dimension = new Dimension(1930, 1090);
+//			driver.manage().window().setSize(dimension);
 			
-//			Dimension dimension1 = driver.manage().window().getSize();
-//	        // Print the width and height of the maximized window
-//	        System.out.println("Width: " + dimension1.getWidth());
-//	        System.out.println("Height: " + dimension1.getHeight());
 			Map<String, Object> prefs = new HashMap<String, Object>();
 			prefs.put("profile.default_content_setting_values.notifications", 1);
 			prefs.put("download.default_directory", System.getProperty("user.dir") + "\\DownloadedFiles");

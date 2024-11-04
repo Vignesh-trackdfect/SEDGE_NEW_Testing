@@ -51,7 +51,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Suite" class="navigator-link ">
-                    <span>D:\SEDGE_New\testng.xml</span>
+                    <span>D:\SEDGE_TESTING_Frmaework\testng.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -93,7 +93,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method, 1 failed,   </span>
+                    <span class="method-stats">2 methods, 1 failed,   1 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title failed">Failed methods</span>
@@ -108,6 +108,20 @@
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Suite -->
+                  </li>
+                  <li>
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-Suite" class="hide-methods passed suite-Suite"> (hide)</a> <!-- hide-methods passed suite-Suite -->
+                      <a href="#" panel-name="suite-Suite" class="show-methods passed suite-Suite"> (show)</a> <!-- show-methods passed suite-Suite -->
+                    </span>
+                    <div class="method-list-content passed suite-Suite">
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite" title="commonMethods.Testcases" class="method navigator-link" hash-for-method="ComprehensiveTesting(https://analysis.sedge.ai, 1, Flag3, Iteration_TestData)">ComprehensiveTesting(https://analysis.sedge.ai, 1, Flag3, Iteration_TestData)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-Suite -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -132,7 +146,7 @@
                   <span class="method-name">ComprehensiveTesting</span>
                   <span class="parameters">(https://analysis.sedge.ai, 2, Flag3, Iteration_TestData)</span>
                   <div class="stack-trace">[ATU Custom Reporter Step Failed Exception]
-	at atu.testng.reports.listeners.ATUReportsListener.onTestSuccess(ATUReportsListener.java:76)
+	at atu.testng.reports.listeners.ATUReportsListener.onTestSuccess(ATUReportsListener.java:79)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 ... Removed 24 stack frames
 </div> <!-- stack-trace -->
@@ -140,10 +154,26 @@
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
           </div> <!-- suite-Suite-class-failed -->
+          <div class="suite-Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">commonMethods.Testcases</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ComprehensiveTesting(https://analysis.sedge.ai, 1, Flag3, Iteration_TestData)">
+                  </a> <!-- ComprehensiveTesting(https://analysis.sedge.ai, 1, Flag3, Iteration_TestData) -->
+                  <span class="method-name">ComprehensiveTesting</span>
+                  <span class="parameters">(https://analysis.sedge.ai, 1, Flag3, Iteration_TestData)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Suite-class-passed -->
         </div> <!-- panel Suite -->
         <div panel-name="test-xml-Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">D:\SEDGE_New\testng.xml</span>
+            <span class="header-content">D:\SEDGE_TESTING_Frmaework\testng.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -201,16 +231,20 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(1);
+data.addRows(2);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'ComprehensiveTesting')
 data.setCell(0, 2, 'commonMethods.Testcases')
-data.setCell(0, 3, 1105706);
+data.setCell(0, 3, 304696);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'ComprehensiveTesting')
+data.setCell(1, 2, 'commonMethods.Testcases')
+data.setCell(1, 3, 280707);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 18 minutes</span>
+              <span class="suite-total-time">Total running time: 9 minutes</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -222,7 +256,7 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="reporter-method-div">
-              <span class="reporter-method-name">ComprehensiveTesting(https://analysis.sedge.ai, 2, Flag3, Iteration_TestData)</span>
+              <span class="reporter-method-name">ComprehensiveTesting(https://analysis.sedge.ai, 1, Flag3, Iteration_TestData)</span>
               <div class="reporter-method-output-div">
                 <span class="reporter-method-output">STEP1</span>
                 <span class="reporter-method-output">STEP2</span>
@@ -500,6 +534,11 @@ return data;
                 <span class="reporter-method-output">STEP274</span>
                 <span class="reporter-method-output">STEP275</span>
                 <span class="reporter-method-output">STEP276</span>
+              </div> <!-- reporter-method-output-div -->
+            </div> <!-- reporter-method-div -->
+            <div class="reporter-method-div">
+              <span class="reporter-method-name">ComprehensiveTesting(https://analysis.sedge.ai, 2, Flag3, Iteration_TestData)</span>
+              <div class="reporter-method-output-div">
                 <span class="reporter-method-output">STEP277</span>
                 <span class="reporter-method-output">STEP278</span>
                 <span class="reporter-method-output">STEP279</span>
@@ -774,90 +813,13 @@ return data;
                 <span class="reporter-method-output">STEP548</span>
                 <span class="reporter-method-output">STEP549</span>
                 <span class="reporter-method-output">STEP550</span>
-                <span class="reporter-method-output">STEP551</span>
-                <span class="reporter-method-output">STEP552</span>
-                <span class="reporter-method-output">STEP553</span>
-                <span class="reporter-method-output">STEP554</span>
-                <span class="reporter-method-output">STEP555</span>
-                <span class="reporter-method-output">STEP556</span>
-                <span class="reporter-method-output">STEP557</span>
-                <span class="reporter-method-output">STEP558</span>
-                <span class="reporter-method-output">STEP559</span>
-                <span class="reporter-method-output">STEP560</span>
-                <span class="reporter-method-output">STEP561</span>
-                <span class="reporter-method-output">STEP562</span>
-                <span class="reporter-method-output">STEP563</span>
-                <span class="reporter-method-output">STEP564</span>
-                <span class="reporter-method-output">STEP565</span>
-                <span class="reporter-method-output">STEP566</span>
-                <span class="reporter-method-output">STEP567</span>
-                <span class="reporter-method-output">STEP568</span>
-                <span class="reporter-method-output">STEP569</span>
-                <span class="reporter-method-output">STEP570</span>
-                <span class="reporter-method-output">STEP571</span>
-                <span class="reporter-method-output">STEP572</span>
-                <span class="reporter-method-output">STEP573</span>
-                <span class="reporter-method-output">STEP574</span>
-                <span class="reporter-method-output">STEP575</span>
-                <span class="reporter-method-output">STEP576</span>
-                <span class="reporter-method-output">STEP577</span>
-                <span class="reporter-method-output">STEP578</span>
-                <span class="reporter-method-output">STEP579</span>
-                <span class="reporter-method-output">STEP580</span>
-                <span class="reporter-method-output">STEP581</span>
-                <span class="reporter-method-output">STEP582</span>
-                <span class="reporter-method-output">STEP583</span>
-                <span class="reporter-method-output">STEP584</span>
-                <span class="reporter-method-output">STEP585</span>
-                <span class="reporter-method-output">STEP586</span>
-                <span class="reporter-method-output">STEP587</span>
-                <span class="reporter-method-output">STEP588</span>
-                <span class="reporter-method-output">STEP589</span>
-                <span class="reporter-method-output">STEP590</span>
-                <span class="reporter-method-output">STEP591</span>
-                <span class="reporter-method-output">STEP592</span>
-                <span class="reporter-method-output">STEP593</span>
-                <span class="reporter-method-output">STEP594</span>
-                <span class="reporter-method-output">STEP595</span>
-                <span class="reporter-method-output">STEP596</span>
-                <span class="reporter-method-output">STEP597</span>
-                <span class="reporter-method-output">STEP598</span>
-                <span class="reporter-method-output">STEP599</span>
-                <span class="reporter-method-output">STEP600</span>
-                <span class="reporter-method-output">STEP601</span>
-                <span class="reporter-method-output">STEP602</span>
-                <span class="reporter-method-output">STEP603</span>
-                <span class="reporter-method-output">STEP604</span>
-                <span class="reporter-method-output">STEP605</span>
-                <span class="reporter-method-output">STEP606</span>
-                <span class="reporter-method-output">STEP607</span>
-                <span class="reporter-method-output">STEP608</span>
-                <span class="reporter-method-output">STEP609</span>
-                <span class="reporter-method-output">STEP610</span>
-                <span class="reporter-method-output">STEP611</span>
-                <span class="reporter-method-output">STEP612</span>
-                <span class="reporter-method-output">STEP613</span>
-                <span class="reporter-method-output">STEP614</span>
-                <span class="reporter-method-output">STEP615</span>
-                <span class="reporter-method-output">STEP616</span>
-                <span class="reporter-method-output">STEP617</span>
-                <span class="reporter-method-output">STEP618</span>
-                <span class="reporter-method-output">STEP619</span>
-                <span class="reporter-method-output">STEP620</span>
-                <span class="reporter-method-output">STEP621</span>
-                <span class="reporter-method-output">STEP622</span>
-                <span class="reporter-method-output">STEP623</span>
-                <span class="reporter-method-output">STEP624</span>
-                <span class="reporter-method-output">STEP625</span>
-                <span class="reporter-method-output">STEP626</span>
-                <span class="reporter-method-output">STEP627</span>
               </div> <!-- reporter-method-output-div -->
             </div> <!-- reporter-method-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">9 ignored methods</span>
+            <span class="header-content">2 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
@@ -865,21 +827,7 @@ return data;
               <div class="ignored-methods-div">
                 <span class="ignored-method-name">SmokeTesting</span>
                 <br/>
-                <span class="ignored-method-name">DataLabels</span>
-                <br/>
-                <span class="ignored-method-name">ChartFormatOthers</span>
-                <br/>
-                <span class="ignored-method-name">ChartTitle</span>
-                <br/>
                 <span class="ignored-method-name">TestCase_DP01</span>
-                <br/>
-                <span class="ignored-method-name">LoginPageTest</span>
-                <br/>
-                <span class="ignored-method-name">ChartStyle</span>
-                <br/>
-                <span class="ignored-method-name">AxisTitle</span>
-                <br/>
-                <span class="ignored-method-name">BarWidget</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -897,14 +845,26 @@ return data;
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">ComprehensiveTesting(https://analysis.sedge.ai, 2, Flag3, Iteration_TestData)</span>
-                <span class="method-start">3411 ms</span>
+                <span class="method-name">ComprehensiveTesting(https://analysis.sedge.ai, 1, Flag3, Iteration_TestData)</span>
+                <span class="method-start">17840 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">Teardown</span>
-                <span class="method-start">1109155 ms</span>
+                <span class="method-start">298565 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">getDataFromConfig</span>
+                <span class="method-start">298567 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">ComprehensiveTesting(https://analysis.sedge.ai, 2, Flag3, Iteration_TestData)</span>
+                <span class="method-start">299399 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">Teardown</span>
+                <span class="method-start">604098 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

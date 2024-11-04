@@ -15,6 +15,7 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.xml.XmlTest;
 
+import Mail.EmailContent;
 import atu.testng.reports.ATUReports;
 import atu.testng.reports.excel.ExcelReports;
 import atu.testng.reports.exceptions.ATUReporterStepFailedException;
@@ -26,7 +27,9 @@ import atu.testng.reports.writers.CurrentRunPageWriter;
 import atu.testng.reports.writers.HTMLDesignFilesJSWriter;
 import atu.testng.reports.writers.IndexPageWriter;
 import atu.testng.reports.writers.TestCaseReportsPageWriter;
+import atu.testng.reports.writers.TestcaseFailWriter;
 import commonMethods.Testcases;
+import commonMethods.Utils;
 
 public class ATUReportsListener implements ITestListener, ISuiteListener {
 	int runCount = 0;
@@ -184,11 +187,13 @@ public class ATUReportsListener implements ITestListener, ISuiteListener {
 								this.passedTests, this.failedTests, this.skippedTests);
 			if (Directory.generateConfigReports)
 				configLis.startConfigurationMethodsReporting(this.runCount);
-			/*if (Directory.recordSuiteExecution)
-				try {
-					this.recorder.stop();
-				} catch (Throwable localThrowable) {
-				}*/
+			List<String> failedLists=createFailedReportsForMail(this.failedTests);
+			List<String> passedLists=createFailedReportsForMail(this.passedTests);
+			String Trigger_Mail = Utils.getDataFromTestConfig("Trigger");
+			if(Trigger_Mail.equals("Yes")) {
+				EmailContent.sendEmail(this.passedTests, this.failedTests, this.skippedTests, failedLists,passedLists);
+			}
+			
 		} catch (Exception localException) {
 			throw new IllegalStateException(localException);
 		}
@@ -203,13 +208,7 @@ public class ATUReportsListener implements ITestListener, ISuiteListener {
 			SettingsFile.set("run", "" + this.runCount);
 			Directory.RUNDir += this.runCount;
 			Directory.mkDirs(Directory.RUNDir);
-			/*if (Directory.recordSuiteExecution)
-				try {
-					this.recorder = new ATUTestRecorder(Directory.RUNDir, "ATU_CompleteSuiteRecording",
-							Boolean.valueOf(false));
-					this.recorder.start();
-				} catch (Throwable localThrowable) {
-				}*/
+			Directory.mkDirs(Directory.FAILED_REPORTSDir+Directory.SEP+Directory.RUNName+this.runCount);
 			Directory.mkDirs(Directory.RUNDir + Directory.SEP + paramISuite.getName());
 			Iterator<?> localIterator = paramISuite.getXmlSuite().getTests().iterator();
 			while (localIterator.hasNext()) {
@@ -240,6 +239,26 @@ public class ATUReportsListener implements ITestListener, ISuiteListener {
 		}
 	}
 
+	public List<String> createFailedReportsForMail(List<ITestResult> paramList) {
+		Iterator<ITestResult> localIterator = paramList.iterator();
+		List<String> failedReportsPath=new ArrayList<String>();
+		while (localIterator.hasNext()) {
+			ITestResult localITestResult = (ITestResult) localIterator.next();
+			String str = localITestResult.getAttribute("reportDir").toString();
+			try {
+				//System.out.println("Failed Report genration start...");
+				String reportPath=Directory.FAILED_REPORTSDir+Directory.SEP+Directory.RUNName+this.runCount+ Directory.SEP + localITestResult.getAttribute("name")+".html";
+				TestcaseFailWriter.createHtmlFile(reportPath,localITestResult, this.runCount);
+				//System.out.println("Failed Report genration End...");
+				failedReportsPath.add(reportPath);
+			}catch(Exception e) {
+				//System.out.println("Failed Report genration Fails...");
+				e.printStackTrace();
+			}
+		}
+		return failedReportsPath;
+	}
+	
 	public void generateCurrentRunPage(long paramLong1, long paramLong2) {
 		PrintWriter localPrintWriter = null;
 		try {

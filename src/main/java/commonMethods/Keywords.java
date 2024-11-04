@@ -1,11 +1,8 @@
 package commonMethods;
 
-import java.awt.AWTException;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.Robot;
-import java.awt.Toolkit;
-import java.awt.datatransfer.StringSelection;
 import java.awt.image.BufferedImage;
 import java.awt.image.RasterFormatException;
 import java.io.File;
@@ -16,7 +13,6 @@ import java.math.RoundingMode;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
@@ -36,9 +32,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.imageio.ImageIO;
-import org.apache.poi.ss.usermodel.*;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DateUtil;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -93,6 +93,7 @@ import atu.testng.reports.logging.LogAs;
 		
 		static List<String> elsePartData = new ArrayList<>();	    
 	
+		//This method used to get the Current Date and Time. It return the Date And Time in this format -> dd-MM-YYYY HH-mm-ss
 		public String getCurrentDate() {
 			Format formatter = new SimpleDateFormat("dd-MM-YYYY HH-mm-ss");
 			Date date = new Date();
@@ -110,51 +111,7 @@ import atu.testng.reports.logging.LogAs;
 		}
 		
 		
-		public String ScreenCompareImage(WebDriver driver, String img_filepath1, String img_filepath2) {
-			String image_res = null;
-			try {
-				BufferedImage img1 = ImageIO.read(new File(img_filepath1));
-				BufferedImage img2 = ImageIO.read(new File(img_filepath2));
-				int w1 = img1.getWidth();
-				int w2 = img2.getWidth();
-				int h1 = img1.getHeight();
-				int h2 = img2.getHeight();
-				if ((w1 != w2) || (h1 != h2)) {
-					System.out.println("Both images should have same dimensions");
-				} else {
-					long diff = 0;
-					for (int j = 0; j < h1; j++) {
-						for (int i = 0; i < w1; i++) {
-							// Getting the RGB values of a pixel
-							int pixel1 = img1.getRGB(i, j);
-							Color color1 = new Color(pixel1, true);
-							int r1 = color1.getRed();
-							int g1 = color1.getGreen();
-							int b1 = color1.getBlue();
-							int pixel2 = img2.getRGB(i, j);
-							Color color2 = new Color(pixel2, true);
-							int r2 = color2.getRed();
-							int g2 = color2.getGreen();
-							int b2 = color2.getBlue();
-							// sum of differences of RGB values of the two images
-							long data = Math.abs(r1 - r2) + Math.abs(g1 - g2) + Math.abs(b1 - b2);
-							diff = diff + data;
-						}
-					}
-					double avg = diff / (w1 * h1 * 3);
-					double percentage = (avg / 255) * 100;
-					System.out.println("Difference: " + percentage);
-					if (percentage < 0.02) {
-						image_res = "Pass";
-					}
-	
-				}
-			} catch (Exception e) {
-				System.out.println("Exception while taking Screenshot" + e.getMessage());
-				return e.getMessage();
-			}
-			return image_res;
-		}
+		
 	
 		public void wait(WebDriver driver, String inputData) {
 			try {
@@ -166,42 +123,6 @@ import atu.testng.reports.logging.LogAs;
 			
 				Assert.fail();
 			}
-		}
-	
-		public void uploadFileAutoIT(String filelocation) {
-			try {
-				String autoitscriptpath = System.getProperty("user.dir") + "\\" + "File_upload_selenium_webdriver.au3";
-	
-				Runtime.getRuntime().exec("cmd.exe /c Start AutoIt3.exe " + autoitscriptpath + " \"" + filelocation + "\"");
-	
-			} catch (Exception exp) {
-	
-				Assert.fail();
-			}
-		}
-	
-		
-		
-		public static void dropdown(WebDriver driver, String xpath) {
-	
-			String[] values = splitXpath(xpath);
-	
-			List<WebElement> li = driver.findElements(By.xpath(values[1]));
-			try {
-				for (int i = 0; i < li.size(); i++) {
-					System.out.println(li.get(i).getText());
-					Thread.sleep(2000);
-					if (li.get(i).getText().contains("Apple iPhone 12")) {
-	
-						li.get(i).click();
-						break;
-					}
-				}
-			} catch (Exception e) {
-			
-				Assert.fail();
-			}
-	
 		}
 	
 		public void waitForElement(WebDriver driver, String xpath) {
@@ -227,8 +148,8 @@ import atu.testng.reports.logging.LogAs;
 			String[] values = splitXpath(xpath);
 			try {
 				// int WaitElementSeconds1 = new Integer(ElementWait);
-				driver.manage().timeouts().implicitlyWait(6000, TimeUnit.SECONDS);
-				WebDriverWait wait = new WebDriverWait(driver, 6000);
+				driver.manage().timeouts().implicitlyWait(600, TimeUnit.SECONDS);
+				WebDriverWait wait = new WebDriverWait(driver, 600);
 				wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(values[1])));
 	//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(values[1])));
 				add(driver, "Wait for the Element " + values[0], LogAs.PASSED, true, values[0]);
@@ -250,9 +171,6 @@ import atu.testng.reports.logging.LogAs;
 				//add(driver, "Wait for the Element " + values[0], LogAs.PASSED, true, values[0]);
 			} catch (Exception e) {
 			
-				//add1(driver, "Element Not Found - " + values[0] + "- " + e.getLocalizedMessage() + e, LogAs.FAILED, true,
-				//		values[0]);
-				//Assert.fail();
 			}
 		}
 	
@@ -274,42 +192,6 @@ import atu.testng.reports.logging.LogAs;
 			}
 	
 		}
-	
-		public void waitForElement5(WebDriver driver, String xpath) {
-			String[] values = splitXpath(xpath);
-			try {
-				// int WaitElementSeconds1 = new Integer(ElementWait);
-				driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-				WebDriverWait wait = new WebDriverWait(driver, 30);
-				wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(values[1])));
-				wait.until(ExpectedConditions.elementToBeClickable(By.xpath(values[1])));
-				add(driver, "Wait for the Element " + values[0], LogAs.PASSED, true, values[0]);
-			} catch (Exception e) {
-			
-				add1(driver, "Element Not Found - " + values[0] + "- " + e.getLocalizedMessage() + e, LogAs.FAILED, true,
-						values[0]);
-				Assert.fail();
-			}
-		}
-	
-//		public void click(WebDriver driver, String Xpath) {
-//			String[] values = splitXpath(Xpath);
-//			try {
-//				driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-//				WebDriverWait wait1 = new WebDriverWait(driver, 30);
-//				wait1.until(ExpectedConditions.elementToBeClickable(By.xpath(values[1])));
-//				WebElement element = driver.findElement(By.xpath(values[1]));
-//				element.click();
-//				add(driver, "Click on " + values[0], LogAs.PASSED, true, "");
-//	
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//				add1(driver, "Unable to click on " + values[0] + "- " + e.getLocalizedMessage(), LogAs.FAILED, true,
-//						values[0]);
-//				Assert.fail();
-//			}
-//	
-//		}
 	
 		public void click(WebDriver driver, String Xpath) {
 		    String[] values = splitXpath(Xpath);
@@ -372,91 +254,7 @@ import atu.testng.reports.logging.LogAs;
 				return false;
 			}
 		}
-		
-		public void click1(WebDriver driver, String path, int input) {
-			String[] values = splitXpath(path);
-			try {
-				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-				WebElement webElement = driver.findElement(By.xpath(values[input]));
-				System.out.println(webElement);
-				JavascriptExecutor js = (JavascriptExecutor) driver;
-				js.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');",
-						webElement);
-				webElement.click();
-				System.out.println(values[0] + " clicked");
-				add(driver, "Click1 on " + values[0], LogAs.PASSED, true, values[0]);
-			} catch (Exception e) {
-				System.out.println(" Exception " + e);
-				add1(driver, "Unable to click1 on " + values[0] + "- " + e.getLocalizedMessage(), LogAs.FAILED, true,
-						values[0]);
-			
-				Assert.fail();
-			}
-		}
-	
-		public void switchToActiveElement(WebDriver driver) {
-			try {
-				driver.switchTo().activeElement();
-			} catch (Exception e) {
-			}
-		}
-	
-		public void clickByClassName(WebDriver driver, String className) {
-			String[] values = splitXpath(className);
-			try {
-				WebElement webElement = driver.findElement(By.className(values[1]));
-				webElement.click();
-				// add(driver, "Click on " + values[0], LogAs.PASSED, true, values[0]);
-			} catch (Exception e) {
-				// add1(driver, "Unable to click on " + values[0], LogAs.FAILED, true,
-				// values[0]);
-			
-				Assert.fail();
-			}
-		}
-	
-		public void clickWithoutFail(WebDriver driver, String path) {
-			String[] values = splitXpath(path);
-			WebElement webElement = driver.findElement(By.xpath(values[1]));
-			webElement.click();
-			add(driver, "Click on " + values[0], LogAs.PASSED, true, values[0]);
-	
-		}
-	
-		public void jsClickByXPath(WebDriver driver, String Xpath) {
-			String[] values = splitXpath(Xpath);
-			try {
-				// waitForElement(driver,Xpath);
-				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-				WebElement element = driver.findElement(By.xpath(values[1]));
-				JavascriptExecutor executor = (JavascriptExecutor) driver;
-				executor.executeScript("arguments[0].click();", element);
-				add(driver, "Click on " + values[0], LogAs.PASSED, true, values[0]);
-			} catch (Exception e) {
-				add1(driver, "Unable to click on " + values[0] + "- " + e.getLocalizedMessage(), LogAs.FAILED, true,
-						values[0]);
-			
-				Assert.fail();
-			}
-		}
-			
-		public void waitForTexttopresent(WebDriver driver, String xpath, String text) {
-			String[] values = splitXpath(xpath);
-			try {
-				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-				// int WaitElementSeconds1 = new Integer(ElementWait);
-				WebDriverWait wait = new WebDriverWait(driver, 30);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(values[1])));
-				wait.until(ExpectedConditions.textToBePresentInElement(By.xpath(values[1]), text));
-				add(driver, "Wait for the Text " + values[0], LogAs.PASSED, true, values[0]);
-			} catch (Exception e) {
-				add1(driver, "Text Not Found - " + values[0] + "- " + e.getLocalizedMessage() + e, LogAs.FAILED, true,
-						values[0]);
-			
-				Assert.fail();
-			}
-		}
-	
+				
 		public void clearAndType1(WebDriver driver,String Xpath,String inputText) {
 			String[] values = splitXpath(Xpath);
 			try {
@@ -484,9 +282,6 @@ import atu.testng.reports.logging.LogAs;
 				JavascriptExecutor js = (JavascriptExecutor) driver;
 				js.executeScript("arguments[0].value='';", webElement);
 				js.executeScript("arguments[0].click();", webElement);
-				// webElement.clear();
-	//			webElement.sendKeys(keysToSend, Keys.ENTER);
-				// JavascriptExecutor jse = (JavascriptExecutor)driver;
 	
 				wait(driver, "1");
 				js.executeScript("arguments[0].value=" + "\'" + keysToSend + "\'" + ";", webElement);
@@ -501,39 +296,6 @@ import atu.testng.reports.logging.LogAs;
 				Assert.fail();
 			}
 			return keysToSend;
-		}
-	
-		public String actionType(WebDriver driver, String xpath, String keysToSend) {
-			String[] values = splitXpath(xpath);
-			try {
-				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-				WebElement webElement = driver.findElement(By.xpath(values[1]));
-				Actions action = new Actions(driver);
-				action.sendKeys(webElement, keysToSend).build().perform();
-				add(driver, "Type on " + values[0], keysToSend, true, values[0]);
-			} catch (StaleElementReferenceException e) {
-				add1(driver, "Unable to type on " + values[0] + "- " + e.getLocalizedMessage(), LogAs.FAILED, true,
-						values[0]);
-			
-				Assert.fail();
-			}
-			return keysToSend;
-		}
-	
-		public void actionClick(WebDriver driver, String Xpath) {
-			String[] values = splitXpath(Xpath);
-			WebElement webElement = driver.findElement(By.xpath(values[1]));
-			try {
-				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-				Actions action = new Actions(driver);
-				action.click(webElement).build().perform();
-				add(driver, "Click on " + values[0], LogAs.PASSED, true, values[0]);
-			} catch (Exception e) {
-				add1(driver, "Unable to click on " + values[0] + "- " + e.getLocalizedMessage(), LogAs.FAILED, true,
-						values[0]);
-			
-				Assert.fail();
-			}
 		}
 	
 		public void doubleClick(WebDriver driver, String element) {
@@ -580,26 +342,6 @@ import atu.testng.reports.logging.LogAs;
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		}
 	
-		public String searchelement(WebDriver driver, String xpaths, String keysToSend) {
-			String[] values = splitXpath(xpaths);
-	
-			try {
-				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-				WebElement webElement = driver.findElement(By.xpath(values[1]));
-				webElement.sendKeys(keysToSend, Keys.ENTER);
-	
-				add(driver, "Type on " + values[0], keysToSend, true, values[0]);
-	
-			} catch (Exception e) {
-				add1(driver, "Unable to type on " + values[0] + "- " + e.getLocalizedMessage(), keysToSend, true,
-						values[0]);
-			
-				Assert.fail();
-			}
-			return keysToSend;
-	
-		}
-	
 		public void clear1(WebDriver driver, String xpaths) {
 			String[] values = splitXpath(xpaths);
 			try {
@@ -617,6 +359,21 @@ import atu.testng.reports.logging.LogAs;
 			}
 		}
 	
+		public void clear2(WebDriver driver, String xpaths) {
+			String[] values = splitXpath(xpaths);
+			try {
+				Actions action=new Actions(driver);
+				action.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).perform();
+				action.sendKeys(Keys.BACK_SPACE).build().perform();
+				add(driver, "Text Clear on " + values[0]+" element ", LogAs.PASSED, true, "");
+			} catch (Exception e) {
+				add1(driver, "Unable to clear the text on " + values[0] + "- " + e.getLocalizedMessage(), LogAs.FAILED, true,
+						"");
+			
+//				Assert.fail();
+			}
+		}
+		
 		public void clear(WebDriver driver, String xpaths) {
 			String[] values = splitXpath(xpaths);
 			try {
@@ -631,26 +388,7 @@ import atu.testng.reports.logging.LogAs;
 //				Assert.fail();
 			}
 		}
-		public void webelementfunction(WebDriver driver, String xpaths) {
-			String[] values = splitXpath(xpaths);
-			try {
-				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-				// WebElement webElement = driver.findElement(By.xpath(values[1]));
-				// webElement.clear();
-				List<WebElement> bakeries = driver.findElements(By.xpath(values[1]));
-				JavascriptExecutor js = (JavascriptExecutor) driver;
-				js.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');",
-						bakeries);
-				System.out.println(bakeries.size());
-				add(driver, "Clear on " + values[0], LogAs.PASSED, true, values[0]);
-			} catch (Exception e) {
-				add1(driver, "Unable to clear on " + values[0] + "- " + e.getLocalizedMessage(), LogAs.PASSED, true,
-						values[0]);
-			
-//				Assert.fail();
-			}
-	
-		}
+//		
 	
 		public void selectCheckBox(WebDriver driver, String xpaths) {
 			String[] values = splitXpath(xpaths);
@@ -687,23 +425,7 @@ import atu.testng.reports.logging.LogAs;
 			}
 		}
 	
-		public void selectByIndex(WebDriver driver, String xpaths, String inputData) {
-			String[] values = splitXpath(xpaths);
-			try {
-				WebElement webElement = driver.findElement(By.xpath(values[1]));
-				@SuppressWarnings("removal")
-				Integer index = new Integer(inputData);
-				Select selectBox = new Select(webElement);
-				selectBox.selectByIndex(index);
-				add(driver, "Select the Dropdown by Index " + values[0], LogAs.PASSED, true, values[0]);
-			} catch (Exception e) {
-				add1(driver, "Unable to select the Dropdown by Index " + values[0] + "- " + e.getLocalizedMessage(),
-						inputData, true, values[0]);
-			
-				Assert.fail();
-			}
-		}
-	
+
 		public void selectByText(WebDriver driver, String xpaths, String inputData) {
 			String[] values = splitXpath(xpaths);
 			try {
@@ -718,6 +440,19 @@ import atu.testng.reports.logging.LogAs;
 			}
 		}
 	
+		public void selectByText_WebElement(WebDriver driver,WebElement ele, String inputData) {
+			try {
+				Select selectBox = new Select(ele);
+				selectBox.selectByVisibleText(inputData);
+				add(driver, "Select the Dropdown by text " + inputData, inputData, true, "");
+			} catch (Exception e) {
+				add1(driver, "Unable to select the Dropdown by text " + inputData + "- " + e.getLocalizedMessage(),
+						inputData, true, "");
+			
+//				Assert.fail();
+			}
+		}
+		
 		public void selectByValue(WebDriver driver, String xpaths, String inputData) {
 			String[] values = splitXpath(xpaths);
 			try {
@@ -735,17 +470,6 @@ import atu.testng.reports.logging.LogAs;
 		}
 	
 		
-		public void close(WebDriver driver) {
-			try {
-				driver.close();
-				add(driver, "Application is closed", LogAs.PASSED, true, "Not Req");
-			} catch (Exception e) {
-				add1(driver, "Unable to close the application ", LogAs.FAILED, true,"Not Req" + "- " + e.getLocalizedMessage());
-			
-				Assert.fail();
-			}
-		}
-	
 		public String getText(WebDriver driver, String xpath) {
 			String[] values = splitXpath(xpath);
 			try {
@@ -790,21 +514,7 @@ import atu.testng.reports.logging.LogAs;
 			}
 		}
 	
-		public void compareText(WebDriver driver,String ExpectText,String ActualText) {
-			
-			try {
-				if(ExpectText.equals(ActualText)) {
-					add(driver, "Expected and Actual Text Same .!", LogAs.PASSED,true, ActualText);
-				}
-	
-			} catch (Exception e) {
-				add1(driver, "Expected and Actual Text NOt Same .!", LogAs.FAILED,true, ActualText);
-			
-//				Assert.fail();
-				
-			}
-		}
-		
+
 		public void newTab2(WebDriver driver) {
 			((JavascriptExecutor) driver).executeScript("window.open()");
 	
@@ -816,25 +526,13 @@ import atu.testng.reports.logging.LogAs;
 	
 		}
 	
-		public String getTextWithoutFail(WebDriver driver, String xpath) {
-			String[] values = splitXpath(xpath);
-			WebElement webElement = driver.findElement(By.xpath(values[1]));
-			String text = webElement.getText();
-			add(driver, "The value ' " + text + " ' is retrieved for the element ' " + values[0] + "'", LogAs.PASSED, true,values[0]);
-			return text;
-	
-		}
-	
-		public static void waitTime(WebDriver driver, String waitSeconds) {
-			driver.manage().timeouts().implicitlyWait(Integer.parseInt(waitSeconds), TimeUnit.SECONDS);
-		}
-	
+
 		public void scrollBottom(WebDriver driver) {
 			try {
 	
 				JavascriptExecutor jse = (JavascriptExecutor) driver;
 				jse.executeScript("window.scroll(0,350)", "");
-				waitTime(driver, "5");
+				wait(driver, "5");
 				// add(driver, "Scrolled to the bottom ", LogAs.PASSED, true, "Not");
 			} catch (Exception e) {
 				// add1(driver, "Unable to scroll to the bottom", LogAs.FAILED, true, "Not");
@@ -877,7 +575,7 @@ import atu.testng.reports.logging.LogAs;
 		public boolean verifyElementIsPresent1(WebDriver driver, String xpath) {
 			String[] values = splitXpath(xpath);
 			try {
-				driver.manage().timeouts().implicitlyWait(70, TimeUnit.SECONDS);
+				driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 				WebElement element = driver.findElement(By.xpath(values[1]));
 				element.isDisplayed();
 				add(driver, "Element '" + values[0] + "' present is verified ", LogAs.PASSED, true, "");
@@ -1015,13 +713,7 @@ import atu.testng.reports.logging.LogAs;
 			}
 		}
 		
-		public void waituntilelementnotvisible(WebDriver driver, String xpath) {
-			String[] values = splitXpath(xpath);
-	
-				WebDriverWait wait =new WebDriverWait(driver,20);
-				wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(values[1])));
-				
-		}
+
 	
 		public String getAttribute(WebDriver driver, String xpath, String attribute) {
 			String[] values = splitXpath(xpath);
@@ -1058,22 +750,6 @@ import atu.testng.reports.logging.LogAs;
 		}
 	
 	
-		public boolean verifyElementIsNotPresent(WebDriver driver, String xpaths) {
-			String[] values = splitXpath(xpaths);
-			try {
-				WebElement element = driver.findElement(By.xpath(values[1]));
-				element.isDisplayed();
-				add1(driver, "Element is Present" + values[0], LogAs.FAILED, true, values[0]);
-				Assert.fail();
-				return true;
-			} catch (NoSuchElementException e) {
-				add(driver, "Verified Element is not Present" + values[0] + "- " + e.getLocalizedMessage(), values[0], true,
-						values[0]);
-			}
-			return true;
-	
-		}
-	
 		public void scrollUsingElement(WebDriver driver, String xpath) {
 			String[] values = splitXpath(xpath);
 			try {
@@ -1091,117 +767,7 @@ import atu.testng.reports.logging.LogAs;
 //				Assert.fail();
 			}
 		}
-	
-		public void goBack(WebDriver driver) {
-	
-			try {
-				driver.navigate().back();
-				add(driver, "Go Back", LogAs.PASSED, true, "goback");
-	
-			} catch (Exception e) {
-				add(driver, "Unable to Go Back", LogAs.FAILED, true, "goback");
-			
-				Assert.fail();
-	
-			}
-		}
-	
-		public void keyBoardEvent(int eventNumber) {
-			try {
-	
-				Thread.sleep(1000);
-	
-				Runtime.getRuntime().exec(
-	
-						"cmd /C adb shell input keyevent " + eventNumber);
-	
-				Thread.sleep(3000);
-	
-			} catch (Throwable t) {
-	
-				t.printStackTrace();
-	
-			}
-		}
-	
-		public void team_Arrow(WebDriver driver, String value) {
-	
-			driver.findElement(By.xpath("//td[text()='" + value + "@trackd.com']/..//div[@class='action-icon-container']"))
-					.click();
-	
-		}
-	
-		public void type(WebDriver driver, int value) {
-	
-			driver.findElement(By.xpath("(//div[@class='sc-jcFjpl fOTaNF'])[" + value + "]")).click();
-		}
-	
-		public void manufacturer(WebDriver driver, int value, String value1) {
-	
-			driver.findElement(By.xpath("(//*[text()='₹']//following::input[1])[" + value + "]")).sendKeys(value1);
-	
-			add(driver, "type on " + "manufacture", LogAs.PASSED, true, "");
-		}
-	
-		public void Description(WebDriver driver, int value, String value1) {
-			// *[@placeholder='Description']
-			driver.findElement(By.xpath("(//*[text()='₹']//following::input[2])[" + value + "]")).sendKeys(value1);
-			add(driver, "type on  " + "Description", LogAs.PASSED, true, "");
-		}
-	
-		public void cost(WebDriver driver, int value, String value1) {
-	
-			driver.findElement(By.xpath("(//*[text()='₹']//preceding::input[1])[" + value + "]")).sendKeys(value1);
-			add(driver, "type on  " + "Cost", LogAs.PASSED, true, "");
-		}
-	
-		public void vendor(WebDriver driver, int value, String value1) {
-	
-			driver.findElement(By.xpath("(//*[text()='₹']//following::input[1])[" + value + "]")).sendKeys(value1);
-			add(driver, "type on  " + "vendor", LogAs.PASSED, true, "");
-	
-		}
-	
-		public void familyname(WebDriver driver, int value, String value1) {
-	
-			driver.findElement(By.xpath("(//*[@placeholder='Furniture Family'])[" + value + "]")).sendKeys(value1);
-			add(driver, "type on  " + "Furniture Family", LogAs.PASSED, true, "");
-		}
-	
-		public void waitTillVisibilityElement(WebDriver driver, String xpath) {
-			String[] values = splitXpath(xpath);
-	
-			try {
-				driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
-				WebElement webElement = driver.findElement(By.xpath(values[1]));
-				WebDriverWait wait = new WebDriverWait(driver, 30);
-				wait.until(ExpectedConditions.visibilityOf(webElement));
-				add(driver, "Waited till the element is visible", LogAs.PASSED, true, values[0]);
-			} catch (Exception e) {
-				add(driver, "Unable to wait till an element is visible", LogAs.FAILED, true,
-						values[0] + "-" + e.getLocalizedMessage());
-			
-				Assert.fail();
-	
-			}
-		}
-	
-		public void waitTillElementIsClickable(WebDriver driver, String xpath) {
-			try {
-				driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-				String[] values = splitXpath(xpath);
-				WebElement webElement = driver.findElement(By.xpath(values[1]));
-				WebDriverWait wait = new WebDriverWait(driver, 30);
-				wait.until(ExpectedConditions.elementToBeClickable(webElement));
-				add(driver, "Waited till the element is clickable", LogAs.PASSED, true, "Scroll down");
-			} catch (Exception e) {
-				add(driver, "Unable to wait till an element is clickable", LogAs.FAILED, true,
-						"Scroll down" + "- " + e.getLocalizedMessage());
-			
-				Assert.fail();
-	
-			}
-		}
+
 	
 		public boolean IsElementEnabled(WebDriver driver, String xpath) {
 			String[] values = splitXpath(xpath);
@@ -1217,106 +783,6 @@ import atu.testng.reports.logging.LogAs;
 			} catch (NoSuchElementException e) {
 //				add(driver, "Element is not enabled", LogAs.FAILED, true, values[0]);
 				return false;
-			}
-		}
-	
-		public int getRandomNum(WebDriver driver, int upperlimit) {
-			List<Integer> randomZeroToSeven = new ArrayList<>();
-			for (int i = 1; i <= upperlimit; i++) {
-				randomZeroToSeven.add(i);
-			}
-			Collections.shuffle(randomZeroToSeven);
-	
-			return randomZeroToSeven.get(0);
-	
-		}
-		
-		public void deSelectByIndex(WebDriver driver, String xpath, String inputData) {
-			String[] values = splitXpath(xpath);
-			try {
-				WebElement webElement = driver.findElement(By.xpath(values[1]));
-				Integer index = new Integer(inputData);
-				Select selectBox = new Select(webElement);
-				selectBox.deselectByIndex(index);
-				add(driver, "Deselect the dropdown by index " + values[0], LogAs.PASSED, true, values[1]);
-			} catch (Exception e) {
-				add1(driver, "Unable to deselect the dropdown by index" + values[0], LogAs.FAILED, true, values[1]);
-			
-				Assert.fail();
-			}
-		}
-	
-		public void deSelectByValue(WebDriver driver, String xpath, String inputData) {
-			String[] values = splitXpath(xpath);
-			try {
-				WebElement webElement = driver.findElement(By.xpath(values[1]));
-				Select selectBox = new Select(webElement);
-				selectBox.deselectByValue(inputData);
-				add(driver, "Deselect the dropdown by index " + values[0], LogAs.PASSED, true, values[1]);
-			} catch (Exception e) {
-				add(driver, "Unable to deselect the dropdown by index" + values[0], LogAs.FAILED, true, values[1]);
-			
-				Assert.fail();
-			}
-		}
-	
-		public void getWindow(WebDriver driver, String path) {
-			try {
-				waitTime(driver, "5");
-				Main_Window = driver.getWindowHandle();
-				System.out.println("Main_Window:" + Main_Window);
-				String[] values = splitXpath(path);
-				WebElement webElement = driver.findElement(By.xpath(values[1]));
-				webElement.click();
-				Thread.sleep(500);
-				ArrayList<String> allWindows = new ArrayList<String>(driver.getWindowHandles());
-				System.out.println("2nd Window:" + allWindows.get(1));
-				driver.switchTo().window(allWindows.get(1));
-			} catch (InterruptedException e) {
-			}
-		}
-	
-		public void switchWindow(WebDriver driver) {
-			try {
-				driver.switchTo().window(Main_Window);
-			} catch (Exception e) {
-			}
-		}
-	
-		public void switchDefaultContent(WebDriver driver) {
-			driver.switchTo().defaultContent();
-		}
-	
-		public void getAutoit(String exePath) {
-			try {
-				Runtime.getRuntime().exec(exePath);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		}
-	
-		public void dragElement(WebDriver driver, String xpath) {
-			String[] values = splitXpath(xpath);
-			try {
-				WebElement webElement = driver.findElement(By.xpath(values[1]));
-				fromElement = webElement;
-				add(driver, "Drag an element " + values[0], LogAs.PASSED, true, values[0]);
-			} catch (Exception e) {
-				add1(driver, "Unable to drag an element " + values[0], LogAs.FAILED, true, values[0]);
-			}
-	
-		}
-	
-		public void dropElement(WebDriver driver, String xpath) {
-			String[] values = splitXpath(xpath);
-			try {
-				WebElement webElement = driver.findElement(By.xpath(values[1]));
-				Actions action = new Actions(driver);
-				Action dragDrop = action.dragAndDrop(fromElement, webElement).build();
-				dragDrop.perform();
-				add(driver, "Drop an element " + values[0], LogAs.PASSED, true, values[0]);
-			} catch (Exception e) {
-				add1(driver, "Unable to drag an element " + values[0], LogAs.FAILED, true, values[0]);
 			}
 		}
 	
@@ -1340,136 +806,8 @@ import atu.testng.reports.logging.LogAs;
 		}
 	
 		
-	
-		public void IstextPresent(WebDriver driver, String inputData) {
-			if (driver.getPageSource().contains(inputData)) {
-				add(driver, "Text is Present " + inputData, LogAs.PASSED, true, inputData);
-			} else {
-				add1(driver, "Text is not Present " + inputData, LogAs.FAILED, true, inputData);
-			}
-		}
-	
-		
-		public void isElementClickable(WebDriver driver, String xpath) {
-			String[] values = splitXpath(xpath);
-			try {
-				WebElement webElement = driver.findElement(By.xpath(values[1]));
-				WebDriverWait waits = new WebDriverWait(driver, 60);
-				waits.until(ExpectedConditions.elementToBeClickable(webElement));
-				add(driver, "Element is clickable " + values[0], LogAs.PASSED, true, values[0]);
-			} catch (Exception e) {
-				add1(driver, "Element is not clickable " + values[0] + "- " + e.getLocalizedMessage(), LogAs.FAILED, true,
-						values[0]);
-			}
-		}
-	
-		public void isElementSelectable(WebDriver driver, String xpath) {
-			String[] values = splitXpath(xpath);
-			try {
-				WebElement webElement = driver.findElement(By.xpath(values[1]));
-				WebDriverWait waits = new WebDriverWait(driver, 60);
-				waits.until(ExpectedConditions.elementToBeSelected(webElement));
-				add(driver, "Element is selectable " + values[0], LogAs.PASSED, true, values[0]);
-			} catch (Exception e) {
-				add1(driver, "Element is not selectable " + values[0] + "- " + e.getLocalizedMessage(), LogAs.FAILED, true,
-						values[0]);
-			}
-		}
-	
-		public void waitUntilVisibilityOfElement(WebDriver driver, String xpath) {
-			String[] values = splitXpath(xpath);
-			try {
-				WebElement webElement = driver.findElement(By.xpath(values[1]));
-				WebDriverWait wait = new WebDriverWait(driver, 60);
-				wait.until(ExpectedConditions.visibilityOf(webElement));
-				add(driver, "Wait till the Element is visible " + values[0], LogAs.PASSED, true, values[0]);
-			} catch (Exception e) {
-				add1(driver, "Element is not visible " + values[0] + "- " + e.getLocalizedMessage(), LogAs.FAILED, true,
-						values[0]);
-			}
-	
-		}
-	
-		public void waitForElementNotpresent(WebDriver driver, String xpath) {
-			String[] values = splitXpath(xpath);
-			try {
-				WebDriverWait wait = new WebDriverWait(driver, 50);
-				wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath))));
-				add(driver, "Wait till the Element is visible " + values[0], LogAs.PASSED, true, values[0]);
-			} catch (Exception e) {
-				add1(driver, "Element is not visible " + values[0] + "- " + e.getLocalizedMessage(), LogAs.FAILED, true,
-						values[0]);
-			}
-		}
-	
-		public String dynamicSendkeys(WebDriver driver, String inputData, String xpath) {
-			String[] values = splitXpath(xpath);
-			WebElement webElement = driver.findElement(By.xpath(values[1]));
-			webElement.clear();
-			try {
-				Thread.sleep(500);
-				String currenttime = new SimpleDateFormat("HHmmssa").format(Calendar.getInstance().getTime());
-				String originalValue = inputData;
-				String combinedValues = currenttime + originalValue;
-				sendKeys(driver, xpath, combinedValues);
-				return combinedValues;
-			} catch (InterruptedException e) {
-	
-				return null;
-			}
-	
-		}
-	
-		public void partialTextVerify(String sentence, String word) {
-			if (sentence.contains(word)) {
-			} else {
-			}
-	
-		}
-	
-		public String enterUniquePhone(WebDriver driver, String path) {
-			String[] values = splitXpath(path);
-			WebElement webElement = driver.findElement(By.xpath(values[1]));
-			webElement.clear();
-			try {
-				Thread.sleep(500);
-				String phonenumber = new SimpleDateFormat("MMddHHmmss").format(Calendar.getInstance().getTime());
-				sendKeys(driver, path, phonenumber);
-				return phonenumber;
-			} catch (InterruptedException e) {
-				return null;
-			}
-	
-		}
-	
-		public String dynamicTypeName(WebDriver driver, String inputData, String webElementxPath) {
-			String[] values = splitXpath(webElementxPath);
-			WebElement webElement = driver.findElement(By.xpath(values[1]));
-			webElement.clear();
-			try {
-				Thread.sleep(500);
-				String currenttime = new SimpleDateFormat("HH_mmss").format(Calendar.getInstance().getTime());
-				String combinedValues = inputData + currenttime;
-				sendKeys(driver, webElementxPath, combinedValues);
-				return combinedValues;
-			} catch (Exception e) {
-				e.printStackTrace();
-				return null;
-			}
-		}
-	
-		public String sumOfTwoNumbers(String GetText1, String GetText2) {
-			try {
-				int string1 = Integer.parseInt(GetText1);
-				int string2 = Integer.parseInt(GetText2);
-				int sum1 = string1 + string2;
-				String sum = Integer.toString(sum1);
-				return sum;
-			} catch (Exception e) {
-				return null;
-			}
-		}
-	
+  // *************** This methods are some basic selenium methods to perform some basic actions ************ Start..........
+		//If we need we can use this methods
 		public void quit(WebDriver driver) {
 			try {
 				driver.quit();
@@ -1479,22 +817,15 @@ import atu.testng.reports.logging.LogAs;
 	
 		public void refreshPage(WebDriver driver) {
 			try {
-				waitTime(driver, "5");
+				wait(driver, "5");
 				driver.navigate().refresh();
-				waitTime(driver, "5");
+				wait(driver, "5");
 			} catch (Exception e) {
 				Assert.fail();
 			}
 		}
 	
-		public void maximize(WebDriver driver) {
-			try {
-				driver.manage().window().maximize();
-			} catch (Exception e) {
-				Assert.fail();
-			}
-		}
-	
+		
 		public void keyTab(WebDriver driver) {
 			try {
 				Actions action = new Actions(driver);
@@ -1505,17 +836,6 @@ import atu.testng.reports.logging.LogAs;
 			}
 		}
 
-	
-		public void goForward(WebDriver driver) {
-			try {
-				driver.navigate().forward();
-	
-			} catch (Exception e) {
-			
-				Assert.fail();
-			}
-		}
-	
 		public void keyboardTab(WebDriver driver) {
 			Actions actionObject = new Actions(driver);
 			actionObject.keyDown(Keys.CONTROL).sendKeys(Keys.TAB).perform();
@@ -1553,22 +873,6 @@ import atu.testng.reports.logging.LogAs;
 			alert.dismiss();
 		}
 	
-		public String promptBox(WebDriver driver, String path, String inputData) {
-			String[] values = splitXpath(path);
-			try {
-	
-				WebElement element = driver.findElement(By.xpath(values[1]));
-				element.click();
-				Alert alert = driver.switchTo().alert();
-				driver.switchTo().alert().sendKeys(inputData);
-				String alertText = alert.getText();
-				alert.accept();
-				return alertText;
-			} catch (Exception e) {
-				return null;
-			}
-		}
-	
 		public void switchToFrame(WebDriver driver, String frameName) {
 			String[] values = splitXpath(frameName);
 			try {
@@ -1587,28 +891,6 @@ import atu.testng.reports.logging.LogAs;
 			
 				Assert.fail();
 			}
-		}
-	
-		public static void uniqueObjects(WebDriver driver) {
-	
-			try {
-	
-				JavascriptExecutor js1 = (JavascriptExecutor) driver;
-				js1.executeScript("checkBox = store.exposed.getBabylonGUIElementByName(\"arrayCheckbox\");\r\n"
-						+ "if (checkBox){\r\n"
-						+ "    const currentValue = store.arrayFunctionGlobalVariables.uniqueObjects;\r\n"
-						+ "    const newValue = !currentValue;\r\n" + "\r\n" + "    checkBox.isChecked = newValue;\r\n"
-						+ "    checkBox.onIsCheckedChangedObservable.notifyObservers(newValue);\r\n" + "}");
-	
-			}
-	
-			catch (Exception e1) {
-				System.out.println(e1);
-			
-				Assert.fail();
-	
-			}
-	
 		}
 		
 		public void keyDown(WebDriver driver) {
@@ -1636,19 +918,19 @@ import atu.testng.reports.logging.LogAs;
 		public void keyboardPageDown(WebDriver driver) {
 			Actions actionObject = new Actions(driver);
 			actionObject.keyDown(Keys.CONTROL).sendKeys(Keys.PAGE_DOWN).perform();
-			waitTime(driver, "5");
+			wait(driver, "5");
 		}
 	
 		public void keyboardEnd(WebDriver driver) {
 			Actions actionObject = new Actions(driver);
 			actionObject.keyDown(Keys.CONTROL).sendKeys(Keys.END).perform();
-			waitTime(driver, "5");
+			wait(driver, "5");
 		}
 	
 		public void keyboardHome(WebDriver driver) {
 			Actions actionObject = new Actions(driver);
 			actionObject.keyDown(Keys.CONTROL).sendKeys(Keys.HOME).perform();
-			waitTime(driver, "5");
+			wait(driver, "5");
 		}
 	
 		public void keyboardArrowUp(WebDriver driver) {
@@ -1681,7 +963,9 @@ import atu.testng.reports.logging.LogAs;
 			driver.manage().deleteAllCookies();
 	
 		}
-	
+    // *************** This methods are some basic selenium methods to perform some basic actions ************ End.........
+		
+		
 		public void navigateUrl(WebDriver driver, String inputData) {
 			if (inputData == null) {
 				add(driver, " Navigated to " + inputData, LogAs.FAILED, true, "");
@@ -1693,201 +977,6 @@ import atu.testng.reports.logging.LogAs;
 				driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 			}
-	
-		}
-	
-		public void highLightElement(WebDriver driver, String xpath) {
-			String[] values = splitXpath(xpath);
-			WebElement webElement = driver.findElement(By.xpath(values[1]));
-			JavascriptExecutor js = (JavascriptExecutor) driver;
-			js.executeScript("arguments[0].setAttribute('style', arguments[1]);", webElement,
-					"color: red; border: 3px solid red;");
-			js.executeScript("arguments[0].setAttribute('style', arguments[1]);", webElement, "");
-		}
-	
-	
-		public void windowhandlesframe(WebDriver driver, int values) {
-	
-			try {
-				ArrayList<String> tabs1 = new ArrayList<String>(driver.getWindowHandles());
-				// Set<String>windowhandles1=driver.getWindowHandles();
-				System.out.println(tabs1);
-				Thread.sleep(5000);
-				// List<String>list=new ArrayList<>(windowhandles1)
-				driver.switchTo().window(tabs1.get(values));
-				System.out.println(driver.getCurrentUrl());
-			} catch (InterruptedException e) {
-	
-				e.printStackTrace();
-			}
-	
-		}
-	
-		public void windowhandles(WebDriver driver) {
-	
-			Set<String> windowhandles1 = driver.getWindowHandles();
-			System.out.println(windowhandles1);
-			List<String> list = new ArrayList<>(windowhandles1);
-			driver.switchTo().window(list.get(1));
-			System.out.println(driver.getCurrentUrl());
-	
-		}
-	
-		public void Arrow_Click(WebDriver driver, String xpaths, String name) {
-			String[] values = splitXpath(xpaths);
-	
-			List<WebElement> titletext1 = driver.findElements(By.xpath(values[1]));
-	
-			System.out.println("titlesize" + titletext1.size());
-	
-			for (WebElement webElement1 : titletext1) {
-				String name1 = webElement1.getText();
-				if (name1.contains(name)) {
-					webElement1.click();
-					System.out.println(name1);
-					add(driver, " Click on " + values[0], LogAs.PASSED, true, values[0]);
-					wait(driver, "1");
-					break;
-	
-				}
-			}
-		}
-	
-		public void Folder_Select(WebDriver driver, String xpaths, String name) {
-			String[] values = splitXpath(xpaths);
-	
-			try {
-				WebDriverWait wait1 = new WebDriverWait(driver, 20);
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(values[1])));
-	
-				List<WebElement> title3 = driver.findElements(By.xpath(values[1]));
-				System.out.println("title3" + title3.size());
-				for (WebElement webElement3 : title3) {
-					String text11 = webElement3.getText();
-					if ((text11.equalsIgnoreCase(name))) {
-						webElement3.click();
-						System.out.println("text11 :" + text11);
-						add(driver, " Able to select the folder " + text11, LogAs.PASSED, true, "");
-						break;
-	
-					}
-				}
-	
-			} catch (Exception e) {
-				// add(driver, " Unable to select the folder " + "", LogAs.FAILED, true, "");
-			}
-		}
-	
-//		public void Upload_File(WebDriver driver, String Location, String xpaths) {
-//			String[] values = splitXpath(xpaths);
-//			Robot rb1;
-//			try {
-//				rb1 = new Robot();
-//				rb1.delay(1000);
-//				StringSelection ss = new StringSelection(Location);
-//				Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
-//	
-//				rb1.keyPress(KeyEvent.VK_CONTROL);
-//				rb1.keyPress(KeyEvent.VK_V);
-//				rb1.keyRelease(KeyEvent.VK_V);
-//				rb1.keyRelease(KeyEvent.VK_CONTROL);
-//				wait(driver, "2");
-//				rb1.keyPress(KeyEvent.VK_ENTER);
-//				wait(driver, "10");
-//				WebElement webElement = driver.findElement(By.xpath(values[1]));
-//				JavascriptExecutor js = (JavascriptExecutor) driver;
-//				js.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');",
-//						webElement);
-//				webElement.click();
-//				wait(driver, "2");
-//			} catch (AWTException e) {
-//	
-//				e.printStackTrace();
-//			}
-//	
-//		}
-	
-		public void windowhandles1(WebDriver driver) {
-	
-			Set<String> windowhandles1 = driver.getWindowHandles();
-			System.out.println(windowhandles1);
-			List<String> list = new ArrayList<>(windowhandles1);
-			driver.switchTo().window(list.get(0));
-			System.out.println(driver.getCurrentUrl());
-	
-		}
-	
-		public void windowhandles2(WebDriver driver) {
-	
-			Set<String> windowhandles1 = driver.getWindowHandles();
-			System.out.println(windowhandles1);
-			List<String> list = new ArrayList<>(windowhandles1);
-			driver.switchTo().window(list.get(2));
-			System.out.println(driver.getCurrentUrl());
-	
-		}
-	
-		public void newtapopen(WebDriver driver) {
-			// driver.switchTo()
-		}
-	
-		
-//		public void newTab(WebDriver driver) {
-//			try {
-//				Robot r = new Robot();
-//				r.keyPress(KeyEvent.VK_CONTROL);
-//				r.keyPress(KeyEvent.VK_T);
-//				r.keyRelease(KeyEvent.VK_CONTROL);
-//				wait(driver, "1");
-//				ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
-//				driver.switchTo().window(tabs.get(1));
-//				wait(driver, "1");
-//				wait(driver, "1");
-//			} catch (Exception e) {
-//			}
-//		}
-	
-		
-	
-		public void get(WebDriver driver, String url) {
-			Capabilities localCapabilities = ((RemoteWebDriver) driver).getCapabilities();
-			String browser = localCapabilities.getBrowserName().toLowerCase();
-			driver.get(url);
-			if (browser.equalsIgnoreCase("ie") || browser.equalsIgnoreCase("UnKnown")) {
-				wait(driver, "5");
-				driver.get("javascript:document.getElementById('overridelink').click();");
-				wait(driver, "5");
-			}
-	
-		}
-	
-		public static String apiputrequest(String url, String method, String header) throws JSONException {
-	
-			String URL = url;
-	
-			Response res = null;
-	
-			if (method.equalsIgnoreCase("PUT")) {
-				res = RestAssured.given().headers("Authorization", header).with().contentType("application/json").then()
-						.expect().when().put(URL);
-			}
-	
-			JSONObject jsonObject = null;
-			jsonObject = new JSONObject(res.asString());
-			System.out.println("---output----" + jsonObject.toString() + "---output---");
-			return res.asString();
-	
-		}
-	
-		public static int GenerateRandomNumber() {
-	
-			System.out.println("Random Numbers:");
-			Random rand = new Random();
-			int num = rand.nextInt(900000) + 100000;
-			System.out.println("***************");
-			System.out.println(num);
-	
-			return num;
 		}
 	
 		public void mouseOverAndClick(WebDriver driver, String element) {
@@ -1918,45 +1007,19 @@ import atu.testng.reports.logging.LogAs;
 			}
 		}
 	
-	
-	
-		// Click to given day
-		public static void clickGivenDay(List<WebElement> elementList, String day) {
-			// DatePicker is a table. Thus we can navigate to each cell
-			// and if a cell matches with the current date then we will click it.
-			/** Functional JAVA version of this method. */
-			elementList.stream().filter(element -> element.getText().contains(day)).findFirst()
-					.ifPresent(WebElement::click);
-		}
-	
-		public static String getCurrentDay() {
-			// Create a Calendar Object
-			Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
-	
-			// Get Current Day as a number
-			int todayInt = calendar.get(Calendar.DAY_OF_MONTH);
-			System.out.println("Today Int: " + todayInt + "\n");
-	
-			// Integer to String Conversion
-			String todayStr = Integer.toString(todayInt);
-			System.out.println("Today Str: " + todayStr + "\n");
-	
-			return todayStr;
-		}
-	
-		public void scrolltill(WebDriver driver) {
+		//Perform Right Click action
+		public void rightClick(WebDriver driver, String element) {
+			String[] values = splitXpath(element);
 			try {
-	
-				JavascriptExecutor jse = (JavascriptExecutor) driver;
-				jse.executeScript("window.scroll(0,12200)", "");
-				waitTime(driver, "5");
-				// add(driver, "Scrolled to the bottom ", LogAs.PASSED, true, "Not");
+				WebElement webElement = driver.findElement(By.xpath(values[1]));
+				Actions builder = new Actions(driver);
+				builder.contextClick(webElement).build().perform();
+	         wait(driver,"1");
 			} catch (Exception e) {
-				// add1(driver, "Unable to scroll to the bottom", LogAs.FAILED, true, "Not");
-				Assert.fail();
-			
+	
 			}
 		}
+		
 	
 		public void Alert1(WebDriver driver) {
 			Alert alert = driver.switchTo().alert();
@@ -1969,6 +1032,7 @@ import atu.testng.reports.logging.LogAs;
 			try {
 				//wait(driver,"1");
 				action.sendKeys(Keys.ESCAPE).build().perform();
+				wait(driver,"1");
 			} catch (Exception e) {
 				System.out.println("escape its not working");
 			}
@@ -1994,31 +1058,6 @@ import atu.testng.reports.logging.LogAs;
 			}
 		}
 	
-		
-//		public void elementScreenShot(WebDriver driver,String xpath,String screenshot_path) {
-//			String [] elementPath=splitXpath(xpath);
-//		
-//	        try {
-//	        	WebElement element = driver.findElement(By.xpath(elementPath[1]));
-//	            File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-//	            int x = element.getLocation().getX();
-//	            int y = element.getLocation().getY();
-//	            int width = element.getSize().getWidth();
-//	            int height = element.getSize().getHeight();
-//
-//	            BufferedImage img = ImageIO.read(screenshot);
-//	            BufferedImage croppedImg = img.getSubimage(x, y, width, height);
-//				File dest = new File(System.getProperty("user.dir") + "/Screenshots" + screenshot_path + ".png");
-//	            ImageIO.write(croppedImg, "png", dest);
-//
-////	            System.out.println("Screenshot of element saved successfully.");
-//
-//	        } catch (IOException e) {
-//	            e.printStackTrace();
-//	        }
-//		}
-		
-		
 		public void elementScreenShot_new(WebDriver driver, String xpath, String screenshot_path) {
 			
 			try {
@@ -2075,35 +1114,35 @@ import atu.testng.reports.logging.LogAs;
 		    
 		}
 		
-		public void takescreenshot1(WebDriver driver, String screenshot_path) {
-			try {
-				Robot robot = new Robot();
-	
-				// Define the region to capture using top-left and bottom-right coordinates
-				int x1 = 70; // x-coordinate of the top-left corner
-				int y1 = 200; // y-coordinate of the top-left corner
-				int x2 = 1350; // x-coordinate of the bottom-right corner
-				int y2 = 500; // y-coordinate of the bottom-right corner
-	
-				Rectangle captureRect = new Rectangle(x1, y1, x2, y2);
-	
-				BufferedImage screenCapture = robot.createScreenCapture(captureRect);
-	
-				// Save the screenshot
-				File dest = new File(System.getProperty("user.dir") + "/Screenshots" + screenshot_path + ".png");
-				ImageIO.write(screenCapture, "png", dest);
-	
-				System.out.println("Screenshot captured successfully!");
-	
-				add(driver, "Captured the screenshot " + "", LogAs.PASSED, true, "");
-//				Extent_pass(driver, "Taken Screenshot for " + screenshot_path, test);
-	
-			} catch (AWTException | IOException e) {
-				e.printStackTrace();
-			}
-	
-		}
-	
+//		public void takescreenshot1(WebDriver driver, String screenshot_path) {
+//			try {
+//				Robot robot = new Robot();
+//	
+//				// Define the region to capture using top-left and bottom-right coordinates
+//				int x1 = 70; // x-coordinate of the top-left corner
+//				int y1 = 200; // y-coordinate of the top-left corner
+//				int x2 = 1350; // x-coordinate of the bottom-right corner
+//				int y2 = 500; // y-coordinate of the bottom-right corner
+//	
+//				Rectangle captureRect = new Rectangle(x1, y1, x2, y2);
+//	
+//				BufferedImage screenCapture = robot.createScreenCapture(captureRect);
+//	
+//				// Save the screenshot
+//				File dest = new File(System.getProperty("user.dir") + "/Screenshots" + screenshot_path + ".png");
+//				ImageIO.write(screenCapture, "png", dest);
+//	
+//				System.out.println("Screenshot captured successfully!");
+//	
+//				add(driver, "Captured the screenshot " + "", LogAs.PASSED, true, "");
+////				Extent_pass(driver, "Taken Screenshot for " + screenshot_path, test);
+//	
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//	
+//		}
+//	
 		
 		public boolean imageComparison2(WebDriver driver, String ExpectedImage_path, String actualImage_path)
 				throws IOException {
@@ -2168,59 +1207,10 @@ import atu.testng.reports.logging.LogAs;
 			
 		}
 	
-		public static void disableToast(WebDriver driver) {
-	
-			try {
-	
-				JavascriptExecutor js1 = (JavascriptExecutor) driver;
-				Object de = js1.executeScript("store.exposed.autoSaveConfig.disableToasts()");
-				System.out.println(de);
-	
-			}
-	
-			catch (Exception e1) {
-				Assert.fail();
-			}
-	
-		}
-	
-//		public void getfps(WebDriver driver, String action) {
-//	
-//			try {
-//	
-//				JavascriptExecutor js1 = (JavascriptExecutor) driver;
-//				Object de = js1.executeScript("return store.scene.getEngine().getFps()");
-//				System.out.println(action + " FPS value : " + de);
-//	
-//				// add(driver, action+" : FPS", LogAs.PASSED, true, ""+de);
-//				addfps(driver, action + " FPS", de.toString(), true, "");
-//	
-//			}
-//	
-//			catch (Exception e1) {
-//				add1(driver, "Could not retrieve FPS value", LogAs.FAILED, true, "");
-//			}
-//	
-//		}
-	
-		public void verifyElementText(WebDriver driver, String xpath, String expectedtext) {
-			String[] values = splitXpath(xpath);
-			try {
-				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-				waitForElement(driver, xpath);
-				String text = driver.findElement(By.xpath(values[1])).getText();
-				if (text.equals(expectedtext)) {
-					add(driver, "Exepected text is present" + values[0] + "" + text, LogAs.PASSED, true, values[0]);
-				}
-			} catch (NoSuchElementException e) {
-				add1(driver, "Expected text is Not Present " + values[0], LogAs.FAILED, true, values[0]);
-				Assert.fail();
-			}
-		}
-	
 		public static void ActionTest(ExtentTest extentTest) {
 			test = extentTest;
 		}
+		
 		public String imageComparison(WebDriver driver, String ExpectedImage_path, String actualImage_path)
 				throws IOException {
 			String image_res = null;
@@ -2300,85 +1290,6 @@ import atu.testng.reports.logging.LogAs;
 				Assert.fail();
 			}
 		}
-	
-		public void uploadfile1(WebDriver driver, String path) {
-			try {
-				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-				WebElement element = driver.findElement(By.xpath("//input[contains(@type,'file')]"));
-				File file = new File(path);
-				System.out.println(file.getAbsolutePath());
-				element.sendKeys(file.getAbsolutePath());
-				add(driver, "uploaded the file " + path, LogAs.PASSED, true, path);
-				wait(driver, "2");
-			} catch (Exception e) {
-				add1(driver, "upload is falied - " + path + e, LogAs.FAILED, true, e.getLocalizedMessage());
-				e.printStackTrace();
-			
-				Assert.fail();
-			}
-		}
-	
-		
-		public void selectProject(WebDriver driver,String projectName) {
-			
-			try {
-				driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-				WebDriverWait wait =new WebDriverWait(driver,20);
-				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[@role='gridcell']//following::span[contains(text(),'"+projectName+"')]")));
-				WebElement element = driver.findElement(By.xpath("//td[@role='gridcell']//following::span[contains(text(),'"+projectName+"')]"));
-				element.click();
-			
-			}catch(Exception e) {
-				System.out.println("Unable to click the Project :"+projectName);
-				Assert.fail();
-			}
-		}
-		
-		public void clickDatabaseCheckBox(WebDriver driver,String name) {
-			//label[contains(text(),'Automationrequirement')]//preceding::mat-checkbox
-			try {
-				driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-				List<WebElement> Elements=driver.findElements(By.xpath("//label[contains(text(),'"+name+"')]//preceding::mat-checkbox"));
-				int elementSize=Elements.size();
-				WebDriverWait wait =new WebDriverWait(driver,200);
-				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//label[contains(text(),'"+name+"')]//preceding::mat-checkbox)["+elementSize+"]")));
-				WebElement element = driver.findElement(By.xpath("(//label[contains(text(),'"+name+"')]//preceding::mat-checkbox)["+elementSize+"]"));
-				element.click();
-			
-			}catch(Exception e) {
-				System.out.println("Unable to click the Dataset Checkbox :"+name);
-				Assert.fail();
-			}
-		}
-		
-		public void LoadDataSet(WebDriver driver,String dataSetName) {
-			try {
-				driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-				WebDriverWait wait =new WebDriverWait(driver,60);
-				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//label[contains(text(),'"+dataSetName+"')]//following::i[contains(@class,'upload')])[1]")));
-				WebElement element = driver.findElement(By.xpath("(//label[contains(text(),'"+dataSetName+"')]//following::i[contains(@class,'upload')])[1]"));
-				element.click();
-			
-			}catch(Exception e) {
-				System.out.println("Unable to click the Dataset :"+dataSetName);
-				Assert.fail();
-			}
-		}
-			
-		
-		public void DownloadDataSet(WebDriver driver,String dataSetName) {
-			try {
-				driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-				WebDriverWait wait =new WebDriverWait(driver,60);
-				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//label[contains(text(),'"+dataSetName+"')]//following::i[contains(@class,'download')])[1]")));
-				WebElement element = driver.findElement(By.xpath("(//label[contains(text(),'"+dataSetName+"')]//following::i[contains(@class,'download')])[1]"));
-				element.click();
-			
-			}catch(Exception e) {
-				System.out.println("Unable to click the Dataset :"+dataSetName);
-				Assert.fail();
-			}
-		}
 		
 		public String getTextBackgroundColor(WebDriver driver,String Xpath) {
 			String[] values=splitXpath(Xpath);
@@ -2386,9 +1297,6 @@ import atu.testng.reports.logging.LogAs;
 				WebElement eleSearch = driver.findElement(By.xpath(values[1]));
 
 				String rgbFormat = eleSearch.getCssValue("background-color");
-
-//				System.out.println(rgbFormat);     //In RGB Format the value will be print => rgba(254, 189, 105, 1)
-
 				String hexcolor = rgbToHex(rgbFormat);
 //				System.out.println(hexcolor);
 				
@@ -2410,7 +1318,7 @@ import atu.testng.reports.logging.LogAs;
 			 if(verifyElementIsPresent1(driver,Xpath)) {
 	        	
 					try {
-//						elementScreenShot_new(driver,Xpath,"/Expected_screenshot/SmokeTesting/"+widgetName);
+						elementScreenShot_new(driver,Xpath,"/Expected_screenshot/SmokeTesting/"+widgetName);
 						elementScreenShot_new(driver,Xpath,"/Actual_screenshot/SmokeTesting/"+widgetName);
 						imageComparison(driver, "/SmokeTesting/"+widgetName, "/SmokeTesting/"+widgetName);
 						wait(driver, "2");
@@ -2452,24 +1360,7 @@ import atu.testng.reports.logging.LogAs;
 			
 			
 		}
-		
-//		public int getCssWidth(WebDriver driver,String Xpath) {
-//			String[] values=splitXpath(Xpath);
-//			try {
-//				WebElement eleSearch = driver.findElement(By.xpath(values[1]));
-//				String eleWidgth = eleSearch.getCssValue("width");
-//				if(eleWidgth.contains("px")) {
-//					eleWidgth=eleWidgth.substring(0,eleWidgth.indexOf('p'));
-//				}
-//				int width=Integer.parseInt(eleWidgth);
-//				return width;
-//			}catch(Exception e) {
-//				System.out.println("Unable to get width of the element..!");
-//				e.printStackTrace();
-//				return 0;
-//			}
-//		}
-		
+	
 		public double getCssWidth(WebDriver driver, String Xpath) {
 		    String[] values = splitXpath(Xpath);
 		    try {
@@ -2488,12 +1379,16 @@ import atu.testng.reports.logging.LogAs;
 		}
 		
 		public static String rgbToHex(String rgb) {
-	        String[] rgbValues = rgb.replace("rgba(", "").replace(")", "").split(", ");
-	        int red = Integer.parseInt(rgbValues[0]);
-	        int green = Integer.parseInt(rgbValues[1]);
-	        int blue = Integer.parseInt(rgbValues[2]);
-
-	        return String.format("#%02X%02X%02X", red, green, blue);
+			try {
+				String[] rgbValues = rgb.replace("rgba(", "").replace(")", "").split(", ");
+		        int red = Integer.parseInt(rgbValues[0]);
+		        int green = Integer.parseInt(rgbValues[1]);
+		        int blue = Integer.parseInt(rgbValues[2]);
+		        return String.format("#%02X%02X%02X", red, green, blue);
+			}catch(Exception e) {
+				return "";
+			}
+	        
 	    }
 		
 		public static String rgbToHex1(String rgb) {
@@ -2987,7 +1882,6 @@ import atu.testng.reports.logging.LogAs;
         	
        	    String[] values=splitXpath(Xpath);
        	    try {
-       	   
 	        	WebElement show=driver.findElement(By.xpath(values[1]));
 	            Select select = new Select(show);
 	            WebElement selectedOption = select.getFirstSelectedOption();
@@ -2999,6 +1893,33 @@ import atu.testng.reports.logging.LogAs;
        	    }
         }
         
+       public String SelectedValue_WebElement(WebDriver driver,WebElement ele) {
+        	
+       	    try {
+	            Select select = new Select(ele);
+	            WebElement selectedOption = select.getFirstSelectedOption();
+	            String selectedOptionText = selectedOption.getText();
+	            return selectedOptionText;
+            
+       	    }catch(Exception e) {
+       	    	return "";
+       	    }
+        }
+        
+        public String getSelectedValue(WebDriver driver,String Xpath,String Value) {
+        	
+       	    String[] values=splitXpath(Xpath);
+       	    try {
+	        	WebElement show=driver.findElement(By.xpath(values[1]));
+	            Select select = new Select(show);
+	            WebElement selectedOption = select.getFirstSelectedOption();
+	            String selectedOptionText = selectedOption.getAttribute(Value);
+	            return selectedOptionText;
+            
+       	    }catch(Exception e) {
+       	    	return "";
+       	    }
+        }
     
         public int getNumberFromChart(String value) {
         	Pattern pattern = Pattern.compile("[0-9,]+");
@@ -3016,26 +1937,6 @@ import atu.testng.reports.logging.LogAs;
                return 0;
             }
         }
-        
-        
-//        public static double getNumberFromChart1(String value) {
-//            Pattern pattern = Pattern.compile("[+-]?\\d+(,\\d{3})*(\\.\\d+)?");
-//            String[] actValue=value.split(": ");
-//            Matcher matcher = pattern.matcher(actValue[1]);
-//
-//            if (matcher.find()) {
-//                String numberString = matcher.group();
-//                if(numberString.contains(",")) {
-//                	numberString = numberString.replace(",", "");
-//                }
-//                
-//            return Double.parseDouble(numberString);
-//                
-//            } else {
-//                System.out.println("No number found in the input string.");
-//                return 0.001; // or return 0 or another default value
-//            }
-//        }
         
         public static double getNumberFromChart1(String value) {
             // Use a regex pattern to match various types of numbers after the colon
@@ -3220,17 +2121,22 @@ import atu.testng.reports.logging.LogAs;
         	boolean nextText=(parts1[1].trim().equals(parts2[1].trim()));
         	if(nextText) {
         		secondElement=secondElement+1;
-        		while(secondElement<charts.size()) {
-        			secondbar=charts.get(secondElement);
-        	        act.moveToElement(secondbar).build().perform();
-        	        element_2=driver.findElement(By.xpath("(//*[name()='tspan' and contains(text(),'"+QuickSortByText+"') and contains(text(),':')])"));
-        	    	textvalue_2=element_2.getText();
-        	    	parts2=textvalue_2.split(": ");
-        	    	if(!(parts1[1].trim().equals(parts2[1].trim()))) {
-        	    		break;
-        	    	}
-        	        secondElement--;
-            	}
+        		try {
+        			while(secondElement<charts.size()) {
+            			secondbar=charts.get(secondElement);
+            	        act.moveToElement(secondbar).build().perform();
+            	        element_2=driver.findElement(By.xpath("(//*[name()='tspan' and contains(text(),'"+QuickSortByText+"') and contains(text(),':')])"));
+            	    	textvalue_2=element_2.getText();
+            	    	parts2=textvalue_2.split(": ");
+            	    	if(!(parts1[1].trim().equals(parts2[1].trim()))) {
+            	    		break;
+            	    	}
+            	        secondElement++;
+                	}
+        		}catch(Exception e) {
+        			
+        		}
+        		
         	}
         	
 
@@ -3385,18 +2291,6 @@ import atu.testng.reports.logging.LogAs;
      	 
        }
        
-        
-//      public void selectDropdownValue1(WebDriver driver,String Value) {
-//    	  try {
-//    		  WebElement element=driver.findElement(By.xpath("//mat-option[@role='option']//span[contains(text(),'"+Value+"')]"));
-//    	  	    Actions action=new Actions(driver);
-//    	   	    action.moveToElement(element).click().build().perform();
-//    	        wait(driver,"1");
-//    	        add(driver,"Selected the Value in droptdown : "+Value, LogAs.PASSED,true, "");
-//    	  }catch(Exception e)  {
-//     			add1(driver, "Unable to Select the Value in droptdown : "+Value, LogAs.FAILED,true, "");
-//    	  }
-//      }
       public void selectFontFamily(WebDriver driver,String fontFamilyValue) {
     	  try {
     		  WebElement element=driver.findElement(By.xpath("//li[@role='treeitem']//div[text()='"+fontFamilyValue+"']"));
@@ -3419,17 +2313,6 @@ import atu.testng.reports.logging.LogAs;
    			add1(driver, "Unable to Select the Value in droptdown : "+ChartThemeValue, LogAs.FAILED,true, "");
      	 }
     	  
-      }
-      
-      public static boolean isDropdownExpanded(WebDriver driver, String Xpath) {
-    	  
-    	  String[] values=splitXpath(Xpath);
-    	  
-    	  WebElement dropdown = driver.findElement(By.xpath(values[1]));
-          JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-          Object result = jsExecutor.executeScript("return arguments[0].classList.contains('open') || arguments[0].getAttribute('aria-expanded') === 'true'", dropdown);
-          
-          return Boolean.parseBoolean(result.toString());
       }
       
       public boolean isToggleEnable(WebDriver driver,String Xpath) {
@@ -3658,10 +2541,13 @@ import atu.testng.reports.logging.LogAs;
 
     	    // Check for matches
     	    if (hundredMatcher.matches()) {
+    	    	//System.out.println("International hundred separator pattern");
     	        return "##,##,##,###"; // Indian hundred separator pattern
     	    } else if (thousandMatcher.matches()) {
+    	    	//System.out.println("International thousand separator pattern");
     	        return "###,###,###"; // International thousand separator pattern
     	    } else {
+    	    	System.out.println("Number format is invalid");
     	        return "Number format is invalid";
     	    }
     	}
@@ -3780,80 +2666,6 @@ import atu.testng.reports.logging.LogAs;
           }
       }
       
-      
-//      public boolean validateElementPosition2(WebDriver driver, String firstElementXpath, String secondElementXpath, String status) {
-//    	    String[] values1 = splitXpath(firstElementXpath);
-//    	    String[] values2 = splitXpath(secondElementXpath);
-//    	    try {
-//    	        WebElement firstElement = driver.findElement(By.xpath(values1[1]));
-//    	        WebElement secondElement = driver.findElement(By.xpath(values2[1]));
-//
-//    	        int firstElementX = firstElement.getLocation().getX();
-//    	        int firstElementY = firstElement.getLocation().getY();
-//    	        int secondElementX = secondElement.getLocation().getX();
-//    	        int secondElementY = secondElement.getLocation().getY();
-//
-//    	        int firstElementWidth = firstElement.getSize().getWidth();
-//    	        int firstElementHeight = firstElement.getSize().getHeight();
-//    	        int secondElementWidth = secondElement.getSize().getWidth();
-//    	        int secondElementHeight = secondElement.getSize().getHeight();
-//
-//    	        
-//    	        System.out.println("firstElementX : "+firstElementX);
-//    	        System.out.println("firstElementY : "+firstElementY);
-//    	        System.out.println("firstElementWidth : "+firstElementWidth);
-//    	        System.out.println("firstElementHeight : "+firstElementHeight);
-//
-//    	        System.out.println("secondElementX : "+secondElementX);
-//    	        System.out.println("secondElementY : "+secondElementY);
-//    	        System.out.println("secondElementWidth : "+secondElementWidth);
-//    	        System.out.println("secondElementHeight : "+secondElementHeight);
-//
-//    	        
-//    	        
-//    	        
-//    	        switch (status.toLowerCase()) {
-//    	            case "outside":
-//    	                // Checks if the second element is completely outside the first element
-//    	                System.out.println("Outside checked..******");
-//    	                return (secondElementX + secondElementWidth <= firstElementX || 
-//    	                        secondElementX >= firstElementX + firstElementWidth ||
-//    	                        secondElementY + secondElementHeight <= firstElementY ||
-//    	                        secondElementY >= firstElementY + firstElementHeight);
-//
-//    	            case "inside":
-//    	                // Checks if the second element is completely inside the first element
-//    	                System.out.println("Inside checked..********");
-//    	                return (secondElementX >= firstElementX &&
-//    	                        secondElementX + secondElementWidth <= firstElementX + firstElementWidth &&
-//    	                        secondElementY >= firstElementY &&
-//    	                        secondElementY + secondElementHeight <= firstElementY + firstElementHeight);
-//
-//    	            case "center":
-//    	                // Checks if the center of the second element is exactly at the center of the first element
-//    	                System.out.println("Center checked..*********");
-//
-//    	                int firstElementCenterX = firstElementX + firstElementWidth / 2;
-//    	                int firstElementCenterY = firstElementY + firstElementHeight / 2;
-//    	                int secondElementCenterX = secondElementX + secondElementWidth / 2;
-//    	                int secondElementCenterY = secondElementY + secondElementHeight / 2;
-//
-//    	                System.out.println("firstElementCenterX: " + firstElementCenterX + ", secondElementCenterX: " + secondElementCenterX);
-//    	                System.out.println("firstElementCenterY: " + firstElementCenterY + ", secondElementCenterY: " + secondElementCenterY);
-//
-//    	                return firstElementCenterX == secondElementCenterX && firstElementCenterY == secondElementCenterY;
-//
-//    	            default:
-//    	                System.out.println("Invalid status");
-//    	                return false;
-//    	        }
-//    	    } catch (Exception e) {
-//    	        System.out.println("Unable to validate the position");
-//    	        fail(driver, "Unable to Validate the position: " + e.getMessage());
-//    	        return false;
-//    	    }
-//    	}
-//      
       public boolean validateElementPosition2(WebDriver driver, String firstElementXpath, String secondElementXpath, String status) {
     	    String[] values1 = splitXpath(firstElementXpath);
     	    String[] values2 = splitXpath(secondElementXpath);
@@ -3913,58 +2725,6 @@ import atu.testng.reports.logging.LogAs;
     	        return false;
     	    }
     	}
-      
-      
-//      public  boolean validateElementPosition(WebDriver driver,String firstElementXpath, String  secondElementXpath, String status) {
-//    	  
-//    	  try {
-//    		  String[] values1=splitXpath(firstElementXpath);
-//        	  String[] values2=splitXpath(secondElementXpath);
-//        	  
-//        	  WebElement firstElement=driver.findElement(By.xpath(values1[1]));
-//        	  WebElement secondElement=driver.findElement(By.xpath(values2[1]));
-//
-//              int firstElementX = firstElement.getLocation().getX();
-//              int firstElementY = firstElement.getLocation().getY();
-//              int secondElementX = secondElement.getLocation().getX();
-//              int secondElementY = secondElement.getLocation().getY();
-//
-//              switch (status) {
-//                  case "outside":
-//                	  System.out.println("Outside checked..******");
-//                      return secondElementX < firstElementX || secondElementY < firstElementY;
-//                  case "inside":
-//                	  System.out.println("Inside checked..********");
-//                      return secondElementX >= firstElementX && secondElementY >= firstElementY;
-//                  case "center":
-//                	  System.out.println("Center checked..*********");
-//                      int firstElementWidth = firstElement.getSize().getWidth();
-//                      int firstElementHeight = firstElement.getSize().getHeight();
-//                      int secondElementWidth = secondElement.getSize().getWidth();
-//                      int secondElementHeight = secondElement.getSize().getHeight();
-//
-//                      int firstElementCenterX = firstElementX + firstElementWidth / 2;
-//                      int firstElementCenterY = firstElementY + firstElementHeight / 2;
-//                      int secondElementCenterX = secondElementX + secondElementWidth / 2;
-//                      int secondElementCenterY = secondElementY + secondElementHeight / 2;
-//
-//                      System.out.println("firstElementCenterX : "+ firstElementCenterX+", secondElementCenterX : "+secondElementCenterX);
-//                      System.out.println("firstElementCenterY : "+ firstElementCenterY+", secondElementCenterY : "+secondElementCenterY);
-//
-//                      return (firstElementCenterX == secondElementCenterX && firstElementCenterY == secondElementCenterY) || !(secondElementX < firstElementX || secondElementY < firstElementY) || !(secondElementX >= firstElementX && secondElementY >= firstElementY) ;
-//                  default:
-//                      System.out.println("Invalid status");
-//                      return false;
-//              }
-//    	    }catch(Exception e) {
-//    		  System.out.println("Unable to validate the postion ");
-//    		  fail(driver,"Unable to Validate the  position "+e.getLocalizedMessage());
-//    		  return false;
-//    	  }
-//    	 
-//          
-//      }
-      
       
       public  String getRelativePosition(WebDriver driver, String xpath1, String xpath2) {
     	  
@@ -4308,37 +3068,137 @@ import atu.testng.reports.logging.LogAs;
   		return requiredCellVal.trim();
   	}
       
-      public static String cellToString(XSSFCell cell) 
-  	{
-  			int type;
-  			String result;
-  			type = cell.getCellType();
+  	public static String getTestcaseID_Flag(String FileName,String SheetName,String TestcaseType ,String TestcaseID, String label) {
+  		String requiredCellVal = "";
+    		try {
+    			FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"/TestcasesData/"+FileName+".xlsx");
+    			XSSFWorkbook wb = new XSSFWorkbook(fis);
+    			XSSFSheet ws = wb.getSheet(SheetName);
+    			int rowNum = ws.getLastRowNum() + 1;
+    			//System.out.println("rowNum : "+rowNum);
+    			//Iterator rowIterator = ws.rowIterator();
+    			int numberOfCells = 0;
+    			int colindex=-1;
+    			int headerRowSize=0;
+    			
+    			for(int k=0;k<rowNum;k++) {
+    				Row headerRow = ws.getRow(k);
+    				//System.out.println("Row Entered "+k);
+    				for(Cell cell:headerRow) {
+    					int j=1;
+    					try {
+    						String CellValue=getCellValueAsString(cell);
+        					//System.out.println("Cell Entered "+j++);
+        					if(CellValue.equals("TEST CASE ID")) {
+        						headerRowSize=headerRow.getRowNum();
+        						numberOfCells = headerRow.getLastCellNum();
+        						break;
+        					}
+    					}catch(Exception e) {
+    						e.printStackTrace();
+    					}
+    				}
+    			}
+    			
+//    			if (rowIterator.hasNext()) {
+//    				Row headerRow = (Row) rowIterator.next();
+//    				System.out.println("Row Entered "+i++);
+//    				for(Cell cell:headerRow) {
+//    					String CellValue=cell.getStringCellValue();
+//    					System.out.println("Cell Entered "+j++);
+//    					if(CellValue.equals("TEST CASE ID")) {
+//    						headerRowSize=headerRow.getRowNum();
+//    						break;
+//    					}
+//    				}
+//    				// get the number of cells in the header row
+//    				
+//    			}
+//    			
+//    			System.out.println("HeaderRow : "+headerRowSize);
+//    			System.out.println("numberOfCells : "+numberOfCells);
+    			
+    			XSSFRow row1 = ws.getRow(headerRowSize);
+    			int ColSize=row1.getLastCellNum();
+    			for (int colIndex = 0; colIndex < rowNum; colIndex++) {
+    				XSSFCell cell = row1.getCell(colIndex);
+    				String cellVal = cellToString(cell);
+    				if(cellVal.equals(TestcaseType)) {
+    					colindex=colIndex;
+    				}
+    			}
+    			
+    			if(colindex==-1) {
+    				System.out.println("Unable to get the Testcases Type Column");
+    				return "";
+    			}
+    			for (int index = 0; index < rowNum; index++) {
 
-  			switch (type) {
+    				XSSFRow row = ws.getRow(index);
+    				XSSFCell cell = row.getCell(colindex);
+    				String cellVal = cellToString(cell);
+    				//System.out.println(cellVal);
+    				if (cellVal.equals(TestcaseID)) {
+    					//System.out.println("Entered "+cellVal+" autoTestCaseNameVal "+autoTestCaseNameVal+"Row Index : "+index);
+    					for (int cellIndex = 1; cellIndex < numberOfCells; cellIndex++) {
+    						XSSFCell findLable = row1.getCell(cellIndex);
+    						String labelString = cellToString(findLable);
+    						//System.out.println("labelString : "+labelString+", findLable : "+label);
+    						if (labelString.equals(label)) {
+    							//System.out.println("Cell Index: "+cellIndex);
+    							//XSSFRow nextRow = ws.getRow(index + 1);
+    							XSSFCell adjacentRowCell = row.getCell(cellIndex);
+    							String adjacentRowCellVal = cellToString(adjacentRowCell);
+    							//System.out.println("Cell Val: "+adjacentRowCellVal);
+    							requiredCellVal = adjacentRowCellVal;
+    							break;
+    						}
+    					}
 
-  			case Cell.CELL_TYPE_NUMERIC: // numeric value in Excel
-  				result = "" + cell.getNumericCellValue();
-  				break;
-  			case Cell.CELL_TYPE_FORMULA: // precomputed value based on formula
-  				result = "" + cell.getNumericCellValue();
-  				break;
-  			case Cell.CELL_TYPE_STRING: // String Value in Excel
-  				result = "" + cell.getStringCellValue();
-  				break;
-  			case Cell.CELL_TYPE_BLANK:
-  				result = "";
-  				break;
-  			case Cell.CELL_TYPE_BOOLEAN: // boolean value
-  				result = "" + cell.getBooleanCellValue();
-  				break;
-  			case Cell.CELL_TYPE_ERROR:
-  				result = "Error";
-  			default:
-  				throw new RuntimeException(
-  						"There is no support for this type of cell");
-  			}
+    					break;
+    				}
+    			}
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    		}
+  		return requiredCellVal.trim();
+  	}
+      
+      public static String cellToString(XSSFCell cell) {
+    	  try {
+    		  int type;
+    			String result;
+    			type = cell.getCellType();
 
-  			return result.toString();
+    			switch (type) {
+
+    			case Cell.CELL_TYPE_NUMERIC: // numeric value in Excel
+    				result = "" + cell.getNumericCellValue();
+    				break;
+    			case Cell.CELL_TYPE_FORMULA: // precomputed value based on formula
+    				result = "" + cell.getNumericCellValue();
+    				break;
+    			case Cell.CELL_TYPE_STRING: // String Value in Excel
+    				result = "" + cell.getStringCellValue();
+    				break;
+    			case Cell.CELL_TYPE_BLANK:
+    				result = "";
+    				break;
+    			case Cell.CELL_TYPE_BOOLEAN: // boolean value
+    				result = "" + cell.getBooleanCellValue();
+    				break;
+    			case Cell.CELL_TYPE_ERROR:
+    				result = "Error";
+    			default:
+    				throw new RuntimeException(
+    						"There is no support for this type of cell");
+    			}
+
+    			return result.toString();
+    	  }catch(Exception e) {
+    		  return "";
+		  }
+  			
   	}
   	
       public static List<String> expandRange(String rangeStr) {
