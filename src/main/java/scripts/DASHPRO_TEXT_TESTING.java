@@ -222,6 +222,7 @@ public class DASHPRO_TEXT_TESTING extends Keywords{
         action.sendKeys(Keys.BACK_SPACE).build().perform();
         wait(driver,"1");
         click3(driver,Color_Gradient_text);
+        wait(driver,"1");
         String AfterRever_GradientColor_2=getTextBackgroundColor(driver, Gradient_InputPointer2);
 
         if((AfterRever_GradientColor_2.equalsIgnoreCase(Default_ColorGradient_Text))) {

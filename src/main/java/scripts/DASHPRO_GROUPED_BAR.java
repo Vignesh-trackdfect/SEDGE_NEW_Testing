@@ -729,7 +729,6 @@ public class DASHPRO_GROUPED_BAR extends Keywords{
 							}
 						}
 						
-					
 						List<WebElement> AvailableColumnList=getWebElements(driver, AvailableList);
 						for(WebElement AvailableColumn:AvailableColumnList) {
 							String columnText=AvailableColumn.getText();
@@ -776,13 +775,17 @@ public class DASHPRO_GROUPED_BAR extends Keywords{
 									}
 									click(driver,ApplyButton);
 									elementnotvisible1(driver, RPE_Loading);
-									if(isDisplayed(driver,ChartGraph)) {
-										pass(driver,"Graph displayed for group value with less than 15 unique value");
+									if(isDisplayed(driver,error)) {
+										fail(driver,"Error displayed When click apply button ");
 									}else {
-										fail(driver,"Graph not displayed for group value with less than 15 unique value");
+										if(isDisplayed(driver,ChartGraph)) {
+											pass(driver,"Graph displayed for group value with less than 15 unique value");
+										}else {
+											fail(driver,"Graph not displayed for group value with less than 15 unique value");
+										}
+										click(driver,GroupInput_Numeric);
+										waitForElement(driver, GroupDropdown_Numeric_Expand);
 									}
-									click(driver,GroupInput_Numeric);
-									waitForElement(driver, GroupDropdown_Numeric_Expand);
 									break;
 								}
 							}

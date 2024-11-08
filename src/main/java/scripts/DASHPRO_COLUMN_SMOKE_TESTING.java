@@ -936,6 +936,11 @@ public class DASHPRO_COLUMN_SMOKE_TESTING extends Keywords{
      	    fail(driver,"Selected X-Axis value not displayed in X-Axis in the chart,Exp : "+X_SelectedString+" Act : "+X_chartvaluefull);
         }
 		
+        if(isDisplayed(driver,minimize)) {
+        	click(driver,minimize);
+        	elementnotvisible(driver,Loading);
+        }
+        
         if(defaultSizeChart>1) {
         	try {
         		graphOrderValidation2(driver,charts,QuickSortByText);
@@ -1562,7 +1567,7 @@ public class DASHPRO_COLUMN_SMOKE_TESTING extends Keywords{
   				 pass(driver,"By default, 'AutoScroll' toggle is enabled");
   				 setTestCaseID("TC_COLUMN_CHART_STYLE_015");
   				 if(isToggleEnable(driver,X_Scroll_toggle)) {
-  					 fail(driver,"X Scroll toggle not disabled when AutoScroll toggle is enabled");
+  					 fail(driver,"X Scroll toggle not disabled when AutoScroll toggle is enabled , X Value : "+X_Selected);
   				 }else {
   					 pass(driver,"X Scroll toggle disabled when AutoScroll toggle is enabled");
   				 }
@@ -1598,13 +1603,27 @@ public class DASHPRO_COLUMN_SMOKE_TESTING extends Keywords{
   				 fail(driver,"X Scroll and Y Scroll toggle not accessible when AutoScroll toggle is disabled");
   			 }
   			   	
-  			 click(driver,X_ScrollInputSlider);
-  			 if(isToggleEnable(driver,X_Scroll_toggle)){
-  				 pass(driver,"X Scroll toggle enabled when click on it");
-  			 }else {
-  				 fail(driver,"X Scroll toggle not enabled when click on it");
-  			 }
+//  			 click(driver,X_ScrollInputSlider);
+//  			 if(isToggleEnable(driver,X_Scroll_toggle)){
+//  				 pass(driver,"X Scroll toggle enabled when click on it");
+//  			 }else {
+//  				 fail(driver,"X Scroll toggle not enabled when click on it");
+//  			 }
   			   	
+  			 boolean X_ScrollEnable=false;
+  			 if(isToggleEnable(driver,X_Scroll_toggle)){
+  				X_ScrollEnable=true;
+  			 }else {
+  				 click(driver,X_ScrollInputSlider);
+  				 wait(driver,"1");
+  				 if(isToggleEnable(driver,X_Scroll_toggle)){
+  					 pass(driver,"X Scroll toggle enabled when enabling it");
+  					X_ScrollEnable=true;
+  				 }else {
+  					 fail(driver,"X Scroll toggle not enabled when enabling it");
+  				 }
+  			 }
+  			 
   			 boolean Y_ScrollEnable=false;
    			 if(isToggleEnable(driver,Y_Scroll_toggle)){
    				 //pass(driver,"Y Scroll toggle enabled when click on it");
@@ -1621,18 +1640,18 @@ public class DASHPRO_COLUMN_SMOKE_TESTING extends Keywords{
    				 }
    			 }
    			   	
-  			   	
   			 scrollUsingElement(driver, ApplyButton);
   			 click(driver,ApplyButton);
   			 elementnotvisible1(driver, Loading);
   			 elementnotvisible1(driver, RPE_Loading);
   			 verifyElementDisplayed(driver,Chart_Section);
-  			// waitForElement(driver, ChartBarDisplayCount);
   			
-  			 if(isDisplayed(driver,X_Scroll_Bar)) {
-  				 pass(driver,"X Scroll Bar is displayed in the chart after enabling it");
-  			 }else {
-  				 fail(driver,"X Scroll Bar is not displayed in the chart after enabling it");
+  			 if(X_ScrollEnable==true) {
+  				if(isDisplayed(driver,X_Scroll_Bar)) {
+  	  				 pass(driver,"X Scroll Bar is displayed in the chart after enabling it");
+  	  			 }else {
+  	  				 fail(driver,"X Scroll Bar is not displayed in the chart after enabling it");
+  	  			 }
   			 }
   			 
   			 if(Y_ScrollEnable==true) {

@@ -69,24 +69,28 @@ public class EmailSender {
             	System.out.println("Filepathss is null or emty");
             }
             
-            if(passFilePath!=null && passFilePath.size()>0) {
-            	for(String filePath:passFilePath) {
-            		// Add attachment if filePath is provided
-                    if (filePath != null && !filePath.isEmpty()) {
-                        MimeBodyPart attachmentBodyPart = new MimeBodyPart();
-                        DataSource source = new FileDataSource(filePath);
-                        attachmentBodyPart.setDataHandler(new DataHandler(source));
-                        attachmentBodyPart.setFileName(source.getName());
-                        multipart.addBodyPart(attachmentBodyPart);
-                    }else {
-                    	System.out.println("filePath : "+filePath);
-                    	System.out.println("Filepath is null or emty");
+            try {
+            	if(passFilePath!=null && passFilePath.size()>0) {
+                	for(String filePath:passFilePath) {
+                		// Add attachment if filePath is provided
+                        if (filePath != null && !filePath.isEmpty()) {
+                            MimeBodyPart attachmentBodyPart = new MimeBodyPart();
+                            DataSource source = new FileDataSource(filePath);
+                            attachmentBodyPart.setDataHandler(new DataHandler(source));
+                            attachmentBodyPart.setFileName(source.getName());
+                            multipart.addBodyPart(attachmentBodyPart);
+                        }else {
+                        	System.out.println("filePath : "+filePath);
+                        	System.out.println("Filepath is null or emty");
+                        }
                     }
+                }else {
+                	System.out.println("Filepathss is null or emty");
                 }
-            }else {
-            	System.out.println("Filepathss is null or emty");
+            }catch(Exception e) {
+            	e.printStackTrace();
             }
-
+            
             // Set the complete message parts
             message.setContent(multipart);
 

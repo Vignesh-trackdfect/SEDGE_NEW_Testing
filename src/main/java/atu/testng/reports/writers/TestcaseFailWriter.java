@@ -94,23 +94,28 @@ public class TestcaseFailWriter extends ReportsPage{
 	        String FailedScreenShot="";
 	        String image="";
 	        if(stepStatus.contains("FAIL")){
-	        	String str2 = Directory.RUNDir + Directory.SEP+paramITestResult.getAttribute("relativeReportDir") + Directory.SEP
-						+ Directory.SCREENSHOT_DIRName+Directory.SEP;
-		        String imagePath = str2 + i + ".PNG";
-	        	File imageFile = new File(imagePath);
-	            byte[] fileContent = Files.readAllBytes(imageFile.toPath());
-	            // Convert the byte array to a Base64 string
-	            String base64String = Base64.getEncoder().encodeToString(fileContent);
-	            
-	            String imagePath1 = Directory.IMGDir + Directory.SEP+"fail.png";
-	        	File imageFile1 = new File(imagePath1);
-	            byte[] fileContent1 = Files.readAllBytes(imageFile1.toPath());
-	            String base64String1 = Base64.getEncoder().encodeToString(fileContent1);
-	            image="<img style=\" height : 15px; width:15px; margin-left: 10px\" alt=\"No Screenshot\" src=\"data:image/png;base64," + base64String1 + "\"/>";
-	            
-	            FailedScreenShot=  "<a href=\"data:image/png;base64," + base64String + "\" target=\"_blank\">" + "<img style=\" height : 30px; width:70px;\" alt=\"No Screenshot\" src=\"data:image/png;base64," + base64String + "\"/></a>";
-	        	str="fail";
-	        	//System.out.println(" Steps checked to print the report");
+	        	try {
+	        		String str2 = Directory.RUNDir + Directory.SEP+paramITestResult.getAttribute("relativeReportDir") + Directory.SEP
+							+ Directory.SCREENSHOT_DIRName+Directory.SEP;
+			        String imagePath = str2 + i + ".PNG";
+		        	File imageFile = new File(imagePath);
+		            byte[] fileContent = Files.readAllBytes(imageFile.toPath());
+		            // Convert the byte array to a Base64 string
+		            String base64String = Base64.getEncoder().encodeToString(fileContent);
+		            
+		            String imagePath1 = Directory.IMGDir + Directory.SEP+"fail.png";
+		        	File imageFile1 = new File(imagePath1);
+		            byte[] fileContent1 = Files.readAllBytes(imageFile1.toPath());
+		            String base64String1 = Base64.getEncoder().encodeToString(fileContent1);
+		            image="<img style=\" height : 15px; width:15px; margin-left: 10px\" alt=\"No Screenshot\" src=\"data:image/png;base64," + base64String1 + "\"/>";
+		            
+		            FailedScreenShot=  "<a href=\"data:image/png;base64," + base64String + "\" target=\"_blank\">" + "<img style=\" height : 30px; width:70px;\" alt=\"No Screenshot\" src=\"data:image/png;base64," + base64String + "\"/></a>";
+		        	str="fail";
+		        	//System.out.println(" Steps checked to print the report");
+	        	}catch(Exception e) {
+	        		
+	        	}
+	        	
 	        }else {
 	        	str="pass";
 	        	String imagePath1 = Directory.IMGDir + Directory.SEP+"pass.png";

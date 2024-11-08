@@ -32,6 +32,7 @@ import scripts.DASHPRO_GROUPED_BAR;
 import scripts.DASHPRO_GROUPED_COLUMN_TESTING;
 import scripts.DASHPRO_LINE_TESTING;
 import scripts.DASHPRO_PIVOT_SMOKE_TESTING;
+import scripts.DASHPRO_RADAR_LINE_TESTING;
 import scripts.DASHPRO_SMOKE_TESTING;
 import scripts.DASHPRO_SPARKLINE_TESTING;
 import scripts.DASHPRO_STACKED_BAR;
@@ -96,6 +97,7 @@ public class Testcases extends Config {
 	DASHPRO_CUSTOM_PIVOT_TESTING customPivot=new DASHPRO_CUSTOM_PIVOT_TESTING();
 	FILE_UPLOAD_TESTING fileUpload=new FILE_UPLOAD_TESTING();
 	DASHPRO_WATERFALL_TESTING waterFall=new DASHPRO_WATERFALL_TESTING();
+	DASHPRO_RADAR_LINE_TESTING radarLine=new DASHPRO_RADAR_LINE_TESTING();
 	
 	@BeforeMethod
 	public void getDataFromConfig() throws Exception {
@@ -318,6 +320,7 @@ public class Testcases extends Config {
 	        String Project_Selection=getCellValue("TestExecution","Testcase_Selection","Project_Selection",TestCaseSelectionFlag); 
 	        String DashPro_Custom_Pivot=getCellValue("TestExecution","Testcase_Selection","Custom_Pivot_Axes",TestCaseSelectionFlag); 
 	        String DashPro_WaterFall=getCellValue("TestExecution","Testcase_Selection","WaterFall_Axes",TestCaseSelectionFlag); 
+	        String DashPro_RadarLine=getCellValue("TestExecution","Testcase_Selection","Radar_Line_Axes",TestCaseSelectionFlag); 
 
 	        setTestCaseID("");
 	        if(Login.contains("Yes")) {
@@ -420,6 +423,10 @@ public class Testcases extends Config {
 			
 			if(DashPro_WaterFall.contains("Yes")) {
 				waterFall.waterfallTesting(driver, iteration, TestCaseSelectionFlag);
+			}
+			
+			if(DashPro_RadarLine.contains("Yes")) {
+				radarLine.radarLineTesting(driver, iteration, TestCaseSelectionFlag);
 			}
 			
 			if(DashPro_Admin.contains("Yes")) {

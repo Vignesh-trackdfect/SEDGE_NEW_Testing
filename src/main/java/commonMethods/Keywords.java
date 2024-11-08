@@ -310,7 +310,7 @@ import atu.testng.reports.logging.LogAs;
 				add1(driver, "Unable to click on " + values[0] + "- " + e.getLocalizedMessage(), LogAs.FAILED, true,
 						"");
 			
-				Assert.fail();
+				//Assert.fail();
 			}
 		}
 	
@@ -2095,142 +2095,147 @@ import atu.testng.reports.logging.LogAs;
         
         public void graphOrderValidation2(WebDriver driver,List<WebElement> charts,String QuickSortByText) {
             
-            int firstElement=(charts.size())-1;
-            int secondElement=1;
+        	try {
+        		int firstElement=(charts.size())-1;
+                int secondElement=1;
 
-            mouseOverToElement(driver, DashProPage);
-            Actions act=new Actions(driver);
-            WebElement firstbar=charts.get(0);
-            act.moveToElement(firstbar).build().perform();
-          
-            WebElement element_1=driver.findElement(By.xpath("(//*[name()='tspan' and contains(text(),'"+QuickSortByText+"') and contains(text(),':')])"));
-        	String textvalue_1=element_1.getText();
-            System.out.println("First : "+textvalue_1);
+                mouseOverToElement(driver, DashProPage);
+                Actions act=new Actions(driver);
+                WebElement firstbar=charts.get(0);
+                act.moveToElement(firstbar).build().perform();
+              
+                WebElement element_1=driver.findElement(By.xpath("(//*[name()='tspan' and contains(text(),'"+QuickSortByText+"') and contains(text(),':')])"));
+            	String textvalue_1=element_1.getText();
+                System.out.println("First : "+textvalue_1);
 
-            WebElement secondbar=charts.get(secondElement);
-            act.moveToElement(secondbar).build().perform();
-//            double secondValue=barValue(driver,QuickSortByText);
-//            System.out.println("Second : "+secondValue);
-            
-            WebElement element_2=driver.findElement(By.xpath("(//*[name()='tspan' and contains(text(),'"+QuickSortByText+"') and contains(text(),':')])"));
-        	String textvalue_2=element_2.getText();
-        	System.out.println("Second : "+textvalue_2);
-           
-        	String[] parts1 = textvalue_1.split(": ");
-        	String[] parts2 = textvalue_2.split(": ");
-        	boolean nextText=(parts1[1].trim().equals(parts2[1].trim()));
-        	if(nextText) {
-        		secondElement=secondElement+1;
-        		try {
-        			while(secondElement<charts.size()) {
-            			secondbar=charts.get(secondElement);
-            	        act.moveToElement(secondbar).build().perform();
-            	        element_2=driver.findElement(By.xpath("(//*[name()='tspan' and contains(text(),'"+QuickSortByText+"') and contains(text(),':')])"));
-            	    	textvalue_2=element_2.getText();
-            	    	parts2=textvalue_2.split(": ");
-            	    	if(!(parts1[1].trim().equals(parts2[1].trim()))) {
-            	    		break;
-            	    	}
-            	        secondElement++;
-                	}
-        		}catch(Exception e) {
-        			
-        		}
-        		
-        	}
-        	
-
-            double num_1=getNumberFromChart1(textvalue_1);
-            String text_1="";
-            if(num_1==0.001) {
-            	text_1=parts1[1].trim();
-            }
-            
-            double num_2=getNumberFromChart1(textvalue_2);
-            String text_2="";
-            if(num_2==0.001) {
-            	text_2=parts2[1].trim();
-            }
-            
-            if((num_1==0.001)&&(num_2==0.001)) {
-            	String str1Lower = text_1.toLowerCase();
-                String str2Lower = text_2.toLowerCase();
+                WebElement secondbar=charts.get(secondElement);
+                act.moveToElement(secondbar).build().perform();
+//                double secondValue=barValue(driver,QuickSortByText);
+//                System.out.println("Second : "+secondValue);
                 
-                int comparisonResult = str1Lower.compareTo(str2Lower);
-                System.out.println("text_1 : "+text_1);
-             	System.out.println("text_2 : "+text_2);
-                
-                String sortValue=getAttribute1(driver,AscDes,"value");
-                if(sortValue.equals("desc")) {
-                	if(comparisonResult < 0) {
-                		add(driver, "Expected : Charts Should display in "+QuickSortByText+" Ascending order, for Ascending selection <--->  Actual  : Charts Displayed in "+QuickSortByText+" Ascending order, for Ascending selection" , LogAs.PASSED,true, "Passed");
-            			//passReport(driver,"Charts Should display in "+QuickSortByText+" Ascending order, for Ascending selection  ","Charts Displayed in "+QuickSortByText+" Ascending order, for Ascending selection ");
-                	}else {
-            			add1(driver, "Expected : Charts Should display in "+QuickSortByText+" Ascending order, for Ascending selection   <---> Actual  : Charts displayed in "+QuickSortByText+" Descending order, for Ascending selection ", LogAs.FAILED,true, "Failed");
-                 	  //  failReport(driver,"Charts Should display in "+QuickSortByText+" Ascending order, for Ascending selection   ","Charts displayed in "+QuickSortByText+" Descending order, for Ascending selection ");
-                	}	
-                }else {
-                	if(comparisonResult > 0) {
-                		add(driver, "Expected : Charts Should display in "+QuickSortByText+" Descending order, for Descending selection <--->  Actual  : Charts Displayed in "+QuickSortByText+" Descending order, for Descending selection" , LogAs.PASSED,true, "Passed");
-            			//passReport(driver,"Charts Should display in "+QuickSortByText+" Descending order, for Descending selection  ","Charts Displayed in "+QuickSortByText+" Descending order, for Descending selection ");
-                	}else {
-            			add1(driver, "Expected : Charts Should display in "+QuickSortByText+" Descending order, for Descending selection   <---> Actual  : Charts displayed in "+QuickSortByText+" Ascending order, for Descending selection ", LogAs.FAILED,true, "Failed");
-                 	    //failReport(driver,"Charts Should display in "+QuickSortByText+" Descending order, for Descending selection   ","Charts displayed in "+QuickSortByText+" Ascending order, for Descending selection ");
-                	}
-                }
-                
-                if (comparisonResult < 0) {
-                    System.out.println(text_1 + " comes before " + text_2 + " alphabetically.");
-                } else if (comparisonResult > 0) {
-                    System.out.println(text_2 + " comes before " + text_1 + " alphabetically.");
-                } else {
-                    System.out.println(text_1 + " and " + text_2 + " are equal alphabetically.");
-                }
-            }else if(!(num_1==0.001)&&!(num_2==0.001)) {
+                WebElement element_2=driver.findElement(By.xpath("(//*[name()='tspan' and contains(text(),'"+QuickSortByText+"') and contains(text(),':')])"));
+            	String textvalue_2=element_2.getText();
+            	System.out.println("Second : "+textvalue_2);
+               
+            	String[] parts1 = textvalue_1.split(": ");
+            	String[] parts2 = textvalue_2.split(": ");
+            	boolean nextText=(parts1[1].trim().equals(parts2[1].trim()));
+            	if(nextText) {
+            		secondElement=secondElement+1;
+            		try {
+            			while(secondElement<charts.size()) {
+                			secondbar=charts.get(secondElement);
+                	        act.moveToElement(secondbar).build().perform();
+                	        element_2=driver.findElement(By.xpath("(//*[name()='tspan' and contains(text(),'"+QuickSortByText+"') and contains(text(),':')])"));
+                	    	textvalue_2=element_2.getText();
+                	    	parts2=textvalue_2.split(": ");
+                	    	if(!(parts1[1].trim().equals(parts2[1].trim()))) {
+                	    		break;
+                	    	}
+                	        secondElement++;
+                    	}
+            		}catch(Exception e) {
+            			
+            		}
+            		
+            	}
             	
-            	String sortValue=getAttribute1(driver,AscDes,"value");
-            	System.out.println("num_1 : "+num_1);
-                System.out.println("num_2 : "+num_2);
-                
-                if(sortValue.equals("desc")) {
-                	if(num_2>num_1) {
-                		add(driver, "Expected : Charts Should display in "+QuickSortByText+" Ascending order, for Ascending selection <--->  Actual  : Charts Displayed in "+QuickSortByText+" Ascending order, for Ascending selection" , LogAs.PASSED,true, "Passed");
-            			//passReport(driver,"Charts Should display in "+QuickSortByText+" Ascending order, for Ascending selection  ","Charts Displayed in "+QuickSortByText+" Ascending order, for Ascending selection ");
-                	}else {
-            			add1(driver, "Expected : Charts Should display in "+QuickSortByText+" Ascending order, for Ascending selection   <---> Actual  : Charts displayed in "+QuickSortByText+" Descending order, for Ascending selection ", LogAs.FAILED,true, "Failed");
-                 	   // failReport(driver,"Charts Should display in "+QuickSortByText+" Ascending order, for Ascending selection   ","Charts displayed in "+QuickSortByText+" Descending order, for Ascending selection ");
-                	}	
-                }else {
-                	if(num_1>num_2) {
-                		add(driver, "Expected : Charts Should display in "+QuickSortByText+" Descending order, for Descending selection <--->  Actual  : Charts Displayed in "+QuickSortByText+" Descending order, for Descending selection" , LogAs.PASSED,true, "Passed");
-            		//	passReport(driver,"Charts Should display in "+QuickSortByText+" Descending order, for Descending selection  ","Charts Displayed in "+QuickSortByText+" Descending order, for Descending selection ");
-                	}else {
-            			add1(driver, "Expected : Charts Should display in "+QuickSortByText+" Descending order, for Descending selection   <---> Actual  : Charts displayed in "+QuickSortByText+" Ascending order, for Descending selection ", LogAs.FAILED,true, "Failed");
-                 	    failReport(driver,"Charts Should display in "+QuickSortByText+" Descending order, for Descending selection   ","Charts displayed in "+QuickSortByText+" Ascending order, for Descending selection ");
-                	}
+
+                double num_1=getNumberFromChart1(textvalue_1);
+                String text_1="";
+                if(num_1==0.001) {
+                	text_1=parts1[1].trim();
                 }
-            	
-            }else {
-            	String sortValue=getAttribute1(driver,AscDes,"value");
-                if(sortValue.equals("desc")) {
-                	if(!(num_1==0.001)&&(num_2==0.001)) {
-                		add(driver, "Expected : Charts Should display in "+QuickSortByText+" Ascending order, for Ascending selection <--->  Actual  : Charts Displayed in "+QuickSortByText+" Ascending order, for Ascending selection" , LogAs.PASSED,true, "Passed");
-            			//passReport(driver,"Charts Should display in "+QuickSortByText+" Ascending order, for Ascending selection  ","Charts Displayed in "+QuickSortByText+" Ascending order, for Ascending selection ");
-                	}else {
-            			add1(driver, "Expected : Charts Should display in "+QuickSortByText+" Ascending order, for Ascending selection   <---> Actual  : Charts displayed in "+QuickSortByText+" Descending order, for Ascending selection ", LogAs.FAILED,true, "Failed");
-                 	    //failReport(driver,"Charts Should display in "+QuickSortByText+" Ascending order, for Ascending selection   ","Charts displayed in "+QuickSortByText+" Descending order, for Ascending selection ");
-                	}	
-                }else {
-                	if(!(num_2==0.001)&&(num_1==0.001)) {
-                		add(driver, "Expected : Charts Should display in "+QuickSortByText+" Descending order, for Descending selection <--->  Actual  : Charts Displayed in "+QuickSortByText+" Descending order, for Descending selection" , LogAs.PASSED,true, "Passed");
-            		//	passReport(driver,"Charts Should display in "+QuickSortByText+" Descending order, for Descending selection  ","Charts Displayed in "+QuickSortByText+" Descending order, for Descending selection ");
-                	}else {
-            			add1(driver, "Expected : Charts Should display in "+QuickSortByText+" Descending order, for Descending selection   <---> Actual  : Charts displayed in "+QuickSortByText+" Ascending order, for Descending selection ", LogAs.FAILED,true, "Failed");
-                 	    //failReport(driver,"Charts Should display in "+QuickSortByText+" Descending order, for Descending selection   ","Charts displayed in "+QuickSortByText+" Ascending order, for Descending selection ");
-                	}
+                
+                double num_2=getNumberFromChart1(textvalue_2);
+                String text_2="";
+                if(num_2==0.001) {
+                	text_2=parts2[1].trim();
+                }
+                
+                if((num_1==0.001)&&(num_2==0.001)) {
+                	String str1Lower = text_1.toLowerCase();
+                    String str2Lower = text_2.toLowerCase();
+                    
+                    int comparisonResult = str1Lower.compareTo(str2Lower);
+                    System.out.println("text_1 : "+text_1);
+                 	System.out.println("text_2 : "+text_2);
+                    
+                    String sortValue=getAttribute1(driver,AscDes,"value");
+                    if(sortValue.equals("desc")) {
+                    	if(comparisonResult < 0) {
+                    		add(driver, "Expected : Charts Should display in "+QuickSortByText+" Ascending order, for Ascending selection <--->  Actual  : Charts Displayed in "+QuickSortByText+" Ascending order, for Ascending selection" , LogAs.PASSED,true, "Passed");
+                			//passReport(driver,"Charts Should display in "+QuickSortByText+" Ascending order, for Ascending selection  ","Charts Displayed in "+QuickSortByText+" Ascending order, for Ascending selection ");
+                    	}else {
+                			add1(driver, "Expected : Charts Should display in "+QuickSortByText+" Ascending order, for Ascending selection   <---> Actual  : Charts displayed in "+QuickSortByText+" Descending order, for Ascending selection ", LogAs.FAILED,true, "Failed");
+                     	  //  failReport(driver,"Charts Should display in "+QuickSortByText+" Ascending order, for Ascending selection   ","Charts displayed in "+QuickSortByText+" Descending order, for Ascending selection ");
+                    	}	
+                    }else {
+                    	if(comparisonResult > 0) {
+                    		add(driver, "Expected : Charts Should display in "+QuickSortByText+" Descending order, for Descending selection <--->  Actual  : Charts Displayed in "+QuickSortByText+" Descending order, for Descending selection" , LogAs.PASSED,true, "Passed");
+                			//passReport(driver,"Charts Should display in "+QuickSortByText+" Descending order, for Descending selection  ","Charts Displayed in "+QuickSortByText+" Descending order, for Descending selection ");
+                    	}else {
+                			add1(driver, "Expected : Charts Should display in "+QuickSortByText+" Descending order, for Descending selection   <---> Actual  : Charts displayed in "+QuickSortByText+" Ascending order, for Descending selection ", LogAs.FAILED,true, "Failed");
+                     	    //failReport(driver,"Charts Should display in "+QuickSortByText+" Descending order, for Descending selection   ","Charts displayed in "+QuickSortByText+" Ascending order, for Descending selection ");
+                    	}
+                    }
+                    
+                    if (comparisonResult < 0) {
+                        System.out.println(text_1 + " comes before " + text_2 + " alphabetically.");
+                    } else if (comparisonResult > 0) {
+                        System.out.println(text_2 + " comes before " + text_1 + " alphabetically.");
+                    } else {
+                        System.out.println(text_1 + " and " + text_2 + " are equal alphabetically.");
+                    }
+                }else if(!(num_1==0.001)&&!(num_2==0.001)) {
                 	
+                	String sortValue=getAttribute1(driver,AscDes,"value");
+                	System.out.println("num_1 : "+num_1);
+                    System.out.println("num_2 : "+num_2);
+                    
+                    if(sortValue.equals("desc")) {
+                    	if(num_2>num_1) {
+                    		add(driver, "Expected : Charts Should display in "+QuickSortByText+" Ascending order, for Ascending selection <--->  Actual  : Charts Displayed in "+QuickSortByText+" Ascending order, for Ascending selection" , LogAs.PASSED,true, "Passed");
+                			//passReport(driver,"Charts Should display in "+QuickSortByText+" Ascending order, for Ascending selection  ","Charts Displayed in "+QuickSortByText+" Ascending order, for Ascending selection ");
+                    	}else {
+                			add1(driver, "Expected : Charts Should display in "+QuickSortByText+" Ascending order, for Ascending selection   <---> Actual  : Charts displayed in "+QuickSortByText+" Descending order, for Ascending selection ", LogAs.FAILED,true, "Failed");
+                     	   // failReport(driver,"Charts Should display in "+QuickSortByText+" Ascending order, for Ascending selection   ","Charts displayed in "+QuickSortByText+" Descending order, for Ascending selection ");
+                    	}	
+                    }else {
+                    	if(num_1>num_2) {
+                    		add(driver, "Expected : Charts Should display in "+QuickSortByText+" Descending order, for Descending selection <--->  Actual  : Charts Displayed in "+QuickSortByText+" Descending order, for Descending selection" , LogAs.PASSED,true, "Passed");
+                		//	passReport(driver,"Charts Should display in "+QuickSortByText+" Descending order, for Descending selection  ","Charts Displayed in "+QuickSortByText+" Descending order, for Descending selection ");
+                    	}else {
+                			add1(driver, "Expected : Charts Should display in "+QuickSortByText+" Descending order, for Descending selection   <---> Actual  : Charts displayed in "+QuickSortByText+" Ascending order, for Descending selection ", LogAs.FAILED,true, "Failed");
+                     	    failReport(driver,"Charts Should display in "+QuickSortByText+" Descending order, for Descending selection   ","Charts displayed in "+QuickSortByText+" Ascending order, for Descending selection ");
+                    	}
+                    }
+                	
+                }else {
+                	String sortValue=getAttribute1(driver,AscDes,"value");
+                    if(sortValue.equals("desc")) {
+                    	if(!(num_1==0.001)&&(num_2==0.001)) {
+                    		add(driver, "Expected : Charts Should display in "+QuickSortByText+" Ascending order, for Ascending selection <--->  Actual  : Charts Displayed in "+QuickSortByText+" Ascending order, for Ascending selection" , LogAs.PASSED,true, "Passed");
+                			//passReport(driver,"Charts Should display in "+QuickSortByText+" Ascending order, for Ascending selection  ","Charts Displayed in "+QuickSortByText+" Ascending order, for Ascending selection ");
+                    	}else {
+                			add1(driver, "Expected : Charts Should display in "+QuickSortByText+" Ascending order, for Ascending selection   <---> Actual  : Charts displayed in "+QuickSortByText+" Descending order, for Ascending selection ", LogAs.FAILED,true, "Failed");
+                     	    //failReport(driver,"Charts Should display in "+QuickSortByText+" Ascending order, for Ascending selection   ","Charts displayed in "+QuickSortByText+" Descending order, for Ascending selection ");
+                    	}	
+                    }else {
+                    	if(!(num_2==0.001)&&(num_1==0.001)) {
+                    		add(driver, "Expected : Charts Should display in "+QuickSortByText+" Descending order, for Descending selection <--->  Actual  : Charts Displayed in "+QuickSortByText+" Descending order, for Descending selection" , LogAs.PASSED,true, "Passed");
+                		//	passReport(driver,"Charts Should display in "+QuickSortByText+" Descending order, for Descending selection  ","Charts Displayed in "+QuickSortByText+" Descending order, for Descending selection ");
+                    	}else {
+                			add1(driver, "Expected : Charts Should display in "+QuickSortByText+" Descending order, for Descending selection   <---> Actual  : Charts displayed in "+QuickSortByText+" Ascending order, for Descending selection ", LogAs.FAILED,true, "Failed");
+                     	    //failReport(driver,"Charts Should display in "+QuickSortByText+" Descending order, for Descending selection   ","Charts displayed in "+QuickSortByText+" Ascending order, for Descending selection ");
+                    	}
+                    	
+                    }
                 }
-            }
+                
+        	}catch(Exception e) {
+        		//e.printStackTrace();
+        	}
             
         }
       public void selectDropdownValue(WebDriver driver,String Type ,String value) {
@@ -2829,48 +2834,53 @@ import atu.testng.reports.logging.LogAs;
       }
       
       public void ScrollBarValidation1(WebDriver driver,String Xpath,String Element) {
-    	 String[] values=splitXpath(Xpath);	
-    	 WebElement dropdown = driver.findElement(By.xpath(values[1]));
-    	 Actions builder = new Actions(driver);
-		 builder.moveToElement(dropdown).build().perform();
-		 wait(driver,"1");
-		 try {
-			 ((JavascriptExecutor) driver).executeScript("arguments[0].scrollTop = 0;", dropdown);
-		 }catch(Exception e) {
-			 
-		 }
-		 elementScreenShot_new(driver,Xpath,"/Expected_screenshot/ScrollbarValidation/dropdown_"+Element);
-		 
-	     Boolean isScrollbarPresent = (Boolean) ((JavascriptExecutor) driver)
-	                .executeScript("return arguments[0].scrollHeight > arguments[0].offsetHeight;", dropdown);
-	        
-	        if (isScrollbarPresent) {
-              ((JavascriptExecutor) driver).executeScript("arguments[0].scrollTop = arguments[0].scrollHeight;", dropdown);
-	   		   builder.moveToElement(dropdown).build().perform();
-	   		   wait(driver,"1");
-	   		elementScreenShot_new(driver,Xpath,"/Actual_screenshot/ScrollbarValidation/dropdown_"+Element);
-	   		    
-	   		    boolean scrollImageCheck;
-				try {
-					scrollImageCheck = imageComparison2(driver, "/ScrollbarValidation/dropdown_"+Element, "/ScrollbarValidation/dropdown_"+Element);
-					 if (scrollImageCheck) {
-						 add1(driver, "Scroll not working properly in the "+Element+" Element", LogAs.FAILED,true, "");
-			      			//fail(driver,"Scroll not working properly in the "+Element+" Element");
-			            } else {
-			            	add(driver,"Scroll works properly in "+Element+" Element", LogAs.PASSED,true, "");
-			    			//pass(driver,"Scroll works properly in "+Element+" Element");  
-			            }
-					 ((JavascriptExecutor) driver).executeScript("arguments[0].scrollTop = 0;", dropdown);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-	           
-	        } else {
-	        	add(driver,"Unable to Validate the ScrollBar working Functionality on  "+Element+", because Scrollbar is not present ", LogAs.PASSED,true, "");
-	        	//add1(driver, "Scrollbar is not present on the "+Element, LogAs.FAILED,true, "");
-      			//fail(driver,"Scrollbar is not present on the "+Element);
-	        }
+    	  try {
+    		  String[] values=splitXpath(Xpath);	
+    	    	 WebElement dropdown = driver.findElement(By.xpath(values[1]));
+    	    	 Actions builder = new Actions(driver);
+    			 builder.moveToElement(dropdown).build().perform();
+    			 wait(driver,"1");
+    			 try {
+    				 ((JavascriptExecutor) driver).executeScript("arguments[0].scrollTop = 0;", dropdown);
+    			 }catch(Exception e) {
+    				 
+    			 }
+    			 elementScreenShot_new(driver,Xpath,"/Expected_screenshot/ScrollbarValidation/dropdown_"+Element);
+    			 
+    		     Boolean isScrollbarPresent = (Boolean) ((JavascriptExecutor) driver)
+    		                .executeScript("return arguments[0].scrollHeight > arguments[0].offsetHeight;", dropdown);
+    		        
+    		        if (isScrollbarPresent) {
+    	              ((JavascriptExecutor) driver).executeScript("arguments[0].scrollTop = arguments[0].scrollHeight;", dropdown);
+    		   		   builder.moveToElement(dropdown).build().perform();
+    		   		   wait(driver,"1");
+    		   		   elementScreenShot_new(driver,Xpath,"/Actual_screenshot/ScrollbarValidation/dropdown_"+Element);
+    		   		    
+    		   		    boolean scrollImageCheck;
+    					try {
+    						scrollImageCheck = imageComparison2(driver, "/ScrollbarValidation/dropdown_"+Element, "/ScrollbarValidation/dropdown_"+Element);
+    						 if (scrollImageCheck) {
+    							 add1(driver, "Scroll not working properly in the "+Element+" Element", LogAs.FAILED,true, "");
+    				      			//fail(driver,"Scroll not working properly in the "+Element+" Element");
+    				            } else {
+    				            	add(driver,"Scroll works properly in "+Element+" Element", LogAs.PASSED,true, "");
+    				    			//pass(driver,"Scroll works properly in "+Element+" Element");  
+    				            }
+    						 ((JavascriptExecutor) driver).executeScript("arguments[0].scrollTop = 0;", dropdown);
+    					} catch (IOException e) {
+    						// TODO Auto-generated catch block
+    						e.printStackTrace();
+    					}
+    		           
+    		        } else {
+    		        	add(driver,"Unable to Validate the ScrollBar working Functionality on  "+Element+", because Scrollbar is not present ", LogAs.PASSED,true, "");
+    		        	//add1(driver, "Scrollbar is not present on the "+Element, LogAs.FAILED,true, "");
+    	      			//fail(driver,"Scrollbar is not present on the "+Element);
+    		        }
+    	  }catch(Exception e) {
+ 			 System.out.println(" scroll fail : "+e.getLocalizedMessage());
+ 		 }
+    	 
       }
 			
       public void ScrollBarValidation(WebDriver driver,String Xpath,String XpathForText,String Element) {

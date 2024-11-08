@@ -2792,7 +2792,7 @@ public class DASHPRO_GROUPED_COLUMN_TESTING extends Keywords{
 		   		 elementnotvisible1(driver, RPE_Loading);
 		   		 waitForElement(driver,Chart);
 		   		 mouseOverToElement(driver, ChartGraph);
-		   		setTestCaseID("TC_GROUPED_COLUMN _OTHERS_025");
+		   		 setTestCaseID("TC_GROUPED_COLUMN _OTHERS_025");
 		   		 if(isDisplayed2(driver,MouseCursor)) {
 		   	  		 pass(driver,"Cursor is displayed in chart when cursor is enable"); 
 		   		 }else {
@@ -2803,7 +2803,7 @@ public class DASHPRO_GROUPED_COLUMN_TESTING extends Keywords{
 		   		setTestCaseID("TC_GROUPED_COLUMN _OTHERS_026");
 		   		click(driver,Cursor_InputClick);
 		   		if(isToggleEnable(driver,Cursor_Input)) {		
-		   	  		 fail(driver,"'Cursor Input' is enable while click on it"); 
+		   	  		 fail(driver,"'Cursor Input' is not enable while click on it"); 
 		   		}else {
 		   	  		 pass(driver,"'Cursor Input' is disable while click on it"); 
 		   		}

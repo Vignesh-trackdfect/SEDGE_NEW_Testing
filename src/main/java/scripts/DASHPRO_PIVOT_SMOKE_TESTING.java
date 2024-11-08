@@ -1107,8 +1107,8 @@ public class DASHPRO_PIVOT_SMOKE_TESTING extends Keywords{
 	    
 	    double afterAutoSizeAllColumn2=getCssWidth(driver,SecondHeader_PivotChart);
 	    double afterAutoSizeAllColumn1=getCssWidth(driver,FirstHeader_PivotChart);
-	    if((beforeAutoSizeAllColumn2==afterAutoSizeAllColumn2 && afterAutoSizeAllColumn2!=0) && (beforeAutoSizeAllColumn1==afterAutoSizeAllColumn1)) {
-	    	fail(driver,"AutoSize all Column not applied properly in the Column");
+	    if((beforeAutoSizeAllColumn2==afterAutoSizeAllColumn2) && (beforeAutoSizeAllColumn1==afterAutoSizeAllColumn1)) {
+	    	fail(driver,"AutoSize all Column not applied properly in the Column, before_2 : "+beforeAutoSizeAllColumn2+", after_2 : "+afterAutoSizeAllColumn2+"-> before_1 : "+beforeAutoSizeAllColumn1+", After_1 : "+afterAutoSizeAllColumn1);
 	    }else {
 	    	pass(driver,"AutoSize all Column applied properly in the Column");
 	    }

@@ -2885,7 +2885,7 @@ public class DASHPRO_CUSTOM_PIVOT_TESTING extends Keywords{
 	 			 fail(driver,"'Enter Widget Name' error not displayed when save the chart without given chart title name");
 	 		 }
 	 		 elementnotvisible(driver, chartSaveError1);
-	 		 sendKeys(driver,ChartTitleInput,"Custom Chart test");
+	 		 sendKeys(driver,ChartTitleInput,"Custom Pivot Chart test");
 	 		 click(driver,SaveBtn_Chart);
 	 		 elementnotvisible1(driver, RPE_Loading);
 	 		 if(!isDisplayed2(driver,chartSaveError1) && isDisplayed(driver,SavedChartTitleInput)) {
@@ -2895,7 +2895,7 @@ public class DASHPRO_CUSTOM_PIVOT_TESTING extends Keywords{
 	 		 }	
 	      
 	 		 String AfterSaveChartTitleName=getText1(driver, SavedChartTitleName);
-	 		 if(AfterSaveChartTitleName.equalsIgnoreCase("Custom Chart test")) {
+	 		 if(AfterSaveChartTitleName.equalsIgnoreCase("Custom Pivot Chart test")) {
 	 			 pass(driver,"Same Chart Title name displayed after saved the chart ");
 	 		 }else {
 	 			 fail(driver,"Different Chart Title name displayed after saved the chart ");

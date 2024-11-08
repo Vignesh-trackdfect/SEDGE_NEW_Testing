@@ -51,8 +51,6 @@ public class DASHPRO_WATERFALL_TESTING extends Keywords{
 		String Default_Grid_distance_Column=Utils.getDataFromTestData("SmokeTesting_UI", "Default_Grid_distance_Column");
 		
 		//Data Labels
-		String DataLabelsColor_Exp=Utils.getDataFromTestData("ChartFormat_DataLabel", "DataLabelsColor_Exp");
-		String DefaultFormatValue_Exp=Utils.getDataFromTestData("ChartFormat_DataLabel", "DefaultFormatValue");
 		String DefaultSeperatorValue_Exp=Utils.getDataFromTestData("ChartFormat_DataLabel", "DefaultSeperatorValue");
 		String DefaultFontSizeValue_Exp=Utils.getDataFromTestData("ChartFormat_DataLabel", "DefaultFontSizeValue");
 		String DefaultRoundOffValue_Exp=Utils.getDataFromTestData("ChartFormat_DataLabel", "DefaultRoundOffValue");
@@ -161,7 +159,6 @@ public class DASHPRO_WATERFALL_TESTING extends Keywords{
 						 click(driver,X_Axis_Input);
 						 if(isDisplayed2(driver,X_Axis_dropdownResultsExp)) {
 							 pass(driver,"X Axis dropdown is expanded after click on it ");
-							 
 							 
 							 if(TC_WATERFALL_007.equals("Yes")) {
 								 setTestCaseID("TC_WATERFALL_007");

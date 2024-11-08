@@ -33,22 +33,6 @@ public class DASHPRO_CARD_TESTING extends Keywords{
 		String Select_Position=Utils.getDataFromTestDataIteration(iteration,"Card_Widget_Testing", "Select_Position");
 		String Select_Size=Utils.getDataFromTestDataIteration(iteration,"Card_Widget_Testing", "Select_Size");
 		
-		//Yes/No Input for Testcases Id
-		String TC_CARD_001=getTestcaseID_Flag("DASHPRO_CARD","CARD","TEST CASE ID","TC_CARD_001","Flag");
-		String TC_CARD_002=getTestcaseID_Flag("DASHPRO_CARD","CARD","TEST CASE ID","TC_CARD_002","Flag");
-		String TC_CARD_003=getTestcaseID_Flag("DASHPRO_CARD","CARD","TEST CASE ID","TC_CARD_003","Flag");
-		String TC_CARD_004=getTestcaseID_Flag("DASHPRO_CARD","CARD","TEST CASE ID","TC_CARD_004","Flag");
-		String TC_CARD_005=getTestcaseID_Flag("DASHPRO_CARD","CARD","TEST CASE ID","TC_CARD_005","Flag");
-		String TC_CARD_006=getTestcaseID_Flag("DASHPRO_CARD","CARD","TEST CASE ID","TC_CARD_006","Flag");
-		String TC_CARD_007=getTestcaseID_Flag("DASHPRO_CARD","CARD","TEST CASE ID","TC_CARD_007","Flag");
-		String TC_CARD_008=getTestcaseID_Flag("DASHPRO_CARD","CARD","TEST CASE ID","TC_CARD_008","Flag");
-		String TC_CARD_009=getTestcaseID_Flag("DASHPRO_CARD","CARD","TEST CASE ID","TC_CARD_009","Flag");
-		String TC_CARD_010=getTestcaseID_Flag("DASHPRO_CARD","CARD","TEST CASE ID","TC_CARD_010","Flag");
-		String TC_CARD_011=getTestcaseID_Flag("DASHPRO_CARD","CARD","TEST CASE ID","TC_CARD_011","Flag");
-		String TC_CARD_012=getTestcaseID_Flag("DASHPRO_CARD","CARD","TEST CASE ID","TC_CARD_012","Flag");
-
-		
-
 		setTestCaseID(" ");
 		Actions action=new Actions(driver);
 		mouseOverToElement(driver, ADDTabPlus);
@@ -838,6 +822,34 @@ public class DASHPRO_CARD_TESTING extends Keywords{
 				}
 			}
 		}
+		
+		setTestCaseID("");
+      	 click(driver,ChartTitleInput);
+  		 clear(driver,ChartTitleInput);
+		 verifyElementDisplayed(driver, SaveBtn_Chart);
+		 verifyElementDisplayed(driver, cancel_chart);
+		 click(driver,SaveBtn_Chart);
+		 if(isDisplayed(driver,chartSaveError1)) {
+			 pass(driver,"'Enter Widget Name' error displayed when save the chart without given chart title name");
+		 }else {
+			 fail(driver,"'Enter Widget Name' error not displayed when save the chart without given chart title name");
+		 }
+		 elementnotvisible(driver, chartSaveError1);
+		 sendKeys(driver,ChartTitleInput,"CardWidgetTest");
+		 click(driver,SaveBtn_Chart);
+		 elementnotvisible1(driver, RPE_Loading);
+		 if(!isDisplayed2(driver,chartSaveError1) && isDisplayed(driver,SavedChartTitleInput)) {
+			 pass(driver,"Chart Saved Successfully");
+		 }else {
+			 fail(driver,"Chart not Saved Successfully");
+		 }	
+	      
+		 String AfterSaveChartTitleName=getText1(driver, SavedChartTitleName);
+		 if(AfterSaveChartTitleName.equals("CardWidgetTest")) {
+			 pass(driver,"Same Chart Title name displayed after saved the chart ");
+		 }else {
+			 fail(driver,"Different Chart Title name displayed after saved the chart ");
+		 }
 		
 		
 		

@@ -1,55 +1,244 @@
-Id,VESSEL,YEAR,GEAR,DESIGN,DWT,TEU,14_TDotHDot,RFR,DEL,CHARTERERS,PERIOD,USDFslDAY,REPORT_DATE,BROKER,FILE_NAME,DATE_UPDATED,remark,NewColumn
-56,ASIATIC KING,2005.0,Gearless,Orskov Mk VII ,,1155,717,,,ZIM,3 Yrs,19800,2021.27,Maersk,Container Weekly July 3 - July 9,2015-05-23,"",90
-57,NORDICA,2011.0,Gearless,SSW S1000 ,,1036,740,,,Seacon,2 Yrs,18300,2021.27,Maersk,Container Weekly July 3 - July 9,2015-05-23,"",83
-58,BF PERCH,2007.0,Gearless,CV 1000 ,,990,621,,,IAL,24-26 Mnths,17600,2021.27,Maersk,Container Weekly July 3 - July 9,2015-05-23,"",73
-184,ELLA,2003.0,Gearless,NAIKAI2500,33216,2495,1896,300,F,WHL,24-26 Mnths,23950,2021.14,Clarksons Platou,Weekly_09_04_21,2015-05-23,,87
-185,CERINTHUS,2013.0,Geared,1700TEU,23523,1732,1275,345,P,HAPAG,21-23 Mnths,17750,2021.14,Clarksons Platou,Weekly_09_04_21,2015-05-23,,72
-186,BOX ENDEAVOUR,2015.0,Gearless,WENCHONG1700,21733,1708,1230,362,F,WHL,21-24 Mnths,21650,2021.14,Clarksons Platou,Weekly_09_04_21,2015-05-23,,87
-187,CAPE FRANKLIN,2007.0,Gearless,PEENE1400,20322,1440,1065,174,F,WHL,18-20 Mnths,17500,2021.14,Clarksons Platou,Weekly_09_04_21,2015-05-23,,87
-188,ANNALISA P,2008.0,Gearless,CVNEPTUN1200,18700,1296,957,390,M,YML,25-26 Mnths,13750,2021.14,Clarksons Platou,Weekly_09_04_21,2015-05-23,,89
-189,BATAM TRADER,2002.0,Geared,JURONGTYPE,16794,1078,858,200,I,GFS,16-18 Mnths,16500,2021.14,Clarksons Platou,Weekly_09_04_21,2015-05-23,,71
-190,WIELAND,2014.0,Gearless,YZJ5000,62090,4957,3739,600,F,CMA, 36-40,40650,2021.16,Clarksons Platou,Weekly_23_04_21,2015-05-23,,67
-192,OREA,2015.0,Geared,SDARI2100,25044,2190,1570,490,F,OOCL,24-26 Mnths,26000,2021.16,Clarksons Platou,Weekly_23_04_21,2015-05-23,,79
-193,FS IPANEMA,2009.0,Geared,KOUAN1800,25860,1794,1350,319,U,KING,* 3,17250,2021.16,Clarksons Platou,Weekly_23_04_21,2015-05-23,,75
-194,JAN,2009.0,Geared,MRC1100-II,17127,1338,925,449,M,UFS,2 YEARS,16000,2021.16,Clarksons Platou,Weekly_23_04_21,2015-05-23,,85
-195,BAL BRIGHT,2008.0,Gearless,KYOKUYO900,12550,907,630,120,F,PANASIA,24-26 Mnths,15500,2021.16,Clarksons Platou,Weekly_23_04_21,2015-05-23,,80
-196,SONGA IRIDIUM,2008.0,Geared,Zhejiang 2000,,2015,1568,,,UFS,3 Yrs,29000,2021.28,Maersk,Container Weekly July 10 - July 16,2015-05-23,"",85
-197,CONTSHIP ICE,2011.0,Geared,MRC 1100-II,,1345,925,,,ZIM,3 Yrs,25000,2021.28,Maersk,Container Weekly July 10 - July 16,2015-05-23,"",90
-198,CONTSHIP SUN,2007.0,Geared,Maric 900,,957,604,,,CMA CGM,24-26 Mnths,15500,2021.28,Maersk,Container Weekly July 10 - July 16,2015-05-23,"",67
-199,POSEN,2007.0,Gearless,AKERCS2700,37951,2741,2115,400,F,PASHA,12Mnths,75000,2021.28,Clarksons Platou,Weekly_16_07_21,2015-05-23,,80
-200,HANSA COLOMBO,2007.0,Gearless,AKERCS1700,24089,1706,1250,300,F,IAL,3YEARS,28000,2021.28,Clarksons Platou,Weekly_16_07_21,2015-05-23,,73
-201,DANUM 168,2001.0,Geared,JURONG1100,16696,1078,858,200,F,ASL,24Mnths,20000,2021.28,Clarksons Platou,Weekly_16_07_21,2015-05-23,,65
-202,HANSA FRESENBURG,2013.0,Gearless,WENCHONG1700,23454,1740,1289,300,F,TSL,3YEARS,28500,2021.29,Clarksons Platou,Weekly_23_07_21,2015-05-23,,84
-203,ATLANTIC MONACO,2008.0,Geared,REECON1000,12996,1022,606,314,M,CMA,12-14Mnths,32500,2021.29,Clarksons Platou,Weekly_23_07_21,2015-05-23,,67
-204,AS SICILIA,2008.0,Geared,Kouan 1800 ,,1794,1312,,,Feedertech,3 Years,30000,2021.3,Maersk,Container Weekly July 24 - July 30,2015-05-23,"",70
-205,CAPE FLORES,2005.0,Gearless,PW 1200  ,,1200,870,,,RIF,1 Year,38000,2021.3,Maersk,Container Weekly July 24 - July 30,2015-05-23,"",82
-206,MARTINIQUE,2007.0,Gearless,Hyundai2800,,2824,2030,,,Transfar,2-3Mnths,150000,2021.31,Maersk,Container Weekly July 31 - August 6,2015-05-23,"",84
-207,TS MANILA,2007.0,Gearless,Naikai2500,,2553,1896,,,BAL,40-55Days,135000,2021.31,Maersk,Container Weekly July 31 - August 6,2015-05-23,"",66
-209,ULTIMA,2013.0,Gearless,Kyokuyo1100,,1103,630,,,TSLines,3Yrs,20000,2021.31,Maersk,Container Weekly July 31 - August 6,2015-05-23,"",84
-210,PIRAEUS TRADER,2006.0,Geared,Wenchong1700,,1732,1288,,,Hapag-Lloyd,35-37Mnths,27000,2021.29,Maersk,Container Weekly July 17 - July 23,2015-05-23,"",72
-211,HANSA SALZBURG,2011.0,Geared,Wenchong1700,,1740,1295,,,BAL,30Days,100000,2021.29,Maersk,Container Weekly July 17 - July 23,2015-05-23,"",66
-212,HANSA DUBURG,2012.0,Gearless,Wenchong1700,,1740,1295,,,TSLines,3Yrs,29500,2021.29,Maersk,Container Weekly July 17 - July 23,2015-05-23,"",84
-213,ATLANTIC MERCHANT,2008.0,Geared,CV1100Plus,,1118,700,,,CMACGM,12-14Mnths,34500,2021.29,Maersk,Container Weekly July 17 - July 23,2015-05-23,"",67
-214,ATLANTIC MONACO,2008.0,Geared,'Reecon',,1022,600,,,CMACGM,12-14Mnths,32500,2021.29,Maersk,Container Weekly July 17 - July 23,2015-05-23,"",67
-216,ELBSPIRIT,2008.0,Gearless,ThyssenC3X,,3426,2410,,,CMACGM,3.5Yrs,40000,2021.35,Maersk,Container Weekly August 28 - September 3,2015-05-23,"",67
-217,SAN LORENZO,2014.0,Geared,WenchongMkII,,1705,1230,,,OOCL,3Yrs,0,2021.35,Maersk,Container Weekly August 28 - September 3,2015-05-23,charter rate not disclosed,79
-218,VARAMO,2007.0,Geared,CVNeptun1200,,1296,957,,,SeaConsortium,2Yrs,30250,2021.35,Maersk,Container Weekly August 28 - September 3,2015-05-23,"",83
-219,CONTSHIP DAY,2007.0,Gearless,Peters650,,706,413,,,Centrans,2Yrs,21000,2021.35,Maersk,Container Weekly August 28 - September 3,2015-05-23,"",67
-220,NORO,2007.0,Gearless,Hanjin 3400,,3398,2430,,,Maersk,3 Yrs,31000,2021.34,Maersk,Container Weekly August 21 - August 27,2015-05-23,"",77
-221,CALIDRIS,2012.0,Gearless,Wenchong 2800,,2758,2221,,,ONE,36-38 Mnths,35000,2021.34,Maersk,Container Weekly August 21 - August 27,2015-05-23,"",79
-222,NORTHERN VIVACITY,2005.0,Gearless,Baltic CS 2700,,2742,2070,,,CU Lines,5-6 Mnths,155000,2021.34,Maersk,Container Weekly August 21 - August 27,2015-05-23,"",67
-224,SYNERGY OAKLAND,2009.0,Gearless,Samsung 4250,,4253,2900,,,Vasi,60-90 Days,200000,2021.36,Maersk,Container Weekly September 4 - September 10,2015-05-23,"",86
-226,CAPE FLINT,2006.0,Gearless,PW 1500,,1440,1050,,,Hapag-Lloyd,30-40 Days,40000,2021.36,Maersk,Container Weekly September 4 - September 10,2015-05-23,"",72
-227,ASIATIC PRIDE,2008.0,Gearless,Dae sun 1000,,1049,671,,,ZIM,2 Yrs,29000,2021.36,Maersk,Container Weekly September 4 - September 10,2015-05-23,"",90
-230,NORTHERN GUARD,2008.0,Gearless,HYUNDAI'SUPER,53685,4268,2810,600,F,FEEDERTECH,58-60_Mnths,40000,2021.36,Clarksons Platou,Weekly_10_09_21,2015-05-23,"",70
-231,SYNERGY OAKLAND,2009.0,Gearless,SAMSUNG4300,53500,4253,2805,400,F,VASI,2-3_Mnths,200000,2021.36,Clarksons Platou,Weekly_10_09_21,2015-05-23,"",86
-240,ELBSPIRIT,2008.0,Gearless,THYSSEN3400,42650,3426,2410,500,F,CMA_CGM,42-44_Mnths,40000,2021.35,Clarksons Platou,Weekly_03_09_21,2015-05-23,"",67
-241,VARAMO,2007.0,Geared,CVNEPTUN1200,18700,1296,957,390,U,CMA_CGM,30-32_Mnths,30000,2021.35,Clarksons Platou,Weekly_03_09_21,2015-05-23,"",67
-256,ALS CERES,2010.0,Gearless,Daewoo 4400,,4380,2850,,,Bal,3-4 Mnths,200000,2021.38,Maersk,Container Weekly September 18 - September 24,2015-05-23,"",66
-257,ALS VENUS,2014.0,Gearless,Jiangsu 2500,,2546,1900,,,CU Lines,5-6 Mnths,162000,2021.38,Maersk,Container Weekly September 18 - September 24,2015-05-23,"",67
-258,PERITO MORENO,2009.0,Geared,Wenchong 1700,,1740,1295,,,CMA CGM,4 Yrs,28000,2021.38,Maersk,Container Weekly September 18 - September 24,2015-05-23,"",67
-259,AS FABRIZIA,2008.0,Geared,CV Neptun 1200,,1284,957,,,ZIM,3 Yrs,0,2021.38,Maersk,Container Weekly September 18 - September 24,2015-05-23,charter rate not disclosed,90
-264,STRALSUND,2014.0,Geared,MAXBOX,46131,3421,2509,539,M,CMA_CGM,40-44_Mnths,40000,2021.37,Clarksons Platou,Weekly_17_09_21,2015-05-23,"",67
-266,JETT,2007.0,Geared,WEIHAI1300,17004,1304,850,258,M,CMA_CGM,2 Yrs,29500,2021.37,Clarksons Platou,Weekly_17_09_21,2015-05-23,"",67
-267,AS COLUMBIA,2006.0,Gearless,AKERCS2700,37929,2741,2116,400,F,SEACON,3_YEARS,40000,2021.39,Clarksons Platou,Weekly_01_10_21,2015-05-23,"",83
-270,BF LETICIA,2003.0,Geared,S168A,11190,862,595,204,U,CMA_CGM,12_Mnths,31000,2021.39,Clarksons Platou,Weekly_01_10_21,2015-05-23,"",67
+Id,VESSEL,YEAR,GEAR,DESIGN,DWT,TEU,14_TDotHDot,RFR,DEL,CHARTERERS,PERIOD,USDFslDAY,REPORT_DATE,BROKER,FILE_NAME,DATE_UPDATED,remark
+1,S SANTIAGO,2006.0,Gearless,Hanjin 4900,,5059,3370,,,Hapag-Lloyd,45-90 Days,45000,2021.16,Maersk,Container Weekly April 17 - April 23 ,2021-07-10,""
+2,ZIM LUANDA,2009.0,Gearless,Samsung 4250,,4253,2849,,,ZIM,3 Yrs,35000,2021.16,Maersk,Container Weekly April 17 - April 23 ,2021-07-10,""
+3,BURGUNDY,2008.0,Gearless,Thyssen C3X,,3426,2410,,,CMA CGM,27-29 Mnths,0,2021.16,Maersk,Container Weekly April 17 - April 23 ,2021-07-10,charter rate not disclosed
+4,PONTRESINA,2008.0,Gearless,Jurong 2600,,2646,2010,,,ZIM,36-38 Mnths,24000,2021.16,Maersk,Container Weekly April 17 - April 23 ,2021-07-10,""
+5,FS IPANEMA,2009.0,Geared,Kouan 1800,,1794,1312,,,King Ocean,3 Yrs,17250,2021.16,Maersk,Container Weekly April 17 - April 23 ,2021-07-10,""
+6,JAN,2009.0,Geared,MRC 1100-II,,1338,925,,,UFS,2 Yrs,16000,2021.16,Maersk,Container Weekly April 17 - April 23 ,2021-07-10,""
+7,TORONTO TRADER,2016.0,Geared,SDARI 1100,,1102,705,,,ZIM,30-33 Mnths,16500,2021.16,Maersk,Container Weekly April 17 - April 23 ,2021-07-10,""
+8,NORTHERN JUVENILE,2009.0,Gearless,Daewoo 8000 ,,8814,6923,,,CMA CGM,5 Yrs,48500,2021.17,Maersk,Container Weekly April 24 - April 29,2021-07-10,""
+9,BALTIC NORTH,2011.0,Gearless,Hyundai 4400 ,,4432,2918,,,CMA CGM,3 Yrs,34500,2021.17,Maersk,Container Weekly April 24 - April 29,2021-07-10,""
+10,AS PAULINE,2006.0,Gearless,STX 2600 ,,2572,1860,,,Seaboard,30-33 Mnths,25500,2021.17,Maersk,Container Weekly April 24 - April 29,2021-07-10,""
+11,SZCZECIN TRADER,1998.0,Geared,B170 ,,1728,1125,,,UAFL,27-30 Mnths,17600,2021.17,Maersk,Container Weekly April 24 - April 29,2021-07-10,""
+12,ST. JOHN,2014.0,Geared,Wenchong 1700 Mk II ,,1705,1250,,,Sinokor,2 Yrs,23400,2021.17,Maersk,Container Weekly April 24 - April 29,2021-07-10,""
+13,CONTSHIP SEA,2007.0,Gearless,RichMax 1550 ,,1432,1095,,,COSCO,2 Yrs,15500,2021.17,Maersk,Container Weekly April 24 - April 29,2021-07-10,""
+14,CONTSHIP LEX,2006.0,Geared,CV 1100 Plus ,,1118,700,,,Sealead,2 Yrs,15500,2021.17,Maersk,Container Weekly April 24 - April 29,2021-07-10,""
+15,ASIATIC BAY,2007.0,Gearless,Orskov Mk VII ,,1155,715,,,Wan Hai Lines,2 Yrs,18500,2021.17,Maersk,Container Weekly April 24 - April 29,2021-07-10,""
+16,TALLAHASSEE,2012.0,Gearless,Kouan 1000 ,,1042,649,,,ONE,21-24 Mnths,17350,2021.17,Maersk,Container Weekly April 24 - April 29,2021-07-10,""
+17,HEUNG-A SINGAPORE,1996.0,Gearless,Hanjin 700 ,,653,530,,,Sinokor,3-4 Mnths,15500,2021.17,Maersk,Container Weekly April 24 - April 29,2021-07-10,""
+18,ALS APOLLO,2009.0,Gearless,Samsung 4250  ,,4253,2805,,,Maersk Line,35-42 Mnths,36500,2021.18,Maersk,Container Weekly April 30 - May 7,2021-07-10,""
+19,MELCHIOR SCHULTE,2015.0,Geared,SDARI 2200,,2345,1740,,,Turkon,24-26 Mnths,26850,2021.18,Maersk,Container Weekly April 30 - May 7,2021-07-10,""
+20,NORDPUMA,2015.0,Gearless,"",,1756,1390,,,CMA CGM,24 Mnths,25900,2021.18,Maersk,Container Weekly April 30 - May 7,2021-07-10,""
+21,EM HYDRA,2005.0,Geared,Wenchong 1700,,1740,1295,,,CMA CGM,23-25 Mnths,20000,2021.18,Maersk,Container Weekly April 30 - May 7,2021-07-10,""
+22,A HOUOU,2001.0,Geared,SembCorp 1078,,1078,854,,,FESCO,30-33 Mnths,19100,2021.18,Maersk,Container Weekly April 30 - May 7,2021-07-10,""
+23,NOBILITY,2012.0,Geared,Dae Sun 1000,,1012,630,,,ONE,21-24 Mnths,17350,2021.18,Maersk,Container Weekly April 30 - May 7,2021-07-10,""
+24,CSL SOPHIE,2005.0,Gearless,Hyundai 4800,,4738,3156,,,Feedertech,2 Yrs,24500,2021.06,Maersk,Container Weekly February 6 - February 12,2021-07-10,""
+25,NORDAUTUMN,2008.0,Gearless,STX 3500,,3586,2501,,,CMA CGM,3-6 Mnths,10500,2021.06,Maersk,Container Weekly February 6 - February 12,2021-07-10,""
+26,G. ACE,2007.0,Gearless,Naikai 2500,,2553,1896,,,SITC,18 Mnths,17000,2021.06,Maersk,Container Weekly February 6 - February 12,2021-07-10,""
+27,VERA,2004.0,Geared,Sietas 170,,1678,1305,,,Eimskip,12 Mnths,12500,2021.06,Maersk,Container Weekly February 6 - February 12,2021-07-10,""
+28,FOUMA,2007.0,Geared,Ouhua 1200,,1284,957,,,ZIM,2 Yrs,11500,2021.06,Maersk,Container Weekly February 6 - February 12,2021-07-10,""
+29,CONTSHIP AIR,2006.0,Geared,CV 1100 Plus,,1118,700,,,King Ocean,23-26 Mnths,10500,2021.06,Maersk,Container Weekly February 6 - February 12,2021-07-10,""
+30,LENA,2006.0,Geared,Maric 900,,957,604,,,Seaboard,12 Mnths,10700,2021.06,Maersk,Container Weekly February 6 - February 12,2021-07-10,""
+31,BUXCLIFF,2001.0,Gearless,Daewoo 6500,,6712,4995,,,OOCL,2 Yrs,32000,2021.04,Maersk,Container Weekly January 23 - January 29,2021-07-10,""
+32,BALTIC WEST,2009.0,Gearless,Hyundai 4000,,4228,2780,,,ZIM,2 Yrs,22750,2021.04,Maersk,Container Weekly January 23 - January 29,2021-07-10,""
+33,GUENTHER SCHULTE,2008.0,Gearless,Shanghai 3500,,3534,2431,,,GFS,15-17 Mnths,23000,2021.04,Maersk,Container Weekly January 23 - January 29,2021-07-10,""
+34,ANGOL,2010.0,Gearless,SDARI 2800,,2797,2125,,,ONE,12-14 Mnths,18250,2021.04,Maersk,Container Weekly January 23 - January 29,2021-07-10,""
+35,GLACIER BAY,2009.0,Geared,Xiamen 2500,,2578,1807,,,CMA CGM,12 Mnths,18000,2021.04,Maersk,Container Weekly January 23 - January 29,2021-07-10,""
+36,JSP BORA,2007.0,Geared,CV 1100 Plus,,1118,700,,,MSC,12 Mnths,9300,2021.04,Maersk,Container Weekly January 23 - January 29,2021-07-10,""
+37,SIRI BHUM,2013.0,Gearless,Dae Sun 1000,,1043,655,,,TS Lines,10-12 Mnths,11000,2021.04,Maersk,Container Weekly January 23 - January 29,2021-07-10,""
+38,ANTWERPBRIDGE,2005.0,Geared,Hyundai5000,,5043,3370,,,CMACGM,18Mnths,23300,2021.05,Maersk,Container Weekly January 30 - February 5,2021-07-10,""
+39,SEASPANMANILA,2007.0,Geared,Samsung4250,,4248,2805,,,ZIM,35-41Mnths,20000,2021.05,Maersk,Container Weekly January 30 - February 5,2021-07-10,""
+40,UNIFORTUNA,2007.0,Geared,Hyundai3450,,3450,2370,,,MaerskLine,12-14Mnths,20500,2021.05,Maersk,Container Weekly January 30 - February 5,2021-07-10,""
+41,LAILA,2008.0,Geared,Thyssen2700,,2702,2100,,,CULines,50-60Days,27500,2021.05,Maersk,Container Weekly January 30 - February 5,2021-07-10,""
+42,ARTEMIS,2008.0,Geared,Jiangsu2500,,2554,1924,,,Hapag-Lloyd,12-14Mnths,17250,2021.05,Maersk,Container Weekly January 30 - February 5,2021-07-10,""
+43,TIGER,2005.0,Geared,VW2500,,2524,1858,,,TSLines,11-13Mnths,18000,2021.05,Maersk,Container Weekly January 30 - February 5,2021-07-10,""
+44,CAPENABIL,2010.0,Geared,Wenchong1700,,1740,1295,,,SITC,13-15Mnths,13500,2021.05,Maersk,Container Weekly January 30 - February 5,2021-07-10,""
+45,MITRABHUM,2007.0,Geared,CV1100Plus,,1108,700,,,TSLines,10-12Mnths,10500,2021.05,Maersk,Container Weekly January 30 - February 5,2021-07-10,""
+46,SUEZ CANAL,2002.0,Gearless,Golden Gate Bdg,,5610,4146,,,TS Lines,24-28 Mnths,30000,2021.02,Maersk,Container Weekly January 9 - January 15,2021-07-10,""
+47,NAVIOS DORADO,2010.0,Gearless,Jiangsu 4250,,4253,2805,,,Hapag-Lloyd,23-25 Mnths,22000,2021.02,Maersk,Container Weekly January 9 - January 15,2021-07-10,""
+48,ST ISLAND,2010.0,Gearless,Naikai 2500,,2535,1896,,,Hapag-Lloyd,2-4 Mnths,26500,2021.02,Maersk,Container Weekly January 9 - January 15,2021-07-10,""
+49,ATLANTIC FLOSTA,2002.0,Geared,VW 2500,,2474,1874,,,GFS,11-13 Mnths,17000,2021.02,Maersk,Container Weekly January 9 - January 15,2021-07-10,""
+50,POLO,2002.0,Geared,B170,,1730,1120,,,Seacon,3-5 Mnths,12750,2021.02,Maersk,Container Weekly January 9 - January 15,2021-07-10,""
+51,OCEAN PROBE,1995.0,Gearless,CSBC 1100,,1471,1126,,,FSL,2 Yrs,11000,2021.02,Maersk,Container Weekly January 9 - January 15,2021-07-10,""
+52,CONTSHIP JET,2007.0,Gearless,Vigo 1300,,1267,984,,,Cosco,6-12 Mnths,11250,2021.02,Maersk,Container Weekly January 9 - January 15,2021-07-10,""
+53,VEGA AZURIT,2008.0,Geared,CV 1100 Plus,,1118,700,,,MSC,12 Mnths,9150,2021.02,Maersk,Container Weekly January 9 - January 15,2021-07-10,""
+54,CONTSHIP ZOE,2007.0,Geared,CV 1100 Plus,,1114,688,,,CMA CGM,12-16 Mnths,10250,2021.02,Maersk,Container Weekly January 9 - January 15,2021-07-10,""
+55,MTT SAPANGAR,2021.0,Geared,SDARI 1800,,1762,1377,,,CMA CGM,30 Mnths,30800,2021.27,Maersk,Container Weekly July 3 - July 9,2021-07-09,""
+56,ASIATIC KING,2005.0,Gearless,Orskov Mk VII ,,1155,717,,,ZIM,3 Yrs,19800,2021.27,Maersk,Container Weekly July 3 - July 9,2021-07-09,""
+57,NORDICA,2011.0,Gearless,SSW S1000 ,,1036,740,,,Seacon,2 Yrs,18300,2021.27,Maersk,Container Weekly July 3 - July 9,2021-07-09,""
+58,BF PERCH,2007.0,Gearless,CV 1000 ,,990,621,,,IAL,24-26 Mnths,17600,2021.27,Maersk,Container Weekly July 3 - July 9,2021-07-09,""
+59,HENG HUI 6,2004.0,Gearless,Hanjin 4900,,5060,3400,,,COSCO,28-30 Mnths,51000,2021.24,Maersk,Container Weekly June 12 - June 18,2021-07-10,""
+60,HAWK HUNTER,2009.0,Gearless,Hyundai 4000,,4255,2811,,,Maersk,5 Yrs,35000,2021.24,Maersk,Container Weekly June 12 - June 18,2021-07-10,""
+61,SEATTLE,2007.0,Gearless,Samsung 4250,,4253,2805,,,OOCL,34-36 Mnths,45000,2021.24,Maersk,Container Weekly June 12 - June 18,2021-07-10,""
+62,AS CHRISTIANA,2006.0,Geared,Baltic CS,,2742,2070,,,CMA CGM,34-38 Mnths,32000,2021.24,Maersk,Container Weekly June 12 - June 18,2021-07-10,""
+63,CONTSHIP FUN,2006.0,Geared,Maric 900,,957,604,,,CMA CGM,24-26 Mnths,16500,2021.24,Maersk,Container Weekly June 12 - June 18,2021-07-10,""
+64,MSC MARIA CLARA,2004.0,Gearless,Hanjin 4900,,5060,3400,,,BAL,80 Days,135000,2021.25,Maersk,Container Weekly June 19 - June 25,2021-07-10,""
+65,NATAL,2007.0,Gearless,Hanjin 3400,,3398,2430,,,COSCO,3 Yrs,0,2021.25,Maersk,Container Weekly June 19 - June 25,2021-07-10,charter rate not disclosed
+66,LETO,2006.0,Geared,B178 ,,3091,2481,,,CMA CGM,36-37 Mnths,34750,2021.25,Maersk,Container Weekly June 19 - June 25,2021-07-10,""
+67,HSL NIKE,2005.0,Geared,Hyundai 2500 ,,2556,1860,,,Hapag-Lloyd,3 Yrs,27500,2021.25,Maersk,Container Weekly June 19 - June 25,2021-07-10,""
+68,GERRIT BRAREN,2006.0,Geared,Aker CS 1700 ,,1706,1250,,,CMA CGM,45-60 Days,23500,2021.25,Maersk,Container Weekly June 19 - June 25,2021-07-10,""
+69,SEA OF LUCK,2000.0,Geared,Hanjin 1600 ,,1644,1200,,,GSL,30-36 Mnths,19975,2021.25,Maersk,Container Weekly June 19 - June 25,2021-07-10,""
+70,CO OSAKA,2008.0,Gearless,Samsung 4250,,4578,2805,,,BAL,2 Mnths,125000,2021.23,Maersk,Container Weekly June 5 - June 11,2021-07-10,""
+71,PONA,2007.0,Gearless,Baltic CS,,2742,2070,,,SM Lines,3 Yrs,30000,2021.23,Maersk,Container Weekly June 5 - June 11,2021-07-10,""
+72,AS PAOLA,2005.0,Geared,Baltic CS,,2478,1912,,,CMA CGM,3 Yrs,0,2021.23,Maersk,Container Weekly June 5 - June 11,2021-07-10,charter rate not disclosed
+73,SPINEL,2007.0,Geared,Zhejiang 2000,,2007,1568,,,MSC,30-36 Mnths,22000,2021.23,Maersk,Container Weekly June 5 - June 11,2021-07-10,""
+74,RUN SHENG,1999.0,Gearless,Cape C,,834,590,,,Pan Ocean,5-6 Mnths,18000,2021.23,Maersk,Container Weekly June 5 - June 11,2021-07-10,""
+75,NORTHERN JAMBOREE,2010.0,Gearless,Daewoo 8000 ,,8814,6923,,,MSC,4 Yrs,45000,2021.11,Maersk,Container Weekly March 13 - March 19,2021-07-10,""
+76,IKARIA,2002.0,Gearless,Imabari 5800 ,,5576,4028,,,Hapag-Lloyd,3 Yrs,35500,2021.11,Maersk,Container Weekly March 13 - March 19,2021-07-10,""
+77,NORTHERN GUILD,2009.0,Gearless,Hyundai 4000 ,,4294,2920,,,CMA CGM,3 Yrs,26000,2021.11,Maersk,Container Weekly March 13 - March 19,2021-07-10,""
+78,TRF PARTICI,2010.0,Gearless,Shanghai 3500 ,,3534,2357,,,ZIM,30 Mnths,0,2021.11,Maersk,Container Weekly March 13 - March 19,2021-07-10,charter rate not disclosed
+79,SONGA ANTOFAGASTA,2008.0,Gearless,Zhejiang 2800 ,,2797,2125,,,ZIM,22-26 Mnths,22000,2021.11,Maersk,Container Weekly March 13 - March 19,2021-07-10,""
+80,JAN RITSCHER,1999.0,Geared,CV 2500 ,,2524,1886,,,Feedertech,2 Yrs,20450,2021.11,Maersk,Container Weekly March 13 - March 19,2021-07-10,""
+81,G. BOX,2018.0,Geared,Wenchong 1700 Mk II ,,1714,1295,,,Jinjiang,18 Mnths,20500,2021.11,Maersk,Container Weekly March 13 - March 19,2021-07-10,""
+82,SC MEMPHIS,2005.0,Gearless,PW 1200 ,,1200,870,,,Sea Lead,12-14 Mnths,13750,2021.11,Maersk,Container Weekly March 13 - March 19,2021-07-10,""
+83,SANTA LINEA,2005.0,Gearless,Samsung 9000,,9178,6500,,,ZIM,31-33 Mnths,0,2021.2,Maersk,Container Weekly May 15 - May 21,2021-07-10,charter rate not disclosed
+84,MENDELSSOHN,2012.0,Geared,Shanghai 3600,,3635,2500,,,Maersk,3 Yrs,31000,2021.2,Maersk,Container Weekly May 15 - May 21,2021-07-10,""
+85,AS PAULINA,2004.0,Geared,Hyundai 2500,,2556,1850,,,MSC,3 Yrs,27000,2021.2,Maersk,Container Weekly May 15 - May 21,2021-07-10,""
+86,ATOUT,2010.0,Gearless,Aker CS,,1702,1240,,,COSCO,2 Yrs,23250,2021.2,Maersk,Container Weekly May 15 - May 21,2021-07-10,""
+87,ST. MARY,2001.0,Gearless,Hanjin 1600,,1679,1230,,,Pan Ocean,1 Yr,29500,2021.2,Maersk,Container Weekly May 15 - May 21,2021-07-10,""
+88,WARNOW BOATSWAIN,2012.0,Gearless,CV Neptun,,1496,1118,,,COSCO,2 Yrs,20800,2021.2,Maersk,Container Weekly May 15 - May 21,2021-07-10,""
+89,KHARIS HERITAGE,2007.0,Gearless,Hakata 1000,,1060,774,,,Sinokor,2 Yrs,17000,2021.2,Maersk,Container Weekly May 15 - May 21,2021-07-10,""
+90,CMA CGM LAPIS,2009.0,Gearless,"",,4360,2771,,,CMA CGM,5 Yrs,34000,2021.22,Maersk,Container Weekly May 29 - June 4,2021-07-10,""
+91,CAPE ARAXOS,2016.0,Geared,SDARI 2200,,2190,1574,,,CMA CGM,24-26 Mnths,30000,2021.22,Maersk,Container Weekly May 29 - June 4,2021-07-10,""
+92,AS ROMINA,2009.0,Gearless,CV Neptun 1500  Gearless,,1496,1118,,,CMA CGM,2 yrs,22000,2021.22,Maersk,Container Weekly May 29 - June 4,2021-07-10,""
+93,AS FATIMA,2008.0,Gearless,CV Neptun 1200  Gearless,,1284,957,,,COSCO Europe,25-27 Mnths,18500,2021.22,Maersk,Container Weekly May 29 - June 4,2021-07-10,""
+94,VISITOR,2004.0,Geared,Sietas 168a,,862,600,,,Xpress,22-24 Mnths,12500,2021.22,Maersk,Container Weekly May 29 - June 4,2021-07-10,""
+95,SKYLIGHT,2007.0,Gearless,CSBC  1700,,801,490,,,Containerships,15-17 Mnths,10800,2021.22,Maersk,Container Weekly May 29 - June 4,2021-07-10,""
+96,CMA CGM BERLIOZ,2001.0,Gearless,Hanjin 6500,,6627,4729,,,CMA CGM,48-52 Mnths,38000,2021.19,Maersk,Container Weekly May 8 - May 14,2021-07-10,""
+97,BACH,2009.0,Gearless,Shanghai 3500,,3534,2431,,,ZIM,3 Yrs,31250,2021.19,Maersk,Container Weekly May 8 - May 14,2021-07-10,""
+98,MAERSK NIENBURG,2010.0,Geared,Hyundai 2500,,2556,1810,,,Hapag-Lloyd,3 Yrs,24500,2021.19,Maersk,Container Weekly May 8 - May 14,2021-07-10,""
+99,SAN PORTLAND,2007.0,Geared,Hyundai 1800,,1819,1280,,,Chiquita,24 Mnths,19500,2021.19,Maersk,Container Weekly May 8 - May 14,2021-07-10,""
+100,RIJNBORG,2007.0,Gearless,IHC 1700,,1712,1050,,,COSCO,3-4 Mnths,21000,2021.19,Maersk,Container Weekly May 8 - May 14,2021-07-10,""
+101,CONTSHIP PRO,2003.0,Geared,CV 1100,,1102,650,,,CMA CGM,24-26 Mnths,15500,2021.19,Maersk,Container Weekly May 8 - May 14,2021-07-10,""
+102,HEINRICH SCHEPERS,2012.0,Gearless,SSW S1000,,1036,740,,,Unifeeder,24 Mnths,0,2021.19,Maersk,Container Weekly May 8 - May 14,2021-07-10,charter rate not disclosed
+103,BARBARA,2010.0,Gearless,VENUS5300,65751,5470,3360,1200,F,SEACON,6-9 Mnths,16000,2020.4,Clarksons Platou,ShipBroking Report - Weekly_02_10_20,2021-07-10,
+104,CSL SOPHIE,2005.0,Gearless,KL4800,64990,4738,3272,400,I,FEEDERTECH,75-90 DAYS,17500,2020.4,Clarksons Platou,ShipBroking Report - Weekly_02_10_20,2021-07-10,
+105,NORTHERN GUARD,2008.0,Gearless,HYUNDAI'SUPE,53685,4268,2810,600,F,ZIM,10-12 Mnths,17500,2020.4,Clarksons Platou,ShipBroking Report - Weekly_02_10_20,2021-07-10,
+106,KOTA LUKIS,2010.0,Gearless,CS4250,50689,4253,2805,400,F,CMA-CGM,2-3 Mnths,16500,2020.4,Clarksons Platou,ShipBroking Report - Weekly_02_10_20,2021-07-10,
+107,ANTWERP TRADER,2005.0,Geared,SSW'SUPER25',34444,2490,1868,566,M,ARKAS,3-5 Mnths,9100,2020.4,Clarksons Platou,ShipBroking Report - Weekly_02_10_20,2021-07-10,
+108,SKY WIND,2019.0,Gearless,HYUNDAI1800,22507,1809,1240,210,F,HEUNG-A,5-8 Mnths,11250,2020.4,Clarksons Platou,ShipBroking Report - Weekly_02_10_20,2021-07-10,
+109,AS SICILIA,2008.0,Geared,KOUAN1800,25885,1794,1350,319,I,MILAHA,15-30 DAYS,9500,2020.4,Clarksons Platou,ShipBroking Report - Weekly_02_10_20,2021-07-10,
+110,INSPIRE,2016.0,Gearless,DAESUN1800,21797,1785,1210,287,F,SINOKOR,5-8 Mnths,11250,2020.4,Clarksons Platou,ShipBroking Report - Weekly_02_10_20,2021-07-10,
+111,HANSA RENDSBURG,2000.0,Gearless,WENCHONG1700,23992,1740,1295,300,F,YML,2-5 Mnths,8900,2020.4,Clarksons Platou,ShipBroking Report - Weekly_02_10_20,2021-07-10,
+112,GREEN HOPE,2014.0,Gearless,WENCHONG1700,21957,1705,1295,362,F,EMC,6-10 Mnths,10750,2020.4,Clarksons Platou,ShipBroking Report - Weekly_02_10_20,2021-07-10,
+113,LANTAU ACE,2001.0,Gearless,HAN1200,15315,1216,840,200,M,ZIM,4-7 Mnths,6450,2020.4,Clarksons Platou,ShipBroking Report - Weekly_02_10_20,2021-07-10,
+114,ASTRID L,2006.0,Gearless,CV1100,13760,1100,717,220,M,ZIM,9-13 Mnths,6400,2020.4,Clarksons Platou,ShipBroking Report - Weekly_02_10_20,2021-07-10,
+115,AS LAGUNA,2008.0,Geared,ZHEJIANG950,11500,957,604,252,U,SEABOARD,4-6 Mnths,6500,2020.4,Clarksons Platou,ShipBroking Report - Weekly_02_10_20,2021-07-10,
+116,TR ARAMIS,2017.0,Gearless,YZJ2700,36923,2782,2300,600,F,CMACGM,18-20 Mnths,21500,2021.05,Clarksons Platou,ShipBroking Report - Weekly_05_02_21,2021-07-10,
+117,NORTHERN VIGOUR,2005.0,Gearless,AKERCS2700,37800,2750,2140,400,F,CMACGM,24 Mnths,19700,2021.05,Clarksons Platou,ShipBroking Report - Weekly_05_02_21,2021-07-10,
+118,BRIDGE,1998.0,Gearless,HYUNDAI2100,24766,2200,1504,150,F,SAMUDERA,12 Mnths,15000,2021.05,Clarksons Platou,ShipBroking Report - Weekly_05_02_21,2021-07-10,
+119,FILIA T,2019.0,Gearless,YZJ1800,23239,1774,1380,492,F,RONGSHENG,6-7 Mnths,21500,2021.05,Clarksons Platou,ShipBroking Report - Weekly_05_02_21,2021-07-10,
+120,VEGA FYNEN,2006.0,Geared,CV1100,13760,1118,710,220,U,CMACGM,2-3 Mnths,10000,2021.05,Clarksons Platou,ShipBroking Report - Weekly_05_02_21,2021-07-10,
+121,PADIAN 2,2006.0,Gearless,HAKATA1000,15247,1060,770,104,F,CULINES,6-8 Mnths,9750,2021.05,Clarksons Platou,ShipBroking Report - Weekly_05_02_21,2021-07-10,
+122,MONTPELLIER,2006.0,Gearless,HYUNDAI2800,39200,2824,2030,586,I,SEACON,2 YEARS,22000,2021.09,Clarksons Platou,ShipBroking Report - Weekly_05_03_21,2021-07-10,
+123,SOL PROMISE,2008.0,Gearless,AKERCS1700,23965,1702,1240,300,F,YML,12 Mnths,15500,2021.09,Clarksons Platou,ShipBroking Report - Weekly_05_03_21,2021-07-10,
+124,EPONYMA,2017.0,Gearless,KYOKUYO1100,12000,1096,650,150,F,SINOKOR,4-6 Mnths,12500,2021.09,Clarksons Platou,ShipBroking Report - Weekly_05_03_21,2021-07-10,
+125,PERSEUS,2008.0,Gearless,GIJON,12110,925,639,200,M,SEACON,10-11 Mnths,9450,2021.09,Clarksons Platou,ShipBroking Report - Weekly_05_03_21,2021-07-10,
+126,BURGUNDY,2008.0,Gearless,THYSSEN3400,42650,3426,2410,500,M,CMACGM,6-8 Mnths,16350,2020.45,Clarksons Platou,ShipBroking Report - Weekly_06_11_20,2021-07-10,
+127,ROBIN 4,2007.0,Geared,ZHEJIANG2500,35538,2872,2116,746,C,HAPAG-LLOYD,24 Mnths,12250,2020.45,Clarksons Platou,ShipBroking Report - Weekly_06_11_20,2021-07-10,
+128,HANSA AUGSBURG,2008.0,Geared,WENCHONG1700,23400,1740,1300,300,F,TSL,10-12 Mnths,11250,2020.45,Clarksons Platou,ShipBroking Report - Weekly_06_11_20,2021-07-10,
+129,A KIBO,2008.0,Gearless,IMABARI1700,21292,1708,1243,202,F,EMC,10-12 Mnths,11500,2020.45,Clarksons Platou,ShipBroking Report - Weekly_06_11_20,2021-07-10,
+130,AS RAGNA,2009.0,Gearless,CVNEPTUN1500,21200,1500,1118,368,M,ZIM,11-14 Mnths,8800,2020.45,Clarksons Platou,ShipBroking Report - Weekly_06_11_20,2021-07-10,
+131,IBERIAN EXPRESS,2008.0,Geared,CV1100,13760,1118,710,220,I,STO,6-8 Mnths,7700,2020.45,Clarksons Platou,ShipBroking Report - Weekly_06_11_20,2021-07-10,
+132,CONTI CORDOBA,2008.0,Gearless,DAEWOO4500L,63428,4872,3160,560,F,MSC,27-29 Mnths,21000,2021.01,Clarksons Platou,ShipBroking Report - Weekly_08_01_21,2021-07-10,
+133,MELLUM,2010.0,Geared,DALIAN1800,25985,1808,1325,250,F,EMC,12 Mnths,12500,2021.01,Clarksons Platou,ShipBroking Report - Weekly_08_01_21,2021-07-10,
+134,ODYSSEUS,2006.0,Gearless,HYUNDAI2800,39421,2826,2030,586,M,HAPAG,2 YEARS,17000,2021.06,Clarksons Platou,ShipBroking Report - Weekly_12_02_21,2021-07-10,
+135,AS SERAFINA,2010.0,Geared,CSBC1700,22314,1713,1259,377,F,JINJIANG,12 Mnths,14100,2021.06,Clarksons Platou,ShipBroking Report - Weekly_12_02_21,2021-07-10,
+136,ATLANTIC WEST,2008.0,Geared,MRC1100-II,17350,1338,918,392,F,CMACGM,9-12 Mnths,10750,2021.06,Clarksons Platou,ShipBroking Report - Weekly_12_02_21,2021-07-10,
+137,WARNOW DOLPHIN,2007.0,Geared,CVNEPTUN1200,18700,1296,957,390,U,SEABOARD,2 YEARS,10500,2021.06,Clarksons Platou,ShipBroking Report - Weekly_12_02_21,2021-07-10,
+138,PACITA,2004.0,Gearless,PEENE1100L,16439,1200,870,150,F,CMA,12-14 Mnths,11900,2021.06,Clarksons Platou,ShipBroking Report - Weekly_12_02_21,2021-07-10,
+139,CONTSHIP UNO,2007.0,Gearless,CV1100,13834,1118,700,220,F,FSL,11-12 Mnths,11500,2021.06,Clarksons Platou,ShipBroking Report - Weekly_12_02_21,2021-07-10,
+140,MERATUS TOMINI,2007.0,Gearless,THYSSEN2500,37900,2702,2100,500,F,SITC,11-13 Mnths,18250,2021.02,Clarksons Platou,ShipBroking Report - Weekly_15_01_21,2021-07-10,
+141,ST ISLAND,2010.0,Gearless,NAIKAI2500,33100,2535,1897,500,F,HAPAG,2-4 Mnths,26500,2021.02,Clarksons Platou,ShipBroking Report - Weekly_15_01_21,2021-07-10,
+142,KENT TRADER,2001.0,Geared,THYSSEN2500,34026,2452,1886,400,F,SINOKOR,5-8 Mnths,9750,2021.02,Clarksons Platou,ShipBroking Report - Weekly_15_01_21,2021-07-10,
+143,THORSKY,1999.0,Geared,FW2100,30135,2169,1668,420,F,BTL,12 Mnths,16000,2021.02,Clarksons Platou,ShipBroking Report - Weekly_15_01_21,2021-07-10,
+144,NORDOCELOT,2014.0,Gearless,TOPAZ1700,23673,1756,1390,350,F,CMACGM,6-8 Mnths,17250,2021.02,Clarksons Platou,ShipBroking Report - Weekly_15_01_21,2021-07-10,
+145,CONTSHIP JET,2007.0,Gearless,HIJOSDEBARRE,18091,1267,957,170,M,COSCO,6-12 Mnths,11250,2021.02,Clarksons Platou,ShipBroking Report - Weekly_15_01_21,2021-07-10,
+146,VEGA KAPPA,2007.0,Geared,CV1100,13760,1118,700,220,F,TSL,10-12 Mnths,9000,2021.02,Clarksons Platou,ShipBroking Report - Weekly_15_01_21,2021-07-10,
+147,CONTSHIP ZEN,2014.0,Geared,SAINTY1000WB,13555,1072,750,250,U,CMACGM,12-16 Mnths,10250,2021.02,Clarksons Platou,ShipBroking Report - Weekly_15_01_21,2021-07-10,
+148,JACK LONDON,2010.0,Gearless,YZJ4250,50300,4250,2790,698,F,CMACGM,4 YEARS,25950,2021.15,Clarksons Platou,ShipBroking Report - Weekly_16_04_21,2021-07-10,
+149,JONATHAN SWIFT,2010.0,Gearless,YZJ4250,50201,4250,2790,698,F,CMACGM,4 YEARS,25950,2021.15,Clarksons Platou,ShipBroking Report - Weekly_16_04_21,2021-07-10,
+150,BUSAN TRADER,2009.0,Geared,STX2600-II,34578,2664,1860,400,F,CMACGM,5-7 Mnths,10500,2021.15,Clarksons Platou,ShipBroking Report - Weekly_16_04_21,2021-07-10,
+151,OPS HAMBURG,2007.0,Geared,CV1100,13760,1118,710,220,M,CMACGM,4-6 Mnths,7000,2021.15,Clarksons Platou,ShipBroking Report - Weekly_16_04_21,2021-07-10,
+152,TR PORTHOS,2017.0,Gearless,YZJ2700,36923,2782,2300,600,F,CMACGM,20-22 Mnths,21900,2021.07,Clarksons Platou,ShipBroking Report - Weekly_19_02_21,2021-07-10,
+153,BARDU,2014.0,Geared,MARIC2500TEU,34086,2546,1868,536,F,WESTWOOD,21-24 Mnths,19250,2021.07,Clarksons Platou,ShipBroking Report - Weekly_19_02_21,2021-07-10,
+154,ANTWERP TRADER,2005.0,Geared,SSW'SUPER25',34444,2490,1868,566,M,ARKAS,12 Mnths,20000,2021.07,Clarksons Platou,ShipBroking Report - Weekly_19_02_21,2021-07-10,
+155,SAN ALESSIO,2008.0,Geared,HYUNDAI1800,28143,1841,1293,462,M,CMACGM,24-26 Mnths,16900,2021.07,Clarksons Platou,ShipBroking Report - Weekly_19_02_21,2021-07-10,
+156,CALISTO,2005.0,Gearless,YANGZIJIANG1,19500,1578,1035,230,C,UNIFEEDER,12 Mnths,11600,2021.07,Clarksons Platou,ShipBroking Report - Weekly_19_02_21,2021-07-10,
+157,KRETA S,1998.0,Geared,ORSKOVMARKXI,12258,1136,703,207,M,CMACGM,12 Mnths,9850,2021.07,Clarksons Platou,ShipBroking Report - Weekly_19_02_21,2021-07-10,
+158,MITO STRAIT,2006.0,Gearless,CV1100,13760,1118,730,220,M,UNIFEEDER,8-10 Mnths,8300,2021.07,Clarksons Platou,ShipBroking Report - Weekly_19_02_21,2021-07-10,
+159,CONTSHIP OAK,2007.0,Geared,CV1100,13760,1100,710,220,S,NILEDUTCH,11-13 Mnths,10500,2021.07,Clarksons Platou,ShipBroking Report - Weekly_19_02_21,2021-07-10,
+160,A KOU,2007.0,Gearless,DAESUN1000,12788,1049,680,180,F,TSL,6 Mnths,12000,2021.07,Clarksons Platou,ShipBroking Report - Weekly_19_02_21,2021-07-10,
+161,IKARIA,2002.0,Gearless,IMABARI'MILL,67164,5908,4371,500,F,HAPAG,35-37 Mnths,35750,2021.11,Clarksons Platou,ShipBroking Report - Weekly_19_03_21,2021-07-10,
+162,EM KEA,2007.0,Gearless,B178,41850,3091,2400,500,C,CMACGM,25-27 Mnths,22000,2021.11,Clarksons Platou,ShipBroking Report - Weekly_19_03_21,2021-07-10,
+163,SATIE,2006.0,Gearless,HYUNDAI2800,39960,2824,2030,586,M,HAPAG,32-35 Mnths,20250,2021.11,Clarksons Platou,ShipBroking Report - Weekly_19_03_21,2021-07-10,
+164,JAN RITSCHER,1999.0,Geared,VWS2500,33100,2526,1870,394,I,FEEDERTECH,2 YEARS,20450,2021.11,Clarksons Platou,ShipBroking Report - Weekly_19_03_21,2021-07-10,
+165,G. BOX,2018.0,Geared,WENCHONG1700,21000,1707,1230,362,F,JINJIANG,18-20 Mnths,20500,2021.11,Clarksons Platou,ShipBroking Report - Weekly_19_03_21,2021-07-10,
+166,CONMAR MOON,2008.0,Gearless,ZHEJIANG650-,8524,704,398,116,F,CKLINE,12 Mnths,8200,2021.11,Clarksons Platou,ShipBroking Report - Weekly_19_03_21,2021-07-10,
+167,AS PAULINA,2004.0,Geared,HYUNDAI2500,34605,2556,1850,600,C,MSC,3 YEARS,26750,2021.2,Clarksons Platou,ShipBroking Report - Weekly_21_05_21,2021-07-10,
+168,ST. MARY,2001.0,Gearless,HANJIN1600,21579,1679,1230,194,F,PANOCEAN,12-18 Mnths,29750,2021.2,Clarksons Platou,ShipBroking Report - Weekly_21_05_21,2021-07-10,
+169,ELBMASTER,2009.0,Gearless,ZHEJIANG650-MKII,8524,704,398,118,F,NAMSUNG,10-12 Mnths,11500,2021.2,Clarksons Platou,ShipBroking Report - Weekly_21_05_21,2021-07-10,
+170,POHORJE,2006.0,Gearless,CSBC4000,52683,4043,2881,700,M,MSC,2 YEARS,22500,2021.03,Clarksons Platou,ShipBroking Report - Weekly_22_01_21,2021-07-10,
+171,SAN ALFONSO,2007.0,Geared,HYUNDAI1800,28220,1841,1293,462,I,TRANSWORLD,8-10 Mnths,13500,2021.03,Clarksons Platou,ShipBroking Report - Weekly_22_01_21,2021-07-10,
+172,BINDI IPSA,2013.0,Gearless,WENCHONG1700,23425,1815,1275,300,F,EMC,6-8 Mnths,13400,2021.03,Clarksons Platou,ShipBroking Report - Weekly_22_01_21,2021-07-10,
+173,AS SVENJA,2010.0,Geared,CSBC1700,22314,1713,1259,377,M,CMACGM,8-10 Mnths,13000,2021.03,Clarksons Platou,ShipBroking Report - Weekly_22_01_21,2021-07-10,
+174,CONTSHIP MED,2004.0,Geared,CV1100,13760,1118,700,220,S,MSC,12-13 Mnths,9000,2021.03,Clarksons Platou,ShipBroking Report - Weekly_22_01_21,2021-07-10,
+175,JSP BORA,2007.0,Geared,CV1100,13760,1118,710,220,M,MSC,12 Mnths,9300,2021.03,Clarksons Platou,ShipBroking Report - Weekly_22_01_21,2021-07-10,
+176,CONTSHIP TEN,2007.0,Geared,CV1100,13745,1114,688,220,F,MSC,11-12 Mnths,10000,2021.03,Clarksons Platou,ShipBroking Report - Weekly_22_01_21,2021-07-10,
+177,VEGA VELA,2005.0,Gearless,CV1100,13760,1080,700,220,M,SEACON,5-7 Mnths,9250,2021.03,Clarksons Platou,ShipBroking Report - Weekly_22_01_21,2021-07-10,
+178,CONTSHIP IVY,2007.0,Gearless,GIJON,12612,925,639,200,M,MSC,12-13 Mnths,8500,2021.03,Clarksons Platou,ShipBroking Report - Weekly_22_01_21,2021-07-10,
+179,ARGOLIKOS,2008.0,Gearless,HHIC-TMS4300,51400,4308,2760,326,W,HAPAG-LLOYD,36-40 Mnths,29600,2021.12,Clarksons Platou,ShipBroking Report - Weekly_26_03_21,2021-07-10,
+180,ERATO,2011.0,Geared,JIANGSU2500,34162,2546,1882,536,U,SEABOARD,24 Mnths,22500,2021.12,Clarksons Platou,ShipBroking Report - Weekly_26_03_21,2021-07-10,
+181,THORSWIND,1999.0,Geared,FW2100,29700,2169,1661,420,F,BTL,2 YEARS,20000,2021.12,Clarksons Platou,ShipBroking Report - Weekly_26_03_21,2021-07-10,
+182,TIGER SAGAR,2003.0,Gearless,VOLHARDING75,10600,1019,722,120,F,MSC,29-32 Mnths,9500,2021.12,Clarksons Platou,ShipBroking Report - Weekly_26_03_21,2021-07-10,
+183,HEUNG-A JAKARTA,1997.0,Gearless,HANJIN700,10301,653,530,90,F,PANOCEAN,6-7 Mnths,11000,2021.12,Clarksons Platou,ShipBroking Report - Weekly_26_03_21,2021-07-10,
+184,ELLA,2003.0,Gearless,NAIKAI2500,33216,2495,1896,300,F,WHL,24-26 Mnths,23950,2021.14,Clarksons Platou,Weekly_09_04_21,2021-07-12,
+185,CERINTHUS,2013.0,Geared,1700TEU,23523,1732,1275,345,P,HAPAG,21-23 Mnths,17750,2021.14,Clarksons Platou,Weekly_09_04_21,2021-07-12,
+186,BOX ENDEAVOUR,2015.0,Gearless,WENCHONG1700,21733,1708,1230,362,F,WHL,21-24 Mnths,21650,2021.14,Clarksons Platou,Weekly_09_04_21,2021-07-12,
+187,CAPE FRANKLIN,2007.0,Gearless,PEENE1400,20322,1440,1065,174,F,WHL,18-20 Mnths,17500,2021.14,Clarksons Platou,Weekly_09_04_21,2021-07-12,
+188,ANNALISA P,2008.0,Gearless,CVNEPTUN1200,18700,1296,957,390,M,YML,25-26 Mnths,13750,2021.14,Clarksons Platou,Weekly_09_04_21,2021-07-12,
+189,BATAM TRADER,2002.0,Geared,JURONGTYPE,16794,1078,858,200,I,GFS,16-18 Mnths,16500,2021.14,Clarksons Platou,Weekly_09_04_21,2021-07-12,
+190,WIELAND,2014.0,Gearless,YZJ5000,62090,4957,3739,600,F,CMA, 36-40,40650,2021.16,Clarksons Platou,Weekly_23_04_21,2021-07-12,
+191,NORDMARSH,2018.0,Geared,SDARI2500,35066,2506,2000,750,F,CMA, 36-39,23850,2021.16,Clarksons Platou,Weekly_23_04_21,2021-07-12,
+192,OREA,2015.0,Geared,SDARI2100,25044,2190,1570,490,F,OOCL,24-26 Mnths,26000,2021.16,Clarksons Platou,Weekly_23_04_21,2021-07-12,
+193,FS IPANEMA,2009.0,Geared,KOUAN1800,25860,1794,1350,319,U,KING,* 3,17250,2021.16,Clarksons Platou,Weekly_23_04_21,2021-07-12,
+194,JAN,2009.0,Geared,MRC1100-II,17127,1338,925,449,M,UFS,2 YEARS,16000,2021.16,Clarksons Platou,Weekly_23_04_21,2021-07-12,
+195,BAL BRIGHT,2008.0,Gearless,KYOKUYO900,12550,907,630,120,F,PANASIA,24-26 Mnths,15500,2021.16,Clarksons Platou,Weekly_23_04_21,2021-07-12,
+196,SONGA IRIDIUM,2008.0,Geared,Zhejiang 2000,,2015,1568,,,UFS,3 Yrs,29000,2021.28,Maersk,Container Weekly July 10 - July 16,2021-07-27,""
+197,CONTSHIP ICE,2011.0,Geared,MRC 1100-II,,1345,925,,,ZIM,3 Yrs,25000,2021.28,Maersk,Container Weekly July 10 - July 16,2021-07-27,""
+198,CONTSHIP SUN,2007.0,Geared,Maric 900,,957,604,,,CMA CGM,24-26 Mnths,15500,2021.28,Maersk,Container Weekly July 10 - July 16,2021-07-27,""
+199,POSEN,2007.0,Gearless,AKERCS2700,37951,2741,2115,400,F,PASHA,12Mnths,75000,2021.28,Clarksons Platou,Weekly_16_07_21,2021-07-27,
+200,HANSA COLOMBO,2007.0,Gearless,AKERCS1700,24089,1706,1250,300,F,IAL,3YEARS,28000,2021.28,Clarksons Platou,Weekly_16_07_21,2021-07-27,
+201,DANUM 168,2001.0,Geared,JURONG1100,16696,1078,858,200,F,ASL,24Mnths,20000,2021.28,Clarksons Platou,Weekly_16_07_21,2021-07-27,
+202,HANSA FRESENBURG,2013.0,Gearless,WENCHONG1700,23454,1740,1289,300,F,TSL,3YEARS,28500,2021.29,Clarksons Platou,Weekly_23_07_21,2021-07-27,
+203,ATLANTIC MONACO,2008.0,Geared,REECON1000,12996,1022,606,314,M,CMA,12-14Mnths,32500,2021.29,Clarksons Platou,Weekly_23_07_21,2021-07-27,
+204,AS SICILIA,2008.0,Geared,Kouan 1800 ,,1794,1312,,,Feedertech,3 Years,30000,2021.3,Maersk,Container Weekly July 24 - July 30,2021-08-02,""
+205,CAPE FLORES,2005.0,Gearless,PW 1200  ,,1200,870,,,RIF,1 Year,38000,2021.3,Maersk,Container Weekly July 24 - July 30,2021-08-02,""
+206,MARTINIQUE,2007.0,Gearless,Hyundai2800,,2824,2030,,,Transfar,2-3Mnths,150000,2021.31,Maersk,Container Weekly July 31 - August 6,2021-08-08,""
+207,TS MANILA,2007.0,Gearless,Naikai2500,,2553,1896,,,BAL,40-55Days,135000,2021.31,Maersk,Container Weekly July 31 - August 6,2021-08-08,""
+208,HANSA FLENSBURG,2000.0,Gearless,Wenchong1700,,1740,1295,,,YangMing,3Yrs,30500,2021.31,Maersk,Container Weekly July 31 - August 6,2021-08-08,""
+209,ULTIMA,2013.0,Gearless,Kyokuyo1100,,1103,630,,,TSLines,3Yrs,20000,2021.31,Maersk,Container Weekly July 31 - August 6,2021-08-08,""
+210,PIRAEUS TRADER,2006.0,Geared,Wenchong1700,,1732,1288,,,Hapag-Lloyd,35-37Mnths,27000,2021.29,Maersk,Container Weekly July 17 - July 23,2021-09-08,""
+211,HANSA SALZBURG,2011.0,Geared,Wenchong1700,,1740,1295,,,BAL,30Days,100000,2021.29,Maersk,Container Weekly July 17 - July 23,2021-09-08,""
+212,HANSA DUBURG,2012.0,Gearless,Wenchong1700,,1740,1295,,,TSLines,3Yrs,29500,2021.29,Maersk,Container Weekly July 17 - July 23,2021-09-08,""
+213,ATLANTIC MERCHANT,2008.0,Geared,CV1100Plus,,1118,700,,,CMACGM,12-14Mnths,34500,2021.29,Maersk,Container Weekly July 17 - July 23,2021-09-08,""
+214,ATLANTIC MONACO,2008.0,Geared,'Reecon',,1022,600,,,CMACGM,12-14Mnths,32500,2021.29,Maersk,Container Weekly July 17 - July 23,2021-09-08,""
+216,ELBSPIRIT,2008.0,Gearless,ThyssenC3X,,3426,2410,,,CMACGM,3.5Yrs,40000,2021.35,Maersk,Container Weekly August 28 - September 3,2021-09-08,""
+217,SAN LORENZO,2014.0,Geared,WenchongMkII,,1705,1230,,,OOCL,3Yrs,0,2021.35,Maersk,Container Weekly August 28 - September 3,2021-09-08,charter rate not disclosed
+218,VARAMO,2007.0,Geared,CVNeptun1200,,1296,957,,,SeaConsortium,2Yrs,30250,2021.35,Maersk,Container Weekly August 28 - September 3,2021-09-08,""
+219,CONTSHIP DAY,2007.0,Gearless,Peters650,,706,413,,,Centrans,2Yrs,21000,2021.35,Maersk,Container Weekly August 28 - September 3,2021-09-08,""
+220,NORO,2007.0,Gearless,Hanjin 3400,,3398,2430,,,Maersk,3 Yrs,31000,2021.34,Maersk,Container Weekly August 21 - August 27,2021-09-09,""
+221,CALIDRIS,2012.0,Gearless,Wenchong 2800,,2758,2221,,,ONE,36-38 Mnths,35000,2021.34,Maersk,Container Weekly August 21 - August 27,2021-09-09,""
+222,NORTHERN VIVACITY,2005.0,Gearless,Baltic CS 2700,,2742,2070,,,CU Lines,5-6 Mnths,155000,2021.34,Maersk,Container Weekly August 21 - August 27,2021-09-09,""
+223,BUXHANSA,1998.0,Geared,Daewoo 2400,,2456,1860,,,Ellermann,34-36 Mnths,35500,2021.34,Maersk,Container Weekly August 21 - August 27,2021-09-09,""
+224,SYNERGY OAKLAND,2009.0,Gearless,Samsung 4250,,4253,2900,,,Vasi,60-90 Days,200000,2021.36,Maersk,Container Weekly September 4 - September 10,2021-09-19,""
+225,JOSCO REAL,2018.0,Gearless,SDARI 1900,,1938,1285,,,Caesar Logistics,6 Mnths,120000,2021.36,Maersk,Container Weekly September 4 - September 10,2021-09-19,""
+226,CAPE FLINT,2006.0,Gearless,PW 1500,,1440,1050,,,Hapag-Lloyd,30-40 Days,40000,2021.36,Maersk,Container Weekly September 4 - September 10,2021-09-19,""
+227,ASIATIC PRIDE,2008.0,Gearless,Dae sun 1000,,1049,671,,,ZIM,2 Yrs,29000,2021.36,Maersk,Container Weekly September 4 - September 10,2021-09-19,""
+228,,,,,,,,,,,,,2021.33,Clarksons Platou,Weekly_20_08_21 (1),2021-09-19,NO REPORTABLE FIXTURES THIS WEEK
+230,NORTHERN GUARD,2008.0,Gearless,HYUNDAI'SUPER,53685,4268,2810,600,F,FEEDERTECH,58-60_Mnths,40000,2021.36,Clarksons Platou,Weekly_10_09_21,2021-09-19,""
+231,SYNERGY OAKLAND,2009.0,Gearless,SAMSUNG4300,53500,4253,2805,400,F,VASI,2-3_Mnths,200000,2021.36,Clarksons Platou,Weekly_10_09_21,2021-09-19,""
+235,,,,,,,,,,,,,2021.32,Clarksons Platou,Weekly_13_08_21,2021-09-19,NO REPORTABLE FIXTURES THIS WEEK
+240,ELBSPIRIT,2008.0,Gearless,THYSSEN3400,42650,3426,2410,500,F,CMA_CGM,42-44_Mnths,40000,2021.35,Clarksons Platou,Weekly_03_09_21,2021-09-19,""
+241,VARAMO,2007.0,Geared,CVNEPTUN1200,18700,1296,957,390,U,CMA_CGM,30-32_Mnths,30000,2021.35,Clarksons Platou,Weekly_03_09_21,2021-09-19,""
+256,ALS CERES,2010.0,Gearless,Daewoo 4400,,4380,2850,,,Bal,3-4 Mnths,200000,2021.38,Maersk,Container Weekly September 18 - September 24,2021-09-26,""
+257,ALS VENUS,2014.0,Gearless,Jiangsu 2500,,2546,1900,,,CU Lines,5-6 Mnths,162000,2021.38,Maersk,Container Weekly September 18 - September 24,2021-09-26,""
+258,PERITO MORENO,2009.0,Geared,Wenchong 1700,,1740,1295,,,CMA CGM,4 Yrs,28000,2021.38,Maersk,Container Weekly September 18 - September 24,2021-09-26,""
+259,AS FABRIZIA,2008.0,Geared,CV Neptun 1200,,1284,957,,,ZIM,3 Yrs,0,2021.38,Maersk,Container Weekly September 18 - September 24,2021-09-26,charter rate not disclosed
+264,STRALSUND,2014.0,Geared,MAXBOX,46131,3421,2509,539,M,CMA_CGM,40-44_Mnths,40000,2021.37,Clarksons Platou,Weekly_17_09_21,2021-09-26,""
+265,HENG HUI 2,1993.0,Gearless,HDW3000,44510,3066,2415,198,F,MSC,9-10_Mnths,54000,2021.37,Clarksons Platou,Weekly_17_09_21,2021-09-26,""
+266,JETT,2007.0,Geared,WEIHAI1300,17004,1304,850,258,M,CMA_CGM,2 Yrs,29500,2021.37,Clarksons Platou,Weekly_17_09_21,2021-09-26,""
+267,AS COLUMBIA,2006.0,Gearless,AKERCS2700,37929,2741,2116,400,F,SEACON,3_YEARS,40000,2021.39,Clarksons Platou,Weekly_01_10_21,2021-10-04,""
+268,INCEDA,2019.0,Gearless,COSCO1800,23239,1750,1380,400,F,HMM,3_YEARS,35000,2021.39,Clarksons Platou,Weekly_01_10_21,2021-10-04,""
+269,MOHAWK,1998.0,Geared,C-BOXTYPE,20567,1302,923,63,M,CMA_CGM,12-15_Mnths,28000,2021.39,Clarksons Platou,Weekly_01_10_21,2021-10-04,""
+270,BF LETICIA,2003.0,Geared,S168A,11190,862,595,204,U,CMA_CGM,12_Mnths,31000,2021.39,Clarksons Platou,Weekly_01_10_21,2021-10-04,""

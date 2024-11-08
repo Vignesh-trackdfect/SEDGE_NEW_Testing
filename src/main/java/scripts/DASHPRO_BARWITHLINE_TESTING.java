@@ -2185,7 +2185,33 @@ public class DASHPRO_BARWITHLINE_TESTING extends Keywords{
        }
 		 //*********** ChartStyle validation end ************
         
-        
+        setTestCaseID("");
+      	 click(driver,ChartTitleInput);
+  		 clear(driver,ChartTitleInput);
+		 verifyElementDisplayed(driver, SaveBtn_Chart);
+		 verifyElementDisplayed(driver, cancel_chart);
+		 click(driver,SaveBtn_Chart);
+		 if(isDisplayed(driver,chartSaveError1)) {
+			 pass(driver,"'Enter Widget Name' error displayed when save the chart without given chart title name");
+		 }else {
+			 fail(driver,"'Enter Widget Name' error not displayed when save the chart without given chart title name");
+		 }
+		 elementnotvisible(driver, chartSaveError1);
+		 sendKeys(driver,ChartTitleInput,ChangeChartTitleName);
+		 click(driver,SaveBtn_Chart);
+		 elementnotvisible1(driver, RPE_Loading);
+		 if(!isDisplayed2(driver,chartSaveError1) && isDisplayed(driver,SavedChartTitleInput)) {
+			 pass(driver,"Chart Saved Successfully");
+		 }else {
+			 fail(driver,"Chart not Saved Successfully");
+		 }	
+	      
+		 String AfterSaveChartTitleName=getText1(driver, SavedChartTitleName);
+		 if(AfterSaveChartTitleName.equals(ChangeChartTitleName)) {
+			 pass(driver,"Same Chart Title name displayed after saved the chart ");
+		 }else {
+			 fail(driver,"Different Chart Title name displayed after saved the chart ");
+		 }
 	      
 	      
         

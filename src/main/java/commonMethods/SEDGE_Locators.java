@@ -211,6 +211,7 @@ public interface SEDGE_Locators {
     public static String Axes_Expand_Check="Axes Expand>//div[@id='RPE_axis_colum_div']//i[contains(@class,'chevron-up')]";
     public static String ApplyError1="X and Y Selection Error>//*[contains(text(),'Kindly select X axis and Y axis ')]";
     public static String ApplyError2="'Kindly check fields and select different values' Error>//*[contains(text(),'Kindly check fields and select different values')]";
+    public static String CategoryError="Categort Error>//*[contains(text(),'Kindly select Category  and Y axis ')]";
     public static String ApplyButton="Apply Button>//div[@id='applychart']//button";
     public static String Y_Axis_text="Y- axis text>//span[@id='RPE_xaxis_div_label']";
     public static String X_Axis_text="X-Axis text>//span[@id='RPE_yaxis_div_label']";
@@ -274,8 +275,8 @@ public interface SEDGE_Locators {
     public static String uniqueValue="Unique>//li//span[contains(text(),' (')]";
 //                                                               select2-RPE_sortBy-results
     public static String sortByValues1=" Field SortBy Values>//ul[@id='select2-RPE_sortBy-results']//li";
-    public static String QuickSort="QuickSort>//option[@value='quick_sort']";
-    public static String FieldSort="FieldSort>//option[@value='field_sort']";
+    public static String QuickSort="QuickSort>//select//option[@value='quick_sort']";
+    public static String FieldSort="FieldSort>//select//option[@value='field_sort']";
     public static String Cat_agg_fieldSort="Categorical Aggregation in Fieldsort>(//img[contains(@src, 'Categorical')])//ancestor::li/descendant::select[1]";
     public static String Num_agg_fieldSort="Numerical Aggregation in Fieldsort>(//img[contains(@src, 'Numerical')])//ancestor::li/descendant::select[1]";
     public static String Num_agg_fieldSortValue="Default value for Numerical Agg in Fieldsort>((//img[contains(@src, 'Numerical')])//ancestor::li/descendant::select[1])";//((//img[contains(@src, 'Numerical')])[1]//ancestor::li/descendant::select[1])//option[@selected]";
@@ -314,6 +315,14 @@ public interface SEDGE_Locators {
     public static String Limit_Error="Limit Error>//*[text()=' Kindly provide the limit']";
     public static String sortError="SortError>//*[text()='Kindly select any column to perform sort']";
    
+    public static String FirstAggg="Aggregation input>(//select[contains(@id,'_agg_select')])[1]";
+    public static String SumAgg="Sum option in Aggregation>(//select[contains(@id,'_agg_select')])[1]/option[text()='Sum']";
+    public static String CountAgg="Count option in Aggregation>(//select[contains(@id,'_agg_select')])[1]/option[text()='Count']";
+    public static String AverageAgg="Average option in Aggregation>(//select[contains(@id,'_agg_select')])[1]/option[text()='Average']";
+    public static String MinAgg="Min option in Aggregation>(//select[contains(@id,'_agg_select')])[1]/option[text()='Min']";
+    public static String MaxAgg="Max option in Aggregation>(//select[contains(@id,'_agg_select')])[1]/option[text()='Max']";
+    public static String UniqueAgg="Unique option in Aggregation>(//select[contains(@id,'_agg_select')])[1]/option[text()='Unique']";
+     
     //new Smoke
     public static String Sum="Sum in aggregation>//select[@id='RPE_selectAgg2']//option[text()='Sum']";
     public static String Count="Count in aggregation>//select[@id='RPE_selectAgg2']//option[text()='Count']";
@@ -337,10 +346,10 @@ public interface SEDGE_Locators {
     public static String chartBars="Charts >//div[@id='RPE_Preview']//*[name()='g' and contains(@role,'item')]";
     public static String chartBar1="ChartBar1>//div[@id='RPE_Preview']//*[name()='g' and contains(@role,'item') and not(contains(@display,'none'))][1]";
     public static String chartBar2="ChartBar2>//div[@id='RPE_Preview']//*[name()='g' and contains(@role,'item') and not(contains(@display,'none'))][2]";
- 
+    public static String X_Value_RadarChart="X Value >(//div[@id='RPE_Preview']//*[@font-family or @font-size]//*[name()='g' and @fill and not(@font-size)]//*[name()='tspan'])[1]";
+    public static String Y_Value_RadarChart="Y Value >(//div[@id='RPE_Preview']//*[@font-family or @font-size]//*[name()='g' and @fill and not(@font-size)]//*[name()='tspan'])[2]";
     public static String ChartGraph="Chart graph>//input[@id='RPE_WidgetName']//following::*[@aria-label='Chart']";
    
-    //                                     
     //*[@role='menuitem' and @focusable='true']";
     public static String countValue="Count Value>(//*[name()='tspan' and contains(text(),'Count')])[2]";
     public static String AscDes="Ascending or Descending>//button[contains(@class,'display-none') and @value]";
@@ -382,6 +391,7 @@ public interface SEDGE_Locators {
     public static String Y_AxisLabel_chart="Y Axis Label in chart>(//div[@id='RPE_Preview']//*[name()='g' and @transform and @aria-label])[2]";//(//*[name()='g' and @transform and @aria-label]//*[name()='tspan'])[2]";//(//*[name()='g' and @transform='translate(10,0)']//*[name()='g' and @fill])[2]";
     public static String X_AxisLabel_chart="X Axis Label in chart>((//*[name()='g' and @font-family])[2]//*[name()='g' and @font-size and @transform])[2]";
     public static String X_AxisLabel_chartNew="X Axis Label in chart>((//div[@id='RPE_Preview']//*[name()='g' and @font-family])[2]//*[name()='g' and @font-size and @transform])[1]";//((//*[name()='g' and @font-family])[2]//*[name()='g' and @font-size and @transform])[1]";
+    public static String X_AxisLabel_chartNew2="X Axis Label in chart>((//div[@id='RPE_Preview']//*[name()='g' and @font-family])[2]//*[name()='g' and @font-size and @transform])[2]";//((//*[name()='g' and @font-family])[2]//*[name()='g' and @font-size and @transform])[1]";
     public static String X_AxisLabel_chart_1="X Axis Label in chart>((//div[@id='RPE_Preview']//*[name()='g' and @aria-hidden and @font-family])[2]//*[name()='tspan'])[4]";//4 changed into 1
     public static String Y_AxisLabel_chart_1="Y Axis Label in chart>(//*[name()='g' and @transform and @aria-label]//*[name()='tspan'])[2]";
     public static String Y_AxisLabel_chart_1new="Y Axis Label in chart>(//div[@id='RPE_Preview']//*[name()='g' and @transform]/*[name()='g']/*[@font-size and @aria-label and not(@display)])[2]";
@@ -390,7 +400,9 @@ public interface SEDGE_Locators {
     public static String dropdownInputsearchBox="Search Input in dropdown>//span[contains(@class,'open')]//input[@type='search']";
     public static String Column_Y_Labels_Chart="Y Lable Values in Chart>(//div[@id='RPE_Preview']//*[@font-family and @aria-hidden]//*[name()='g' and @transform]/*[name()='g']/*[@font-size and not(@aria-label) and not(@display)])";
     public static String Column_X_Labels_Chart="X Lable Values in Chart>((//div[@id='RPE_Preview']//*[name()='g' and @aria-hidden and @font-family])[2]//*[name()='tspan'])[2]";
-
+    public static String X_Axis_Label_RadarLineChart="X Axis Label in RadarLine chart>((//div[@id='RPE_Preview']//*[name()='g' and @font-family])[1]//*[name()='g' and @font-size and @transform and not(@aria-label)])";
+    
+    
     // Chart Title Test Cases
     public static String chartTitle="ChartTitle>//div[@id='RPE_widget_header_div']//a";
     public static String BackgroundInput="Background Input>//input[@id='RPE_ChartHeaderBGColor']";
@@ -1234,6 +1246,7 @@ public interface SEDGE_Locators {
     public static String Legend_InputToggle="Legend Input>//input[@id='RPE_legend']//ancestor::div[1]//span";
     public static String Legend_Text="Legend Text>//div[@id='RPE_cFlegend']//label[text()='Legend']";
     public static String LegendPosition_Input="Legend Position Input>//select[@id='RPE_legendpos']";
+    public static String LegendPosition_Options="Legend Position Options>//select[@id='RPE_legendpos']/option";
     public static String LegendPosition_Text="Legend Position Text>//div[@id='RPE_cFposition']//label[text()='Legend Position']";
     public static String LegendFontSize_Input="Legend Font Size Input>//select[@id='RPE_legendFontSize']";
     public static String LegendFontSize_Text="Legend Font Size Text>//div[@id='RPE_LedgendFontSize']//label[text()='Legend Font Size']";
@@ -1255,6 +1268,7 @@ public interface SEDGE_Locators {
     public static String Selected_X_Axis_Value="Selected X Axis Value>//div[@id='yaxis_multiple_div_select']//div[@title]";
     public static String removeOptionSearched_Value="Removed Option Searched Value>//div[@id='yaxis_multiple_div_select']//div[@title]//span[@data-value]";
     public static String X_Axis_Limit_Error="X Axis Limit Error>//*[text()='Kindly select less than or equal to 10 column for Y axis']";
+    public static String Y_Axis_Limit_Error="Y Axis Limit Error>//*[contains(text(),'Kindly select less than or equal to 5 column for Y axis')]";
     public static String GroupInput_Numeric="Group option for Numeric in X Axis>//span[@id='select2-RPE_seriesSel3-container']";
     public static String GroupDropdown_Numeric_Expand="Numeric group dropdown Expand>//ul[@id='select2-RPE_seriesSel3-results']";
     public static String GroupError="Group Error>//*[contains(text(),'having less than 15 unique values')]";
@@ -1478,6 +1492,10 @@ public interface SEDGE_Locators {
     public static String StatsLineColumnOptionsDisplayed="StatsLineColumn Option>//ul[@id='select2-RPE_statscol-results']/li[not(@style='display: none;')]";
     public static String statsLineCOlumn_Select_Input="Select Column Input>//span[@id='select2-RPE_statscol-container']";
     
+    //
+    public static String Grid_Chart_RadarLine="Grid in chart>(//div[@id='RPE_Preview']//*[name()='g' and @aria-label='Chart']//*[name()='g' and @transform]/*[name()='g']/*[@font-family][2]//*[name()='g' and @stroke-opacity and @aria-label]//following::*[name()='g' and @stroke='#000000' and not(@display) and not(@stroke-dasharray) and not(@transform)])[2]";
+    //
+    
     //Line Widget
     public static String LineStyle_Input="Line Style Input>//select[@id='RPE_linestyle']";
     public static String LineStyle_text="Line Style Text>//div[@id='RPE_cFLinestyle']//label[text()='Line Style']";
@@ -1515,7 +1533,7 @@ public interface SEDGE_Locators {
     public static String Overlap_Input_toggle_deviation="Overlap Input toggle>//input[@id='RPE_deviationoverlap']/ancestor::label/span";
     public static String Seperator_Input_deviation="Seperator Input deviation>//select[@id='RPE_DeviationSeperatorValue']";
     public static String BigNumber_Suffix_toggle_deviation="BigNumber Suffix toggle>//input[@id='RPE_Deviationbignumber']";
-    public static String BigNumber_Toggle_Disabled="BigNumber Suffix toggle Disabled>//input[@id='RPE_Deviationbignumber' and @disabled]";
+    public static String BigNumber_Toggle_Disabled="BigNumber Suffix toggle Disabled>//input[@id='RPE_Deviationbignumber' and @disabled]/ancestor::label/span";
     public static String BigNumber_Suffix_Inputtoggle_deviation="BigNumber Suffix toggle>//input[@id='RPE_Deviationbignumber']/ancestor::label/span";
     public static String RoundOff_Input_Deviation="RoundOff Input in Deviation>//select[@id='RPE_DeviationRoundValue']";
     public static String Order_Deviation="Order in Deviation>//div[@id='RPE_DeviationColsOrder']";

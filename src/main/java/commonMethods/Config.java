@@ -41,7 +41,7 @@ public class Config extends Keywords {
             WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--force-device-scale-factor=0.8");
-			//options.addArguments("--headless");
+//			options.addArguments("--headless");
 			options.addArguments("disable-notifications");
 			LoggingPreferences logPrefs = new LoggingPreferences();
 			logPrefs.enable(LogType.BROWSER, Level.ALL);

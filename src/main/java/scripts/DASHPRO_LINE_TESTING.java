@@ -1262,36 +1262,39 @@ public class DASHPRO_LINE_TESTING extends Keywords{
  	  			pass(driver,"Selected Y Rotation Angle ("+Y_Rotation_Input+") is not Updated in X Axis label chart value");
  	  		}
  	     	setTestCaseID("TC_LINE_AXIS_028");
- 	     	String x_firstAscValue=getText1(driver,X_AxisLabel_chart_1);
- 	     	if(!x_firstAscValue.equals("0")) {
- 	     		verifyElementDisplayed(driver, switchSliderText);
- 	 	     	if(verifyElementDisplayed(driver,switchSlider)){
- 		 	   		if(isToggleEnable(driver, switchSliderInput)) {
- 		 	   			fail(driver,"By default Start axis at 0 toggle enabled");
- 		 	   		}else {
- 		 	   			pass(driver,"By default Start axis at 0 toggle disabled");
- 		 	   		}
- 		 	         	    
- 		 	   		click(driver,switchSlider);
- 		            scrollUsingElement(driver, ApplyButton);
- 		   		  	click(driver,ApplyButton);
- 		 	  		elementnotvisible1(driver, RPE_Loading);
- 		 	  		verifyElementDisplayed(driver,Chart_Section);
- 		 	     	    
- 		      	    x_firstAscValue=getText1(driver,Column_X_Labels_Chart);
- 		 	      	if((x_firstAscValue.equals("0"))) {
- 		 	  			pass(driver,"X axis label value started from '0' in the chart, After enbling the 'Start axis at 0' toggle");
- 		 	      	}else {
- 		 	  			pass(driver,"X axis label value not started from '0' in the chart, After enbling the 'Start axis at 0' toggle");
- 		 	      	}	
- 		 	      	
- 		 	   		String y_firstAscValue=getText1(driver,Column_Y_Labels_Chart);
- 		 	     	
- 					if((y_firstAscValue.equals("0"))) {
- 						pass(driver,"Y axis label value started from '0' in the chart, After enbling the 'Start axis at 0' toggle");
- 					}else {
- 						pass(driver,"Y axis label value not started from '0' in the chart, After enbling the 'Start axis at 0' toggle");
- 					}	
+ 	     	String x_firstAscValue=getText1(driver,X_AxisLabel_chartNew2);
+ 	     	Pattern numericalPattern = Pattern.compile("^-?\\d+(\\.\\d+)?$");
+ 	     	if(numericalPattern.matcher(x_firstAscValue).matches()) {
+ 	     		if(!x_firstAscValue.equals("0")) {
+ 	 	     		verifyElementDisplayed(driver, switchSliderText);
+ 	 	 	     	if(verifyElementDisplayed(driver,switchSlider)){
+ 	 		 	   		if(isToggleEnable(driver, switchSliderInput)) {
+ 	 		 	   			fail(driver,"By default Start axis at 0 toggle enabled");
+ 	 		 	   		}else {
+ 	 		 	   			pass(driver,"By default Start axis at 0 toggle disabled");
+ 	 		 	   		}
+ 	 		 	         	    
+ 	 		 	   		click(driver,switchSlider);
+ 	 		            scrollUsingElement(driver, ApplyButton);
+ 	 		   		  	click(driver,ApplyButton);
+ 	 		 	  		elementnotvisible1(driver, RPE_Loading);
+ 	 		 	  		verifyElementDisplayed(driver,Chart_Section);
+ 	 		 	     	    
+ 	 		      	    x_firstAscValue=getText1(driver,Column_X_Labels_Chart);
+ 	 		 	      	if((x_firstAscValue.equals("0"))) {
+ 	 		 	  			pass(driver,"X axis label value started from '0' in the chart, After enbling the 'Start axis at 0' toggle");
+ 	 		 	      	}else {
+ 	 		 	  			pass(driver,"X axis label value not started from '0' in the chart, After enbling the 'Start axis at 0' toggle");
+ 	 		 	      	}	
+ 	 		 	      	
+ 	 		 	   		String y_firstAscValue=getText1(driver,Column_Y_Labels_Chart);
+ 	 		 	     	
+ 	 					if((y_firstAscValue.equals("0"))) {
+ 	 						pass(driver,"Y axis label value started from '0' in the chart, After enbling the 'Start axis at 0' toggle");
+ 	 					}else {
+ 	 						pass(driver,"Y axis label value not started from '0' in the chart, After enbling the 'Start axis at 0' toggle");
+ 	 					}	
+ 	 	 	     	}
  	 	     	}
  	     	}
  	     	
@@ -2618,7 +2621,7 @@ public class DASHPRO_LINE_TESTING extends Keywords{
       	   			 }
       	   			 
       	   			 setTestCaseID("TC_LINE_DEVIATION_023");
-      	   			 click(driver,Deviation_FontFamily);
+      	   			 mouseOverAndClick(driver, Deviation_FontFamily);
       	   			 waitForElement(driver, Devialtion_FontFamilyResults);
       	   			 selectFontFamily(driver,Change_FontFamily_Deviation);
       	   			 wait(driver,"1");

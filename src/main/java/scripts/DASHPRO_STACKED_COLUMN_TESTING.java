@@ -750,23 +750,28 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		}else {
 			fail(driver,"Selected Value not displayed in the Color dropdown");
 		}
-		verifyElementDisplayed(driver,Chart_Section);
-		
-		String ColorSelectedValue=getStringValue(selectedColor);
-		List<WebElement> chartBarsDisplay=getWebElements(driver, ChartBars);
-		WebElement chartBar1=chartBarsDisplay.get(chartBarsDisplay.size()-2);
-		action.moveToElement(chartBar1).build().perform();
-		//mouseOverToElement(driver, ChartBarDisplayCount);
-		wait(driver,"1");
-		try {
-			WebElement colorDisplay=driver.findElement(By.xpath("//*[@role='tooltip' and not(@visibility)]//*[name()='tspan' and contains(text(),'"+ColorSelectedValue+"') and contains(text(),':')]"));
-			if(colorDisplay.isDisplayed()) {
-				pass(driver,"Select Color Value Applied in the Result Chart");
-			}else {
-				fail(driver,"Select Color Value not Applied in the Result Chart");
+		if(verifyElementDisplayed(driver,Chart_Section)) {
+			try {
+				String ColorSelectedValue=getStringValue(selectedColor);
+				List<WebElement> chartBarsDisplay=getWebElements(driver, ChartBars);
+				WebElement chartBar1=chartBarsDisplay.get(chartBarsDisplay.size()-2);
+				action.moveToElement(chartBar1).build().perform();
+				//mouseOverToElement(driver, ChartBarDisplayCount);
+				wait(driver,"1");
+				try {
+					WebElement colorDisplay=driver.findElement(By.xpath("//*[@role='tooltip' and not(@visibility)]//*[name()='tspan' and contains(text(),'"+ColorSelectedValue+"') and contains(text(),':')]"));
+					if(colorDisplay.isDisplayed()) {
+						pass(driver,"Select Color Value Applied in the Result Chart");
+					}else {
+						fail(driver,"Select Color Value not Applied in the Result Chart");
+					}
+				}catch(Exception e) {
+					 fail(driver,"Select Color Value not Applied in the Result Chart");
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
 			}
-		}catch(Exception e) {
-			 fail(driver,"Select Color Value not Applied in the Result Chart");
+			
 		}
 		
 		setTestCaseID("TC_STACKED_COLUMN_055");
@@ -3547,10 +3552,6 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	          	}
 	      	}
 	      	
-	       	 
-		 	
-		
-		
 	}
 	
 }
