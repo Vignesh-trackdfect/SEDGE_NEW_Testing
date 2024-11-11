@@ -10,7 +10,7 @@
     <classes>
       <class name="commonMethods.Testcases">
         <methods>
-          <include name="ComprehensiveTesting" invocation-numbers="0"/>
+          <include name="ComprehensiveTesting"/>
           <include name="Teardown"/>
           <include name="getDataFromConfig"/>
         </methods>

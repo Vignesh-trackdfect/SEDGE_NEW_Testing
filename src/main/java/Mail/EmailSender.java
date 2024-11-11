@@ -51,23 +51,28 @@ public class EmailSender {
             messageBodyPart.setContent(content, "text/html");
             multipart.addBodyPart(messageBodyPart);
 
-            if(filePaths!=null && filePaths.size()>0) {
-            	for(String filePath:filePaths) {
-            		// Add attachment if filePath is provided
-                    if (filePath != null && !filePath.isEmpty()) {
-                        MimeBodyPart attachmentBodyPart = new MimeBodyPart();
-                        DataSource source = new FileDataSource(filePath);
-                        attachmentBodyPart.setDataHandler(new DataHandler(source));
-                        attachmentBodyPart.setFileName(source.getName());
-                        multipart.addBodyPart(attachmentBodyPart);
-                    }else {
-                    	System.out.println("filePath : "+filePath);
-                    	System.out.println("Filepath is null or emty");
-                    }
-                }
-            }else {
-            	System.out.println("Filepathss is null or emty");
+            try {
+            	 if(filePaths!=null && filePaths.size()>0) {
+                 	for(String filePath:filePaths) {
+                 		// Add attachment if filePath is provided
+                         if (filePath != null && !filePath.isEmpty()) {
+                             MimeBodyPart attachmentBodyPart = new MimeBodyPart();
+                             DataSource source = new FileDataSource(filePath);
+                             attachmentBodyPart.setDataHandler(new DataHandler(source));
+                             attachmentBodyPart.setFileName(source.getName());
+                             multipart.addBodyPart(attachmentBodyPart);
+                         }else {
+                         	System.out.println("filePath : "+filePath);
+                         	System.out.println("Filepath is null or emty");
+                         }
+                     }
+                 }else {
+                 	System.out.println("Filepathss is null or emty");
+                 }
+            }catch(Exception e) {
+            	e.printStackTrace();
             }
+           
             
             try {
             	if(passFilePath!=null && passFilePath.size()>0) {

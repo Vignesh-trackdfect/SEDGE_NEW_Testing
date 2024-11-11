@@ -1312,7 +1312,7 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 						    				 scrollUsingElement(driver, ApplyButton);
 							    			 click(driver,ApplyButton);
 							    			 elementnotvisible1(driver, RPE_Loading);
-						    				String defaultLegend_chart= getRelativePosition(driver,Legend_Chart_Value,Chart_Section_Display);
+						    				String defaultLegend_chart= getRelativePosition(driver,Legend_Chart,Radar_chart);
 						    				if(defaultLegend_chart.equals(Default_Legend_Position)) {
 						    					pass(driver,"By default, the legend is displayed in '"+Default_Legend_Position+"' in the chart");
 						    				}else {
@@ -1327,7 +1327,7 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 								    		 click(driver,ApplyButton);
 								    		 elementnotvisible1(driver, RPE_Loading);
 								    		 if(verifyElementDisplayed(driver,ChartGraph)) {
-								    			 String LegendPosition_chart= getRelativePosition(driver,Legend_Chart_Value,X_Value_RadarChart);
+								    			 String LegendPosition_chart= getRelativePosition(driver,Legend_Chart,Radar_chart);
 								    			 if(LegendPosition_chart.equals("Top")) {
 								    				 pass(driver,"Legend is displayed in 'Top' position in the chart ");
 								    			 }else {
@@ -1343,7 +1343,7 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 								    		 click(driver,ApplyButton);
 								    		 elementnotvisible1(driver, RPE_Loading);
 								    		 if(verifyElementDisplayed(driver,ChartGraph)) {
-								    			 String LegendPosition_chart= getRelativePosition(driver,Legend_Chart_Value,X_Value_RadarChart);
+								    			 String LegendPosition_chart= getRelativePosition(driver,Legend_Chart,Radar_chart);
 								    			 if(LegendPosition_chart.equals("Right")) {
 								    				 pass(driver,"Legend is displayed in 'Right' position in the chart ");
 								    			 }else {
@@ -1359,7 +1359,7 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 								    		 click(driver,ApplyButton);
 								    		 elementnotvisible1(driver, RPE_Loading);
 								    		 if(verifyElementDisplayed(driver,ChartGraph)) {
-								    			 String LegendPosition_chart= getRelativePosition(driver,Legend_Chart_Value,X_Value_RadarChart);
+								    			 String LegendPosition_chart= getRelativePosition(driver,Legend_Chart,Radar_chart);
 								    			 if(LegendPosition_chart.equals("Left")) {
 								    				 pass(driver,"Legend is displayed in 'Left' position in the chart ");
 								    			 }else {

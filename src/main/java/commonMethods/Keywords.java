@@ -2755,6 +2755,15 @@ import atu.testng.reports.logging.LogAs;
               int width2 = size2.getWidth();
               int height2 = size2.getHeight();
               
+              System.out.println(" x1 : "+x1);
+              System.out.println(" y1 : "+y1);
+              System.out.println(" width1 : "+width1);
+              System.out.println(" height1 : "+height1);
+              System.out.println(" x2 : "+x2);
+              System.out.println(" y2 : "+y2);
+              System.out.println(" width2 : "+width2);
+              System.out.println(" height2 : "+height2);
+              
               if (y1 + height1 <= y2) {
                   return "Top";
               } else if (y2 + height2 <= y1) {

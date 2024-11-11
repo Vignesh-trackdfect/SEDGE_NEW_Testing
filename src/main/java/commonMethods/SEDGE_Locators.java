@@ -211,7 +211,8 @@ public interface SEDGE_Locators {
     public static String Axes_Expand_Check="Axes Expand>//div[@id='RPE_axis_colum_div']//i[contains(@class,'chevron-up')]";
     public static String ApplyError1="X and Y Selection Error>//*[contains(text(),'Kindly select X axis and Y axis ')]";
     public static String ApplyError2="'Kindly check fields and select different values' Error>//*[contains(text(),'Kindly check fields and select different values')]";
-    public static String CategoryError="Categort Error>//*[contains(text(),'Kindly select Category  and Y axis ')]";
+    public static String CategoryError="Category Error>//*[contains(text(),'Kindly select Category  and Y axis ')]";
+    public static String CategoryError_Network="Category Error>//*[contains(text(),'Kindly select atleast one category')]";
     public static String ApplyButton="Apply Button>//div[@id='applychart']//button";
     public static String Y_Axis_text="Y- axis text>//span[@id='RPE_xaxis_div_label']";
     public static String X_Axis_text="X-Axis text>//span[@id='RPE_yaxis_div_label']";
@@ -1493,7 +1494,8 @@ public interface SEDGE_Locators {
     public static String statsLineCOlumn_Select_Input="Select Column Input>//span[@id='select2-RPE_statscol-container']";
     
     //
-    public static String Grid_Chart_RadarLine="Grid in chart>(//div[@id='RPE_Preview']//*[name()='g' and @aria-label='Chart']//*[name()='g' and @transform]/*[name()='g']/*[@font-family][2]//*[name()='g' and @stroke-opacity and @aria-label]//following::*[name()='g' and @stroke='#000000' and not(@display) and not(@stroke-dasharray) and not(@transform)])[2]";
+    public static String Grid_Chart_RadarLine="Grid in chart>(//div[@id='RPE_Preview']//*[name()='g' and @aria-label='Chart']//*[name()='g' and @transform]/*[name()='g']/*[@font-family][2]//*[name()='g' and @stroke-opacity and @aria-label]//following::*[name()='g' and @stroke='#000000' and not(@display) and not(@stroke-dasharray) and not(@transform) and not(@style)])[2]";
+    public static String Radar_chart="Radar Chart>//div[@id='RPE_Preview']//*[name()='g' and @aria-label='Chart']//*[name()='g' and @transform]/*[name()='g']/*[@font-family][2]";
     //
     
     //Line Widget
