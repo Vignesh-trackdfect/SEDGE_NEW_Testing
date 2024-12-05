@@ -37,7 +37,7 @@ public class FILE_UPLOAD_TESTING extends Keywords{
 		System.out.println("ValidFile_Path : "+ValidFile_Path);
 		System.out.println("ZipFile_Path : "+ZipFile_Path);
 		
-		
+		setTestCaseID("");
 		waitForElement(driver,HomePage);
 		waitForElement(driver,Data_Analytics_page_link);
 		click(driver,Data_Analytics_page_link);
@@ -155,11 +155,10 @@ public class FILE_UPLOAD_TESTING extends Keywords{
 				verifyElementDisplayed(driver,fileUploaded_3);
 				elementnotvisible1(driver,fileUploaded_3);
 				elementnotvisible1(driver, Loading1);
-				
 			}
 		}
-	
+		
 		verifyElementDisplayed(driver, Preview_text);
-
+		setTestCaseID("");
 	}
 }

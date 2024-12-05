@@ -109,7 +109,6 @@ public class LOGIN_SMOKE_TESTING extends Keywords{
 		click(driver,username_input);
 		sendKeys(driver,username_input,"gfjk");
 		click(driver,SignIn_Btn);
-		
 		if(isDisplayed(driver,HomePage)) {
 			failReport(driver,"Application should not Login ","Application gets Login");
 			

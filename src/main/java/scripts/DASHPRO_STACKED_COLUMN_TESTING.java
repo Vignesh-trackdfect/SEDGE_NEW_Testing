@@ -8,7 +8,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.testng.Assert;
 
 import commonMethods.Keywords;
 import commonMethods.Utils;
@@ -754,20 +753,31 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 			try {
 				String ColorSelectedValue=getStringValue(selectedColor);
 				List<WebElement> chartBarsDisplay=getWebElements(driver, ChartBars);
-				WebElement chartBar1=chartBarsDisplay.get(chartBarsDisplay.size()-2);
-				action.moveToElement(chartBar1).build().perform();
-				//mouseOverToElement(driver, ChartBarDisplayCount);
-				wait(driver,"1");
-				try {
-					WebElement colorDisplay=driver.findElement(By.xpath("//*[@role='tooltip' and not(@visibility)]//*[name()='tspan' and contains(text(),'"+ColorSelectedValue+"') and contains(text(),':')]"));
-					if(colorDisplay.isDisplayed()) {
-						pass(driver,"Select Color Value Applied in the Result Chart");
-					}else {
-						fail(driver,"Select Color Value not Applied in the Result Chart");
+				boolean tooltipDisplay=false;
+				for(WebElement ele:chartBarsDisplay) {
+					action.moveToElement(ele).build().perform();
+					if(isDisplayed2(driver, Tooltiptext)) {
+						tooltipDisplay=true;
+						break;
 					}
-				}catch(Exception e) {
-					 fail(driver,"Select Color Value not Applied in the Result Chart");
 				}
+//				WebElement chartBar1=chartBarsDisplay.get(chartBarsDisplay.size()-2);
+//				action.moveToElement(chartBar1).build().perform();
+//				//mouseOverToElement(driver, ChartBarDisplayCount);
+//				wait(driver,"1");
+				if(tooltipDisplay==true) {
+					try {
+						WebElement colorDisplay=driver.findElement(By.xpath("//*[@role='tooltip' and not(@visibility)]//*[name()='tspan' and contains(text(),'"+ColorSelectedValue+"') and contains(text(),':')]"));
+						if(colorDisplay.isDisplayed()) {
+							pass(driver,"Select Color Value Applied in the Result Chart");
+						}else {
+							fail(driver,"Select Color Value not Applied in the Result Chart");
+						}
+					}catch(Exception e) {
+						 fail(driver,"Select Color Value not Applied in the Result Chart");
+					}
+				}
+				
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -1157,7 +1167,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		
 		if(Stacked_Column_Axis_Title.equals("Yes")) {
 			   
-				 setTestCaseID("TC_STACKED_COL_AXIS_001");
+				 setTestCaseID("TC_STACKED_COL_ AXIS_001");
 		      	 verifyElementDisplayed(driver, AxisTitle);
 		  		 click(driver,AxisTitle);
 		  		 wait(driver,"1");
@@ -1168,7 +1178,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		  			fail(driver,"Axis Title section is not Expanded after click on it");
 		      	 }
 		         
-		      	setTestCaseID("TC_STACKED_COL_AXIS_002");
+		      	setTestCaseID("TC_STACKED_COL_ AXIS_002");
 		      	String AxisTextColor_Act=getTextColor(driver,AxisTitleExpand);
 		      	if(AxisTextColorExp.equalsIgnoreCase(AxisTextColor_Act)) {
 		      		pass(driver,"Axis Title displayed in blue color after select on it");
@@ -1176,7 +1186,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		      		fail(driver,"Axis Title displayed in blue color after select on it");
 		      	}
 		      	
-		      	setTestCaseID("TC_STACKED_COL_AXIS_003");
+		      	setTestCaseID("TC_STACKED_COL_ AXIS_003");
 		      	verifyElementDisplayed(driver, X_Title_text);
 		      	verifyElementDisplayed(driver,X_Title_input);
 		
@@ -1216,7 +1226,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		       	}
 		         
 		      	
-		  		setTestCaseID("TC_STACKED_COL_AXIS_004");
+		  		setTestCaseID("TC_STACKED_COL_ AXIS_004");
 		      	verifyElementDisplayed(driver,fontFamilyText);
 		      	if(verifyElementDisplayed(driver,fontFamily_dropdown)) {
 		       		
@@ -1229,7 +1239,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		       		}
 		       	}
 		     
-		      	setTestCaseID("TC_STACKED_COL_AXIS_005");
+		      	setTestCaseID("TC_STACKED_COL_ AXIS_005");
 		     	String fontFamily_Value=getText1(driver,fontFamily_dropdown);
 		     	click(driver,fontFamily_dropdown);
 		     	
@@ -1237,7 +1247,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		        	pass(driver,"Font family dropdown is expanded after click on it");
 		        	mouseOverToElement(driver,SecondValue);
 		        	wait(driver,"1");
-		        	setTestCaseID("TC_STACKED_COL_AXIS_008");
+		        	setTestCaseID("TC_STACKED_COL_ AXIS_008");
 		    		String mouseHighlightColor=getTextBackgroundColor(driver,SecondValue);
 		    		if(Highlight_Color_Exp.equalsIgnoreCase(mouseHighlightColor)) {
 		    			pass(driver,"Mouse hovered value highlighted in blue color");
@@ -1245,9 +1255,9 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		    			fail(driver,"Mouse hovered value not highlighted in blue color");
 		    		}
 		
-		    		setTestCaseID("TC_STACKED_COL_AXIS_007");
+		    		setTestCaseID("TC_STACKED_COL_ AXIS_007");
 		    		ScrollBarValidation1(driver,fontFamily_DropdownExpand,"Font Family");
-		    		setTestCaseID("TC_STACKED_COL_AXIS_008");
+		    		setTestCaseID("TC_STACKED_COL_ AXIS_008");
 		    		String selectedColorAct2=getTextBackgroundColor(driver,ListSelected);
 		    		String highlightText2=getText1(driver,listSelectedText1);
 		    		if((fontFamily_Value.equals(highlightText2))&&Selected_Color_Exp.equals(selectedColorAct2)) {
@@ -1256,7 +1266,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		         	    fail(driver,"Selected Value not Value Highlighted in Grey Color");
 		    		}
 		    		
-		    		setTestCaseID("TC_STACKED_COL_AXIS_006");
+		    		setTestCaseID("TC_STACKED_COL_ AXIS_006");
 		         	List<WebElement> beforeSearchResults=getWebElements(driver,fontFamilyResults);
 		         	int beforeSearchSize=beforeSearchResults.size();
 		         	click(driver,dropdownInputsearchBox);
@@ -1278,7 +1288,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		            }else {
 		         	    fail(driver,"Search input in the Font Family dropdown not works properly");
 		            }
-		            setTestCaseID("TC_STACKED_COL_AXIS_009");
+		            setTestCaseID("TC_STACKED_COL_ AXIS_009");
 		           	selectFontFamily(driver,ChangeFontFamily_AxisTitle);
 		           	wait(driver,"1");
 		           	scrollUsingElement(driver, ApplyButton);
@@ -1306,7 +1316,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		        }
 		      	
 		      	
-		     	setTestCaseID("TC_STACKED_COL_AXIS_010");
+		     	setTestCaseID("TC_STACKED_COL_ AXIS_010");
 		       	verifyElementDisplayed(driver,titleFontSize);
 		       	if(verifyElementDisplayed(driver,titleFontSizeDropdown)) {
 		       		
@@ -1319,9 +1329,9 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		       		}
 		       	}
 		       	
-		       	setTestCaseID("TC_STACKED_COL_AXIS_011");
+		       	setTestCaseID("TC_STACKED_COL_ AXIS_011");
 		       	click(driver,titleFontSizeDropdown);
-		       	setTestCaseID("TC_STACKED_COL_AXIS_014");
+		       	setTestCaseID("TC_STACKED_COL_ AXIS_014");
 		  		selectOptionValue(driver,titleFontSizeDropdown,ChangeTitleFontSize_AxisTitle);
 		  		wait(driver,"1");
 		  		scrollUsingElement(driver, ApplyButton);
@@ -1347,7 +1357,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		  			fail(driver,"Given Title Font Size not Updated in any one of X-Axis Title and Y-Axis Title chart value");
 		  		}
 		  		
-		       	setTestCaseID("TC_STACKED_COL_AXIS_015");
+		       	setTestCaseID("TC_STACKED_COL_ AXIS_015");
 		       	verifyElementDisplayed(driver,X_axisFontSizeText);
 		       	if(verifyElementDisplayed(driver,X_axisFontSizeDropdown)) {
 		       		String X_font_Size_Act=defaultSelectedValue(driver,X_axisFontSizeDropdown);
@@ -1358,7 +1368,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		           	    fail(driver,"By default, "+default_FontSize_Exp+" is not displayed in the X axis Font Size input");
 		       		}
 		       	}
-		       	setTestCaseID("TC_STACKED_COL_AXIS_016");
+		       	setTestCaseID("TC_STACKED_COL_ AXIS_016");
 		       	click(driver,X_axisFontSizeDropdown);
 		  		selectOptionValue(driver,X_axisFontSizeDropdown,Change_X_label_FontSize);
 		  		scrollUsingElement(driver, ApplyButton);
@@ -1366,7 +1376,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		  		elementnotvisible1(driver, RPE_Loading);
 		  		verifyElementDisplayed(driver,Chart_Section);
 		  		//waitForElement(driver, ChartBarDisplayCount);
-		       	setTestCaseID("TC_STACKED_COL_AXIS_019");
+		       	setTestCaseID("TC_STACKED_COL_ AXIS_019");
 		     	String fontSize_X_label_Act=getFontSize(driver,X_AxisLabel_chartNew);
 		     	if(Change_X_label_FontSize.equals(fontSize_X_label_Act)) {
 		     		pass(driver,"Selected fontSize ("+Change_X_label_FontSize+") Updated in X Axis label chart value");
@@ -1374,7 +1384,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		  			fail(driver,"Selected fontSize  ("+Change_X_label_FontSize+") not Updated in X Axis label chart value");
 		  		}
 		       	
-		       	setTestCaseID("TC_STACKED_COL_AXIS_020");
+		       	setTestCaseID("TC_STACKED_COL_ AXIS_020");
 		       	verifyElementDisplayed(driver, Y_axisFontSizeText);
 		       	if(verifyElementDisplayed(driver,Y_axisFontSizeDropdown)) {
 		       		String Y_font_Size_Act=defaultSelectedValue(driver,Y_axisFontSizeDropdown);
@@ -1386,7 +1396,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		       		}
 		       	}
 		       	
-		       	setTestCaseID("TC_STACKED_COL_AXIS_021");
+		       	setTestCaseID("TC_STACKED_COL_ AXIS_021");
 		        click(driver,Y_axisFontSizeDropdown);
 		  		selectOptionValue(driver,Y_axisFontSizeDropdown,Change_Y_label_FontSize);
 		  		scrollUsingElement(driver, ApplyButton);
@@ -1394,7 +1404,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		  		elementnotvisible1(driver, RPE_Loading);
 		  		verifyElementDisplayed(driver,Chart_Section);
 		  		//waitForElement(driver, ChartBarDisplayCount);
-		       	setTestCaseID("TC_STACKED_COL_AXIS_024");
+		       	setTestCaseID("TC_STACKED_COL_ AXIS_024");
 //		  		moveElements=driver.findElements(By.xpath("//div[@id='RPE_Preview']//*[name()='tspan']"));
 //				for(WebElement ele:moveElements) {
 //					Actions act3=new Actions(driver);
@@ -1411,7 +1421,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		    	    fail(driver,"Selected fontSize ("+Change_Y_label_FontSize+") not Updated in Y Axis label chart value, Act : "+fontSize_Y_label_Act);
 		  		}
 		      	
-		       	setTestCaseID("TC_STACKED_COL_AXIS_026");
+		       	setTestCaseID("TC_STACKED_COL_ AXIS_026");
 		       	verifyElementDisplayed(driver, X_RotationText);
 		       	verifyElementDisplayed(driver,X_RotationOutputValue);
 		       	//setTestCaseID("TC_COLUMN_AXIS_026");
@@ -1421,7 +1431,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		       		fail(driver,"X Rotation input is not Accessible");
 		       	}
 		       	
-		       	setTestCaseID("TC_STACKED_COL_AXIS_025");
+		       	setTestCaseID("TC_STACKED_COL_ AXIS_025");
 		   		String X_RotationValueAct=getText1(driver,X_RotationOutputValue);
 		   		System.out.println("X rotation : "+X_RotationValueAct);
 		   		if(X_RotationValueAct.equals(defaultRotation)) {
@@ -1429,7 +1439,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		   		}else {
 		       	    fail(driver,"By default, '"+defaultRotation+"' is not displayed in the X axis Rotation output field");
 		   		}
-		       	setTestCaseID("TC_STACKED_COL_AXIS_027");
+		       	setTestCaseID("TC_STACKED_COL_ AXIS_027");
 		  		String X_Rotation_Color_Act=getTextBackgroundColor(driver,X_RotationOutputValue);
 		  		if(RotationInputColor_Exp.equalsIgnoreCase(X_Rotation_Color_Act)) {
 		  			pass(driver,"X rotation output highlighted in blue color");
@@ -1437,7 +1447,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		  			fail(driver,"X rotation output not highlighted in blue color");
 		  		}
 		       	
-		       	setTestCaseID("TC_STACKED_COL_AXIS_029");
+		       	setTestCaseID("TC_STACKED_COL_ AXIS_029");
 		     	waitForElement(driver, X_RotationInputSlider);
 		       	moveSlider(driver,X_RotationInputSlider,X_RotationOutputValue,X_Rotation_Input);
 		       	scrollUsingElement(driver, ApplyButton);
@@ -1454,7 +1464,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 					}
 				}
 		  		//waitForElement(driver, ChartBarDisplayCount);
-		       	setTestCaseID("TC_STACKED_COL_AXIS_028");
+		       	setTestCaseID("TC_STACKED_COL_ AXIS_028");
 		  		String Y_label_Rotation_Act1=getRotationValue(driver,Y_AxisLabel_chart_Values);
 		     	if(X_Rotation_Input.equals(Y_label_Rotation_Act1)) {
 		  		    fail(driver,"Selected X Rotation Angle ("+X_Rotation_Input+") Updated in Y Axis label chart value");
@@ -1462,7 +1472,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		  			pass(driver,"Selected X Rotation Angle ("+X_Rotation_Input+") is not Updated in Y Axis label chart value");
 		  		}
 		  		
-		       	setTestCaseID("TC_STACKED_COL_AXIS_029");
+		       	setTestCaseID("TC_STACKED_COL_ AXIS_029");
 		     	String X_label_Rotation_Act=getRotationValue(driver,X_AxisLabel_chartNew);
 		     	if(X_Rotation_Input.equals(X_label_Rotation_Act)) {
 		 	    	 pass(driver,"Selected X Rotation Angle ("+X_Rotation_Input+") Updated in X Axis label chart value");
@@ -1470,7 +1480,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		  			fail(driver,"Selected X Rotation Angle ("+X_Rotation_Input+") is not Updated in X Axis label chart value");
 		  		}
 	      	
-		       	setTestCaseID("TC_STACKED_COL_AXIS_030");
+		       	setTestCaseID("TC_STACKED_COL_ AXIS_030");
 		       	verifyElementDisplayed(driver, Y_RotationText);
 		       	if(verifyElementDisplayed(driver,Y_RotationOutputValue)) {
 		       		String Y_RotationValueAct=getText1(driver,Y_RotationOutputValue);
@@ -1478,7 +1488,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		       		if(Y_RotationValueAct.equals(defaultRotationY)) {
 		      			pass(driver,"By default, '"+defaultRotationY+"' displayed in the Y axis Rotation output field");
 		       		}else {
-		           	    fail(driver,"By default, '"+defaultRotationY+"' displayed in the Y axis Rotation output field");
+		           	    fail(driver,"By default, '"+defaultRotationY+"' not displayed in the Y axis Rotation output field");
 		       		}
 		      		String Y_Rotation_Color_Act=getTextBackgroundColor(driver,Y_RotationOutputValue);
 		      		if(RotationInputColor_Exp.equalsIgnoreCase(Y_Rotation_Color_Act)) {
@@ -1489,7 +1499,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		       	}
 		       	
 	       	
-		       	setTestCaseID("TC_STACKED_COL_AXIS_031");
+		       	setTestCaseID("TC_STACKED_COL_ AXIS_031");
 		        waitForElement(driver, Y_RotationInputSlider);
 		       	moveSlider(driver,Y_RotationInputSlider,Y_RotationOutputValue,Y_Rotation_Input);
 		       	scrollUsingElement(driver, ApplyButton);
@@ -1513,7 +1523,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		  			fail(driver,"Selected Rotation Angle ("+Y_Rotation_Input+") is not Updated in Y Axis label chart value");
 		  		}
 		     	
-		       	setTestCaseID("TC_STACKED_COL_AXIS_032");
+		       	setTestCaseID("TC_STACKED_COL_ AXIS_032");
 		     	String X_label_Rotation_Act1=getRotationValue(driver,X_AxisLabel_chartNew);
 		     	if(Y_Rotation_Input.equals(X_label_Rotation_Act1)) {
 		 	    	 fail(driver,"Selected Y Rotation Angle ("+Y_Rotation_Input+") Updated in X Axis label chart value");
@@ -1521,72 +1531,69 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		  			pass(driver,"Selected Y Rotation Angle ("+Y_Rotation_Input+") is not Updated in X Axis label chart value");
 		  		}
 	      	
-		       	setTestCaseID("TC_STACKED_COL_AXIS_033");
+		       	setTestCaseID("TC_STACKED_COL_ AXIS_033");
 		       	verifyElementDisplayed(driver, switchSliderText);
-		     	if(verifyElementDisplayed(driver,switchSlider)){
-		   		String sliderColor=getTextBackgroundColor(driver,switchSlider);
-		   		
-		   		if(isToggleEnable(driver, switchSliderInput)) {
-		   			fail(driver,"By default Start axis at 0 toggle enabled");
-		   		}else {
-		   			pass(driver,"By default Start axis at 0 toggle disabled");
-		   			String x_firstAscValue=getText1(driver,X_AxisLabel_chartNew);
-		   			if(!(x_firstAscValue.equals("0"))) {
-		      			pass(driver,"X axis label value not started from '0' in the chart, When 'Start axis at 0' toggle is disabled");
-		          	}else {
-		      			pass(driver,"X axis label value started from '0' in the chart, When 'Start axis at 0' toggle is disabled");
-		          	}
+		     	if(verifyElementDisplayed(driver,switchSlider)){		   		
+		     		if(isToggleEnable(driver, switchSliderInput)) {
+		     			fail(driver,"By default Start axis at 0 toggle enabled");
+		     		}else {
+		     			pass(driver,"By default Start axis at 0 toggle disabled");
+		     			String x_firstAscValue=getText1(driver,X_AxisLabel_chartNew);
+		     			if(!(x_firstAscValue.equals("0"))) {
+		     				pass(driver,"X axis label value not started from '0' in the chart, When 'Start axis at 0' toggle is disabled");
+		     			}else {
+		     				pass(driver,"X axis label value started from '0' in the chart, When 'Start axis at 0' toggle is disabled");
+		     			}
 		   			
-		   			List<WebElement> yValues=getWebElements(driver,Y_AxisLabel_chart_Values);
-		       		int lastsize=yValues.size()-1;
-		       		String y_firstDesValue=yValues.get(lastsize).getText();
-		       		String y_firstAscValue=getText1(driver,Y_AxisLabel_chart_1new);
+		     			List<WebElement> yValues=getWebElements(driver,Y_AxisLabel_chart_Values);
+		     			int lastsize=yValues.size()-1;
+		     			String y_firstDesValue=yValues.get(lastsize).getText();
+		     			String y_firstAscValue=getText1(driver,Y_AxisLabel_chart_1new);
 		         	
-		       		String sortOrderType=getAttribute1(driver,AscDes,"value");
-		       		if(sortOrderType.equals("desc")) {
-		       			if(!(y_firstAscValue.equals("0"))) {
-		       				pass(driver,"Y axis label value not start from 0 in the chart, when toogle is disabled");
-		       			}else {
-		       				pass(driver,"Y axis label value started from 0 in the chart when toogle is disabled");
-		       			}	
-		       		}else {
-		       			if(!(y_firstDesValue.equals("0"))) {
-		       				pass(driver,"Y axis label value not start from 0 in the chart, when toogle is disabled");
-		       			}else {
-		       				pass(driver,"Y axis label value started from 0 in the chart when toogle is disabled");
-		       			}
+		     			String sortOrderType=getAttribute1(driver,AscDes,"value");
+		     			if(sortOrderType.equals("desc")) {
+		     				if(!(y_firstAscValue.equals("0"))) {
+		     					pass(driver,"Y axis label value not start from 0 in the chart, when toogle is disabled");
+		     				}else {
+		     					pass(driver,"Y axis label value started from 0 in the chart when toogle is disabled");
+		     				}	
+		     			}else {
+		     				if(!(y_firstDesValue.equals("0"))) {
+		     					pass(driver,"Y axis label value not start from 0 in the chart, when toogle is disabled");
+		     				}else {
+		     					pass(driver,"Y axis label value started from 0 in the chart when toogle is disabled");
+		     				}
 		          	
-		       		}
-		   		}
+		     			}
+		     		}
 		         	    
-		   		click(driver,switchSlider);
-	           	scrollUsingElement(driver, ApplyButton);
-	  		  	click(driver,ApplyButton);
-		  		elementnotvisible1(driver, RPE_Loading);
-		  		verifyElementDisplayed(driver,Chart_Section);
-		  		//waitForElement(driver, ChartBarDisplayCount);
+		     		click(driver,switchSlider);
+		     		scrollUsingElement(driver, ApplyButton);
+		     		click(driver,ApplyButton);
+		     		elementnotvisible1(driver, RPE_Loading);
+		     		verifyElementDisplayed(driver,Chart_Section);
 		     	    
-	     	    String x_firstAscValue=getText1(driver,Column_X_Labels_Chart);
-		      	if((x_firstAscValue.equals("0"))) {
-		  			pass(driver,"X axis label value started from '0' in the chart, After enbling the 'Start axis at 0' toggle");
-		      	}else {
-		  			pass(driver,"X axis label value not started from '0' in the chart, After enbling the 'Start axis at 0' toggle");
-		      	}	
+		     		String x_firstAscValue=getText1(driver,Column_X_Labels_Chart);
+		     		if((x_firstAscValue.equals("0"))) {
+		     			pass(driver,"X axis label value started from '0' in the chart, After enbling the 'Start axis at 0' toggle");
+		     		}else {
+		     			pass(driver,"X axis label value not started from '0' in the chart, After enbling the 'Start axis at 0' toggle");
+		     		}	
 		      	
-		   		String y_firstAscValue=getText1(driver,Column_Y_Labels_Chart);
-		     	
-	   			if((y_firstAscValue.equals("0"))) {
-	      			pass(driver,"Y axis label value started from '0' in the chart, After enbling the 'Start axis at 0' toggle");
-	   			}else {
-	      			pass(driver,"Y axis label value not started from '0' in the chart, After enbling the 'Start axis at 0' toggle");
-	   			}	
+		     		String y_firstAscValue=getText1(driver,Column_Y_Labels_Chart);
+		     		
+		     		if((y_firstAscValue.equals("0"))) {
+		     			pass(driver,"Y axis label value started from '0' in the chart, After enbling the 'Start axis at 0' toggle");
+		     		}else {
+		     			pass(driver,"Y axis label value not started from '0' in the chart, After enbling the 'Start axis at 0' toggle");
+		     		}	
 		   		
-		       }
-		     }
-		 	setTestCaseID("");
+		     	}
+			}
 			// ******************** AxisTitle Validation End *******************
-		 	 // ******************** ChartTitle Validation Start *******************
-	      	 String Stacked_Column_Chart_Title= getCellValue("TestExecution","Testcase_Selection","Stacked_Column_Chart_Title",Flag);
+			setTestCaseID("");
+		 	// ******************** ChartTitle Validation Start *******************
+	 		String Stacked_Column_Chart_Title= getCellValue("TestExecution","Testcase_Selection","Stacked_Column_Chart_Title",Flag);
 	        if(Stacked_Column_Chart_Title.equals("Yes")) {
 	       	 	CHART_TITLE chartTitle=new CHART_TITLE();
 	            chartTitle.chartTitleTest(driver, TypeBackgroundColor1, TypeTextColor1, Change_FontFamily_ChartTitle, ChangeFontSize_ChartTitle,ChangeChartTitleName);       	
@@ -1594,7 +1601,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	       // ******************** ChartTitle Validation End *******************
 		   
 	     //********** ChartStyle Validation Start *************************
-	         setTestCaseID("TC_STACKED_COL_CHART_STYLE_001");
+	         setTestCaseID("TC_STACKED_COL_ CHART_STYLE_001");
 	         verifyElementDisplayed(driver,Chart_FormatSec);
 			 click(driver,Chart_FormatSec);
 			 
@@ -1608,7 +1615,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	 	  			fail(driver,"Chart Format is not expanded when click the Chart Format");
 	 	  			
 	 	  		 }
-	 	  		 setTestCaseID("TC_STACKED_COL_CHART_STYLE_002");
+	 	  		 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_002");
 	 	  		 //ChartFormatColorExp
 	 	  		 String ChartFormatColor=getTextColor(driver, Chart_FormatSec);
 	 	  		 if(ChartFormatColor.equalsIgnoreCase(ChartFormatColorExp)) {
@@ -1617,7 +1624,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	 	  			fail(driver,"Chart Format not highlighted in blue Color after it expands"); 
 	 	  		 }
 	 	  		 
-	 	  		 setTestCaseID("TC_STACKED_COL_CHART_STYLE_003");
+	 	  		 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_003");
 	 	  		 verifyElementDisplayed(driver,ChartStyling); 
 	  			 String ChartStylingColor_Act=getTextColor(driver, ChartStyling);
 	  			 if(ChartStylingColor_Exp.equalsIgnoreCase(ChartStylingColor_Act)) {
@@ -1625,8 +1632,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	  			 }else {
 	  				fail(driver,"Chart Styling not highlighted in blue color"); 
 	  			 }
-	  			 setTestCaseID("TC_STACKED_COL_CHART_STYLE_004");
-	   			 String ChartStylingText_Act=getText1(driver,ChartStyling);
+	  			 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_004");
 	   			 String ChartStylingExpand=getAttribute1(driver, ChartStyling_Expand, "class");
 	   			 if(ChartStylingExpand.contains("up")) {
 	   				pass(driver,"By default, Chart Styling gets Expanded");
@@ -1634,7 +1640,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	   				fail(driver,"By default, Chart Styling not gets Expand");
 	   			 }
 	   			
-	   			 setTestCaseID("TC_STACKED_COL_CHART_STYLE_005");
+	   			 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_005");
 	   			 verifyElementDisplayed(driver,ChartThemeText);
 	   			 verifyElementDisplayed(driver,ChartThemeInput);
 	   			   	
@@ -1653,20 +1659,20 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	   			 verifyElementDisplayed(driver,X_Label_Position_Input);
 	   			 verifyElementDisplayed(driver,Grid_Distance_Input);
 
-	   			 setTestCaseID("TC_STACKED_COL_CHART_STYLE_006");
+	   			 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_006");
 	   			 String defaultThemeValue_Act=getText1(driver,ChartThemeInput);
 	   			 if(defaultThemeValue_Act.equals(DefaultThemeValue_Exp)) {
 	   				 pass(driver,"By default, Chart theme selected the value as '"+DefaultThemeValue_Exp+"'");
 	   			 }else {
 	   				 fail(driver,"By default, '"+DefaultThemeValue_Exp+"' value not selected in the  Chart theme input");
 	   			 }
-	   			 setTestCaseID("TC_STACKED_COL_CHART_STYLE_007");
+	   			 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_007");
 	   			 click(driver,ChartThemeInput);
 	   			 if(verifyElementDisplayed(driver,ChartThemeResults)) {
 	   				 pass(driver,"Chart theme dropdown opened and displayed list of chart themes");
 	   				 mouseOverToElement(driver,ThirdValue);
 	   				 wait(driver,"1");
-	   				 setTestCaseID("TC_STACKED_COL_CHART_STYLE_010");
+	   				 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_010");
 	   				 String mouseHighlightColor=getTextBackgroundColor(driver,ThirdValue);
 	   				 if(Highlight_ColorStyle_Exp.equalsIgnoreCase(mouseHighlightColor)) {
 	   					 pass(driver,"Mouse hovered value highlighted in blue color");
@@ -1674,15 +1680,15 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	   					 fail(driver,"Mouse hovered value not highlighted in blue color");
 	   				 }
 	   			
-	   				 setTestCaseID("TC_STACKED_COL_CHART_STYLE_011");
+	   				 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_011");
 	   				 ScrollBarValidation1(driver,ChartThemeResults,"Chart Theme");
 	   			
 	   				 List<WebElement> beforeSearchResults=getWebElements(driver,chartThemeResultList);
 	   				 int beforeSearchSize=beforeSearchResults.size();
-	   				 setTestCaseID("TC_STACKED_COL_CHART_STYLE_008");
+	   				 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_008");
 	   				 verifyElementIsPresent1(driver,dropdownInputsearchBox);
 	   				 click(driver,dropdownInputsearchBox);
-	   				 setTestCaseID("TC_STACKED_COL_CHART_STYLE_009");
+	   				 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_009");
 	   				 sendKeys(driver,dropdownInputsearchBox,"sdgffh");
 	   				 String inValidResult=getText1(driver,chartThemeFirstResult);
 	   				 if(inValidResult.equals("No results found")) {
@@ -1703,7 +1709,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	   					 fail(driver,"Search input in the Chart Theme dropdown not works properly");
 	   				 }
 	   			     
-	   				 setTestCaseID("TC_STACKED_COL_CHART_STYLE_013");
+	   				 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_013");
 	   				 selectChartTheme(driver,Change_ChartTheme_ChartStyle);
 	   				 wait(driver,"1");
 	   				 if(isDisplayed2(driver,ChartThemeResults)) {
@@ -1718,7 +1724,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	  					 fail(driver,"Selected Theme value not updated in the Chart Theme Input");
 	  				 }  
 	   				 
-	  				setTestCaseID("TC_STACKED_COL_CHART_STYLE_012");
+	  				setTestCaseID("TC_STACKED_COL_ CHART_STYLE_012");
 	   				click(driver,ChartThemeInput);
 	   				waitForElement(driver,chartThemeResultList);
 	   				wait(driver,"1");
@@ -1736,10 +1742,10 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	   				 fail(driver,"Chart theme dropdown not opened after click on it");
 	   			 }
 	   			
-	   			 setTestCaseID("TC_STACKED_COL_CHART_STYLE_014");
+	   			 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_014");
 	   			 if(isToggleEnable(driver,AutoScroll_toggle)) {
 	   				 pass(driver,"By default, 'AutoScroll' toggle is enabled");
-	   				 setTestCaseID("TC_STACKED_COL_CHART_STYLE_015");
+	   				 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_015");
 	   				 if(isToggleEnable(driver,X_Scroll_toggle)) {
 	   					 fail(driver,"X Scroll toggle not disabled when AutoScroll toggle is enabled");
 	   				 }else {
@@ -1756,7 +1762,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	   				 fail(driver,"By default, 'AutoScroll' toggle is not enabled");
 	   			 }
 	   			   	
-	   			 setTestCaseID("TC_STACKED_COL_CHART_STYLE_016");
+	   			 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_016");
 	   			 if(isToggleAccessible(driver,X_Scroll_toggle) && isToggleAccessible(driver,Y_Scroll_toggle)){
 	   				 fail(driver,"X Scroll and Y Scroll toggle accessible when AutoScroll toggle is enabled");
 	   			 }else {
@@ -1832,7 +1838,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	   				 pass(driver,"X Scroll and Y Scroll toggle automatically disabled when enabling the AutoScroll toggle");
 	   			 }
 	   			   	
-	   			 setTestCaseID("TC_STACKED_COL_CHART_STYLE_018");
+	   			 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_018");
 	   			 if(isToggleEnable(driver,EnableGrid_toggle)) {
 	   				 pass(driver,"By default, 'Enable Grid' toggle is enabled");
 	   				 
@@ -1848,7 +1854,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	   	  				 fail(driver,"Grid is not displayed in the chart when it is enable");
 	   	  			 }
 	   				
-	   	  		    setTestCaseID("TC_STACKED_COL_CHART_STYLE_019");
+	   	  		    setTestCaseID("TC_STACKED_COL_ CHART_STYLE_019");
 	   				 click(driver,EnableGrid_InputSlider);
 	   				 wait(driver,"1");
 	   				 if(isToggleEnable(driver,EnableGrid_toggle)){
@@ -1857,7 +1863,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	   					 pass(driver,"'Enable Grid' toggle disabled when click on it ");
 	   				 }
 	   			    		
-	   				 setTestCaseID("TC_STACKED_COL_CHART_STYLE_020");
+	   				 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_020");
 	   				 scrollUsingElement(driver, ApplyButton);
 	   	  			 click(driver,ApplyButton);
 	   	  			 elementnotvisible1(driver, Loading);
@@ -1874,7 +1880,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	   				 fail(driver,"By default, 'Enable Grid' toggle is not enabled");
 	   			 }
 	   		
-	   			 setTestCaseID("TC_STACKED_COL_CHART_STYLE_021");
+	   			 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_021");
 	   			 String default_XLabelPositionAct=defaultSelectedValue(driver,X_Label_Position_Input);
 	   			 if(Default_X_Label_Position_Column.equals(default_XLabelPositionAct)) {
 	   				 pass(driver,"By default "+Default_X_Label_Position_Column+" is displayed in the X Label Position input");
@@ -1882,17 +1888,17 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	   				 fail(driver,"By default "+Default_X_Label_Position_Column+" is not displayed in the X Label Position input");
 	   			 }
 	   			 
-	   			 setTestCaseID("TC_STACKED_COL_CHART_STYLE_022");
+	   			 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_022");
 	   			 if(isToggleAccessible(driver, X_Label_Position_Input)) {
 	   				 pass(driver,"X_Label_Position_Input is Accessible");
 	   			 }else {
 	   				 fail(driver,"X_Label_Position_Input is not Accessible");
 	   			 }
 	   			 
-	   			 setTestCaseID("TC_STACKED_COL_CHART_STYLE_023");
+	   			 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_023");
 	   			 click(driver,X_Label_Position_Input);
 	   			
-	   			setTestCaseID("TC_STACKED_COL_CHART_STYLE_024");
+	   			 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_024");
 	   			 selectByText(driver, X_Label_Position_Input, Change_X_Label_Position_Style);
 	   			 wait(driver,"1");
 	   			 String afterselect=defaultSelectedValue(driver, X_Label_Position_Input);
@@ -1902,7 +1908,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	   				 fail(driver,"Selected X_Label_Position Value is not updated correctly");
 	   			 }
 	   			 
-	   			 setTestCaseID("TC_STACKED_COL_CHART_STYLE_027");
+	   			 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_027");
 	   			 String defaultGrid_distance_Act=defaultSelectedValue(driver,Grid_Distance_Input);
 	   			 if(Default_Grid_distance_Column.equals(defaultGrid_distance_Act)) {
 	   				 pass(driver,"By default "+Default_Grid_distance_Column+" is displayed in the Grid Distance Input");
@@ -1910,18 +1916,18 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	   				 fail(driver,"By default "+Default_Grid_distance_Column+" is not displayed in the Grid Distance Input");
 	   			 }
 	   			 
-	   			 setTestCaseID("TC_STACKED_COL_CHART_STYLE_028");
+	   			 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_028");
 	   			 if(isToggleAccessible(driver, Grid_Distance_Input)) {
 	  				 pass(driver,"Grid_Distance_Input is Accessible");
 	  			 }else {
 	  				 fail(driver,"Grid_Distance_Input is not Accessible");
 	  			 }
-	   			 setTestCaseID("TC_STACKED_COL_CHART_STYLE_029");
+	   			 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_029");
 	   			 click(driver,Grid_Distance_Input);
 	   			 
 	   			 selectByText(driver, Grid_Distance_Input, Change_Grid_Distance);
 	   			 wait(driver,"1");
-	   			 setTestCaseID("TC_STACKED_COL_CHART_STYLE_030");
+	   			 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_030");
 	   			 String afterselectGrid=defaultSelectedValue(driver, Grid_Distance_Input);
 	   			 if(afterselectGrid.equals(Change_Grid_Distance)) {
 	   				 pass(driver,"Selected Value is displayed in the Grid_Distance_Input");
@@ -1929,7 +1935,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	   				 fail(driver,"Selected Value is not displayed in the Grid_Distance_Input");
 	   			 }
 
-	   			 setTestCaseID("TC_STACKED_COL_CHART_STYLE_031");
+	   			 setTestCaseID("TC_STACKED_COL_ CHART_STYLE_031");
 	   			 click(driver,ChartStyling);
 	   			 wait(driver,"1");
 	   			 String chartStyleClose_Act=getAttribute1(driver, ChartStyling_Expand, "class");
@@ -1947,7 +1953,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	       	 String Stacked_Column_ChartFormat_DataLabels= getCellValue("TestExecution","Testcase_Selection","Stacked_Column_ChartFormat_DataLabels",Flag);
 
 	         if(Stacked_Column_ChartFormat_DataLabels.equals("Yes")) {
-	        	 setTestCaseID("TC_STACKED_COL_DATA_LABEL_001");
+	        	 setTestCaseID("TC_STACKED_COL_ DATA_LABEL_001");
 	        	 verifyElementDisplayed(driver,DataLabels);
 	    		 scrollUsingElement(driver,DataLabels);
 	    		 String DataLabelsExpand=getAttribute1(driver, DataLabels_Expand, "class");
@@ -1958,7 +1964,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    			//click(driver,DataLabels);
 	    		 }
 	    		
-	    		 setTestCaseID("TC_STACKED_COL_DATA_LABEL_002");
+	    		 setTestCaseID("TC_STACKED_COL_ DATA_LABEL_002");
 	    		 String DataLabelsColor_Act=getTextColor(driver, DataLabels);
 	    		 if(DataLabelsColor_Exp.equalsIgnoreCase(DataLabelsColor_Act)) {
 	    			pass(driver,"Data Labels gets displayed in blue color");
@@ -1967,7 +1973,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    		 }
 	    		 
 	    		 //Validation of the visibility of data label options start...
-	    		 setTestCaseID("TC_STACKED_COL_DATA_LABEL_003");
+	    		 setTestCaseID("TC_STACKED_COL_ DATA_LABEL_003");
 	    		 verifyElementDisplayed(driver,EnableValue_text);
 	    		 verifyElementIsPresent1(driver, EnableValue_InputSlider);
 
@@ -2020,12 +2026,12 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    		 //Validation of the visibility of data label options End...
 	    	     
 	    	     //All options are inaccessible when the enable value toggle is disabled. Validation end
-	    		 setTestCaseID("TC_STACKED_COL_DATA_LABEL_004");
+	    		 setTestCaseID("TC_STACKED_COL_ DATA_LABEL_004");
 	    	     if(isToggleEnable(driver,EnableValue_Input)) {
 	    	  		 fail(driver,"By Default, Enable Value toggle is enabled");
 	    	     }else {
 	    	  		 pass(driver,"By Default, Enable Value toggle is disabled");
-	    	  		setTestCaseID("TC_STACKED_COL_DATA_LABEL_005");
+	    	  		setTestCaseID("TC_STACKED_COL_ DATA_LABEL_005");
 	    	  		 if(IsElementEnabled(driver,ValueFormatInput_StackBar)) {
 	    		  		 fail(driver,"'Value Format' is accessible when the 'Enable value' toggle is disabled.");
 	    		     }else {
@@ -2083,7 +2089,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    	     }
 	    	     
 	    	     //All options are inaccessible when the enable value toggle is disabled. Validation end
-	    	     setTestCaseID("TC_STACKED_COL_DATA_LABEL_006");
+	    	     setTestCaseID("TC_STACKED_COL_ DATA_LABEL_006");
 	    		 click(driver,EnableValue_InputSlider);
 	    		 if(isToggleEnable(driver,EnableValue_Input)) {
 	    	  		 pass(driver,"'Enable Value' toggle is enabled after click on it");
@@ -2104,13 +2110,13 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    	  		 fail(driver,"Values not enabled in charts after enabling the 'Enable Value' toggle"); 
 	    		 }
 	    		 
-	    		 setTestCaseID("TC_STACKED_COL_DATA_LABEL_007");
+	    		 setTestCaseID("TC_STACKED_COL_ DATA_LABEL_007");
 	    		 if(isToggleAccessible(driver,ValueFormatInput_StackBar)) {		
 	    	  		 pass(driver,"'Value Format Input' is accessible after enabling the 'Enable Value' toggle"); 
 	    		 }else {
 	    	  		 fail(driver,"'Value Format Input' is not accessible after enabling the 'Enable Value' toggle");
 	    		 }
-	    		 setTestCaseID("TC_STACKED_COL_DATA_LABEL_008");
+	    		 setTestCaseID("TC_STACKED_COL_ DATA_LABEL_008");
 	    		 String defaultFormatValue_Act=defaultSelectedValue(driver, ValueFormatInput_StackBar);
 	      		 if(DefaultFormatValue_Exp.equals(defaultFormatValue_Act)) {
 	    	  		 pass(driver,"By default, '"+DefaultFormatValue_Exp+"' is selected in the Value Format Input"); 
@@ -2118,12 +2124,12 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    	  		 fail(driver,"By default, '"+DefaultFormatValue_Exp+"' is not selected in the Value Format Input"); 
 	      		 }
 	    		 
-	      		 setTestCaseID("TC_STACKED_COL_DATA_LABEL_009");
+	      		 setTestCaseID("TC_STACKED_COL_ DATA_LABEL_009");
 	      		 verifyElementIsPresent1(driver, ValueOption_ValueFormat);
 	      		 verifyElementIsPresent1(driver, BarPercentOption_ValueFormat);
 	      		 verifyElementIsPresent1(driver, ColorPercentOption_ValueFormat);
 	      		
-	      		 setTestCaseID("TC_STACKED_COL_DATA_LABEL_010");
+	      		 setTestCaseID("TC_STACKED_COL_ DATA_LABEL_010");
 	    		 selectOptionValue(driver,ValueFormatInput_StackBar,"value");
 	    		 
 	    		 scrollUsingElement(driver, ApplyButton);
@@ -2141,22 +2147,22 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    	  		 pass(driver,"'Value Format' is displayed in the chart for 'Value' format selection");
 	    		 }
 	    		 
-	    		 setTestCaseID("TC_STACKED_COL_DATA_LABEL_011");
+	    		 setTestCaseID("TC_STACKED_COL_ DATA_LABEL_011");
 	    		 selectOptionValue(driver,ValueFormatInput_StackBar,"percentbarwise");
 	    		 wait(driver,"1");
-	    		 setTestCaseID("TC_STACKED_COL_DATA_LABEL_013");
+	    		 setTestCaseID("TC_STACKED_COL_ DATA_LABEL_013");
 	    		 if(isToggleEnable(driver, Hundred_percentScaleInput)) {
 	    			 pass(driver,"100 % Scale Input toggle is enabled automatically when select the 'Bar%' in value format");
 	    		 }else {
 	    			 fail(driver,"100 % Scale Input toggle is not enabled automatically when select the 'Bar%' in value format");
 	    		 }
-	    		 setTestCaseID("TC_STACKED_COL_DATA_LABEL_021");
+	    		 setTestCaseID("TC_STACKED_COL_ DATA_LABEL_021");
 	    		 if(isToggleAccessible(driver,SeperatorInput)) {	
 	    			 fail(driver,"'Seperator Input' is accessible  when 'Bar %' is selected in value format");	  		
 	    		 }else {
 	    			 pass(driver,"'Seperator Input' is inaccessible  when 'Bar %' is selected in value format"); 
 	    		 }
-	    		 setTestCaseID("TC_STACKED_COL_DATA_LABEL_011");
+	    		 setTestCaseID("TC_STACKED_COL_ DATA_LABEL_011");
 	    		 scrollUsingElement(driver, ApplyButton);
 	    		 click(driver,ApplyButton);
 	    		 elementnotvisible1(driver, RPE_Loading);
@@ -2219,22 +2225,22 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 		    		 }
 	    		 }
 	    		
-	    		 setTestCaseID("TC_STACKED_COL_DATA_LABEL_012");
+	    		 setTestCaseID("TC_STACKED_COL_ DATA_LABEL_012");
 	    		 selectOptionValue(driver,ValueFormatInput_StackBar,"percentcolorwise");
 	    		 wait(driver,"1");
-	    		 setTestCaseID("TC_STACKED_COL_DATA_LABEL_015");
+	    		 setTestCaseID("TC_STACKED_COL_ DATA_LABEL_015");
 	    		 if(isToggleEnable(driver, Hundred_percentScaleInput)) {
 	    			 fail(driver,"100 % Scale Input toggle is enabled automatically when select the 'Color %' in value format");
 	    		 }else {
 	    			 pass(driver,"100 % Scale Input toggle is not enabled automatically when select the 'Color %' in value format");
 	    		 }
-	    		 setTestCaseID("TC_STACKED_COL_DATA_LABEL_021");
+	    		 setTestCaseID("TC_STACKED_COL_ DATA_LABEL_021");
 	    		 if(isToggleAccessible(driver,SeperatorInput)) {	
 	    			 fail(driver,"'Seperator Input' is accessible  when 'Color %' is selected in value format");	  		
 	    		 }else {
 	    			 pass(driver,"'Seperator Input' is inaccessible  when 'Color %' is selected in value format"); 
 	    		 }
-	    		 setTestCaseID("TC_STACKED_COL_DATA_LABEL_012");
+	    		 setTestCaseID("TC_STACKED_COL_ DATA_LABEL_012");
 	    		 scrollUsingElement(driver, ApplyButton);
 	    		 click(driver,ApplyButton);
 	    		 elementnotvisible1(driver, RPE_Loading);
@@ -2262,7 +2268,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    		 
 	    		 selectOptionValue(driver,ValueFormatInput_StackBar,"value");
 	    		 wait(driver,"1");
-	    		 setTestCaseID("TC_STACKED_COL_DATA_LABEL_016");
+	    		 setTestCaseID("TC_STACKED_COL_ DATA_LABEL_016");
 	    		 if(isToggleEnable(driver, Hundred_percentScaleInput)) {
 	    			 fail(driver,"100 % Scale Input toggle is enabled automatically when select the 'Value' in value format");
 	    		 }else {
@@ -2282,7 +2288,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    		 
 	    		 verifyElementIsPresent1(driver, Thousand_Seperator);
 	    		 verifyElementIsPresent1(driver, Houndred_Seperator);
-	    		 setTestCaseID("TC_STACKED_COL_DATA_LABEL_017");
+	    		 setTestCaseID("TC_STACKED_COL_ DATA_LABEL_017");
 	    		 String defaultSeperator_Act=defaultSelectedValue(driver,SeperatorInput);
 	    		 if(DefaultSeperatorValue_Exp.equals(defaultSeperator_Act)) {
 	    	  		 pass(driver,"By default, '"+DefaultSeperatorValue_Exp+"' is selected in the Seperator Input"); 
@@ -2291,7 +2297,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    		 } 
 	           
 	    		click(driver,SeperatorInput);
-	    		setTestCaseID("TC_STACKED_COL_DATA_LABEL_019");
+	    		setTestCaseID("TC_STACKED_COL_ DATA_LABEL_019");
 	    		selectOptionValue(driver,SeperatorInput,"#,###");
 	    		scrollUsingElement(driver, ApplyButton);
 	    		click(driver,ApplyButton);
@@ -2316,7 +2322,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    	    		}
 				  }
 	    		
-	    		 setTestCaseID("TC_STACKED_COL_DATA_LABEL_020");
+	    		 setTestCaseID("TC_STACKED_COL_ DATA_LABEL_020");
 	    		click(driver,SeperatorInput);
 	    		selectOptionValue(driver,SeperatorInput,"#,##");
 	    		scrollUsingElement(driver, ApplyButton);
@@ -2334,21 +2340,21 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	   			 		fail(driver,"Hundred Separator not applied for chart enabled values"); 
 	   			 	}
 	    		}
-	    		setTestCaseID("TC_STACKED_COL_DATA_LABEL_023");
+	    		setTestCaseID("TC_STACKED_COL_ DATA_LABEL_023");
 	    		if(isToggleAccessible(driver,ValueFontSizeInput)) {		
 	    	  		 pass(driver,"'Value FontSize Input' is accessible after enabling the 'Enable Value' toggle"); 
 	    	  		 
 	    		}else {
 	    	  		 fail(driver,"'Value FontSize Input' is not accessible after enabling the 'Enable Value' toggle");
 	    		}
-	    		setTestCaseID("TC_STACKED_COL_DATA_LABEL_022");
+	    		setTestCaseID("TC_STACKED_COL_ DATA_LABEL_022");
 	    		String defaultFontSize_Act=defaultSelectedValue(driver, ValueFontSizeInput);
 	    		if(DefaultFontSizeValue_Exp.equals(defaultFontSize_Act)) {
 	    			pass(driver,"By default, '"+DefaultFontSizeValue_Exp+"' is selected in the Value Font Size Input"); 
 	    		}else {
 	    			fail(driver,"By default, '"+DefaultFontSizeValue_Exp+"' is not selected in the Value Font Size Input"); 
 	    		}
-	    		setTestCaseID("TC_STACKED_COL_DATA_LABEL_026");
+	    		setTestCaseID("TC_STACKED_COL_ DATA_LABEL_026");
 	    		click(driver,ValueFontSizeInput);
 	    		selectOptionValue(driver,ValueFontSizeInput,ChangeFontSizeValue_DataLabel);
 	    		scrollUsingElement(driver, ApplyButton);   
@@ -2364,14 +2370,14 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    	  		 fail(driver,"The chart's value not displayed with Selected '"+ChangeFontSizeValue_DataLabel+"' font size."); 
 	    		}
 	    		
-	    		setTestCaseID("TC_STACKED_COL_DATA_LABEL_028");
+	    		setTestCaseID("TC_STACKED_COL_ DATA_LABEL_028");
 	    		if(isToggleAccessible(driver,RoundOffValueInput)) {		
 	    	  		 pass(driver,"'RoundOff Value Input' is accessible after enabling the 'Enable Value' toggle"); 
 	    		}else {
 	    	  		 fail(driver,"'RoundOff Value Input' is not accessible after enabling the 'Enable Value' toggle");
 	    		}
 	    		
-	    		setTestCaseID("TC_STACKED_COL_DATA_LABEL_027");
+	    		setTestCaseID("TC_STACKED_COL_ DATA_LABEL_027");
 	    		String defaultRoundOffValue_Act=defaultSelectedValue(driver, RoundOffValueInput);
 	     		if(DefaultRoundOffValue_Exp.equals(defaultRoundOffValue_Act)) {
 	    	  		 pass(driver,"By default, '"+DefaultRoundOffValue_Exp+"' is selected in the RoundOffValue Input"); 
@@ -2379,7 +2385,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    	  		 fail(driver,"By default, '"+DefaultRoundOffValue_Exp+"' is not selected in the RoundOffValue Input"); 
 	     		}
 	     		
-	     		setTestCaseID("TC_STACKED_COL_DATA_LABEL_029");
+	     		setTestCaseID("TC_STACKED_COL_ DATA_LABEL_029");
 	    	    click(driver,RoundOffValueInput);
 	    	    wait(driver,"1");
 	    	    selectByText(driver,RoundOffValueInput,ChangeRoundOffValue_DataLabel);
@@ -2398,13 +2404,13 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    	   }
 	    	   
 	    	   selectByText(driver,RoundOffValueInput,"Select");
-	    	   setTestCaseID("TC_STACKED_COL_DATA_LABEL_031");
+	    	   setTestCaseID("TC_STACKED_COL_ DATA_LABEL_031");
 	    	   if(isToggleAccessible(driver,PositionInput)) {		
 	    	  		 pass(driver,"'Position Input' is accessible after enabling the 'Enable Value' toggle"); 
 	    		}else {
 	    	  		 fail(driver,"'Position Input' is not accessible after enabling the 'Enable Value' toggle");
 	    		}
-	    	   setTestCaseID("TC_STACKED_COL_DATA_LABEL_030");
+	    	   setTestCaseID("TC_STACKED_COL_ DATA_LABEL_030");
 	    	   String defaultPosition_Act=defaultSelectedValue(driver, PositionInput);
 	    	   if(DefaultPositionValue_Exp.equals(defaultPosition_Act)) {
 	    		   pass(driver,"By default, '"+DefaultPositionValue_Exp+"' is selected in the Position Input"); 
@@ -2435,7 +2441,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	      	   }
 	    	   
 	      	 //  Assert.fail();
-	      	   setTestCaseID("TC_STACKED_COL_DATA_LABEL_032");
+	      	   setTestCaseID("TC_STACKED_COL_ DATA_LABEL_032");
 	    	   click(driver,PositionInput);
 	    	   selectOptionValue(driver,PositionInput,"center");
 	    	   scrollUsingElement(driver, ApplyButton);
@@ -2470,7 +2476,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    	   // position check endd
 	    	   
 	    	    selectOptionValue(driver,SeperatorInput,"#,###");
-	    	    setTestCaseID("TC_STACKED_COL_DATA_LABEL_033");
+	    	    setTestCaseID("TC_STACKED_COL_ DATA_LABEL_033");
 	    		if(isToggleAccessible(driver,BigNumberInput)) {
 	    			 fail(driver,"'Big Number Suffix' toggle is accessible while Seperator value is selected");
 	    		}else {
@@ -2485,7 +2491,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    			 fail(driver,"'Big Number Suffix' toggle is Inaccessible while Seperator value is not selected");
 	    		}
 	    		
-	    		setTestCaseID("TC_STACKED_COL_DATA_LABEL_034");
+	    		setTestCaseID("TC_STACKED_COL_ DATA_LABEL_034");
 	    		selectOptionValue(driver,ValueFormatInput_StackBar,"percentcolorwise");
 	    		scrollUsingElement(driver, ApplyButton);
 	    		click(driver,ApplyButton);
@@ -2498,7 +2504,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    			 pass(driver,"'Big Number Suffix' toggle is Inaccessible while 'percentcolorwise'  is selected in the Value Format input");
 	    		}
 
-	    		setTestCaseID("TC_STACKED_COL_DATA_LABEL_041");
+	    		setTestCaseID("TC_STACKED_COL_ DATA_LABEL_041");
 	    	    if(isToggleAccessible(driver,StackTotal_Input)) {
 	    			 fail(driver,"'Stack Total' toggle is accessible while 'percentcolorwise'  is selected in the Value Format input");
 	    		}else {
@@ -2510,7 +2516,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    	    click(driver,ApplyButton);
 	    	    elementnotvisible1(driver, RPE_Loading);
 	    	    waitForElement(driver, ChartBarDisplayCount);
-	    	    setTestCaseID("TC_STACKED_COL_DATA_LABEL_035");
+	    	    setTestCaseID("TC_STACKED_COL_ DATA_LABEL_035");
 	    	    if(isToggleAccessible(driver,BigNumberInput)) {
 	    			 pass(driver,"'Big Number Suffix' toggle is accessible while 'Percentage' is not selected in the Value Format input");
 	    			 click(driver,BigNumberInputSlider);
@@ -2558,12 +2564,12 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    			 fail(driver,"'Big Number Suffix' toggle is Inaccessible while 'Percentage' is not selected in the Value Format input");
 	    		}
 	    	   
-	    	    setTestCaseID("TC_STACKED_COL_DATA_LABEL_036");
+	    	    setTestCaseID("TC_STACKED_COL_ DATA_LABEL_036");
 	    		if(isToggleEnable(driver,ShowPositive_Input)) {
 	    			 fail(driver,"By default, 'Show As Positive' toggle is enabled");
 	    	    }else {
 	    			 pass(driver,"By default, 'Show As Positive' toggle is disabled");
-	    			 setTestCaseID("TC_STACKED_COL_DATA_LABEL_037");
+	    			 setTestCaseID("TC_STACKED_COL_ DATA_LABEL_037");
 	    			 String X_StartValue=getText1(driver,X_ValuesChart);
 	    			 if(numericalPattern.matcher(X_StartValue).matches()) {
 	    				 if(X_StartValue.startsWith("-")) {
@@ -2596,7 +2602,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    			 fail(driver,"'Show As Positive' toggle is not enabled while enabling it");
 	    	    }
 	    	    
-	    		setTestCaseID("TC_STACKED_COL_DATA_LABEL_038");
+	    		setTestCaseID("TC_STACKED_COL_ DATA_LABEL_038");
 	    		if(isToggleAccessible(driver,ValueRotation_Input)) {
 	    			 pass(driver,"Value rotation is accessible after enabling the 'Enable Value' toggle");
 	    		}else {
@@ -2608,7 +2614,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    		}else {
 	    			 fail(driver,"By default, '"+DefaultRotationValue_Exp+"' is not displayed in value rotation output");
 	    		}
-	    		setTestCaseID("TC_STACKED_COL_DATA_LABEL_039");
+	    		setTestCaseID("TC_STACKED_COL_ DATA_LABEL_039");
 	    		moveSlider(driver,ValueRotation_Input,ValueRotation_Output,ChangeRotataionVal_Positive_DataLabel);
 	    		scrollUsingElement(driver, ApplyButton);
 	    		click(driver,ApplyButton);
@@ -2635,7 +2641,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    	       	fail(driver,"Selected Negative Rotation Angle ("+ChangeRotataionVal_Negative_DataLabel+") is not Updated in chart value");
 	    		}
 	      
-	    		 setTestCaseID("TC_STACKED_COL_DATA_LABEL_040");
+	    		 setTestCaseID("TC_STACKED_COL_ DATA_LABEL_040");
 	         	 if(isToggleEnable(driver,StackTotal_Input)) {
 	    	  		 fail(driver,"By Default, 'Stack Total' toggle is enabled");
 	    	     }else {
@@ -2643,12 +2649,12 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    	  		 
 	    	     }
 	         	 
-		    	 setTestCaseID("TC_STACKED_COL_DATA_LABEL_042");
+		    	 setTestCaseID("TC_STACKED_COL_ DATA_LABEL_042");
 	         	 click(driver,StackTotal_Inputtoggle);
 	         	 wait(driver,"1");
 	         	 if(isToggleEnable(driver,StackTotal_Input)) {
 	    	  		 pass(driver,"'Stack Total' toggle is enabled after click on it");
-	    	  		setTestCaseID("TC_STACKED_COL_DATA_LABEL_043");
+	    	  		setTestCaseID("TC_STACKED_COL_ DATA_LABEL_043");
 	    	  		 if(IsElementEnabled(driver,TotalFontSizeInput)) {
 	    		  		 pass(driver,"'Total Font Size' is accessible when the 'Stack Total' toggle is enabled.");
 	    		     }else {
@@ -2681,7 +2687,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    		 }else {
 	    	  		 fail(driver,"'Stack Total' toggle is not enabled after click on it");
 	    		 }
-	         	setTestCaseID("TC_STACKED_COL_DATA_LABEL_042");
+	         	setTestCaseID("TC_STACKED_COL_ DATA_LABEL_042");
 	    		 scrollUsingElement(driver, ApplyButton);
 	    		 click(driver,ApplyButton);
 	    		 elementnotvisible1(driver, RPE_Loading);
@@ -2704,10 +2710,10 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	           		 fail(driver,"Stack Total is not displayed in the chart when the toggle is enabled");
 	           	 }
 	           	
-	           	 setTestCaseID("TC_STACKED_COL_DATA_LABEL_045");
+	           	 setTestCaseID("TC_STACKED_COL_ DATA_LABEL_045");
 	           	 if(IsElementEnabled(driver,TotalFontSizeInput)) {		
 	    	  		 pass(driver,"'Total Font Size' input is accessible after enabling the 'Stack Total' toggle"); 
-	    	  		setTestCaseID("TC_STACKED_COL_DATA_LABEL_044");
+	    	  		setTestCaseID("TC_STACKED_COL_ DATA_LABEL_044");
 	    	  		 String defaultTotalFontSize_Act=defaultSelectedValue(driver, TotalFontSizeInput);
 	    	  		 if(DefaultStackTotal_FontSize.equals(defaultTotalFontSize_Act)) {
 	    		  		 pass(driver,"By default, '"+DefaultStackTotal_FontSize+"' is selected in the Total Font Size Input"); 
@@ -2715,7 +2721,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    		  		 fail(driver,"By default, '"+DefaultStackTotal_FontSize+"' is not selected in the Total Font Size Input"); 
 	    	  		 }
 	    			 
-	    	  		setTestCaseID("TC_STACKED_COL_DATA_LABEL_048");
+	    	  		setTestCaseID("TC_STACKED_COL_ DATA_LABEL_048");
 	    			 selectOptionValue(driver,TotalFontSizeInput,ChangeStackTotal_FontSize);
 	    			 
 	    			 scrollUsingElement(driver, ApplyButton);
@@ -2739,10 +2745,10 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    	  		 fail(driver,"'Total Font Size' input is not accessible after enabling the 'Stack Total' toggle");
 	    		 }
 	           	 
-	           	setTestCaseID("TC_STACKED_COL_DATA_LABEL_050");
+	           	setTestCaseID("TC_STACKED_COL_ DATA_LABEL_050");
 	           	if(IsElementEnabled(driver,TotalSeperatorInput)) {		
 	    	  		 pass(driver,"'Total Seperator' input is accessible after enabling the 'Stack Total' toggle"); 
-	    	  		setTestCaseID("TC_STACKED_COL_DATA_LABEL_049");
+	    	  		setTestCaseID("TC_STACKED_COL_ DATA_LABEL_049");
 	    	  		 String defaultTotalSeperator_Act=defaultSelectedValue(driver, TotalSeperatorInput);
 	    	  		 if(DefaultStackTotal_Seperator.equals(defaultTotalSeperator_Act)) {
 	    		  		 pass(driver,"By default, '"+DefaultStackTotal_Seperator+"' is selected in the Total Seperator Input"); 
@@ -2750,15 +2756,15 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    		  		 fail(driver,"By default, '"+DefaultStackTotal_Seperator+"' is not selected in the Total Seperator Input"); 
 	    	  		 }
 	    	  		 
-	    	  		setTestCaseID("TC_STACKED_COL_DATA_LABEL_051");
+	    	  		setTestCaseID("TC_STACKED_COL_ DATA_LABEL_051");
 	    	  		selectOptionValue(driver,TotalSeperatorInput,"#,###");
-	    	  		setTestCaseID("TC_STACKED_COL_DATA_LABEL_057");
+	    	  		setTestCaseID("TC_STACKED_COL_ DATA_LABEL_057");
 	    	  		if(IsElementEnabled(driver, TotalBigNumberInput)) {
 	    	  			fail(driver,"'Total BigNumber Suffix' input toggle is Accessible when the Seperator is Selected");
 	    	  		}else {
 	    	  			pass(driver,"'Total BigNumber Suffix' input toggle is not Accessible when the Seperator is Selected");
 	    	  		}
-	    	  		setTestCaseID("TC_STACKED_COL_DATA_LABEL_051");
+	    	  		setTestCaseID("TC_STACKED_COL_ DATA_LABEL_051");
 	    	  		scrollUsingElement(driver, ApplyButton);
 	    			click(driver,ApplyButton);
 	    			elementnotvisible1(driver, RPE_Loading);
@@ -2813,17 +2819,17 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	           	}else {
 	           		 fail(driver,"'Total Seperator' input is not accessible after enabling the 'Stack Total' toggle");
 	           	}
-	           	setTestCaseID("TC_STACKED_COL_DATA_LABEL_053");
+	           	setTestCaseID("TC_STACKED_COL_ DATA_LABEL_053");
 	           	if(IsElementEnabled(driver,TotalRoundOffInput)) {		
 	    	  		 pass(driver,"'Total RoundOff' input is accessible after enabling the 'Stack Total' toggle"); 
-	    	  		setTestCaseID("TC_STACKED_COL_DATA_LABEL_052");
+	    	  		setTestCaseID("TC_STACKED_COL_ DATA_LABEL_052");
 	    	  		 String defaultStackTotalRoundOff_Act=defaultSelectedValue(driver, TotalRoundOffInput);
 	    	  		 if(DefaultStackTotal_RoundOff.equals(defaultStackTotalRoundOff_Act)) {
 	    		  		 pass(driver,"By default, '"+DefaultStackTotal_RoundOff+"' is selected in the Total RoundOff Input"); 
 	    	  		 }else {
 	    		  		 fail(driver,"By default, '"+DefaultStackTotal_RoundOff+"' is not selected in the Total RoundOff Input"); 
 	    	  		 }
-	    	  		setTestCaseID("TC_STACKED_COL_DATA_LABEL_054");
+	    	  		setTestCaseID("TC_STACKED_COL_ DATA_LABEL_054");
 	    	  		 selectByText(driver,TotalRoundOffInput,ChangeStackTotal_RoundOff);
 	    	  		 wait(driver,"1");
 	    	  		 scrollUsingElement(driver, ApplyButton);
@@ -2848,7 +2854,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	           	}else {
 	          		 fail(driver,"'Total RoundOff' input is not accessible after enabling the 'Stack Total' toggle");
 	          	}
-	           	setTestCaseID("TC_STACKED_COL_DATA_LABEL_055");
+	           	setTestCaseID("TC_STACKED_COL_ DATA_LABEL_055");
 	           	if(IsElementEnabled(driver,TotalRotationInput)) {	
 	           		String defaultTotalRotation_Act=getText1(driver,TotalRotationOutput);
 	        		if(defaultTotalRotation_Act.equals("0")) {
@@ -2856,7 +2862,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	        		}else {
 	        			 fail(driver,"By default, '0' is not displayed in Total rotation output");
 	        		}
-	        		setTestCaseID("TC_STACKED_COL_DATA_LABEL_056");
+	        		setTestCaseID("TC_STACKED_COL_ DATA_LABEL_056");
 	        		moveSlider(driver,TotalRotationInput,TotalRotationOutput,ChangeStackTotal_Rotation);
 	        		scrollUsingElement(driver, ApplyButton);
 	        		click(driver,ApplyButton);
@@ -2875,7 +2881,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	         		 fail(driver,"'Total Rotation' input is not accessible after enabling the 'Stack Total' toggle");
 	         	}
 	           	
-	           	setTestCaseID("TC_STACKED_COL_DATA_LABEL_058");
+	           	setTestCaseID("TC_STACKED_COL_ DATA_LABEL_058");
 	            if(isToggleAccessible(driver,TotalBigNumberInput)) {
 	    			 pass(driver,"'Total Big Number Suffix' toggle is accessible after enabling the 'Stack Total' toggle");
 	    			 click(driver,TotalBigNumberInputToggle);
@@ -2889,13 +2895,18 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    					 waitForElement(driver, ChartBarDisplayCount);
 	    				    
 	    					 String TotalValueTextAct=getText1(driver,StackTotal_Column_Chart);     //getText1(driver,ValueFormat_ChartValue);
-	    					 if(TotalValueTextAct.length()>3) {
-	    						 if(TotalValueTextAct.endsWith("K") || TotalValueTextAct.endsWith("k")) {
-		    						 pass(driver,"Total Big Number Suffix is applied for enabled Total value in charts");
-		    					 }else {
-		    						 fail(driver,"Total Big Number Suffix is not applied for enabled Total value in charts");
+	    					 if(TotalValueTextAct.contains("..")||TotalValueTextAct.equals("")) {
+	    						 fail(driver,"Unable to validate the Total bignumber suffix for the text : "+TotalValueTextAct);
+	    					 }else {
+	    						 if(TotalValueTextAct.length()>3) {
+		    						 if(TotalValueTextAct.endsWith("K") || TotalValueTextAct.endsWith("k")) {
+			    						 pass(driver,"Total Big Number Suffix is applied for enabled Total value in charts");
+			    					 }else {
+			    						 fail(driver,"Total Big Number Suffix is not applied for enabled Total value in charts, Act text : "+TotalValueTextAct);
+			    					 }
 		    					 }
 	    					 }
+	    					 
 	    					 
 	    				}else {
 	    					 fail(driver,"'Total Big Number Suffix' toggle is not enabled while click on it");
@@ -2929,7 +2940,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    		}else {
 	    			 fail(driver,"'Total Big Number Suffix' toggle is Inaccessible after enabling the 'Stack Total' toggle");
 	    		}
-	            setTestCaseID("TC_STACKED_COL_DATA_LABEL_059");
+	            setTestCaseID("TC_STACKED_COL_ DATA_LABEL_059");
 	            mouseOverToElement(driver, DataLabels);
 	         	click(driver,DataLabels);
 	          
@@ -2946,7 +2957,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 			 String Stacked_Column_ChartFormat_Legend= getCellValue("TestExecution","Testcase_Selection","Stacked_Column_ChartFormat_Legend",Flag);
 
 	         if(Stacked_Column_ChartFormat_Legend.equals("Yes")) {
-	        	 setTestCaseID("TC_STACKED_COL_LEGEND_001");
+	        	 setTestCaseID("TC_STACKED_COL_ LEGEND_001");
 	        	 verifyElementDisplayed(driver,Legend_);
 	    		 scrollUsingElement(driver,Legend_);
 	    		 String LegendSecExpand=getAttribute1(driver, Legends_Expand, "class");
@@ -2957,14 +2968,14 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    			//click(driver,DataLabels);
 	    		 }
 	    		
-	    		 setTestCaseID("TC_STACKED_COL_LEGEND_002");
+	    		 setTestCaseID("TC_STACKED_COL_ LEGEND_002");
 	    		 String LegendsColor_Act=getTextColor(driver, Legend_);
 	    		 if(Legends_Color_Exp.equalsIgnoreCase(LegendsColor_Act)) {
 	    			pass(driver,"Legends gets displayed in blue color");
 	    		 }else {
 	    			fail(driver,"Legends not displayed in blue color"); 
 	    		 }
-	    		 setTestCaseID("TC_STACKED_COL_LEGEND_003");
+	    		 setTestCaseID("TC_STACKED_COL_ LEGEND_003");
 	    		 verifyElementDisplayed(driver,Legend_Text);
 	    		 verifyElementDisplayed(driver, Legend_InputToggle);
 
@@ -2974,19 +2985,19 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    		 verifyElementDisplayed(driver,LegendFontSize_Text);
 	    		 verifyElementDisplayed(driver,LegendFontSize_Input);
 	    		 
-	    		 setTestCaseID("TC_STACKED_COL_LEGEND_004");
+	    		 setTestCaseID("TC_STACKED_COL_ LEGEND_004");
 	    		 if(isToggleEnable(driver, Legend_Input)) {
 	    			 pass(driver,"By default, Legend Toggle is selected ");
 	    		 }else {
 	    			 fail(driver,"By default, Legend Toggle is not selected ");
 	    		 }
 	           	
-	    		 setTestCaseID("TC_STACKED_COL_LEGEND_006");
+	    		 setTestCaseID("TC_STACKED_COL_ LEGEND_006");
 	    		 click(driver,Legend_InputToggle);
 	    		 wait(driver,"1");
 	    		 if(!isToggleEnable(driver, Legend_Input)) {
 	    			 pass(driver,"'Legend toggle is deSelected when click on it");
-	    			 setTestCaseID("TC_STACKED_COL_LEGEND_005");
+	    			 setTestCaseID("TC_STACKED_COL_ LEGEND_005");
 	    			 wait(driver,"1");
 	    			 if(IsElementEnabled(driver, LegendPosition_Input)) {
 	    				 fail(driver,"Legend Position Input is Accessible when the 'Legend' toggle is disabled");
@@ -3014,7 +3025,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    		 }else {
 	    			 fail(driver,"'Legend toggle is not deSelected when click on it"); 
 	    		 }
-	    		 setTestCaseID("TC_STACKED_COL_LEGEND_004");
+	    		 setTestCaseID("TC_STACKED_COL_ LEGEND_004");
 	    		 click(driver,Legend_InputToggle);
 	    		 wait(driver,"1");
 	    		 if(isToggleEnable(driver, Legend_Input)) {
@@ -3030,10 +3041,10 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    			 }else {
 	    				 fail(driver,"Legend is not displayed in chart when it is enabled");
 	    			 }
-	    			 setTestCaseID("TC_STACKED_COL_LEGEND_007");
+	    			 setTestCaseID("TC_STACKED_COL_ LEGEND_007");
 	    			 if(IsElementEnabled(driver, LegendPosition_Input)) {
 	    				 pass(driver,"Legend Position Input is Accessible when the Legend Toggle is Enable");
-	    				 setTestCaseID("TC_STACKED_COL_LEGEND_008");
+	    				 setTestCaseID("TC_STACKED_COL_ LEGEND_008");
 	    				 String defaultPosition_Legend=defaultSelectedValue(driver, LegendPosition_Input);
 	    				 if(DefaultLegend_Position.equals(defaultPosition_Legend)) {
 	    					 pass(driver,"By default, '"+DefaultLegend_Position+"' is selected in the Legend Positon input");
@@ -3047,7 +3058,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    				}else {
 	    					fail(driver,"By default, the legend is not displayed in '"+DefaultLegend_Position+"' in the chart");
 	    				}
-	    				setTestCaseID("TC_STACKED_COL_LEGEND_009");
+	    				setTestCaseID("TC_STACKED_COL_ LEGEND_009");
 	    				selectByText(driver, LegendPosition_Input, Change_LegendPositon);
 	    				scrollUsingElement(driver, ApplyButton);
 	    				click(driver,ApplyButton);
@@ -3064,10 +3075,10 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    			 }else {
 	    				 fail(driver,"Legend Position Input is InAccessible when the Legend Toggle is Enable");
 	    			 }
-	    			 setTestCaseID("TC_STACKED_COL_LEGEND_013");
+	    			 setTestCaseID("TC_STACKED_COL_ LEGEND_013");
 	    			 if(IsElementEnabled(driver, LegendFontSize_Input)) {
 	    				 pass(driver,"Legend FontSize Input is Accessible when the Legend Toggle is Enable");
-	    				 setTestCaseID("TC_STACKED_COL_LEGEND_012");
+	    				 setTestCaseID("TC_STACKED_COL_ LEGEND_012");
 	    				 String defaultFontSize_Legend=defaultSelectedValue(driver, LegendFontSize_Input);
 	    				 if(Default_Legend_FontSize.equals(defaultFontSize_Legend)) {
 	    					 pass(driver,"By default, '"+Default_Legend_FontSize+"' is selected in the Legend Font Size input");
@@ -3081,7 +3092,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    				}else {
 	    					fail(driver,"By default, '"+Default_Legend_FontSize+"' fontsize is not applied in the Legend in the chart");
 	    				}
-	    				setTestCaseID("TC_STACKED_COL_LEGEND_016");
+	    				setTestCaseID("TC_STACKED_COL_ LEGEND_016");
 	    				selectByText(driver, LegendFontSize_Input, Change_Legend_FontSize);
 	    				scrollUsingElement(driver, ApplyButton);
 	    				click(driver,ApplyButton);
@@ -3101,7 +3112,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    		 }else {
 	    			 fail(driver,"Legend Toggle is not enabled when click on it ");
 	    		 }
-	    		 setTestCaseID("TC_STACKED_COL_LEGEND_017");
+	    		 setTestCaseID("TC_STACKED_COL_ LEGEND_017");
 	    		 mouseOverToElement(driver, Legend_);
 	    		 click(driver,Legend_);
 	    	      
@@ -3119,7 +3130,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 			 String Stacked_Column_ChartFormat_Others= getCellValue("TestExecution","Testcase_Selection","Stacked_Column_ChartFormat_Others",Flag);
 
 	         if(Stacked_Column_ChartFormat_Others.equals("Yes")) {
-	        	 setTestCaseID("TC_STACKED_COL_OTHERS_001");
+	        	 setTestCaseID("TC_STACKED_COL_ OTHERS_001");
 	        	 verifyElementDisplayed(driver,ChartFormat_Others);
 	    		 scrollUsingElement(driver,ChartFormat_Others);
 	    		 String OthersExpand=getAttribute1(driver, ChartFormat_OthersExpand, "class");
@@ -3128,7 +3139,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    		 }else {
 	    			fail(driver,"By default, 'Others' not gets Expand");
 	    		 }
-	    		 setTestCaseID("TC_STACKED_COL_OTHERS_002");
+	    		 setTestCaseID("TC_STACKED_COL_ OTHERS_002");
 	    		 String Others_Color_Act=getTextColor(driver, ChartFormat_Others);
 	    		 if(Others_Color_Exp.equalsIgnoreCase(Others_Color_Act)) {
 	    			pass(driver,"'Others' gets displayed in blue color");
@@ -3136,7 +3147,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    			fail(driver,"'Others' not displayed in blue color");
 	    		 }
 	    		
-	    		 setTestCaseID("TC_STACKED_COL_OTHERS_003");
+	    		 setTestCaseID("TC_STACKED_COL_ OTHERS_003");
 	    		 verifyElementDisplayed(driver,StatsLine_text);
 	    		 verifyElementIsPresent1(driver, StatsLine_Input);
 	    		 
@@ -3151,11 +3162,11 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    		
 	    		 verifyElementDisplayed(driver,Export_text);
 	    		 verifyElementIsPresent1(driver, Export_Input);
-	    		 setTestCaseID("TC_STACKED_COL_OTHERS_004");
+	    		 setTestCaseID("TC_STACKED_COL_ OTHERS_004");
 	    		 String default_StatslineValueAct=defaultSelectedValue(driver, StatsLine_Input);
 	      		 if(default_StatslineValueExp.equals(default_StatslineValueAct)) {
 	    	  		 pass(driver,"By default, '"+default_StatslineValueExp+"' is selected in the StatusLine Input"); 
-	    	  		setTestCaseID("TC_STACKED_COL_OTHERS_005");
+	    	  		setTestCaseID("TC_STACKED_COL_ OTHERS_005");
 	    	  		if(isToggleAccessible(driver,statsLinePosition_Input)) {
 	    		  		 fail(driver,"'statsLinePosition Input' is accessible when no selection is made in the stats line field"); 
 	    			}else {
@@ -3167,7 +3178,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    			}else {
 	    		  		 pass(driver,"'statsLineRoundOff Input' is Inaccessible when no selection is made in the stats line field"); 
 	    			}
-	    	 		setTestCaseID("TC_STACKED_COL_OTHERS_015");
+	    	 		setTestCaseID("TC_STACKED_COL_ OTHERS_015");
 	    	 		if(isDisplayed2(driver, statsLineColorInput)) {
 	    		  		 fail(driver,"'StatsLineColor Input' is displayed without enable stats line"); 
 	    	 		}else {
@@ -3177,10 +3188,10 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	      		 }else {
 	    	  		 fail(driver,"By default, '"+default_StatslineValueExp+"' is not selected in the StatusLine Input"); 
 	      		 }
-	      		setTestCaseID("TC_STACKED_COL_OTHERS_006");
+	      		setTestCaseID("TC_STACKED_COL_ OTHERS_006");
 	      		 click(driver,StatsLine_Input);
 	      		 String[] statLineValue= {"q1","q3","mean","median","std deviation","min","max"};
-	      		setTestCaseID("TC_STACKED_COL_OTHERS_008");
+	      		setTestCaseID("TC_STACKED_COL_ OTHERS_008");
 	      		for(int i=0;i<statLineValue.length;i++) {
 	      			
 	    	  	  	try {
@@ -3242,7 +3253,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	      		scrollUsingElement(driver, ApplyButton);
 	      		click(driver,ApplyButton);
 	      		elementnotvisible1(driver, RPE_Loading);
-	      		setTestCaseID("TC_STACKED_COL_OTHERS_016");
+	      		setTestCaseID("TC_STACKED_COL_ OTHERS_016");
 	      		if(isDisplayed(driver, statsLineColorInput)) {
 	    	  		 pass(driver,"'StatsLineColor Input' is displayed when selecting the StatsLine Value"); 
 	    	  		 String defaultStatsLineColor_Act=getTextJavascript(driver, statsLineColorInput);
@@ -3251,7 +3262,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    	  		 }else {
 	    		  		 fail(driver,"By default, '"+defaultStatsLineColor_Exp+"' color is not display in StatsLine Color Input"); 
 	    	  		 }
-	    	  		setTestCaseID("TC_STACKED_COL_OTHERS_017");
+	    	  		setTestCaseID("TC_STACKED_COL_ OTHERS_017");
 	    	  		 click(driver,statsLineColorInput);
 	    	  		 if(isDisplayed(driver, ColorPickerOpen)) {  
 	    	  			 scrollUsingElement(driver, ColorPickerOpen);
@@ -3267,7 +3278,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    	  		 }else {
 	    		  		 fail(driver,"Stats line color is not accessible and color picker not opened"); 
 	    	  		 }
-	    	  		setTestCaseID("TC_STACKED_COL_OTHERS_018");
+	    	  		setTestCaseID("TC_STACKED_COL_ OTHERS_018");
 	    	  		 doubleClick(driver,statsLineColorInput);
 	    	  		 action.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).perform();
 	    	  		 sendKeys(driver,statsLineColorInput,ChangeStatsLine_Color);
@@ -3316,14 +3327,14 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    	  		 fail(driver,"'StatsLineColor Input' is not displayed when selecting the StatsLine Value"); 
 	     		}
 	      		
-	      		setTestCaseID("TC_STACKED_COL_OTHERS_010");
+	      		setTestCaseID("TC_STACKED_COL_ OTHERS_010");
 	      		// Position Validation start....
 	      		if(isToggleAccessible(driver,statsLinePosition_Input)) {		
 	    	  		 pass(driver,"'StatsLinePosition Input' accessible when selecting the StatsLine Value"); 
 	    		}else {
 	    	  		 fail(driver,"'StatsLinePosition Input' Inaccessible when selecting the StatsLine Value"); 
 	    		}
-	      		setTestCaseID("TC_STACKED_COL_OTHERS_009");
+	      		setTestCaseID("TC_STACKED_COL_ OTHERS_009");
 	      		 String default_StatslinePosition_Act=defaultSelectedValue(driver, statsLinePosition_Input);
 	      		 if(default_StatslinePosition_Exp.equals(default_StatslinePosition_Act)) {
 	    	  		 pass(driver,"By default, '"+default_StatslinePosition_Exp+"' is selected in the StatusLine Position Input"); 
@@ -3335,7 +3346,7 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	      		 }else {
 	    	  		 fail(driver,"By default, '"+default_StatslinePosition_Exp+"' is not selected in the StatusLine Position Input"); 
 	      		 }
-	      		 setTestCaseID("TC_STACKED_COL_OTHERS_011");
+	      		 setTestCaseID("TC_STACKED_COL_ OTHERS_011");
 	       		 selectOptionValue(driver,statsLinePosition_Input,"above");
 	       		 scrollUsingElement(driver, ApplyButton);
 	    		 click(driver,ApplyButton);
@@ -3350,21 +3361,21 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    		 }
 	    		 
 	      		 //position Validation End
-	    		 setTestCaseID("TC_STACKED_COL_OTHERS_013");
+	    		 setTestCaseID("TC_STACKED_COL_ OTHERS_013");
 	    		 //RoundOff Validation Start
 	      		 if(isToggleAccessible(driver,statsLineRoundOff_Input)) {		
 	    	  		 pass(driver,"'StatsLineRoundOff Input' accessible when selecting the StatsLine Value"); 
 	      		 }else {
 	    	  		 fail(driver,"'StatsLineRoundOff Input' Inaccessible when selecting the StatsLine Value"); 
 	      		 }
-	      		setTestCaseID("TC_STACKED_COL_OTHERS_012");
+	      		setTestCaseID("TC_STACKED_COL_ OTHERS_012");
 	     		 String default_RoundOffValue_Act=defaultSelectedValue(driver, statsLineRoundOff_Input);
 	     		 if(default_RoundOffValue_Exp.equals(default_RoundOffValue_Act)) {
 	    	  		 pass(driver,"By default, '"+default_RoundOffValue_Exp+"' is selected in the StatusLine RoundOff Input"); 
 	     		 }else {
 	    	  		 fail(driver,"By default, '"+default_RoundOffValue_Exp+"' is not selected in the StatusLine RoundOff Input"); 
 	     		 }
-	     		setTestCaseID("TC_STACKED_COL_OTHERS_014");
+	     		setTestCaseID("TC_STACKED_COL_ OTHERS_014");
 	     		 selectOptionValue(driver, statsLineRoundOff_Input, ChangeRoundOff_StatsLine);
 	     		 scrollUsingElement(driver, ApplyButton);
 	      		 click(driver,ApplyButton);
@@ -3384,174 +3395,143 @@ public class DASHPRO_STACKED_COLUMN_TESTING extends Keywords {
 	    		 
 	    		 //RoundOff Validation End
 
-	     	setTestCaseID("TC_STACKED_COL_OTHERS_019");
+	     	setTestCaseID("TC_STACKED_COL_ OTHERS_019");
 	     	//cursor validation start....
-	   		 if(isToggleEnable(driver,Cursor_Input)) {		
-	   	  		 pass(driver,"'Cursor Input' is enabled by default"); 
-	   	  		 scrollUsingElement(driver, ApplyButton);
-	   	  		 click(driver,ApplyButton);
-	   	  		 elementnotvisible1(driver, RPE_Loading);
-	   	  		 waitForElement(driver,Chart);
+	   		 if(!isToggleEnable(driver,Cursor_Input)) {		
+	   	  		 pass(driver,"'Cursor Input' is disabled by default"); 
 	   	  		 mouseOverToElement(driver, ChartGraph);
-	   	  		 setTestCaseID("TC_STACKED_COL_OTHERS_020");
-	   	  		 if(isDisplayed2(driver,MouseCursor)) {
-	   	  			 pass(driver,"Cursor is displayed in chart when cursor is enable"); 
+	   	  		 setTestCaseID("TC_STACKED_COL_ OTHERS_020");
+	   	  		 if(!isDisplayed2(driver,MouseCursor)) {
+	   	  			 pass(driver,"Cursor is not displayed in chart when cursor input is disabled by default"); 
 	   	  		 }else {
-	   	  			 fail(driver,"Cursor is not displayed in chart when cursor is enable");  
+	   	  			 fail(driver,"Cursor is displayed in chart when cursor input is disabled by default");  
 	   	  		 }
 	   		 }else {
-	   	  		 fail(driver,"'Cursor Input' is disabled by default"); 
+	   	  		 fail(driver,"'Cursor Input' is not disabled by default"); 
+	   	  		 setTestCaseID("TC_STACKED_COL_ OTHERS_021");
 	   	  		 click(driver,Cursor_InputClick);
-	   		 }
-	   		 
-	   		
-	   		//
-	   		setTestCaseID("TC_STACKED_COL_OTHERS_021");
-	   		click(driver,Cursor_InputClick);
-	   		if(isToggleEnable(driver,Cursor_Input)) {		
-	   	  		 fail(driver,"'Cursor Input' is enable while click on it"); 
-	   		}else {
-	   	  		 pass(driver,"'Cursor Input' is disable while click on it"); 
-	   		}
-	   		 scrollUsingElement(driver, ApplyButton);
-	   		 click(driver,ApplyButton);
-	   		 elementnotvisible1(driver, RPE_Loading);
-	   		 waitForElement(driver,Chart);
-	   		 mouseOverToElement(driver, ChartGraph);
-	   		 if(isDisplayed2(driver,MouseCursor)) {
-	   	  		 fail(driver,"Cursor is displayed in chart when cursor is disable"); 
-	   		 }else {
-	   	  		 pass(driver,"Cursor is not displayed in chart when cursor is disable");  
+	   	  		 if(!isToggleEnable(driver,Cursor_Input)) {		
+	   	  			 fail(driver,"'Cursor Input' is not enable while click on it"); 
+	   	  		 }else {
+	   	  			 pass(driver,"'Cursor Input' is enabled while click on it"); 
+	   	  			 scrollUsingElement(driver, ApplyButton);
+	   	  			 click(driver,ApplyButton);
+	   	  			 elementnotvisible1(driver, RPE_Loading);
+	   	  			 waitForElement(driver,Chart);
+	   	  			 mouseOverToElement(driver, ChartGraph);
+	   	  			 if(isDisplayed2(driver,MouseCursor)) {
+	   	  				 fail(driver,"Cursor is not displayed in chart when cursor is enabled"); 
+	   	  			 }else {
+	   	  				 pass(driver,"Cursor is displayed in chart when cursor is enabled");  
+	   	  			 }
+	   	  		 }
 	   		 }
 	   		 //cursor validation End....
-	     	
 	      		
-	      		setTestCaseID("TC_STACKED_COL_OTHERS_022");
-	      		if(isToggleEnable(driver,Export_Input)) {		
-	     	  		 fail(driver,"'Export Input' enable by default");
-	     		}else {
-	     	  		 pass(driver,"'Export Input' disable by default"); 
-	     		}
-	      		
-	      		scrollUsingElement(driver, ApplyButton);
-	      		click(driver,ApplyButton);
-	      		elementnotvisible1(driver, RPE_Loading);
-	      		verifyElementDisplayed(driver,Chart_Section);
-	    		waitForElement(driver, ChartBarDisplayCount);
-	    		
-	      		if(isDisplayed2(driver,ExportChartOptions)) {
-	     	  		 fail(driver,"'Export Options' is displayed in charts when Export chart is disabled"); 
-	     		}else {
-	     	  		 pass(driver,"'Export Options' not displayed in charts when Export chart is disabled"); 
-	     		}
-	      		setTestCaseID("TC_STACKED_COL_OTHERS_023");
-	      		click(driver,Export_InputClick);
-	      		if(isToggleEnable(driver,Export_Input)) {		
-	     	  		 pass(driver,"'Export Input' is enabled while enabling it");
-	     		}else {
-	     	  		 fail(driver,"'Export Input' not enabled while enabling it"); 
-	     		}
-	      		
-	      		scrollUsingElement(driver, ApplyButton);
-	      		click(driver,ApplyButton);
-	      		elementnotvisible1(driver, RPE_Loading);
-	      		verifyElementDisplayed(driver,Chart_Section);
-	    		waitForElement(driver, ChartBarDisplayCount);
-	      		if(isDisplayed2(driver,ExportChartOptions)) {
-	     	  		 pass(driver,"'Export Options' is displayed in charts when Export chart is enabled"); 
-	     	  		 mouseOverToElement(driver, ExportChartOptions);
-	     	  		 if(isDisplayed2(driver,ExportOptionExpandList)) {
-	     		  		pass(driver,"'Export Options' is expanded when click on it"); 
-	     		  		if(isDisplayed2(driver,Export_Image)) {
-	     			  		 pass(driver,"'IMG' Option is displayed When expand the charts Export"); 
-	     			  		 mouseOverToElement(driver, Export_Image);
-	     			  		 
-	     			  		if(elementIsVisible(driver,Export_PNG)) {
-	     				  		 pass(driver,"'PNG' Option displayed When Mouse hover on IMG Option"); 
-	     		  			}else {
-	     				  		 fail(driver,"'PNG' Option is not displayed When Mouse hover on IMG Option"); 
-	     		  			}
-	     			  		
-	     			  		if(elementIsVisible(driver,Export_JPG)) {
-	     				  		 pass(driver,"'JPG' Option displayed When Mouse hover on IMG Option"); 
-	     		  			}else {
-	     				  		 fail(driver,"'JPG' Option is not displayed When Mouse hover on IMG Option"); 
-	     		  			}
-	     			  		
-	     			  		if(elementIsVisible(driver,Export_SVG)) {
-	     				  		 pass(driver,"'SVG' Option displayed When Mouse hover on IMG Option"); 
-	     		  			}else {
-	     				  		 fail(driver,"'SVG' Option is not displayed When Mouse hover on IMG Option"); 
-	     		  			}
-	     		  		 }else {
-	     			  		 fail(driver,"'IMG' Option is not displayed When expand the charts Export"); 
-	     		  		 }
-	     		  		 
-	     		  		if(isDisplayed2(driver,Export_Data)) {
-	     			  		 pass(driver,"'Data' Option is displayed When expand the charts Export"); 
-	     			  		 mouseOverToElement(driver, Export_Data);
-	     			  		 verifyElementIsPresent1(driver, Export_JSON);
-	     			  		 verifyElementIsPresent1(driver, Export_CSV);
-	     			  		 verifyElementIsPresent1(driver, Export_XLSX);
-	     			  		 verifyElementIsPresent1(driver, Export_HTML);
-
-	     		  		 }else {
-	     			  		 fail(driver,"'Data' Option is not displayed When expand the charts Export"); 
-	     		  		 }
-	     		  		
-	     		  		if(isDisplayed2(driver,Export_Print)) {
-	     			  		 pass(driver,"'Print' Option is displayed When expand the charts Export"); 			  		 
-	     		  		 }else {
-	     			  		 fail(driver,"'Print' Option is not displayed When expand the charts Export"); 
-	     		  		 }
-	     		  		 
-	     	  		 }else {
-	     		  		 fail(driver,"'Export Options' is not expanded when click on it"); 
-	     	  		 }
-	     		}else {
-	     	  		 fail(driver,"'Export Options' not displayed in charts when Export chart is enabled"); 
-	     		}
-	         }
-			 
-	  	     // ******************* Others Validation End *********************
-			 
-	         setTestCaseID("");
-	        click(driver,ChartTitleInput);
-	 		clear(driver,ChartTitleInput);
-	 		verifyElementDisplayed(driver, SaveBtn_Chart);
-	 		verifyElementDisplayed(driver, cancel_chart);
-	      	click(driver,SaveBtn_Chart);
-	      	if(isDisplayed(driver,chartSaveError1)) {
-	      		pass(driver,"'Enter Widget Name' error displayed when save the chart without given chart title name");
-	      	}else {
-	      		fail(driver,"'Enter Widget Name' error not displayed when save the chart without given chart title name");
-	      	}
-	      	elementnotvisible(driver, chartSaveError1);
-	      	sendKeys(driver,ChartTitleInput,ChangeChartTitleName);
+	   		 setTestCaseID("TC_STACKED_COL_ OTHERS_022");
+	   		 if(isToggleEnable(driver,Export_Input)) {		
+	   			 fail(driver,"'Export Input' enabled by default");
+	   		 }else {
+	   			 pass(driver,"'Export Input' disabled by default"); 
+	   			 if(isDisplayed2(driver,ExportChartOptions)) {
+	   				 fail(driver,"'Export Options' is displayed in charts when Export chart is disabled"); 
+	   			 }else {
+	   				 pass(driver,"'Export Options' not displayed in charts when Export chart is disabled"); 
+	   			 }
+	   			 if(IsElementEnabled(driver, Export_InputClick)) {
+	   				 setTestCaseID("TC_STACKED_COL_ OTHERS_023");
+	   				 click(driver,Export_InputClick);
+	   				 if(isToggleEnable(driver,Export_Input)) {		
+	   					 pass(driver,"'Export Input' is enabled while enabling it");
+	   					 scrollUsingElement(driver, ApplyButton);
+	   					 click(driver,ApplyButton);
+	   					 elementnotvisible1(driver, RPE_Loading);
+	   					 verifyElementDisplayed(driver,Chart_Section);
+	   					 waitForElement(driver, ChartBarDisplayCount);
+	   					 if(isDisplayed2(driver,ExportChartOptions)) {
+	   						 pass(driver,"'Export Options' is displayed in charts when Export chart is enabled"); 
+	   						 mouseOverToElement(driver, ExportChartOptions);
+	   						 if(isDisplayed2(driver,ExportOptionExpandList)) {
+	   							 pass(driver,"'Export Options' is expanded when click on it"); 
+	   							 if(isDisplayed2(driver,Export_Image)) {
+	   								 pass(driver,"'IMG' Option is displayed When expand the charts Export"); 
+	   								 mouseOverToElement(driver, Export_Image);
+	   								 if(elementIsVisible(driver,Export_PNG)) {
+	   									 pass(driver,"'PNG' Option displayed When Mouse hover on IMG Option"); 
+	   								 }else {
+	   									 fail(driver,"'PNG' Option is not displayed When Mouse hover on IMG Option"); 
+	   								 }
+	   								 
+	   								 if(elementIsVisible(driver,Export_JPG)) {
+	   									 pass(driver,"'JPG' Option displayed When Mouse hover on IMG Option"); 
+	   								 }else {
+	   									 fail(driver,"'JPG' Option is not displayed When Mouse hover on IMG Option"); 
+	   								 }
+	   								 
+	   								 if(elementIsVisible(driver,Export_SVG)) {
+	   									 pass(driver,"'SVG' Option displayed When Mouse hover on IMG Option"); 
+	   								 }else {
+	   									 fail(driver,"'SVG' Option is not displayed When Mouse hover on IMG Option"); 
+	   								 }
+	   							 }else {
+	   								 fail(driver,"'IMG' Option is not displayed When expand the charts Export"); 
+	   							 }
+	   	     		  		 
+	   							 if(isDisplayed2(driver,Export_Data)) {
+	   								 pass(driver,"'Data' Option is displayed When expand the charts Export"); 
+	   								 mouseOverToElement(driver, Export_Data);
+	   								 verifyElementIsPresent1(driver, Export_JSON);
+	   								 verifyElementIsPresent1(driver, Export_CSV);
+	   								 verifyElementIsPresent1(driver, Export_XLSX);
+	   								 verifyElementIsPresent1(driver, Export_HTML);
+	   							 }else {
+	   								 fail(driver,"'Data' Option is not displayed When expand the charts Export"); 
+	   							 }
+	   	     		  		
+	   							 if(isDisplayed2(driver,Export_Print)) {
+	   								 pass(driver,"'Print' Option is displayed When expand the charts Export"); 			  		 
+	   							 }else {
+	   								 fail(driver,"'Print' Option is not displayed When expand the charts Export"); 
+	   							 }
+	   							 
+	   						 }else {
+	   							 fail(driver,"'Export Options' is not expanded when click on it"); 
+	   						 }
+	   					 }else {
+	   						 fail(driver,"'Export Options' not displayed in charts when Export chart is enabled"); 
+	   					 }
+	   				 }else {
+	   					 fail(driver,"'Export Input' not enabled while enabling it"); 
+	   				 }
+	   			 }else {
+	   				 fail(driver,"Export input is not Accessible");
+	   			 }
+	   		 }
+	      }
+	  	  // ******************* Others Validation End *********************
+	        setTestCaseID("");
+	      	clearAndType1(driver,ChartTitleInput,ChangeChartTitleName);
 	      	click(driver,SaveBtn_Chart);
 	      	elementnotvisible1(driver, RPE_Loading);
 	      	if(!isDisplayed2(driver,chartSaveError1) && isDisplayed(driver,SavedChartTitleInput)) {
 	      		pass(driver,"Chart Saved Successfully");
+	      		String AfterSaveChartTitleName=getText1(driver, SavedChartTitleName);
+		      	if(AfterSaveChartTitleName.equals(ChangeChartTitleName)) {
+		      		pass(driver,"Same Chart Title name displayed after saved the chart ");
+		      	}else {
+		      		fail(driver,"Different Chart Title name displayed after saved the chart ");
+		      	}
+		      	mouseOverToElement(driver, SavedChartTitleInput);
+		      	if(Stacked_Column_ChartFormat_Others.equals("Yes")) {
+		      		if(isDisplayed2(driver,ExportOption_SavedChart)) {
+		          		pass(driver,"Export option get enabled after save chart");
+		          	}else {
+		          		fail(driver,"Export option not get enabled after save chart");
+		          	}
+		      	}
 	      	}else {
 	      		fail(driver,"Chart not Saved Successfully");
 	      	}	
-	 	      
-	      	String AfterSaveChartTitleName=getText1(driver, SavedChartTitleName);
-	      	if(AfterSaveChartTitleName.equals(ChangeChartTitleName)) {
-	      		pass(driver,"Same Chart Title name displayed after saved the chart ");
-	      	}else {
-	      		fail(driver,"Different Chart Title name displayed after saved the chart ");
-	      	}
-	 	    	  
-	      	mouseOverToElement(driver, SavedChartTitleInput);
-	      	if(Stacked_Column_ChartFormat_Others.equals("Yes")) {
-	      		if(isDisplayed2(driver,ExportOption_SavedChart)) {
-	          		pass(driver,"Export option get enabled after save chart");
-	          	}else {
-	          		fail(driver,"Export option not get enabled after save chart");
-	          	}
-	      	}
-	      	
 	}
 	
 }

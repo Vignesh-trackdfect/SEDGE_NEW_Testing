@@ -516,7 +516,7 @@ public class DASHPRO_COLUMN_SMOKE_TESTING extends Keywords{
 				}
 				
 			}else {
-				fail(driver,"Group selection input option is not displayed While select Date datatype in Y_axis");
+				fail(driver,"Group selection input option is not displayed While select Date datatype in X_axis");
 			}
 		}
 		setTestCaseID("");
@@ -571,7 +571,7 @@ public class DASHPRO_COLUMN_SMOKE_TESTING extends Keywords{
 		if(X_Axis_dataType.contains("Categorical") || X_Axis_dataType.contains("Text")) {
 			
 			int X_number=getNumber(X_Selected);
-	        String X_SelectedString=getStringValue(X_Selected);
+	        //String X_SelectedString=getStringValue(X_Selected);
 	        
 			scrollUsingElement(driver, ApplyButton);
 			click(driver,ApplyButton);
@@ -1347,7 +1347,7 @@ public class DASHPRO_COLUMN_SMOKE_TESTING extends Keywords{
 	       	setTestCaseID("TC_COLUMN_AXIS_033");
 	       	verifyElementDisplayed(driver, switchSliderText);
 	     	if(verifyElementDisplayed(driver,switchSlider)){
-	   		String sliderColor=getTextBackgroundColor(driver,switchSlider);
+	   		//String sliderColor=getTextBackgroundColor(driver,switchSlider);
 	   		
 	   		if(isToggleEnable(driver, switchSliderInput)) {
 	   			fail(driver,"By default Start axis at 0 toggle enabled");
@@ -1452,7 +1452,7 @@ public class DASHPRO_COLUMN_SMOKE_TESTING extends Keywords{
  			 }
  	  		 setTestCaseID("TC_COLUMN_CHART_STYLE_004");
 
-  			 String ChartStylingText_Act=getText1(driver,ChartStyling);
+  			 //String ChartStylingText_Act=getText1(driver,ChartStyling);
   			 String ChartStylingExpand=getAttribute1(driver, ChartStyling_Expand, "class");
   			 if(ChartStylingExpand.contains("up")) {
   				pass(driver,"By default, Chart Styling gets Expanded");

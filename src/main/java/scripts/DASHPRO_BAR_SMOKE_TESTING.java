@@ -1,8 +1,6 @@
 package scripts;
 
-import java.text.ParseException;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
@@ -10,10 +8,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.testng.Assert;
 
 import commonMethods.Keywords;
-import commonMethods.TestNgXml;
 import commonMethods.Utils;
 
 public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
@@ -106,146 +102,18 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
 		String ChangeRoundOffValue_DataLabel=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_BAR_Input", "ChangeRoundOffValue_DataLabel");
 		String ChangeRotataionVal_Positive_DataLabel=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_BAR_Input", "ChangeRotataionVal_Positive_DataLabel");
 		String ChangeRotataionVal_Negative_DataLabel=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_BAR_Input", "ChangeRotataionVal_Negative_DataLabel");
+		
+		//Others
 		String ChangeRoundOffValue_Others=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_BAR_Input", "ChangeRoundOffValue_Others");
+		String Select_StatsLine_Value=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_BAR_Input", "Select_StatsLine_Value");
+		String Custom_StatsLine_input=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_BAR_Input", "Custom_StatsLine_input");
+		
 		String ChartTitleName1_BAR_Smoke=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_BAR_Input", "ChartTitleName1_BAR_Smoke");
-
 		String TabNameNew_Global_Bar=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_BAR_Input", "TabNameNew_Global_Bar");
 		String ChartTitleName2_BAR_Smoke=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_BAR_Input", "ChartTitleName2_BAR_Smoke");
 
-      //Local filter inputs Categorical
-		String ByValuesInput_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "ByValuesInput_Categorical_LF");
-		String FirstCondition_1_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_1_Categorical_LF");
-		String FirstCondition_2_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_2_Categorical_LF");
-		String FirstCondition_3_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_3_Categorical_LF");
-		String FirstCondition_4_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_4_Categorical_LF");
-		String FirstCondition_5_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_5_Categorical_LF");
-		String FirstCondition_6_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_6_Categorical_LF");
-		String FirstCondition_7_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_7_Categorical_LF");
-		String FirstCondition_8_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_8_Categorical_LF");
-		String FirstCondition_Input_1_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_Input_1_Categorical_LF");
-		String FirstCondition_Input_2_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_Input_2_Categorical_LF");
-		String FirstCondition_Input_3_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_Input_3_Categorical_LF");
-		String FirstCondition_Input_4_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_Input_4_Categorical_LF");
-		String FirstCondition_Input_5_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_Input_5_Categorical_LF");
-		String FirstCondition_Input_6_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_Input_6_Categorical_LF");
-		String FirstCondition_Input_7_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_Input_7_Categorical_LF");
-		String FirstCondition_Input_8_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_Input_8_Categorical_LF");
-		String FirstCondition_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_Categorical_LF");
-		String FirstCondition_Input_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_Input_Categorical_LF");
-		String FirstOperator_Input_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstOperator_Input_Categorical_LF");
-		String SecondOperator_Input_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "SecondOperator_Input_Categorical_LF");
-		String SecondCondition_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "SecondCondition_Categorical_LF");
-		String SecondCondition_Input_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "SecondCondition_Input_Categorical_LF");
-		String ThirdCondition_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "ThirdCondition_Categorical_LF");
-		String ThirdCondition_Input_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "ThirdCondition_Input_Categorical_LF");
-
-		//Local filter inputs Date
-		String RelativeFilter_1_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_1_Date_LF");
-		String RelativeFilter_2_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_2_Date_LF");
-		String RelativeFilter_3_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_3_Date_LF");
-		String RelativeFilter_4_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_4_Date_LF");
-		String RelativeFilter_5_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_5_Date_LF");
-		String RelativeFilter_6_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_6_Date_LF");
-		String RelativeFilter_7_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_7_Date_LF");
-		String RelativeFilter_8_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_8_Date_LF");
-		String RelativeFilter_9_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_9_Date_LF");
-		String RelativeFilter_10_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_10_Date_LF");
-		String RelativeFilter_11_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_11_Date_LF");
-		String RelativeFilter_12_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_12_Date_LF");
-		String RelativeFilter_13_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_13_Date_LF");
-		String RelativeFilter_14_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_14_Date_LF");
-		String RelativeFilter_11_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_11_Input_Date_LF");
-		String RelativeFilter_12_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_12_Input_Date_LF");
-		String RelativeFilter_13_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_13_Input_Date_LF");
-		String RelativeFilter_14_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_14_Input_Date_LF");
-		String Condition_1_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_1_Date_LF");
-		String Condition_2_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_2_Date_LF");
-		String Condition_3_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_3_Date_LF");
-		String Condition_4_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_4_Date_LF");
-		String Condition_5_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_5_Date_LF");
-		String Condition_6_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_6_Date_LF");
-		String Condition_7_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_7_Date_LF");
-		String Condition_8_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_8_Date_LF");
-		String Condition_9_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_9_Date_LF");
-		String Condition_1_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_1_Input_Date_LF");
-		String Condition_2_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_2_Input_Date_LF");
-		String Condition_3_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_3_Input_Date_LF");
-		String Condition_4_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_4_Input_Date_LF");
-		String Condition_5_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_5_Input_Date_LF");
-		String Condition_6_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_6_Input_Date_LF");
-		String Condition_7_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_7_Input_Date_LF");
-		String Condition_8_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_8_Input_Date_LF");
-		String Condition_9_InputA_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_9_InputA_Date_LF");
-		String Condition_9_InputB_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_9_InputB_Date_LF");
-		
-		String FirstCondition_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "FirstCondition_Date_LF");
-		String SecondCondition_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "SecondCondition_Date_LF");
-		String ThirdCondition_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "ThirdCondition_Date_LF");
-		String FirstCondition_Date_Input_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "FirstCondition_Date_Input_LF");
-		String SecondCondition_Date_Input_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "SecondCondition_Date_Input_LF");
-		String ThirdCondition_Date_Input_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "ThirdCondition_Date_Input_LF");
-		String FirstOperator_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "FirstOperator_Input_Date_LF");
-		String SecondOperator_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "SecondOperator_Input_Date_LF");
-				
-		// Numerical Local Filter Inputs
-		String Condition_1_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_1_Num_LF");
-		String Condition_2_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_2_Num_LF");
-		String Condition_3_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_3_Num_LF");
-		String Condition_4_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_4_Num_LF");
-		String Condition_5_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_5_Num_LF");
-		String Condition_6_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_6_Num_LF");
-		String Condition_7_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_7_Num_LF");
-		String Condition_8_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_8_Num_LF");
-		String Condition_9_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_9_Num_LF");
-		String Condition_1_Input_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_1_Input_Num_LF");
-		String Condition_2_Input_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_2_Input_Num_LF");
-		String Condition_3_Input_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_3_Input_Num_LF");
-		String Condition_4_Input_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_4_Input_Num_LF");
-		String Condition_5_Input_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_5_Input_Num_LF");
-		String Condition_6_Input_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_6_Input_Num_LF");
-		String Condition_7_Input_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_7_Input_Num_LF");
-		String Condition_8_Input_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_8_Input_Num_LF");
-		String Condition_9_InputA_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_9_InputA_Num_LF");
-		String Condition_Between_InputB_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_Between_InputB_Num_LF");
-		
-		String FirstCondition_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "FirstCondition_Num_LF");
-		String SecondCondition_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "SecondCondition_Num_LF");
-		String ThirdCondition_num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "ThirdCondition_num_LF");
-		String FirstCondition_Num_Input_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "FirstCondition_Num_Input_LF");
-		String SecondCondition_Num_Input_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "SecondCondition_Num_Input_LF");
-		String ThirdCondition_Num_Input_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "ThirdCondition_Num_Input_LF");
-		String FirstOperator_Input_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "FirstOperator_Input_Num_LF");
-		String SecondOperator_Input_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "SecondOperator_Input_Num_LF");
-		  
-		//filter inputs Text
-		String ByValuesInput_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "ByValuesInput_Text_LF");
-		String Condition_1_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_1_Text_LF");
-		String Condition_2_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_2_Text_LF");
-		String Condition_3_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_3_Text_LF");
-		String Condition_4_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_4_Text_LF");
-		String Condition_5_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_5_Text_LF");
-		String Condition_6_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_6_Text_LF");
-		String Condition_7_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_7_Text_LF");
-		String Condition_8_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_8_Text_LF");
-		String Condition_Input_1_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_Input_1_Text_LF");
-		String Condition_Input_2_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_Input_2_Text_LF");
-		String Condition_Input_3_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_Input_3_Text_LF");
-		String Condition_Input_4_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_Input_4_Text_LF");
-		String Condition_Input_5_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_Input_5_Text_LF");
-		String Condition_Input_6_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_Input_6_Text_LF");
-		String Condition_Input_7_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_Input_7_Text_LF");
-		String Condition_Input_8_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_Input_8_Text_LF");
-		String FirstCondition_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "FirstCondition_Text_LF");
-		String FirstCondition_Input_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "FirstCondition_Input_Text_LF");
-		String FirstOperator_Input_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "FirstOperator_Input_Text_LF");
-		String SecondOperator_Input_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "SecondOperator_Input_Text_LF");
-		String SecondCondition_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "SecondCondition_Text_LF");
-		String SecondCondition_Input_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "SecondCondition_Input_Text_LF");
-		String ThirdCondition_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "ThirdCondition_Text_LF");
-		String ThirdCondition_Input_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "ThirdCondition_Input_Text_LF");	
-		
+       		
 		Actions action=new Actions(driver);
-		
 		mouseOverToElement(driver, ADDTabPlus);
   	    mouseOverAndClick(driver, ADDTabPlus);
   	    wait(driver,"1");
@@ -475,9 +343,9 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
 		
 		String defaultaggre=defaultSelectedValue(driver,aggregation);
         if(defaultaggre.equals("Sum")) {
-        	pass(driver,"'Sum' is selected as default aggrigation");
+        	pass(driver,"'Sum' is selected as default aggregation");
 		}else {
-			fail(driver,"'Sum' is not selected as default aggrigation");
+			fail(driver,"'Sum' is not selected as default aggregation");
 		}
 		
 		click(driver,Y_Axis_dropdown);
@@ -591,12 +459,8 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
 		click(driver,X_Axis_dropdown);
 		waitForElement(driver,X_Axis_dropdownResults);
 		selectDropdownValue(driver,X_Axis_dataType,Select_X_Axis_Value);
-		
-		//For testing validation purpose, need to command
-		//scrollUsingElement(driver, ApplyButton);
-		//click(driver,ApplyButton);
-		//For testing validation purpose, need to command
-		
+		click(driver,ApplyButton);
+		elementnotvisible1(driver, RPE_Loading);
 		click(driver,aggregation);
 		verifyElementIsPresent1(driver, Sum);
 		verifyElementIsPresent1(driver, Count);
@@ -621,26 +485,20 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
 		verifyElementIsPresent1(driver,All);
 		verifyElementIsPresent1(driver,Limit);
 		wait(driver,"1");
-		
+		scrollUsingElement(driver, ApplyButton);
+		click(driver,ApplyButton);
+		elementnotvisible1(driver, RPE_Loading);
+		verifyElementDisplayed(driver,Chart);
+        if(isDisplayed(driver,minimize)) {
+        	click(driver,minimize);
+        }
+        List<WebElement> charts=getWebElements(driver,chartBars);
+        int chartCount=charts.size();
 		String Y_Selected=getText1(driver,Y_SelectedValue);
 		if(Y_Axis_dataType.contains("Categorical") || Y_Axis_dataType.contains("Text")) {
 			
 			int Y_number=getNumber(Y_Selected);
-	        String Y_SelectedString=getStringValue(Y_Selected);
-	        
-			scrollUsingElement(driver, ApplyButton);
-			click(driver,ApplyButton);
-			elementnotvisible1(driver, RPE_Loading);
-			verifyElementDisplayed(driver,Chart);
-	        if(isDisplayed(driver,minimize)) {
-	        	click(driver,minimize);
-	        }
-	        
-	        mouseOverToElement(driver,DashProPage);
-	    	wait(driver,"2");
-
-	        List<WebElement> charts=getWebElements(driver,chartBars);
-	        int chartCount=charts.size();
+	        //String Y_SelectedString=getStringValue(Y_Selected);
 	        if(Y_number!=0) {
 	        	if(chartCount==Y_number) {
 		        	pass(driver,"For Show results 'All' bar displayed count matched with selected Y_Axis count value");
@@ -648,11 +506,8 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
 		        	fail(driver,"For Show results 'All' bar displayed count mismatched with selected Y_Axis count value, Exp : "+Y_number+" Act : "+chartCount);
 		        }
 	        }
-	        
 		}
-        
-		List<WebElement> DefaultCharts=getWebElements(driver,chartBars);
-		int defaultSizeChart=DefaultCharts.size();
+		List<WebElement> displaCounts=getWebElements(driver, charts_Bar);
 		click(driver,showResult);
 		selectByText(driver, showResult, "Limit");
         
@@ -678,7 +533,7 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
 			fail(driver,"'Kindly provide the limit', Error not displayed when click the Apply button without providing the limit value");
 		}
 		
-		if(defaultSizeChart>1) {
+		if(chartCount>1) {
 			click3(driver,limitInput);
 			sendKeys(driver,limitInput,Limit_Input_Axes);
 			scrollUsingElement(driver, ApplyButton);
@@ -693,9 +548,9 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
 	        mouseOverToElement(driver,DashProPage);
 	    	wait(driver,"2");
 	        int limit_Number=Integer.parseInt(Limit_Input_Axes);
-	        List<WebElement> charts=getWebElements(driver,chartBars);
-	        int chartCount=charts.size();
-	        if(chartCount==limit_Number) {
+	        List<WebElement> charts1=getWebElements(driver,chartBars);
+	        int chartCount1=charts1.size();
+	        if(chartCount1==limit_Number) {
 	        	pass(driver,"For Selected Limit Value, bar displayed count matched with Limit count value");
 	        }else {
 	        	fail(driver,"For Selected Limit Value, bar displayed count mismatched with Limit count value, Exp : "+limit_Number+" Act : "+chartCount);
@@ -728,11 +583,8 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
 			} catch (Exception e1) {
 				fail(driver,"Unable to compare the Images Top and Bottom charts images");
 			}
-	        
 		}
 		
-        selectByText(driver,showResult,"All");
-        
 		verifyElementIsPresent1(driver,sortType);  
 		verifyElementIsPresent1(driver,sortBy);
 		
@@ -903,7 +755,6 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
 		 			}else {
 		 				fail(driver,"Column Value not selected when click Enter in the field sort");
 		 			}
-		 			
 		 		}
 		 		
 	    	}
@@ -938,7 +789,6 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
         	elementnotvisible(driver,Loading);
         }
 		
-	
 		List<WebElement> moveElements=driver.findElements(By.xpath("//div[@id='RPE_Preview']//*[name()='tspan']"));
 		for(WebElement ele:moveElements) {
 			Actions act3=new Actions(driver);
@@ -949,15 +799,10 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
 			}
 		}
 		
-		List<WebElement> charts=getWebElements(driver,chartBars);
-		
+		List<WebElement> charts1=getWebElements(driver,chartBars);
         Y_Selected=getText1(driver,Y_SelectedValue);
         String X_Selected=getText1(driver,X_SelectedValue);
-        
-        System.out.println("X_Selected : "+X_Selected);
-        System.out.println("Y_Selected : "+Y_Selected);
         String aggreagtionSelected=defaultSelectedValue(driver,aggregation);
-        
         String Y_SelectedString=getStringValue(Y_Selected);
         String X_SelectedString=getStringValue(X_Selected);
          
@@ -969,16 +814,15 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
         }
         
         String X_chartvaluefull=getText1(driver,X_Value);
-      
         if(X_chartvaluefull.contains(X_SelectedString)&&X_chartvaluefull.contains(aggreagtionSelected)) {
 			pass(driver,"Selected X-Axis value with aggretaion displayed in X-Axis in the chart ");
         }else {
      	    fail(driver,"Selected X-Axis value with aggretaion not displayed in X-Axis in the chart");
         }
         
-        if(defaultSizeChart>1) {
+        if(chartCount>1) {
         	try {
-        		graphOrderValidation(driver,charts,QuickSortByText);
+        		graphOrderValidation(driver,charts1,QuickSortByText);
         	}catch(Exception e) {
         		System.out.println("Grpah Validation Failed");
         		e.printStackTrace();
@@ -1005,12 +849,22 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
 		}
 		mouseOverToElement(driver,DashProPage);
 		wait(driver,"1");
-		List<WebElement> charts1=getWebElements(driver,chartBars);
-		if(defaultSizeChart>1) {
-	    	graphOrderValidation(driver,charts1,QuickSortByText);
+		List<WebElement> chartsDes=getWebElements(driver,chartBars);
+		if(chartCount>1) {
+	    	graphOrderValidation(driver,chartsDes,QuickSortByText);
+		}
+		
+		click(driver,AscDescButton);
+        if(displaCounts.size()<10) {
+			selectByText(driver, showResult, "All");
+		}else {
+			click(driver,showResult);
+			selectByText(driver, showResult, "All");
+			selectByText(driver, showResult, "Limit");
+			click(driver,ApplyButton);
+			elementnotvisible1(driver, RPE_Loading);
 		}
 		// *********** Axes Validation End *************
-		
 		
     	// *********** AxisTitle Validation Start *************
 		String Bar_AxisTitle= getCellValue("TestExecution","Testcase_Selection","Bar_AxisTitle",Flag);
@@ -1311,8 +1165,6 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
 	       	
 	       	verifyElementDisplayed(driver, switchSliderText);
 	       	if(verifyElementDisplayed(driver,switchSlider)){
-	     		String sliderColor=getTextBackgroundColor(driver,switchSlider);
-	     		
 	     		if(isToggleEnable(driver, switchSliderInput)) {
 	     			fail(driver,"By default Start axis at 0 toggle enabled");
 	     		}else {
@@ -1728,7 +1580,6 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
 
 //	      Font Family Validation start...
 	        
-	        String fontFamily_ValueChartTitle=getText1(driver,ChartFontFamilyDropdown);
 	     	click(driver,ChartFontFamilyDropdown);
 	     	
 	     	if(verifyElementDisplayed(driver,ChartFontFamilyDropdownExpand)) {
@@ -1933,6 +1784,7 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
 				 fail(driver,"Chart theme dropdown not opened after click on it");
 	    	}
 
+	    	boolean default_Y_Scroll=false;
 	    	if(isToggleEnable(driver,AutoScroll_toggle)) {
 	   		   pass(driver,"By default, 'AutoScroll' toggle is enabled");
 	   		   if(isToggleEnable(driver,X_Scroll_toggle)) {
@@ -1941,12 +1793,21 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
 	   			   pass(driver,"X Scroll toggle disabled when AutoScroll toggle is enabled");
 	   		   }
 	   		   
-	   		   if(isToggleEnable(driver,Y_Scroll_toggle)) {
-				    fail(driver,"Y Scroll toggle not disabled when AutoScroll toggle is enabled for the Y_Value : "+Y_Selected);
-			   }else {
-				    pass(driver,"Y Scroll toggle disabled when AutoScroll toggle is enabled for the Y_Value : "+Y_Selected);
-			   }
-	   		   
+	   		   if(displaCounts.size()>=15) {
+	   			   if(isToggleEnable(driver,Y_Scroll_toggle)) {
+	   				   pass(driver,"Y Scroll toggle is enabled when AutoScroll toggle is enabled for the larger Y_Value : "+Y_Selected);
+	   				   default_Y_Scroll=true;
+	   			   }else {
+	   				   fail(driver,"Y Scroll toggle is not enabled when AutoScroll toggle is enabled for the larger Y_Value : "+Y_Selected);
+	   			   } 
+	   		   }else {
+	   			   if(isToggleEnable(driver,Y_Scroll_toggle)) {
+	   				   fail(driver,"Y Scroll toggle not disabled when AutoScroll toggle is enabled for the Y_Value : "+Y_Selected);
+	   			   }else {
+	   				   pass(driver,"Y Scroll toggle disabled when AutoScroll toggle is enabled for the Y_Value : "+Y_Selected);
+	   			   } 
+	   		   }
+
 	    	}else {
 	  		     fail(driver,"By default, 'AutoScroll' toggle is not enabled");
 	    	}
@@ -1970,7 +1831,6 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
 	 		    fail(driver,"X Scroll and Y Scroll toggle not accessible when AutoScroll toggle is disabled");
 	    	}
 	    	
-	    	
 	    	click(driver,X_ScrollInputSlider);
 	    	if(isToggleEnable(driver,X_Scroll_toggle)){
 	    		pass(driver,"X Scroll toggle enabled when click on it");
@@ -1978,28 +1838,51 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
 	  		    fail(driver,"X Scroll toggle not enabled when click on it");
 	    	}
 	    	
-	    	 boolean Y_ScrollEnable=false;
-   			 if(isToggleEnable(driver,Y_Scroll_toggle)){
-   				 //pass(driver,"Y Scroll toggle enabled when click on it");
-   				 Y_ScrollEnable=true;
-   			 }else {
-   				 //fail(driver,"Y Scroll toggle not enabled when click on it");
-   				 click(driver,Y_ScrollInputSlider);
-   				 wait(driver,"1");
-   				 if(isToggleEnable(driver,Y_Scroll_toggle)){
-   					 pass(driver,"Y Scroll toggle enabled when enabling it");
-   					 Y_ScrollEnable=true;
-   				 }else {
-   					 fail(driver,"Y Scroll toggle not enabled when enabling it");
-   				 }
-   			 }
-   			   	
+//	    	boolean Y_ScrollEnable=false;
+//	    	if(isToggleEnable(driver,Y_Scroll_toggle)){
+//	    		//pass(driver,"Y Scroll toggle enabled when click on it");
+//	    		Y_ScrollEnable=true;
+//	    	}else {
+//	    		//fail(driver,"Y Scroll toggle not enabled when click on it");
+//	    		click(driver,Y_ScrollInputSlider);
+//	    		wait(driver,"1");
+//	    		if(isToggleEnable(driver,Y_Scroll_toggle)){
+//	    			pass(driver,"Y Scroll toggle enabled when enabling it");
+//	    			Y_ScrollEnable=true;
+//	    		}else {
+//	    			fail(driver,"Y Scroll toggle not enabled when enabling it");
+//	    		}
+//	    	}
+   			if(default_Y_Scroll==false) { 
+   				click(driver,Y_ScrollInputSlider);
+   				wait(driver,"1");
+   				if(isToggleEnable(driver,Y_Scroll_toggle)){
+   					pass(driver,"Y Scroll toggle enabled when enabling it");
+   				}else {
+   					fail(driver,"Y Scroll toggle not enabled when enabling it");
+   				}
+   			}
 	    	
-	    	
-	    	
+   			scrollUsingElement(driver, ApplyButton);
+			 click(driver,ApplyButton);
+			 elementnotvisible1(driver, Loading);
+			 elementnotvisible1(driver, RPE_Loading);
+			 verifyElementDisplayed(driver,Chart_Section);
+			 waitForElement(driver, ChartBarDisplayCount);
+			
+			 if(isDisplayed(driver,X_Scroll_Bar)) {
+				 pass(driver,"X Scroll Bar is displayed in the chart after enabling it");
+			 }else {
+				 fail(driver,"X Scroll Bar is not displayed in the chart after enabling it");
+			 }
+			 
+			 if(isDisplayed(driver,Y_Scroll_Bar)) {
+				 pass(driver,"Y Scroll Bar is displayed in the chart after enabling it");
+			 }else {
+				 fail(driver,"Y Scroll Bar is not displayed in the chart after enabling it");
+			 }
+   			
 	    	click(driver,Auto_ScrollInputSlider);
-	    	wait(driver,"1");
-	    	
 	    	if(isToggleEnable(driver,X_Scroll_toggle) && isToggleEnable(driver,Y_Scroll_toggle)){
 	 		    fail(driver,"X Scroll and Y Scroll toggle not automatically disabled when enabling the AutoScroll toggle");
 	    	}else {
@@ -2007,30 +1890,27 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
 	    	}
 	    	
 	    	if(isToggleEnable(driver,EnableGrid_toggle)) {
-	     		 pass(driver,"By default, 'Enable Grid' toggle is enabled");
+	    		pass(driver,"By default, 'Enable Grid' toggle is enabled");
+	    		click(driver,EnableGrid_InputSlider);
+	    		wait(driver,"1");
+	    		if(isToggleEnable(driver,EnableGrid_toggle)){
+	    			fail(driver,"'Enable Grid' toggle not disabled when click on it ");
+	    		}else {
+	    			pass(driver,"'Enable Grid' toggle disabled when click on it ");
+	    		}
 	     		 
-	     		 click(driver,EnableGrid_InputSlider);
-	     		 wait(driver,"1");
-	     		 if(isToggleEnable(driver,EnableGrid_toggle)){
-	         		 fail(driver,"'Enable Grid' toggle not disabled when click on it ");
-	        	 }else {
-	         		 pass(driver,"'Enable Grid' toggle disabled when click on it ");
-	        	}
-	     		 
-	      	 }else {
-	    	    fail(driver,"By default, 'Enable Grid' toggle is not enabled");
-	      	 }
+	    	}else {
+	    		fail(driver,"By default, 'Enable Grid' toggle is not enabled");
+	    	}
 
-	       
 	    	click(driver,ChartStyling);
 	    	wait(driver,"1");
 	    	String chartStyleClose_Act=getAttribute1(driver, ChartStyling_Expand, "class");
-			 if(chartStyleClose_Act.contains("down")) {
-				pass(driver,"Chart styling gets collapsed when click on it");
-			 }else {
-				fail(driver,"Chart styling not gets collapsed when click on it");
-			 }
-	      	
+	    	if(chartStyleClose_Act.contains("down")) {
+	    		pass(driver,"Chart styling gets collapsed when click on it");
+	    	}else {
+	    		fail(driver,"Chart styling not gets collapsed when click on it");
+	    	}
 		 }
 		 
 	     //*********** ChartStyle validation end ************
@@ -2316,14 +2196,13 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
 			click(driver,ApplyButton);
 			elementnotvisible1(driver, RPE_Loading);
 			waitForElement(driver,Chart);
-			
 			String ValueFontSizeAct=getFontSize(driver,ValueFormat_ChartValue);
 			if(ValueFontSizeAct.equals(ChangeFontSizeValue_DataLabel)) {
 		  		 pass(driver,"The chart's value displayed with Selected '"+ChangeFontSizeValue_DataLabel+"' font size."); 
 			}else {
 		  		 fail(driver,"The chart's value not displayed with Selected '"+ChangeFontSizeValue_DataLabel+"' font size."); 
 			}
-			
+			selectOptionValue(driver,ValueFontSizeInput,DefaultFontSizeValue_Exp);
 			if(isToggleAccessible(driver,RoundOffValueInput)) {		
 		  		 pass(driver,"'RoundOff Value Input' is accessible after enabling the 'Enable Value' toggle"); 
 		  		 String defaultRoundOffValue_Act=defaultSelectedValue(driver, RoundOffValueInput);
@@ -2369,13 +2248,7 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
 		  		 fail(driver,"'Position Input' is not accessible after enabling the 'Enable Value' toggle");
 			}
 		   
-		   //  position check
-		   
-//		   if(isDisplayed(driver,minimize)) {
-//	       	click(driver,minimize);
-//	       	elementnotvisible(driver,Loading);
-//	       }
-		   
+
 		   boolean chartValuePositionAct=validateElementPosition(driver,chartBar2,chartValue_Rotation,"center");
 		   if(chartValuePositionAct==true) {
 		  		pass(driver,"By default, Chart value displayed center the chartbar for position selected as 'center' condition"); 
@@ -2389,10 +2262,6 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
 		   click(driver,ApplyButton);
 		   elementnotvisible1(driver, RPE_Loading);
 		   waitForElement(driver,Chart);
-//		   if(isDisplayed(driver,minimize)) {
-//		       	click(driver,minimize);
-//		       	elementnotvisible(driver,Loading);
-//	       }
 		   chartValuePositionAct=validateElementPosition(driver,chartBar2,chartValue_Rotation,"inside");
 		   if(chartValuePositionAct==true) {
 		  		pass(driver,"Chart value displayed inside the chartbar for position selected as 'inside' condition"); 
@@ -2405,10 +2274,6 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
 		   click(driver,ApplyButton);
 		   elementnotvisible1(driver, RPE_Loading);
 		   waitForElement(driver,Chart);
-//		   if(isDisplayed(driver,minimize)) {
-//		       	click(driver,minimize);
-//		       	elementnotvisible(driver,Loading);
-//	       }
 		   chartValuePositionAct=validateElementPosition(driver,chartBar2,chartValue_Rotation,"outside");
 		   if(chartValuePositionAct==true) {
 		  		pass(driver,"Chart value displayed outside the chartbar for position selected as 'outside' condition"); 
@@ -2421,11 +2286,9 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
 		   click(driver,ApplyButton);
 		   elementnotvisible1(driver, RPE_Loading);
 		   waitForElement(driver,Chart);
-		   
-		   //   position check endd
+		   //   position check end
 		   
 			selectOptionValue(driver,SeperatorInput,"#,###");
-			
 			if(isToggleAccessible(driver,BigNumberInput)) {
 				 fail(driver,"'Big Number Suffix' toggle is accessible while Seperator value is selected");
 			}else {
@@ -2664,402 +2527,504 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
 		  		 fail(driver,"By default, '"+default_StatslineValueExp+"' is not selected in the StatusLine Input"); 
 	  		 }
 		    
-	  		
-	  		if(isToggleAccessible(driver,StatsLine_Input)) {		
+	  		boolean statsLine=false;
+	  		if(IsElementEnabled(driver,StatsLine_Input)) {		
 		  		 pass(driver,"'StatsLine Input' is accessible"); 
-			}else {
-		  		 fail(driver,"'StatsLine Input' is not accessible"); 
-			}
-	  		
-	  		click(driver,StatsLine_Input);
-	  		String[] statLineValue= {"q1","q3","mean","median","std deviation","min","max"};
-	  		
-	  		for(int i=0;i<statLineValue.length;i++) {
-	  			
-		  	  	try {
-		  	  		selectOptionValue(driver,StatsLine_Input,statLineValue[i]);
-		  	  		wait(driver,"1");
-		  	  		String selectedStatsLine=getTextJavascript(driver, StatsLine_Input);
-		  	  		scrollUsingElement(driver, ApplyButton);
-		  	  		click(driver,ApplyButton);
-		  	  		elementnotvisible1(driver, RPE_Loading);
-		  	  		waitForElement(driver,Chart);
-		  	  		if(isDisplayed(driver,StatsLine_Chart)) {
-		  	  			pass(driver,"StatsLine is displayed in the chart for the Condition : "+selectedStatsLine);
-		  	  		}else {
-		  	  			fail(driver,"StatsLine is not displayed in the chart for the Condition : "+selectedStatsLine);
-		  	  		}
-	  			} catch (Exception e1) {
-	  				
-	  			}
-	  		}
-	  		
-	  		selectOptionValue(driver,StatsLine_Input,"custom");
-	  		
-	  		if(isDisplayed(driver,StatsLine_NumInput)) {
-	  			pass(driver,"StatsLine Number Input is displayed when select the 'Custom' Value ");
-	  			scrollUsingElement(driver, ApplyButton);
-	  	  		click(driver,ApplyButton);
-	  	  		if(isDisplayed(driver,StatsLine_Error)) {
-	  	  			pass(driver,"'Kindly enter custom value for stats line' error displayed when input not given");
-	  	  		}else {
-	  	  			fail(driver,"'Kindly enter custom value for stats line' error not displayed when input not given");
-	  	  		}
-	  	  		
-	  	  		sendKeys(driver,StatsLine_NumInput,"1");
-	  	  	    scrollUsingElement(driver, ApplyButton);
-		  		click(driver,ApplyButton);
-		  		elementnotvisible1(driver, RPE_Loading);
-	  	  		waitForElement(driver,Chart);
-		  		if(isDisplayed(driver,StatsLine_Chart)) {
-	  	  			pass(driver,"StatsLine is displayed in the chart for the Custom Condition ");
-	  	  		}else {
-	  	  			fail(driver,"StatsLine is not displayed in the chart for the Custom Condition");
-	  	  		}
-	  	  		
-	  		}else {
-	  			fail(driver,"StatsLine Number Input is not displayed when select the 'Custom' Value ");
-	  		}
-	  		 
-	  		if(isToggleAccessible(driver,statsLineRoundOff_Input)) {		
-		  		 fail(driver,"'statsLineRoundOff Input' is accessible when 'Custom' is selected in the stats line field"); 
-			}else {
-		  		 pass(driver,"'statsLineRoundOff Input' is InAccessible when 'Custom' is selected in the stats line field"); 
-			}
-	  		
-	  		selectOptionValue(driver,StatsLine_Input,"q1");
-	  		scrollUsingElement(driver, ApplyButton);
-	  		click(driver,ApplyButton);
-	  		elementnotvisible1(driver, RPE_Loading);
-	  		waitForElement(driver,Chart);	
-	  		
-	  		if(isDisplayed(driver, statsLineColorInput)) {
-	  			 pass(driver,"'StatsLineColor Input' is displayed when selecting the StatsLine Value"); 
-		  		 String defaultStatsLineColor_Act=getTextJavascript(driver, statsLineColorInput);
-		  		 if(defaultStatsLineColor_Exp.equals(defaultStatsLineColor_Act)) {
-			  		 pass(driver,"By default, '"+defaultStatsLineColor_Exp+"' color is display in StatsLine Color Input"); 
+		  		 click(driver,StatsLine_Input);
+		  		 verifyElementIsPresent1(driver, StatsLine_Options);
+		  		 selectOptionValue(driver,StatsLine_Input,"custom");
+		  		 if(isDisplayed(driver,StatsLine_NumInput)) {
+		  			 pass(driver,"StatsLine Number Input is displayed when select the 'Custom' Value ");
+		  			 scrollUsingElement(driver, ApplyButton);
+		  			 click(driver,ApplyButton);
+		  			 if(isDisplayed(driver,StatsLine_Error)) {
+		  				 pass(driver,"'Kindly enter custom value for stats line' error displayed when input not given");
+		  			 }else {
+		  				 fail(driver,"'Kindly enter custom value for stats line' error not displayed when input not given");
+		  			 }
+		  	  		
+		  			 sendKeys(driver,StatsLine_NumInput,Custom_StatsLine_input);
+		  			 scrollUsingElement(driver, ApplyButton);
+		  			 click(driver,ApplyButton);
+		  			 elementnotvisible1(driver, RPE_Loading);
+		  			 waitForElement(driver,Chart);
+		  			 if(isDisplayed(driver,StatsLine_Chart)) {
+		  				 pass(driver,"StatsLine is displayed in the chart for the Custom Condition ");
+		  			 }else {
+		  				 fail(driver,"StatsLine is not displayed in the chart for the Custom Condition");
+		  			 }
 		  		 }else {
-			  		 fail(driver,"By default, '"+defaultStatsLineColor_Exp+"' color is not display in StatsLine Color Input"); 
+		  			 fail(driver,"StatsLine Number Input is not displayed when select the 'Custom' Value ");
 		  		 }
 		  		 
-		  		 click(driver,statsLineColorInput);
-		  		 if(isDisplayed(driver, ColorPickerOpen)) {  
-		  			 scrollUsingElement(driver, ColorPickerOpen);
-			  		 pass(driver,"Stats line color is accessible and color picker get opened"); 
-			  		 click(driver,statsLineColor_text);
-			  		 wait(driver,"1");
-			  		 if(isDisplayed2(driver,ColorPickerOpen)) {
-			  			 fail(driver, "Color picker not Closed when click outside the color input");
-			  		 }else {
-			  			 pass(driver, "Color picker Closed when click outside the color input");
-			  		 }
-			  		 
+		  		 if(isToggleAccessible(driver,statsLineRoundOff_Input)) {		
+		  			 fail(driver,"'statsLineRoundOff Input' is accessible when 'Custom' is selected in the stats line field"); 
 		  		 }else {
-			  		 fail(driver,"Stats line color is not accessible and color picker not opened"); 
+		  			 pass(driver,"'statsLineRoundOff Input' is InAccessible when 'Custom' is selected in the stats line field"); 
 		  		 }
 		  		 
-		  		 doubleClick(driver,statsLineColorInput);
-		  		 action.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).perform();
-		  		 sendKeys(driver,statsLineColorInput,"#3366ff");
-		  		 wait(driver,"1");
+		  		 selectOptionValue(driver,StatsLine_Input,Select_StatsLine_Value);
 		  		 scrollUsingElement(driver, ApplyButton);
 		  		 click(driver,ApplyButton);
 		  		 elementnotvisible1(driver, RPE_Loading);
 		  		 waitForElement(driver,Chart);	
-		  		 
-		  		 if(verifyElementDisplayed(driver, StatsLine_Chart)){
-		  			String ChartStatsLineColorRGB=getWebElement(driver, StatsLine_Chart).getCssValue("stroke");  
-		  			String appliedStatsLineColor=rgbToHex1(ChartStatsLineColorRGB);
-		  			if(appliedStatsLineColor.equalsIgnoreCase("#3366ff")) {
-						 pass(driver,"Selected Color '#3366ff' is applied in the displayed StatsLine in the chart");
-	 				}else {
-						 fail(driver,"Selected Color '#3366ff' is not applied in the displayed StatsLine in the chart");
-	 				}
+		  		 if(isDisplayed2(driver, StatsLine_Chart)) {
+		  			 pass(driver,"StatsLine is displayed in the Chart For the Selected Option : "+Select_StatsLine_Value);
+		  			 statsLine=true;
+		  		 }else {
+		  			 fail(driver,"StatsLine is not displayed in the Chart For the Selected Option : "+Select_StatsLine_Value);
 		  		 }
-		  		 
-		  		 clear1(driver,statsLineColorInput);
-		  		 wait(driver,"1");
-		  		 String StatsColorAfterClear=getTextJavascript(driver, statsLineColorInput);
-		  		 if(StatsColorAfterClear.equalsIgnoreCase(defaultStatsLineColor_Exp)) {
-		  			 pass(driver," Default color is displayed after revert the color ");
-		  			 scrollUsingElement(driver, ApplyButton);
-			  		 click(driver,ApplyButton);
-			  		 elementnotvisible1(driver, RPE_Loading);
-			  		 waitForElement(driver,Chart);
-			  		 if(verifyElementDisplayed(driver, StatsLine_Chart)){
-			  			String ChartStatsLineColorRGB=getWebElement(driver, StatsLine_Chart).getCssValue("stroke");  
-			  			String appliedStatsLineColor=rgbToHex1(ChartStatsLineColorRGB);
-			  			if(appliedStatsLineColor.equalsIgnoreCase(defaultStatsLineColor_Exp)) {
-							 pass(driver,defaultStatsLineColor_Exp+" is applied in the displayed StatsLine in the chart after revert the Color");
-		  				}else {
-							 fail(driver,defaultStatsLineColor_Exp+" is not applied in the displayed StatsLine in the chart after revert the Color");
-		  				}
+		  		 if(isDisplayed(driver, statsLineColorInput)) {
+		  			 pass(driver,"'StatsLineColor Input' is displayed when selecting the StatsLine Value"); 
+		  			 String defaultStatsLineColor_Act=getTextJavascript(driver, statsLineColorInput);
+			  		 if(defaultStatsLineColor_Exp.equals(defaultStatsLineColor_Act)) {
+				  		 pass(driver,"By default, '"+defaultStatsLineColor_Exp+"' color is display in StatsLine Color Input"); 
+			  		 }else {
+				  		 fail(driver,"By default, '"+defaultStatsLineColor_Exp+"' color is not display in StatsLine Color Input"); 
+			  		 }
+			  		 click(driver,statsLineColorInput);
+			  		 if(isDisplayed(driver, ColorPickerOpen)) {  
+			  			 scrollUsingElement(driver, ColorPickerOpen);
+				  		 pass(driver,"Stats line color is accessible and color picker get opened"); 
+				  		 click(driver,statsLineColor_text);
+				  		 wait(driver,"1");
+				  		 if(isDisplayed2(driver,ColorPickerOpen)) {
+				  			 fail(driver, "Color picker not Closed when click outside the color input");
+				  		 }else {
+				  			 pass(driver, "Color picker Closed when click outside the color input");
+				  		 }
+				  		 
+			  		 }else {
+				  		 fail(driver,"Stats line color is not accessible and color picker not opened"); 
 			  		 }
 			  		 
-		  		 }else {
-		  			 fail(driver," Default color is not displayed after revert the color ");
-		  		 }
+			  		 doubleClick(driver,statsLineColorInput);
+			  		 action.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).perform();
+			  		 sendKeys(driver,statsLineColorInput,"#3366ff");
+			  		 wait(driver,"1");
+			  		 if(statsLine==true) {
+			  			 scrollUsingElement(driver, ApplyButton);
+			  			 click(driver,ApplyButton);
+				  		 elementnotvisible1(driver, RPE_Loading);
+				  		 waitForElement(driver,Chart);	
+				  		 if(isDisplayed2(driver, StatsLine_Chart)){
+				  			String ChartStatsLineColorRGB=getWebElement(driver, StatsLine_Chart).getCssValue("stroke");  
+				  			String appliedStatsLineColor=rgbToHex1(ChartStatsLineColorRGB);
+				  			if(appliedStatsLineColor.equalsIgnoreCase("#3366ff")) {
+								 pass(driver,"Selected Color '#3366ff' is applied in the displayed StatsLine in the chart");
+			 				}else {
+								 fail(driver,"Selected Color '#3366ff' is not applied in the displayed StatsLine in the chart");
+			 				}
+				  		 }else {
+				  			 fail(driver,"StatsLine is not displayed in the Chart, unable to validate the StatsLine Color");
+				  		 }
+			  		 }
+			  		 
+			  		 clear1(driver,statsLineColorInput);
+			  		 wait(driver,"1");
+			  		 String StatsColorAfterClear=getTextJavascript(driver, statsLineColorInput);
+			  		 if(StatsColorAfterClear.equalsIgnoreCase(defaultStatsLineColor_Exp)) {
+			  			 pass(driver," Default color is displayed after revert the color ");
+			  			 if(statsLine==true) {
+			  				 scrollUsingElement(driver, ApplyButton);
+					  		 click(driver,ApplyButton);
+					  		 elementnotvisible1(driver, RPE_Loading);
+					  		 waitForElement(driver,Chart);
+					  		 if(isDisplayed2(driver, StatsLine_Chart)){
+					  			String ChartStatsLineColorRGB=getWebElement(driver, StatsLine_Chart).getCssValue("stroke");  
+					  			String appliedStatsLineColor=rgbToHex1(ChartStatsLineColorRGB);
+					  			if(appliedStatsLineColor.equalsIgnoreCase(defaultStatsLineColor_Exp)) {
+									 pass(driver,defaultStatsLineColor_Exp+" is applied in the displayed StatsLine in the chart after revert the Color");
+				  				}else {
+									 fail(driver,defaultStatsLineColor_Exp+" is not applied in the displayed StatsLine in the chart after revert the Color");
+				  				}
+					  		 }else {
+					  			fail(driver,"StatsLine is not displayed in the Chart, unable to validate the StatsLine Color");
+					  		 }
+			  			 }
+			  		 }else {
+			  			 fail(driver," Default color is not displayed after revert the color ");
+			  		 }
+		  		}else {
+			  		 fail(driver,"'StatsLineColor Input' is not displayed when selecting the StatsLine Value : "+Select_StatsLine_Value); 
+		  		}
 		  		 
 	  		}else {
-		  		 fail(driver,"'StatsLineColor Input' is not displayed when selecting the StatsLine Value"); 
+	  			fail(driver,"'StatsLine Input' is not accessible"); 
 	  		}
 	  		
 	  		// Position Validation start....
-	  		if(isToggleAccessible(driver,statsLinePosition_Input)) {		
+	  		String default_StatslinePosition_Act=defaultSelectedValue(driver, statsLinePosition_Input);
+	  		if(default_StatslinePosition_Exp.equals(default_StatslinePosition_Act)) {
+	  			pass(driver,"By default, '"+default_StatslinePosition_Exp+"' is selected in the StatusLine Position Input"); 
+	  			if(isDisplayed2(driver,StrokeLineBehind)) {
+	  				pass(driver,"StrokeLine displayed '"+default_StatslinePosition_Exp+"' the chart bars for the default selected Position "); 
+	  			}else {
+	  				fail(driver,"StrokeLine not displayed '"+default_StatslinePosition_Exp+"' the chart bars for the default selected Position "); 
+	  			}
+	  		}else {
+	  			fail(driver,"By default, '"+default_StatslinePosition_Exp+"' is not selected in the StatusLine Position Input"); 
+	  		}
+	  		 
+	  		if(IsElementEnabled(driver,statsLinePosition_Input)) {		
 		  		 pass(driver,"'StatsLinePosition Input' accessible when selecting the StatsLine Value"); 
+		  		 selectOptionValue(driver,statsLinePosition_Input,"above");
+		  		 if(statsLine==true) {
+		  			 scrollUsingElement(driver, ApplyButton);
+					 click(driver,ApplyButton);
+					 elementnotvisible1(driver, RPE_Loading);
+					 waitForElement(driver,Chart);
+					 if(isDisplayed2(driver,StrokeLineAbove)) {
+				  		 pass(driver,"StrokeLine displayed Above the chart bars after selected the Position as 'Above'"); 
+					 }else {
+				  		 fail(driver,"StrokeLine not displayed Above the chart bars after selected the Position as 'Above' "); 
+					 }
+		  		 }
 			}else {
 		  		 fail(driver,"'StatsLinePosition Input' Inaccessible when selecting the StatsLine Value"); 
 			}
-	  		
-	  		 String default_StatslinePosition_Act=defaultSelectedValue(driver, statsLinePosition_Input);
-	  		 if(default_StatslinePosition_Exp.equals(default_StatslinePosition_Act)) {
-		  		 pass(driver,"By default, '"+default_StatslinePosition_Exp+"' is selected in the StatusLine Position Input"); 
-		  		 if(isDisplayed2(driver,StrokeLineBehind)) {
-			  		 pass(driver,"StrokeLine displayed '"+default_StatslinePosition_Exp+"' the chart bars for the default selected Position "); 
-				 }else {
-			  		 fail(driver,"StrokeLine not displayed '"+default_StatslinePosition_Exp+"' the chart bars for the default selected Position "); 
-				 }
-	  		 }else {
-		  		 fail(driver,"By default, '"+default_StatslinePosition_Exp+"' is not selected in the StatusLine Position Input"); 
-	  		 }
-
-	   		 selectOptionValue(driver,statsLinePosition_Input,"above");
-	   		 scrollUsingElement(driver, ApplyButton);
-			 click(driver,ApplyButton);
-			 elementnotvisible1(driver, RPE_Loading);
-			 waitForElement(driver,Chart);
-			 
-			 if(isDisplayed2(driver,StrokeLineAbove)) {
-		  		 pass(driver,"StrokeLine displayed Above the chart bars after selected the Position as 'Above'"); 
-			 }else {
-		  		 fail(driver,"StrokeLine not displayed Above the chart bars after selected the Position as 'Above'"); 
-			 }
-			 
 	  		 //position Validation End 
 	  		 
-	  		 if(isToggleAccessible(driver,statsLineRoundOff_Input)) {		
-		  		 pass(driver,"'StatsLineRoundOff Input' accessible when selecting the StatsLine Value"); 
-	  		 }else {
-		  		 fail(driver,"'StatsLineRoundOff Input' Inaccessible when selecting the StatsLine Value"); 
-	  		 }
-	 		
-	 		 String default_RoundOffValue_Act=defaultSelectedValue(driver, statsLineRoundOff_Input);
-	 		 if(default_RoundOffValue_Exp.equals(default_RoundOffValue_Act)) {
-		  		 pass(driver,"By default, '"+default_RoundOffValue_Exp+"' is selected in the StatusLine RoundOff Input"); 
-	 		 }else {
-		  		 fail(driver,"By default, '"+default_RoundOffValue_Exp+"' is not selected in the StatusLine RoundOff Input"); 
-	 		 }
+	  		//RoundOff Validation
+	  		String default_RoundOffValue_Act=defaultSelectedValue(driver, statsLineRoundOff_Input);
+	  		if(default_RoundOffValue_Exp.equals(default_RoundOffValue_Act)) {
+	  			pass(driver,"By default, '"+default_RoundOffValue_Exp+"' is selected in the StatusLine RoundOff Input"); 
+	  		}else {
+	  			fail(driver,"By default, '"+default_RoundOffValue_Exp+"' is not selected in the StatusLine RoundOff Input"); 
+	  		}
 	 		 
-	 		 selectOptionValue(driver, statsLineRoundOff_Input, ChangeRoundOffValue_Others);
-	 		 scrollUsingElement(driver, ApplyButton);
-	 		 click(driver,ApplyButton);
-	 		 elementnotvisible1(driver, RPE_Loading);
-	 		 waitForElement(driver,Chart);
-	 		 
-			 if(verifyElementDisplayed(driver, StatsLineRoundOff_Chart)) {
-				 String StatsLineString=getText(driver, StatsLineRoundOff_Chart);
-				 String roundOffStringValueAct=String.valueOf(getRoundOffValue(StatsLineString));
-				 if(roundOffStringValueAct.equals(ChangeRoundOffValue_Others)) {
-			  		 pass(driver,"StatsLine value displayed with selected '"+ChangeRoundOffValue_Others+"' RoundOff Value ");  
-		 		 }else {
-			  		 fail(driver,"StatsLine value not displayed with selected '"+ChangeRoundOffValue_Others+"' RoundOff Value "); 
-		 		 }
-			 }
-	 		 
-	 		 //cursor validation start....
-	 		 if(isToggleEnable(driver,Cursor_Input)) {		
-		  		 pass(driver,"'Cursor Input' is enabled by default"); 
-			 }else {
-		  		 fail(driver,"'Cursor Input' is disabled by default"); 
-			 }
-	 		 scrollUsingElement(driver, ApplyButton);
-	  		 click(driver,ApplyButton);
-	  		 elementnotvisible1(driver, RPE_Loading);
-	  		 waitForElement(driver,Chart);
-	 		 mouseOverToElement(driver, ChartGraph);
-	 		
-	 		 if(isDisplayed2(driver,MouseCursor)) {
-		  		 pass(driver,"Cursor is displayed in chart when cursor is enable"); 
-	 		 }else {
-		  		 fail(driver,"Cursor is not displayed in chart when cursor is enable");  
-	 		 }
-	 		
-	 		//
-	 		click(driver,Cursor_InputClick);
-	 		if(isToggleEnable(driver,Cursor_Input)) {		
-		  		 fail(driver,"'Cursor Input' is enable while click on it"); 
-			}else {
-		  		 pass(driver,"'Cursor Input' is disable while click on it"); 
-			}
-	 		 scrollUsingElement(driver, ApplyButton);
-	 		 click(driver,ApplyButton);
-	 		 elementnotvisible1(driver, RPE_Loading);
-	 		 waitForElement(driver,Chart);
-			 mouseOverToElement(driver, ChartGraph);
-			 if(isDisplayed2(driver,MouseCursor)) {
-		  		 fail(driver,"Cursor is displayed in chart when cursor is disable"); 
-	 		 }else {
-		  		 pass(driver,"Cursor is not displayed in chart when cursor is disable");  
-	 		 }
-	 		
-			 //cursor validation End....
+	  		if(isToggleAccessible(driver,statsLineRoundOff_Input)) {		
+	  			pass(driver,"'StatsLineRoundOff Input' accessible when selecting the StatsLine Value"); 
+	  			selectOptionValue(driver, statsLineRoundOff_Input, ChangeRoundOffValue_Others);
+	  			if(statsLine==true) {
+	  				scrollUsingElement(driver, ApplyButton);
+		  			click(driver,ApplyButton);
+		  			elementnotvisible1(driver, RPE_Loading);
+		  			waitForElement(driver,Chart);
+		  			if(verifyElementDisplayed(driver, StatsLineRoundOff_Chart)) {
+		  				String StatsLineString=getText(driver, StatsLineRoundOff_Chart);
+		  				String roundOffStringValueAct=String.valueOf(getRoundOffValue(StatsLineString));
+		  				if(roundOffStringValueAct.equals(ChangeRoundOffValue_Others)) {
+		  					pass(driver,"StatsLine value displayed with selected '"+ChangeRoundOffValue_Others+"' RoundOff Value ");  
+		  				}else {
+		  					fail(driver,"StatsLine value not displayed with selected '"+ChangeRoundOffValue_Others+"' RoundOff Value "); 
+		  				}
+		  			}
+	  			}
+	  		}else {
+	  			fail(driver,"'StatsLineRoundOff Input' Inaccessible when selecting the StatsLine Value"); 
+	  		}
+	 		//RoundOff Validation End..
+	  		
+	  		//cursor validation start....
+	  		if(isToggleEnable(driver,Cursor_Input)) {		
+	  			pass(driver,"'Cursor Input' is enabled by default"); 
+	  			scrollUsingElement(driver, ApplyButton);
+		  		click(driver,ApplyButton);
+		  		elementnotvisible1(driver, RPE_Loading);
+		  		waitForElement(driver,Chart);
+		  		mouseOverToElement(driver, ChartGraph);
+		  		if(isDisplayed2(driver,MouseCursor)) {
+		  			pass(driver,"Cursor is displayed in chart when cursor is enable"); 
+		  		}else {
+		  			fail(driver,"Cursor is not displayed in chart when cursor is enable");  
+		  		}
+		  		
+		  		click(driver,Cursor_InputClick);
+		 		if(isToggleEnable(driver,Cursor_Input)) {		
+			  		 fail(driver,"'Cursor Input' is enable while click on it"); 
+				}else {
+			  		 pass(driver,"'Cursor Input' is disable while click on it"); 
+			  		 scrollUsingElement(driver, ApplyButton);
+			  		 click(driver,ApplyButton);
+			  		 elementnotvisible1(driver, RPE_Loading);
+			 		 waitForElement(driver,Chart);
+					 mouseOverToElement(driver, ChartGraph);
+					 if(isDisplayed2(driver,MouseCursor)) {
+				  		 fail(driver,"Cursor is displayed in chart when cursor is disable"); 
+			 		 }else {
+				  		 pass(driver,"Cursor is not displayed in chart when cursor is disable");  
+			 		 }
+				}
+	  		}else {
+	  			fail(driver,"'Cursor Input' is disabled by default"); 
+	  		}
+	  		//cursor validation End....
 	 		
 	 		if(isToggleEnable(driver,Export_Input)) {		
-		  		 fail(driver,"'Export Input' enable by default");
+	 			fail(driver,"'Export Input' enable by default");
 			}else {
-		  		 pass(driver,"'Export Input' disable by default"); 
-			}
-	 		
-	 		scrollUsingElement(driver, ApplyButton);
-	 		click(driver,ApplyButton);
-	 		elementnotvisible1(driver, RPE_Loading);
-	 		waitForElement(driver,Chart);
-	 		if(isDisplayed2(driver,ExportChartOptions)) {
-		  		 fail(driver,"'Export Options' is displayed in charts when Export chart is disabled"); 
-			}else {
-		  		 pass(driver,"'Export Options' not displayed in charts when Export chart is disabled"); 
-			}
-	 		
-	 		click(driver,Export_InputClick);
-	 		if(isToggleEnable(driver,Export_Input)) {		
-		  		 pass(driver,"'Export Input' is enabled while enabling it");
-			}else {
-		  		 fail(driver,"'Export Input' not enabled while enabling it"); 
-			}
-	 		
-	 		scrollUsingElement(driver, ApplyButton);
-	 		click(driver,ApplyButton);
-	 		elementnotvisible1(driver, RPE_Loading);
-	 		waitForElement(driver,Chart);
-	 		if(isDisplayed2(driver,ExportChartOptions)) {
-		  		 pass(driver,"'Export Options' is displayed in charts when Export chart is enabled"); 
-		  		 mouseOverToElement(driver, ExportChartOptions);
-		  		 if(isDisplayed2(driver,ExportOptionExpandList)) {
-			  		pass(driver,"'Export Options' is expanded when click on it"); 
-			  		if(isDisplayed2(driver,Export_Image)) {
-				  		 pass(driver,"'IMG' Option is displayed When expand the charts Export"); 
-				  		 mouseOverToElement(driver, Export_Image);
-				  		 
-				  		if(elementIsVisible(driver,Export_PNG)) {
-					  		 pass(driver,"'PNG' Option displayed When Mouse hover on IMG Option"); 
-			  			}else {
-					  		 fail(driver,"'PNG' Option is not displayed When Mouse hover on IMG Option"); 
-			  			}
-				  		
-				  		if(elementIsVisible(driver,Export_JPG)) {
-					  		 pass(driver,"'JPG' Option displayed When Mouse hover on IMG Option"); 
-			  			}else {
-					  		 fail(driver,"'JPG' Option is not displayed When Mouse hover on IMG Option"); 
-			  			}
-				  		
-				  		if(elementIsVisible(driver,Export_SVG)) {
-					  		 pass(driver,"'SVG' Option displayed When Mouse hover on IMG Option"); 
-			  			}else {
-					  		 fail(driver,"'SVG' Option is not displayed When Mouse hover on IMG Option"); 
-			  			}
-			  		 }else {
-				  		 fail(driver,"'IMG' Option is not displayed When expand the charts Export"); 
-			  		 }
+				pass(driver,"'Export Input' disable by default"); 
+		  		scrollUsingElement(driver, ApplyButton);
+		 		click(driver,ApplyButton);
+		 		elementnotvisible1(driver, RPE_Loading);
+		 		waitForElement(driver,Chart);
+		 		if(isDisplayed2(driver,ExportChartOptions)) {
+			  		 fail(driver,"'Export Options' is displayed in charts when Export chart is disabled"); 
+				}else {
+			  		 pass(driver,"'Export Options' not displayed in charts when Export chart is disabled"); 
+				}
+		  		 
+		 		click(driver,Export_InputClick);
+		 		if(isToggleEnable(driver,Export_Input)) {		
+			  		 pass(driver,"'Export Input' is enabled while enabling it");
 			  		 
-			  		if(isDisplayed2(driver,Export_Data)) {
-				  		 pass(driver,"'Data' Option is displayed When expand the charts Export"); 
-				  		 mouseOverToElement(driver, Export_Data);
-				  		 verifyElementIsPresent1(driver, Export_JSON);
-				  		 verifyElementIsPresent1(driver, Export_CSV);
-				  		 verifyElementIsPresent1(driver, Export_XLSX);
-				  		 verifyElementIsPresent1(driver, Export_HTML);
+			  		scrollUsingElement(driver, ApplyButton);
+			 		click(driver,ApplyButton);
+			 		elementnotvisible1(driver, RPE_Loading);
+			 		waitForElement(driver,Chart);
+			 		if(isDisplayed2(driver,ExportChartOptions)) {
+				  		 pass(driver,"'Export Options' is displayed in charts when Export chart is enabled"); 
+				  		 mouseOverToElement(driver, ExportChartOptions);
+				  		 if(isDisplayed2(driver,ExportOptionExpandList)) {
+					  		pass(driver,"'Export Options' is expanded when click on it"); 
+					  		if(isDisplayed2(driver,Export_Image)) {
+						  		 pass(driver,"'IMG' Option is displayed When expand the charts Export"); 
+						  		 mouseOverToElement(driver, Export_Image);
+						  		 
+						  		if(elementIsVisible(driver,Export_PNG)) {
+							  		 pass(driver,"'PNG' Option displayed When Mouse hover on IMG Option"); 
+					  			}else {
+							  		 fail(driver,"'PNG' Option is not displayed When Mouse hover on IMG Option"); 
+					  			}
+						  		
+						  		if(elementIsVisible(driver,Export_JPG)) {
+							  		 pass(driver,"'JPG' Option displayed When Mouse hover on IMG Option"); 
+					  			}else {
+							  		 fail(driver,"'JPG' Option is not displayed When Mouse hover on IMG Option"); 
+					  			}
+						  		
+						  		if(elementIsVisible(driver,Export_SVG)) {
+							  		 pass(driver,"'SVG' Option displayed When Mouse hover on IMG Option"); 
+					  			}else {
+							  		 fail(driver,"'SVG' Option is not displayed When Mouse hover on IMG Option"); 
+					  			}
+					  		 }else {
+						  		 fail(driver,"'IMG' Option is not displayed When expand the charts Export"); 
+					  		 }
+					  		 
+					  		if(isDisplayed2(driver,Export_Data)) {
+						  		 pass(driver,"'Data' Option is displayed When expand the charts Export"); 
+						  		 mouseOverToElement(driver, Export_Data);
+						  		 verifyElementIsPresent1(driver, Export_JSON);
+						  		 verifyElementIsPresent1(driver, Export_CSV);
+						  		 verifyElementIsPresent1(driver, Export_XLSX);
+						  		 verifyElementIsPresent1(driver, Export_HTML);
 
-			  		 }else {
-				  		 fail(driver,"'Data' Option is not displayed When expand the charts Export"); 
-			  		 }
-			  		
-			  		if(isDisplayed2(driver,Export_Print)) {
-				  		 pass(driver,"'Print' Option is displayed When expand the charts Export"); 			  		 
-			  		 }else {
-				  		 fail(driver,"'Print' Option is not displayed When expand the charts Export"); 
-			  		 }
-			  		 
-		  		 }else {
-			  		 fail(driver,"'Export Options' is not expanded when click on it"); 
-		  		 }
-			}else {
-		  		 fail(driver,"'Export Options' not displayed in charts when Export chart is enabled"); 
+					  		 }else {
+						  		 fail(driver,"'Data' Option is not displayed When expand the charts Export"); 
+					  		 }
+					  		
+					  		if(isDisplayed2(driver,Export_Print)) {
+						  		 pass(driver,"'Print' Option is displayed When expand the charts Export"); 			  		 
+					  		 }else {
+						  		 fail(driver,"'Print' Option is not displayed When expand the charts Export"); 
+					  		 }
+					  		 
+				  		 }else {
+					  		 fail(driver,"'Export Options' is not expanded when click on it"); 
+				  		 }
+					}else {
+				  		 fail(driver,"'Export Options' not displayed in charts when Export chart is enabled"); 
+					}
+				}else {
+			  		 fail(driver,"'Export Input' not enabled while enabling it"); 
+				}
 			}
 		 }
 		 
  	    // ******************* Others Validation End *********************
 		
- 		click(driver,ChartTitleInput);
- 		clear(driver,ChartTitleInput);
  		verifyElementDisplayed(driver, SaveBtn_Chart);
  		verifyElementDisplayed(driver, cancel_chart);
-       	click(driver,SaveBtn_Chart);
-       	if(isDisplayed(driver,chartSaveError1)) {
-       		pass(driver,"'Enter Widget Name' error displayed when save the chart without given chart title name");
-       	}else {
-       		fail(driver,"'Enter Widget Name' error not displayed when save the chart without given chart title name");
-       	}
-       	elementnotvisible(driver, chartSaveError1);
-       	sendKeys(driver,ChartTitleInput,ChartTitleName1_BAR_Smoke);
+       	clearAndType1(driver,ChartTitleInput,ChartTitleName1_BAR_Smoke);
        	click(driver,SaveBtn_Chart);
        	elementnotvisible1(driver, RPE_Loading);
        	if(!isDisplayed2(driver,chartSaveError1) && isDisplayed(driver,SavedChartTitleInput)) {
        		pass(driver,"Chart Saved Successfully");
+       		String AfterSaveChartTitleName=getText1(driver, SavedChartTitleName);
+           	if(AfterSaveChartTitleName.equals(ChartTitleName1_BAR_Smoke)) {
+           		pass(driver,"Same Chart Title name displayed after saved the chart ");
+           	}else {
+           		fail(driver,"Different Chart Title name displayed after saved the chart ");
+           	}
+           	mouseOverToElement(driver, SavedChartTitleInput);
+           	if(Bar_ChartFormat_Others.equals("Yes")) {
+       			if(isDisplayed2(driver,ExportOption_SavedChart)) {
+               		pass(driver,"Export option get enabled after save chart");
+               	}else {
+               		fail(driver,"Export option not get enabled after save chart");
+               	}
+       		}
+           	
+           	verifyElementDisplayed(driver, copyChart);
+           	verifyElementDisplayed(driver, filterChart);
+           	verifyElementDisplayed(driver, editeChart);
+           	verifyElementDisplayed(driver, deteleBtn_chart);
+        	verifyElementDisplayed(driver, TableView_icon);
+           	verifyElementDisplayed(driver, Alpha_asc_icon);
+           	verifyElementDisplayed(driver, Alpha_Desc_icon);
+           	verifyElementDisplayed(driver, Numeric_asc_icon);
+        	verifyElementDisplayed(driver, Numeric_Desc_icon);
+        	
+        	String Filter_tooltip="Local Filter: OFF \r\n"
+        			+ "Tab Filter: OFF \r\n"
+        			+ "Global Filter: OFF";
+        	String Filter_tooltip1="Local Filter: OFF";
+        	String Filter_tooltip2="Tab Filter: OFF";
+        	String Filter_tooltip3="Global Filter: OFF";
+        	mouseOverToElement(driver, filterChart);
+        	if(verifyElementIsPresent1(driver, FilterChartIcon)) {
+        		String Filter_tooltipAct=getAttribute1(driver, FilterChartIcon, "title");
+        		if(Filter_tooltipAct.contains(Filter_tooltip1)&&Filter_tooltipAct.contains(Filter_tooltip2)&&Filter_tooltipAct.contains(Filter_tooltip3)) {
+        			pass(driver,"Filter status correctly displayed without selecting any filter : "+Filter_tooltipAct);
+        		}else {
+        			fail(driver,"Filter status not correctly displayed without selecting any filter, Exp "+Filter_tooltip+" Act : "+Filter_tooltipAct);
+        		}
+        	}
+           	
        	}else {
        		fail(driver,"Chart not Saved Successfully");
        	}	
 	      
-       	String AfterSaveChartTitleName=getText1(driver, SavedChartTitleName);
-       	if(AfterSaveChartTitleName.equals(ChartTitleName1_BAR_Smoke)) {
-       		pass(driver,"Same Chart Title name displayed after saved the chart ");
-       	}else {
-       		fail(driver,"Different Chart Title name displayed after saved the chart ");
-       	}
-	    	  
-       
-   		mouseOverToElement(driver, SavedChartTitleInput);
-       	
-   		if(Bar_ChartFormat_Others.equals("Yes")) {
-   			if(isDisplayed2(driver,ExportOption_SavedChart)) {
-           		pass(driver,"Export option get enabled after save chart");
-           	}else {
-           		fail(driver,"Export option not get enabled after save chart");
-           	}
-   		}
-       	
-       	verifyElementDisplayed(driver, copyChart);
-       	verifyElementDisplayed(driver, filterChart);
-       	verifyElementDisplayed(driver, editeChart);
-       	verifyElementDisplayed(driver, deteleBtn_chart);
-    	verifyElementDisplayed(driver, TableView_icon);
-       	verifyElementDisplayed(driver, Alpha_asc_icon);
-       	verifyElementDisplayed(driver, Alpha_Desc_icon);
-       	verifyElementDisplayed(driver, Numeric_asc_icon);
-    	verifyElementDisplayed(driver, Numeric_Desc_icon);
-    	
-    	String Filter_tooltip="Local Filter: OFF \r\n"
-    			+ "Tab Filter: OFF \r\n"
-    			+ "Global Filter: OFF";
-    	String Filter_tooltip1="Local Filter: OFF";
-    	String Filter_tooltip2="Tab Filter: OFF";
-    	String Filter_tooltip3="Global Filter: OFF";
-    	mouseOverToElement(driver, filterChart);
-    	if(verifyElementIsPresent1(driver, FilterChartIcon)) {
-    		String Filter_tooltipAct=getAttribute1(driver, FilterChartIcon, "title");
-    		if(Filter_tooltipAct.contains(Filter_tooltip1)&&Filter_tooltipAct.contains(Filter_tooltip2)&&Filter_tooltipAct.contains(Filter_tooltip3)) {
-    			pass(driver,"Filter status correctly displayed without selecting any filter : "+Filter_tooltipAct);
-    		}else {
-    			fail(driver,"Filter status not correctly displayed without selecting any filter, Exp "+Filter_tooltip+" Act : "+Filter_tooltipAct);
-    		}
-    	}
-      
     	// *************** Local Filter Start **************** 
     	String Bar_LocalFilter= getCellValue("TestExecution","Testcase_Selection","Bar_LocalFilter",Flag);
-    	 if(Bar_LocalFilter.contains("Yes")) {
-    		 mouseOverToElement(driver, chartBody);
-    		 click(driver,filterChart);
+    	if(Bar_LocalFilter.contains("Yes")) {
+    		 //Local filter inputs Categorical
+    		String ByValuesInput_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "ByValuesInput_Categorical_LF");
+    		String FirstCondition_1_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_1_Categorical_LF");
+    		String FirstCondition_2_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_2_Categorical_LF");
+    		String FirstCondition_3_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_3_Categorical_LF");
+    		String FirstCondition_4_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_4_Categorical_LF");
+    		String FirstCondition_5_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_5_Categorical_LF");
+    		String FirstCondition_6_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_6_Categorical_LF");
+    		String FirstCondition_7_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_7_Categorical_LF");
+    		String FirstCondition_8_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_8_Categorical_LF");
+    		String FirstCondition_Input_1_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_Input_1_Categorical_LF");
+    		String FirstCondition_Input_2_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_Input_2_Categorical_LF");
+    		String FirstCondition_Input_3_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_Input_3_Categorical_LF");
+    		String FirstCondition_Input_4_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_Input_4_Categorical_LF");
+    		String FirstCondition_Input_5_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_Input_5_Categorical_LF");
+    		String FirstCondition_Input_6_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_Input_6_Categorical_LF");
+    		String FirstCondition_Input_7_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_Input_7_Categorical_LF");
+    		String FirstCondition_Input_8_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_Input_8_Categorical_LF");
+    		String FirstCondition_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_Categorical_LF");
+    		String FirstCondition_Input_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstCondition_Input_Categorical_LF");
+    		String FirstOperator_Input_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "FirstOperator_Input_Categorical_LF");
+    		String SecondOperator_Input_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "SecondOperator_Input_Categorical_LF");
+    		String SecondCondition_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "SecondCondition_Categorical_LF");
+    		String SecondCondition_Input_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "SecondCondition_Input_Categorical_LF");
+    		String ThirdCondition_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "ThirdCondition_Categorical_LF");
+    		String ThirdCondition_Input_Categorical_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Categorical_LocalFilter_Bar", "ThirdCondition_Input_Categorical_LF");
+
+    		//Local filter inputs Date
+    		String RelativeFilter_1_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_1_Date_LF");
+    		String RelativeFilter_2_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_2_Date_LF");
+    		String RelativeFilter_3_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_3_Date_LF");
+    		String RelativeFilter_4_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_4_Date_LF");
+    		String RelativeFilter_5_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_5_Date_LF");
+    		String RelativeFilter_6_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_6_Date_LF");
+    		String RelativeFilter_7_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_7_Date_LF");
+    		String RelativeFilter_8_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_8_Date_LF");
+    		String RelativeFilter_9_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_9_Date_LF");
+    		String RelativeFilter_10_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_10_Date_LF");
+    		String RelativeFilter_11_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_11_Date_LF");
+    		String RelativeFilter_12_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_12_Date_LF");
+    		String RelativeFilter_13_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_13_Date_LF");
+    		String RelativeFilter_14_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_14_Date_LF");
+    		String RelativeFilter_11_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_11_Input_Date_LF");
+    		String RelativeFilter_12_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_12_Input_Date_LF");
+    		String RelativeFilter_13_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_13_Input_Date_LF");
+    		String RelativeFilter_14_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "RelativeFilter_14_Input_Date_LF");
+    		String Condition_1_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_1_Date_LF");
+    		String Condition_2_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_2_Date_LF");
+    		String Condition_3_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_3_Date_LF");
+    		String Condition_4_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_4_Date_LF");
+    		String Condition_5_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_5_Date_LF");
+    		String Condition_6_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_6_Date_LF");
+    		String Condition_7_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_7_Date_LF");
+    		String Condition_8_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_8_Date_LF");
+    		String Condition_9_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_9_Date_LF");
+    		String Condition_1_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_1_Input_Date_LF");
+    		String Condition_2_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_2_Input_Date_LF");
+    		String Condition_3_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_3_Input_Date_LF");
+    		String Condition_4_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_4_Input_Date_LF");
+    		String Condition_5_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_5_Input_Date_LF");
+    		String Condition_6_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_6_Input_Date_LF");
+    		String Condition_7_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_7_Input_Date_LF");
+    		String Condition_8_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_8_Input_Date_LF");
+    		String Condition_9_InputA_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_9_InputA_Date_LF");
+    		String Condition_9_InputB_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "Condition_9_InputB_Date_LF");
+    		
+    		String FirstCondition_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "FirstCondition_Date_LF");
+    		String SecondCondition_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "SecondCondition_Date_LF");
+    		String ThirdCondition_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "ThirdCondition_Date_LF");
+    		String FirstCondition_Date_Input_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "FirstCondition_Date_Input_LF");
+    		String SecondCondition_Date_Input_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "SecondCondition_Date_Input_LF");
+    		String ThirdCondition_Date_Input_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "ThirdCondition_Date_Input_LF");
+    		String FirstOperator_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "FirstOperator_Input_Date_LF");
+    		String SecondOperator_Input_Date_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Date_LocalFilter_Bar", "SecondOperator_Input_Date_LF");
+    				
+    		// Numerical Local Filter Inputs
+    		String Condition_1_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_1_Num_LF");
+    		String Condition_2_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_2_Num_LF");
+    		String Condition_3_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_3_Num_LF");
+    		String Condition_4_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_4_Num_LF");
+    		String Condition_5_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_5_Num_LF");
+    		String Condition_6_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_6_Num_LF");
+    		String Condition_7_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_7_Num_LF");
+    		String Condition_8_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_8_Num_LF");
+    		String Condition_9_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_9_Num_LF");
+    		String Condition_1_Input_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_1_Input_Num_LF");
+    		String Condition_2_Input_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_2_Input_Num_LF");
+    		String Condition_3_Input_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_3_Input_Num_LF");
+    		String Condition_4_Input_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_4_Input_Num_LF");
+    		String Condition_5_Input_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_5_Input_Num_LF");
+    		String Condition_6_Input_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_6_Input_Num_LF");
+    		String Condition_7_Input_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_7_Input_Num_LF");
+    		String Condition_8_Input_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_8_Input_Num_LF");
+    		String Condition_9_InputA_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_9_InputA_Num_LF");
+    		String Condition_Between_InputB_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "Condition_Between_InputB_Num_LF");
+    		
+    		String FirstCondition_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "FirstCondition_Num_LF");
+    		String SecondCondition_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "SecondCondition_Num_LF");
+    		String ThirdCondition_num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "ThirdCondition_num_LF");
+    		String FirstCondition_Num_Input_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "FirstCondition_Num_Input_LF");
+    		String SecondCondition_Num_Input_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "SecondCondition_Num_Input_LF");
+    		String ThirdCondition_Num_Input_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "ThirdCondition_Num_Input_LF");
+    		String FirstOperator_Input_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "FirstOperator_Input_Num_LF");
+    		String SecondOperator_Input_Num_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Numerical_LocalFilter_Bar", "SecondOperator_Input_Num_LF");
+    		  
+    		//filter inputs Text
+    		String ByValuesInput_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "ByValuesInput_Text_LF");
+    		String Condition_1_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_1_Text_LF");
+    		String Condition_2_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_2_Text_LF");
+    		String Condition_3_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_3_Text_LF");
+    		String Condition_4_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_4_Text_LF");
+    		String Condition_5_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_5_Text_LF");
+    		String Condition_6_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_6_Text_LF");
+    		String Condition_7_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_7_Text_LF");
+    		String Condition_8_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_8_Text_LF");
+    		String Condition_Input_1_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_Input_1_Text_LF");
+    		String Condition_Input_2_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_Input_2_Text_LF");
+    		String Condition_Input_3_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_Input_3_Text_LF");
+    		String Condition_Input_4_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_Input_4_Text_LF");
+    		String Condition_Input_5_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_Input_5_Text_LF");
+    		String Condition_Input_6_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_Input_6_Text_LF");
+    		String Condition_Input_7_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_Input_7_Text_LF");
+    		String Condition_Input_8_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "Condition_Input_8_Text_LF");
+    		String FirstCondition_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "FirstCondition_Text_LF");
+    		String FirstCondition_Input_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "FirstCondition_Input_Text_LF");
+    		String FirstOperator_Input_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "FirstOperator_Input_Text_LF");
+    		String SecondOperator_Input_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "SecondOperator_Input_Text_LF");
+    		String SecondCondition_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "SecondCondition_Text_LF");
+    		String SecondCondition_Input_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "SecondCondition_Input_Text_LF");
+    		String ThirdCondition_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "ThirdCondition_Text_LF");
+    		String ThirdCondition_Input_Text_LF=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input_Text_LocalFilter_Bar", "ThirdCondition_Input_Text_LF");	
+    		mouseOverToElement(driver, chartBody);
+    		click(driver,filterChart);
     		 
-    		 if(isDisplayed(driver,LocalFilterSec)) {
+    		if(isDisplayed(driver,LocalFilterSec)) {
     			 pass(driver,"Local Filter section is displayed when click the filter chart icon");
     			 if(verifyElementDisplayed(driver, ChartTitleNameLocalFilter)) {
     				 String chartTitlename=getText1(driver, ChartTitleNameLocalFilter);
@@ -3071,7 +3036,6 @@ public class DASHPRO_BAR_SMOKE_TESTING extends Keywords{
     			 }
     			 
     			 verifyElementDisplayed(driver, DatasetName_LocalFilter);
-    			 
     			 if(isDisplayed(driver,ColumnListSec_LocalFilter)) {
 	    			  pass(driver,"ColumnList Section is present in the Local filter");
 	    			  if(isDisplayed(driver,ColumnListValue_LocalFilter)) {

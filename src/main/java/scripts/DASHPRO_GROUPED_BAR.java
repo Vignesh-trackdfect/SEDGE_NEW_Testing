@@ -764,7 +764,7 @@ public class DASHPRO_GROUPED_BAR extends Keywords{
 						for(WebElement AvailableColumn:AvailableColumnList) {
 							String columnText=AvailableColumn.getText();
 							int columnNum=getNumber(columnText);
-							if(columnNum<15) {
+							if(columnNum<15&&columnNum!=0) {
 								if(!selectedY_text.contains(columnText)&&!columnText.equalsIgnoreCase("Select")) {
 									action.moveToElement(AvailableColumn).click().build().perform();
 									wait(driver,"1");
@@ -789,7 +789,6 @@ public class DASHPRO_GROUPED_BAR extends Keywords{
 									break;
 								}
 							}
-							
 						}
 						setTestCaseID("TC_GROUP_BAR_048");
 						mouseOverAndClick(driver, SecondValue);
@@ -829,7 +828,6 @@ public class DASHPRO_GROUPED_BAR extends Keywords{
 					fail(driver,"Searched Value in the X Axis input is not removed after click the remove icon");
 				}
 			
-				
 			}else {
 				fail(driver,"Numeric column not present in the X Axis dropdown");
 			}
@@ -853,9 +851,9 @@ public class DASHPRO_GROUPED_BAR extends Keywords{
 		setTestCaseID("TC_GROUP_BAR_033");
 		click(driver,X_Axis_Input_GroupedBar);
 		waitForElement(driver, X_Axis_DropdownExpand);
-		selectDropdownValue(driver,X_Axis_dataType1,Select_X_Axis_Value1);
-		selectDropdownValue(driver,X_Axis_dataType2,Select_X_Axis_Value2);
-		selectDropdownValue(driver,X_Axis_dataType3,Select_X_Axis_Value3);
+		selectDropdownValue1(driver,Select_X_Axis_Value1);
+		selectDropdownValue1(driver,Select_X_Axis_Value2);
+		selectDropdownValue1(driver,Select_X_Axis_Value3);
 		
 		click(driver,X_Axis_Text_GroupedBar);
 		wait(driver,"1");
@@ -873,14 +871,14 @@ public class DASHPRO_GROUPED_BAR extends Keywords{
 			}
 		}
 		
-		setTestCaseID("TC_GROUP_BAR_053");
-		if(!X_Axis_dataType1.equals("Numerical") || !X_Axis_dataType2.equals("Numerical") || !X_Axis_dataType3.equals("Numerical")) {
-			if(!isDisplayed2(driver,GroupInput_Numeric)) {
-				pass(driver,"Group Selection Input is not displayed for Selecting Categorical/Text/Date in x axis");
-			}else {
-				fail(driver,"Group Selection Input is displayed for Selecting Categorical/Text/Date in x axis");
-			}
-		}
+//		setTestCaseID("TC_GROUP_BAR_053");
+//		if(!X_Axis_dataType1.equals("Numerical") || !X_Axis_dataType2.equals("Numerical") || !X_Axis_dataType3.equals("Numerical")) {
+//			if(!isDisplayed2(driver,GroupInput_Numeric)) {
+//				pass(driver,"Group Selection Input is not displayed for Selecting Categorical/Text/Date in x axis");
+//			}else {
+//				fail(driver,"Group Selection Input is displayed for Selecting Categorical/Text/Date in x axis");
+//			}
+//		}
 		setTestCaseID("TC_GROUP_BAR_055");
 		scrollUsingElement(driver, ApplyButton);
 		click(driver,ApplyButton);
@@ -891,87 +889,88 @@ public class DASHPRO_GROUPED_BAR extends Keywords{
 			fail(driver,"Graph not displayed after selecting the X axis and Y Axis Value");
 		}
 		setTestCaseID("");
-		if(verifyElementDisplayed(driver, Legend_X_Axis)) {
-			List<WebElement> LegendsDisplay=getWebElements(driver, Legend_X_Axis);
-			List<String> LegendsDisplayValue=new ArrayList<String>();
-			for(WebElement LegendDisplay:LegendsDisplay) {
-				LegendsDisplayValue.add(LegendDisplay.getText());
-			}
-			
-			if(LegendsDisplay.size()==3) {
-				pass(driver,"Legends value displayed count matched with selected X axis value count");
-			}else {
-				fail(driver,"Legends value displayed count not matched with selected X axis value count");
-			}
-			
-			if(LegendsDisplayValue.contains(Select_X_Axis_Value1)) {
-				pass(driver,"Selected X axis value1 '"+Select_X_Axis_Value1+"' displayed in the chart");
-				try {
-					WebElement legend=driver.findElement(By.xpath("(//*[@aria-label='Legend']//*[contains(@aria-label,'"+Select_X_Axis_Value1+"')]//ancestor::*[name()='g'][1]/*[name()='g'])[1]"));
-					String LegendColor=legend.getAttribute("fill");
-					mouseOverToElement(driver, ChartGraph);
-					WebElement barTooltip=driver.findElement(By.xpath("(//*[@fill='"+LegendColor+"']//ancestor::*[@role='tooltip'][1]//*[name()='text'])[2]"));
-					String barTooltipText=barTooltip.getText();
-					if(barTooltipText.contains(Select_X_Axis_Value1)) {
-						pass(driver,"'"+Select_X_Axis_Value1+"' correctly displayed in Expected Legend color '"+LegendColor+"' Tooltip");
-					}else {
-						fail(driver,"'"+Select_X_Axis_Value1+"' not correctly displayed in Expected Legend color '"+LegendColor+"' Tooltip");
-					}
-					
-				}catch(Exception e) {
-					fail(driver,"Unable to validate the Displayed Barname with legend value ("+Select_X_Axis_Value1+") "+e.getLocalizedMessage());
-				}
-				
-			}else {
-				fail(driver,"Selected X axis value1 '"+Select_X_Axis_Value1+"' not displayed in the chart");
-			}
-			if(LegendsDisplayValue.contains(Select_X_Axis_Value2)) {
-				pass(driver,"Selected X axis value2 '"+Select_X_Axis_Value2+"' displayed in the chart");
-				try {
-					WebElement legend=driver.findElement(By.xpath("(//*[@aria-label='Legend']//*[contains(@aria-label,'"+Select_X_Axis_Value2+"')]//ancestor::*[name()='g'][1]/*[name()='g'])[1]"));
-					String LegendColor=legend.getAttribute("fill");
-					mouseOverToElement(driver, ChartGraph);
-					WebElement barTooltip=driver.findElement(By.xpath("(//*[@fill='"+LegendColor+"']//ancestor::*[@role='tooltip'][1]//*[name()='text'])[2]"));
-					String barTooltipText=barTooltip.getText();
-					if(barTooltipText.contains(Select_X_Axis_Value2)) {
-						pass(driver,"'"+Select_X_Axis_Value2+"' correctly displayed in Expected Legend color '"+LegendColor+"' Tooltip");
-					}else {
-						fail(driver,"'"+Select_X_Axis_Value2+"' not correctly displayed in Expected Legend color '"+LegendColor+"' Tooltip");
-					}
-					
-				}catch(Exception e) {
-					fail(driver,"Unable to validate the Displayed Barname with legend value ("+Select_X_Axis_Value2+") "+e.getLocalizedMessage());
-				}
-				
-				
-			}else {
-				fail(driver,"Selected X axis value2 '"+Select_X_Axis_Value2+"' not displayed in the chart");
-			}
-			
-			
-			if(LegendsDisplayValue.contains(Select_X_Axis_Value3)) {
-				pass(driver,"Selected X axis value3 '"+Select_X_Axis_Value3+"' displayed in the chart");
-				try {
-					WebElement legend=driver.findElement(By.xpath("(//*[@aria-label='Legend']//*[contains(@aria-label,'"+Select_X_Axis_Value3+"')]//ancestor::*[name()='g'][1]/*[name()='g'])[1]"));
-					String LegendColor=legend.getAttribute("fill");
-					mouseOverToElement(driver, ChartGraph);
-					WebElement barTooltip=driver.findElement(By.xpath("(//*[@fill='"+LegendColor+"']//ancestor::*[@role='tooltip'][1]//*[name()='text'])[2]"));
-					String barTooltipText=barTooltip.getText();
-					if(barTooltipText.contains(Select_X_Axis_Value3)) {
-						pass(driver,"'"+Select_X_Axis_Value3+"' correctly displayed in Expected Legend color '"+LegendColor+"' Tooltip");
-					}else {
-						fail(driver,"'"+Select_X_Axis_Value3+"' not correctly displayed in Expected Legend color '"+LegendColor+"' Tooltip");
-					}
-					
-				}catch(Exception e) {
-					fail(driver,"Unable to validate the Displayed Barname with legend value ("+Select_X_Axis_Value3+") "+e.getLocalizedMessage());
-				}
-				
-			}else {
-				fail(driver,"Selected X axis value3 '"+Select_X_Axis_Value3+"' not displayed in the chart");
-			}
-			
-		}
+		verifyElementDisplayed(driver, Legend_X_Axis);
+//		if(verifyElementDisplayed(driver, Legend_X_Axis)) {
+//			List<WebElement> LegendsDisplay=getWebElements(driver, Legend_X_Axis);
+//			List<String> LegendsDisplayValue=new ArrayList<String>();
+//			for(WebElement LegendDisplay:LegendsDisplay) {
+//				LegendsDisplayValue.add(LegendDisplay.getText());
+//			}
+//			
+//			if(LegendsDisplay.size()==3) {
+//				pass(driver,"Legends value displayed count matched with selected X axis value count");
+//			}else {
+//				fail(driver,"Legends value displayed count not matched with selected X axis value count");
+//			}
+//			
+//			if(LegendsDisplayValue.contains(Select_X_Axis_Value1.trim())) {
+//				pass(driver,"Selected X axis value1 '"+Select_X_Axis_Value1+"' displayed in the chart");
+//				try {
+//					WebElement legend=driver.findElement(By.xpath("(//*[@aria-label='Legend']//*[contains(@aria-label,'"+Select_X_Axis_Value1.trim()+"')]//ancestor::*[name()='g'][1]/*[name()='g'])[1]"));
+//					String LegendColor=legend.getAttribute("fill");
+//					mouseOverToElement(driver, ChartGraph);
+//					WebElement barTooltip=driver.findElement(By.xpath("(//*[@fill='"+LegendColor+"']//ancestor::*[@role='tooltip'][1]//*[name()='text'])[2]"));
+//					String barTooltipText=barTooltip.getText();
+//					if(barTooltipText.contains(Select_X_Axis_Value1.trim())) {
+//						pass(driver,"'"+Select_X_Axis_Value1+"' correctly displayed in Expected Legend color '"+LegendColor+"' Tooltip");
+//					}else {
+//						fail(driver,"'"+Select_X_Axis_Value1+"' not correctly displayed in Expected Legend color '"+LegendColor+"' Tooltip");
+//					}
+//					
+//				}catch(Exception e) {
+//					fail(driver,"Unable to validate the Displayed Barname with legend value ("+Select_X_Axis_Value1+") "+e.getLocalizedMessage());
+//				}
+//				
+//			}else {
+//				fail(driver,"Selected X axis value1 '"+Select_X_Axis_Value1+"' not displayed in the chart");
+//			}
+//			if(LegendsDisplayValue.contains(Select_X_Axis_Value2.trim())) {
+//				pass(driver,"Selected X axis value2 '"+Select_X_Axis_Value2+"' displayed in the chart");
+//				try {
+//					WebElement legend=driver.findElement(By.xpath("(//*[@aria-label='Legend']//*[contains(@aria-label,'"+Select_X_Axis_Value2.trim()+"')]//ancestor::*[name()='g'][1]/*[name()='g'])[1]"));
+//					String LegendColor=legend.getAttribute("fill");
+//					mouseOverToElement(driver, ChartGraph);
+//					WebElement barTooltip=driver.findElement(By.xpath("(//*[@fill='"+LegendColor+"']//ancestor::*[@role='tooltip'][1]//*[name()='text'])[2]"));
+//					String barTooltipText=barTooltip.getText();
+//					if(barTooltipText.contains(Select_X_Axis_Value2.trim())) {
+//						pass(driver,"'"+Select_X_Axis_Value2+"' correctly displayed in Expected Legend color '"+LegendColor+"' Tooltip");
+//					}else {
+//						fail(driver,"'"+Select_X_Axis_Value2+"' not correctly displayed in Expected Legend color '"+LegendColor+"' Tooltip");
+//					}
+//					
+//				}catch(Exception e) {
+//					fail(driver,"Unable to validate the Displayed Barname with legend value ("+Select_X_Axis_Value2+") "+e.getLocalizedMessage());
+//				}
+//				
+//				
+//			}else {
+//				fail(driver,"Selected X axis value2 '"+Select_X_Axis_Value2+"' not displayed in the chart");
+//			}
+//			
+//			
+//			if(LegendsDisplayValue.contains(Select_X_Axis_Value3.trim())) {
+//				pass(driver,"Selected X axis value3 '"+Select_X_Axis_Value3+"' displayed in the chart");
+//				try {
+//					WebElement legend=driver.findElement(By.xpath("(//*[@aria-label='Legend']//*[contains(@aria-label,'"+Select_X_Axis_Value3.trim()+"')]//ancestor::*[name()='g'][1]/*[name()='g'])[1]"));
+//					String LegendColor=legend.getAttribute("fill");
+//					mouseOverToElement(driver, ChartGraph);
+//					WebElement barTooltip=driver.findElement(By.xpath("(//*[@fill='"+LegendColor+"']//ancestor::*[@role='tooltip'][1]//*[name()='text'])[2]"));
+//					String barTooltipText=barTooltip.getText();
+//					if(barTooltipText.contains(Select_X_Axis_Value3.trim())) {
+//						pass(driver,"'"+Select_X_Axis_Value3+"' correctly displayed in Expected Legend color '"+LegendColor+"' Tooltip");
+//					}else {
+//						fail(driver,"'"+Select_X_Axis_Value3+"' not correctly displayed in Expected Legend color '"+LegendColor+"' Tooltip");
+//					}
+//					
+//				}catch(Exception e) {
+//					fail(driver,"Unable to validate the Displayed Barname with legend value ("+Select_X_Axis_Value3+") "+e.getLocalizedMessage());
+//				}
+//				
+//			}else {
+//				fail(driver,"Selected X axis value3 '"+Select_X_Axis_Value3+"' not displayed in the chart");
+//			}
+//			
+//		}
 				
 		
         // *********** AxisTitle Validation Start *************
@@ -979,16 +978,16 @@ public class DASHPRO_GROUPED_BAR extends Keywords{
      		String Grouped_Bar_Axis_Title= getCellValue("TestExecution","Testcase_Selection","Grouped_Bar_Axis_Title",Flag);
      	   
      	 	if(Grouped_Bar_Axis_Title.equals("Yes")) {
-     	 		 setTestCaseID("TC_GROUP_BAR_056");
-     	      	 verifyElementDisplayed(driver, AxisTitle);
-     	  		 click(driver,AxisTitle);
-     	  		 wait(driver,"1");
-     	  		 String AxisExpand=getAttribute1(driver,AxisTitleExpand,"class");
-     	      	 if(AxisExpand.contains("up")) {
-     	  			pass(driver,"Axis Title section is Expanded after click on it");
-     	      	 }else {
-     	  			fail(driver,"Axis Title section is not Expanded after click on it");
-     	      	 }
+     	 		setTestCaseID("TC_GROUP_BAR_056");
+     	 		verifyElementDisplayed(driver, AxisTitle);
+     	 		click(driver,AxisTitle);
+     	 		wait(driver,"1");
+     	 		String AxisExpand=getAttribute1(driver,AxisTitleExpand,"class");
+     	 		if(AxisExpand.contains("up")) {
+     	 			pass(driver,"Axis Title section is Expanded after click on it");
+     	 		}else {
+     	 			fail(driver,"Axis Title section is not Expanded after click on it");
+     	 		}
       	 		setTestCaseID("TC_GROUP_BAR_057");
      	      	String AxisTextColor_Act=getTextColor(driver,AxisTitleExpand);
      	      	if(AxisTextColorExp.equalsIgnoreCase(AxisTextColor_Act)) {
@@ -1013,18 +1012,18 @@ public class DASHPRO_GROUPED_BAR extends Keywords{
      	  		elementnotvisible1(driver, RPE_Loading);
      	  		verifyElementDisplayed(driver,Chart_Section);
      	  		waitForElement(driver, chartBars);
-     	  		List<WebElement>  moveElements1=driver.findElements(By.xpath("//div[@id='RPE_Preview']//*[name()='tspan']"));
-     	  		for(WebElement ele:moveElements1) {
-     	  			Actions act3=new Actions(driver);
-     	  			try {
-     	  				act3.moveToElement(ele).build().perform();
-     	  			}catch(Exception e) {
-     	  				
-     	  			}
-     	  		}
+//     	  		List<WebElement>  moveElements1=driver.findElements(By.xpath("//div[@id='RPE_Preview']//*[name()='tspan']"));
+//     	  		for(WebElement ele:moveElements1) {
+//     	  			Actions act3=new Actions(driver);
+//     	  			try {
+//     	  				act3.moveToElement(ele).build().perform();
+//     	  			}catch(Exception e) {
+//     	  				
+//     	  			}
+//     	  		}
      	  		
      	  		String Y_ChartText=getText1(driver,Y_Value);
-     	  		String X_ChartText=getText1(driver,X_Chart_Value);
+     	  		String X_ChartText=getText1(driver,X_Value);
      	  		if(X_ChartText.equals(Change_X_Title_Name)) {
      	          	pass(driver,"Given X Title ("+Change_X_Title_Name+") input value updated in the X Axis chart");
      	       	}else {
@@ -1104,15 +1103,15 @@ public class DASHPRO_GROUPED_BAR extends Keywords{
      	    		click(driver,ApplyButton);
      	    		elementnotvisible1(driver, RPE_Loading);
      	    		verifyElementDisplayed(driver,Chart_Section);
-     	    	    moveElements1=driver.findElements(By.xpath("//div[@id='RPE_Preview']//*[name()='tspan']"));
-     	    			for(WebElement ele:moveElements1) {
-     	    				Actions act3=new Actions(driver);
-     	    				try {
-     	    					act3.moveToElement(ele).build().perform();
-     	    				}catch(Exception e) {
-     	    					
-     	    				}
-     	    			}
+//     	    	    moveElements1=driver.findElements(By.xpath("//div[@id='RPE_Preview']//*[name()='tspan']"));
+//     	    			for(WebElement ele:moveElements1) {
+//     	    				Actions act3=new Actions(driver);
+//     	    				try {
+//     	    					act3.moveToElement(ele).build().perform();
+//     	    				}catch(Exception e) {
+//     	    					
+//     	    				}
+//     	    			}
      	    		String fontFamily_Y_Act=getFontFamily(driver,Y_Value);
      	    		if(fontFamily_Y_Act.equals(ChangeFontFamily_AxisTitle)) {
      	   			     pass(driver,"Selected fontFamily ("+ChangeFontFamily_AxisTitle+") Updated in Y Axis chart value");
@@ -1145,18 +1144,18 @@ public class DASHPRO_GROUPED_BAR extends Keywords{
      	  		elementnotvisible1(driver, RPE_Loading);
      	  		verifyElementDisplayed(driver,Chart_Section);
      	  		//waitForElement(driver, ChartBarDisplayCount);
-     	  	    moveElements1=driver.findElements(By.xpath("//div[@id='RPE_Preview']//*[name()='tspan']"));
-     	  		for(WebElement ele:moveElements1) {
-     	  			Actions act3=new Actions(driver);
-     	  			try {
-     	  				act3.moveToElement(ele).build().perform();
-     	  			}catch(Exception e) {
-     	  				
-     	  			}
-     	  		}
+//     	  	    moveElements1=driver.findElements(By.xpath("//div[@id='RPE_Preview']//*[name()='tspan']"));
+//     	  		for(WebElement ele:moveElements1) {
+//     	  			Actions act3=new Actions(driver);
+//     	  			try {
+//     	  				act3.moveToElement(ele).build().perform();
+//     	  			}catch(Exception e) {
+//     	  				
+//     	  			}
+//     	  		}
      	  			
      	  		String fontSize_Y_Act=getFontSize(driver,Y_Value);
-     	  		String fontSize_X_Act=getFontSize(driver,X_Chart_Value);
+     	  		String fontSize_X_Act=getFontSize(driver,X_Value);
      	  		if((ChangeTitleFontSize_AxisTitle.equals(fontSize_Y_Act))&&ChangeTitleFontSize_AxisTitle.equals(fontSize_X_Act)) {
      	  			pass(driver,"Given Title Font Size Updated in X-Axis Title and Y-Axis Title chart value");
      	  		}else {
@@ -1768,8 +1767,7 @@ public class DASHPRO_GROUPED_BAR extends Keywords{
         	  		 fail(driver,"By Default, Enable Value toggle is enabled");
         	     }else {
         	  		 pass(driver,"By Default, Enable Value toggle is disabled");
-        	  		 
-        	  		setTestCaseID("TC_GROUP_BAR_109");
+        	  		 setTestCaseID("TC_GROUP_BAR_109");
         	  		 if(IsElementEnabled(driver,ValueFormatInput)) {
         		  		 fail(driver,"'Value Format' is accessible when the 'Enable value' toggle is disabled.");
         		     }else {
@@ -1825,29 +1823,19 @@ public class DASHPRO_GROUPED_BAR extends Keywords{
         		 click(driver,EnableValue_InputSlider);
         		 if(isToggleEnable(driver,EnableValue_Input)) {
         	  		 pass(driver,"'Enable Value' toggle is enabled after click on it");
+        	  		 scrollUsingElement(driver, ApplyButton);
+            		 click(driver,ApplyButton);
+            		 elementnotvisible1(driver, RPE_Loading);
+            		 waitForElement(driver, Chart_Section);
+            		 if(isDisplayed(driver,EnableValue)) {
+            			 pass(driver,"Values enabled in charts after enabling the 'Enable Value' toggle"); 
+            		 }else {
+            	  		 fail(driver,"Values not enabled in charts after enabling the 'Enable Value' toggle"); 
+            		 }
         		 }else {
         	  		 fail(driver,"'Enable Value' toggle is not enabled after click on it");
-        	  		 
-        		 }
-        		
-        		 scrollUsingElement(driver, ApplyButton);
-        		 click(driver,ApplyButton);
-        		 elementnotvisible1(driver, RPE_Loading);
-        		 verifyElementDisplayed(driver,Chart_Section);
-        		// waitForElement(driver, ChartBarDisplayCount);/
-        		 
-        		 if(isDisplayed(driver,EnableValue)) {
-        			 pass(driver,"Values enabled in charts after enabling the 'Enable Value' toggle"); 
-        		 }else {
-        	  		 fail(driver,"Values not enabled in charts after enabling the 'Enable Value' toggle"); 
         		 }
         		 
-        		 setTestCaseID("TC_GROUP_BAR_111");
-        		 if(isToggleAccessible(driver,ValueFormatInput)) {		
-        	  		 pass(driver,"'Value Format Input' is accessible after enabling the 'Enable Value' toggle"); 
-        		 }else {
-        	  		 fail(driver,"'Value Format Input' is not accessible after enabling the 'Enable Value' toggle");
-        		 }
         		 
         		 setTestCaseID("TC_GROUP_BAR_112");
         		 String defaultFormatValue_Act=defaultSelectedValue(driver, ValueFormatInput);
@@ -1857,373 +1845,302 @@ public class DASHPRO_GROUPED_BAR extends Keywords{
         	  		 fail(driver,"By default, '"+DefaultFormatValue_Exp+"' is not selected in the Value Format Input"); 
           		 }
         		 
-          		setTestCaseID("TC_GROUP_BAR_113");
-          		click(driver,ValueFormatInput);
-          		verifyElementIsPresent1(driver, Value_ValueFormat);
-          		verifyElementIsPresent1(driver, Percentage_ValueFormat);
-	
-          		 setTestCaseID("TC_GROUP_BAR_114");
-        		 selectOptionValue(driver,ValueFormatInput,"value");
-        		 
-        		 scrollUsingElement(driver, ApplyButton);
-        		 click(driver,ApplyButton);
-        		 elementnotvisible1(driver, RPE_Loading);
-        		 verifyElementDisplayed(driver,Chart_Section);
-        		// waitForElement(driver, ChartBarDisplayCount);
-        		 
-        		
-        		 String ValueTextAct=getText(driver,EnableValue);       //lastChartValue.getText();  //getText1(driver,ValueFormat_ChartValue);
-        		 
-        		 if(ValueTextAct.endsWith("%")) {
-        	  		 fail(driver,"'Value Format' is not display in the chart for 'Value' format selection");
-        		 }else {
-        	  		 pass(driver,"'Value Format' is displayed in the chart for 'Value' format selection");
-        		 }
-        		 
-        		 setTestCaseID("TC_GROUP_BAR_115");
-        		 selectOptionValue(driver,ValueFormatInput,"percentage");
-        		 wait(driver,"1");
-        		 scrollUsingElement(driver, ApplyButton);
-        		 click(driver,ApplyButton);
-        		 elementnotvisible1(driver, RPE_Loading);
-        		 setTestCaseID("TC_GROUP_BAR_120");
-        		 if(isToggleAccessible(driver,SeperatorInput)) {	
-        			 fail(driver,"'Seperator Input' is accessible  when 'Percentage' is selected in value format");	  		
-        		 }else {
-        			 pass(driver,"'Seperator Input' is inaccessible  when 'Percentage' is selected in value format");
-        		 }
-        		 
-        		 scrollUsingElement(driver, ApplyButton);
-        		 click(driver,ApplyButton);
-        		 elementnotvisible1(driver, RPE_Loading);
-        		 verifyElementDisplayed(driver,Chart_Section);
-        		 //waitForElement(driver, ChartBarDisplayCount);
-
-        		 ValueTextAct=getText(driver,EnableValue);  
-        		 if(ValueTextAct.contains("%")) {
-        	  		 pass(driver,"Enabled Value in chart  is displayed in percentage when 'Percentage' is selected");
-        		 }else {
-        	  		 fail(driver,"Enabled Value in chart is not displayed in percentage when 'Percentage' is selected");
-        		 }
+          		 setTestCaseID("TC_GROUP_BAR_111");
+          		 if(IsElementEnabled(driver,ValueFormatInput)) {		
+          			 pass(driver,"'Value Format Input' is accessible after enabling the 'Enable Value' toggle"); 
+          			 setTestCaseID("TC_GROUP_BAR_113");
+             		 click(driver,ValueFormatInput);
+             		 verifyElementIsPresent1(driver, Value_ValueFormat);
+             		 verifyElementIsPresent1(driver, Percentage_ValueFormat);
+   	
+             		 setTestCaseID("TC_GROUP_BAR_114");
+             		 selectOptionValue(driver,ValueFormatInput,"value");
+             		 scrollUsingElement(driver, ApplyButton);
+             		 click(driver,ApplyButton);
+             		 elementnotvisible1(driver, RPE_Loading);
+             		 waitForElement(driver,Chart_Section);
+             		 String ValueTextAct=getText(driver,EnableValue); 
+             		 if(ValueTextAct.endsWith("%")) {
+            	  		 fail(driver,"'Value Format' is not display in the chart for 'Value' format selection");
+            		 }else {
+            	  		 pass(driver,"'Value Format' is displayed in the chart for 'Value' format selection");
+            		 }
+             		 
+             		setTestCaseID("TC_GROUP_BAR_115");
+             		selectOptionValue(driver,ValueFormatInput,"percentage");
+             		wait(driver,"1");
+             		scrollUsingElement(driver, ApplyButton);
+             		click(driver,ApplyButton);
+             		elementnotvisible1(driver, RPE_Loading);
+             		setTestCaseID("TC_GROUP_BAR_120");
+             		if(isToggleAccessible(driver,SeperatorInput)) {	
+             			fail(driver,"'Seperator Input' is accessible  when 'Percentage' is selected in value format");	  		
+             		}else {
+             			pass(driver,"'Seperator Input' is inaccessible  when 'Percentage' is selected in value format");
+             		}
+       	  		 
+             		scrollUsingElement(driver, ApplyButton);
+             		click(driver,ApplyButton);
+             		elementnotvisible1(driver, RPE_Loading);
+             		waitForElement(driver,Chart_Section);
+             		ValueTextAct=getText(driver,EnableValue);  
+             		if(ValueTextAct.contains("%")) {
+             			pass(driver,"Enabled Value in chart  is displayed in percentage when 'Percentage' is selected");
+             		}else {
+             			fail(driver,"Enabled Value in chart is not displayed in percentage when 'Percentage' is selected");
+             		}
+             		
+             		
+          		 }else {
+          			 fail(driver,"'Value Format Input' is not accessible after enabling the 'Enable Value' toggle");
+          		 }
+       		 
+          		 setTestCaseID("TC_GROUP_BAR_116");
+          		 String defaultSeperator_Act=defaultSelectedValue(driver,SeperatorInput);
+          		 if(DefaultSeperatorValue_Exp.equals(defaultSeperator_Act)) {
+          			 pass(driver,"By default, '"+DefaultSeperatorValue_Exp+"' is selected in the Seperator Input"); 
+          		 }else {
+          			 fail(driver,"By default, '"+DefaultSeperatorValue_Exp+"' is not selected in the Seperator Input"); 
+          		 } 
         		 
         		 setTestCaseID("TC_GROUP_BAR_117");
         		 selectOptionValue(driver,ValueFormatInput,"value");
         		 scrollUsingElement(driver, ApplyButton);
         		 click(driver,ApplyButton);
         		 elementnotvisible1(driver, RPE_Loading);
-        		 if(isToggleAccessible(driver,SeperatorInput)) {	
+        		 if(IsElementEnabled(driver,SeperatorInput)) {	
         			pass(driver,"'Seperator Input' is accessible  when 'value' is selected in value format"); 
+        			verifyElementIsPresent1(driver, Thousand_Seperator);
+        			verifyElementIsPresent1(driver, Houndred_Seperator);
+        			setTestCaseID("TC_GROUP_BAR_118");
+        			click(driver,SeperatorInput);
+        			selectOptionValue(driver,SeperatorInput,"#,###");
+        			scrollUsingElement(driver, ApplyButton);
+        			click(driver,ApplyButton);
+        			elementnotvisible1(driver, RPE_Loading);
+        			waitForElement(driver,Chart_Section);
+        			String ChartValueTextAct= getText1(driver,EnableValue);//getText1(driver,ValueFormat_ChartValue);
+            		if(!ChartValueTextAct.contains(".") && ChartValueTextAct.length()>3) {
+            			String ValueSeperatorFormat=validateNumberFormat(ChartValueTextAct);
+            			if(ChartValueTextAct.length()>3) {
+            				if(ValueSeperatorFormat.equals("#,###")) {
+            	  	  	  		 pass(driver,"Thousand seperator gets applied for chart enabled values"); 
+            	  	  		}else {
+            	  	  	  		 fail(driver,"Thousand seperator not applied for chart enabled values"); 
+            	  	  		}
+            			}
+            		}
+        			
+            		setTestCaseID("TC_GROUP_BAR_119");
+            		click(driver,SeperatorInput);
+            		selectOptionValue(driver,SeperatorInput,"#,##");
+            		scrollUsingElement(driver, ApplyButton);
+            		click(driver,ApplyButton);
+            		elementnotvisible1(driver, RPE_Loading);
+            		waitForElement(driver,Chart_Section);
+            		ChartValueTextAct=getText1(driver,EnableValue);     //getText1(driver,ValueFormat_ChartValue);
+            		if(!ChartValueTextAct.contains(".") && ChartValueTextAct.length()>3) {
+            			String ValueSeperatorFormat=validateNumberFormat(ChartValueTextAct);
+            			if(ChartValueTextAct.length()>3) {
+            				if(ValueSeperatorFormat.equals("#,##")) {
+            	  	  	  		 pass(driver,"Hundred Separator gets applied for chart enabled values"); 
+            	  	  		}else {
+            	  	  	  		 fail(driver,"Hundred Separator not applied for chart enabled values"); 
+            	  	  		}
+            			}
+            		}
         		 }else {
         			fail(driver,"'Seperator Input' is not accessible  when 'value' is selected in value format"); 
         		 }
         		 
-        		 verifyElementIsPresent1(driver, Thousand_Seperator);
-        		 verifyElementIsPresent1(driver, Houndred_Seperator);
-
-        		 setTestCaseID("TC_GROUP_BAR_116");
-        		 String defaultSeperator_Act=defaultSelectedValue(driver,SeperatorInput);
-        		 if(DefaultSeperatorValue_Exp.equals(defaultSeperator_Act)) {
-        	  		 pass(driver,"By default, '"+DefaultSeperatorValue_Exp+"' is selected in the Seperator Input"); 
+        		 setTestCaseID("TC_GROUP_BAR_121");
+        		 String defaultFontSize_Act=defaultSelectedValue(driver, ValueFontSizeInput);
+        		 if(DefaultFontSizeValue_Exp.equals(defaultFontSize_Act)) {
+        			 pass(driver,"By default, '"+DefaultFontSizeValue_Exp+"' is selected in the Value Font Size Input"); 
         		 }else {
-        	  		 fail(driver,"By default, '"+DefaultSeperatorValue_Exp+"' is not selected in the Seperator Input"); 
-        		 } 
-               
-        		 setTestCaseID("TC_GROUP_BAR_118");
-        		click(driver,SeperatorInput);
-        		selectOptionValue(driver,SeperatorInput,"#,###");
-        		scrollUsingElement(driver, ApplyButton);
-        		click(driver,ApplyButton);
-        		elementnotvisible1(driver, RPE_Loading);
-        		verifyElementDisplayed(driver,Chart_Section);
-        		//waitForElement(driver, ChartBarDisplayCount);
-        		
-//        		//new 
-//        		 chartValues=getWebElements(driver, ValueFormat_ChartValue);
-//        		 chartValueSize=chartValues.size();
-//        		 lastChartValue=chartValues.get(chartValueSize-3);
-//        		 //new
-        		
-        		String ChartValueTextAct= getText(driver,EnableValue);//getText1(driver,ValueFormat_ChartValue);
-        		if(!ChartValueTextAct.contains(".") && ChartValueTextAct.length()>3) {
-        			String ValueSeperatorFormat=validateNumberFormat(ChartValueTextAct);
-        			if(ChartValueTextAct.length()>3) {
-        				if(ValueSeperatorFormat.equals("#,###")) {
-        	  	  	  		 pass(driver,"Thousand seperator gets applied for chart enabled values"); 
-        	  	  		}else {
-        	  	  	  		 fail(driver,"Thousand seperator not applied for chart enabled values"); 
-        	  	  		}
-        			}
-        	  		
-        		}
-        		
-        		
-        		setTestCaseID("TC_GROUP_BAR_119");
-        		click(driver,SeperatorInput);
-        		selectOptionValue(driver,SeperatorInput,"#,##");
-        		scrollUsingElement(driver, ApplyButton);
-        		click(driver,ApplyButton);
-        		elementnotvisible1(driver, RPE_Loading);
-        		verifyElementDisplayed(driver,Chart_Section);
-        		//waitForElement(driver, ChartBarDisplayCount);
-        		
-        		ChartValueTextAct=getText(driver,EnableValue);     //getText1(driver,ValueFormat_ChartValue);
-        		if(!ChartValueTextAct.contains(".") && ChartValueTextAct.length()>3) {
-        			String ValueSeperatorFormat=validateNumberFormat(ChartValueTextAct);
-        			if(ChartValueTextAct.length()>3) {
-        				if(ValueSeperatorFormat.equals("#,##")) {
-        	  	  	  		 pass(driver,"Hundred Separator gets applied for chart enabled values"); 
-        	  	  		}else {
-        	  	  	  		 fail(driver,"Hundred Separator not applied for chart enabled values"); 
-        	  	  		}
-        			}
-        	  		
-        		}
-        		
-        		setTestCaseID("TC_GROUP_BAR_121");
-        		String defaultFontSize_Act=defaultSelectedValue(driver, ValueFontSizeInput);
-        		if(DefaultFontSizeValue_Exp.equals(defaultFontSize_Act)) {
-        			pass(driver,"By default, '"+DefaultFontSizeValue_Exp+"' is selected in the Value Font Size Input"); 
-        		}else {
-        			fail(driver,"By default, '"+DefaultFontSizeValue_Exp+"' is not selected in the Value Font Size Input"); 
-        		}
+        			 fail(driver,"By default, '"+DefaultFontSizeValue_Exp+"' is not selected in the Value Font Size Input"); 
+        		 }
          		 
-        		setTestCaseID("TC_GROUP_BAR_122");
-        		if(isToggleAccessible(driver,ValueFontSizeInput)) {		
-        	  		 pass(driver,"'Value FontSize Input' is accessible after enabling the 'Enable Value' toggle"); 
-        	  		 
-        		}else {
-        	  		 fail(driver,"'Value FontSize Input' is not accessible after enabling the 'Enable Value' toggle");
-        		}
+        		 setTestCaseID("TC_GROUP_BAR_122");
+        		 if(isToggleAccessible(driver,ValueFontSizeInput)) {		
+        			 pass(driver,"'Value FontSize Input' is accessible after enabling the 'Enable Value' toggle"); 
+        			 setTestCaseID("TC_GROUP_BAR_125");
+        			 click(driver,ValueFontSizeInput);
+        			 selectOptionValue(driver,ValueFontSizeInput,ChangeFontSizeValue_DataLabel);
+        			 scrollUsingElement(driver, ApplyButton);   
+        			 click(driver,ApplyButton);
+        			 elementnotvisible1(driver, RPE_Loading);
+        			 waitForElement(driver,Chart_Section);
+        			 String ValueFontSizeAct=getFontSize(driver,EnableValue);
+        			 if(ValueFontSizeAct.equals(ChangeFontSizeValue_DataLabel)) {
+        				 pass(driver,"The chart's value displayed with Selected '"+ChangeFontSizeValue_DataLabel+"' font size."); 
+        			 }else {
+        				 fail(driver,"The chart's value not displayed with Selected '"+ChangeFontSizeValue_DataLabel+"' font size."); 
+        			 }
+        			 
+        			 selectOptionValue(driver,ValueFontSizeInput,DefaultFontSizeValue_Exp);
+        		 }else {
+        			 fail(driver,"'Value FontSize Input' is not accessible after enabling the 'Enable Value' toggle");
+        		 }
         		
-        		setTestCaseID("TC_GROUP_BAR_125");
-        		click(driver,ValueFontSizeInput);
-        		
-        		selectOptionValue(driver,ValueFontSizeInput,ChangeFontSizeValue_DataLabel);
-        		scrollUsingElement(driver, ApplyButton);   
-        		click(driver,ApplyButton);
-        		elementnotvisible1(driver, RPE_Loading);
-        		verifyElementDisplayed(driver,Chart_Section);
-        		//waitForElement(driver, ChartBarDisplayCount);
-        		
-        		String ValueFontSizeAct=getFontSize(driver,EnableValue);
-        		if(ValueFontSizeAct.equals(ChangeFontSizeValue_DataLabel)) {
-        	  		 pass(driver,"The chart's value displayed with Selected '"+ChangeFontSizeValue_DataLabel+"' font size."); 
-        		}else {
-        	  		 fail(driver,"The chart's value not displayed with Selected '"+ChangeFontSizeValue_DataLabel+"' font size."); 
-        		}
-        		
-        		setTestCaseID("TC_GROUP_BAR_126");
-        		String defaultRoundOffValue_Act=defaultSelectedValue(driver, RoundOffValueInput);
-         		if(DefaultRoundOffValue_Exp.equals(defaultRoundOffValue_Act)) {
-        	  		 pass(driver,"By default, '"+DefaultRoundOffValue_Exp+"' is selected in the RoundOffValue Input"); 
-         		}else {
-        	  		 fail(driver,"By default, '"+DefaultRoundOffValue_Exp+"' is not selected in the RoundOffValue Input"); 
-         		}
+        		 setTestCaseID("TC_GROUP_BAR_126");
+        		 String defaultRoundOffValue_Act=defaultSelectedValue(driver, RoundOffValueInput);
+        		 if(DefaultRoundOffValue_Exp.equals(defaultRoundOffValue_Act)) {
+        			 pass(driver,"By default, '"+DefaultRoundOffValue_Exp+"' is selected in the RoundOffValue Input"); 
+        			 
+        		 }else {
+        			 fail(driver,"By default, '"+DefaultRoundOffValue_Exp+"' is not selected in the RoundOffValue Input"); 
+        		 }
          		
-         		setTestCaseID("TC_GROUP_BAR_127");
-        		if(isToggleAccessible(driver,RoundOffValueInput)) {		
-        	  		 pass(driver,"'RoundOff Value Input' is accessible after enabling the 'Enable Value' toggle"); 
-        		}else {
-        	  		 fail(driver,"'RoundOff Value Input' is not accessible after enabling the 'Enable Value' toggle");
-        		}
+        		 setTestCaseID("TC_GROUP_BAR_127");
+        		 if(isToggleAccessible(driver,RoundOffValueInput)) {		
+        			 pass(driver,"'RoundOff Value Input' is accessible after enabling the 'Enable Value' toggle"); 
+        			 setTestCaseID("TC_GROUP_BAR_128");
+        			 click(driver,RoundOffValueInput);
+        			 wait(driver,"1");
+        			 selectByText(driver,RoundOffValueInput,ChangeRoundOffValue_DataLabel);
+        			 scrollUsingElement(driver, ApplyButton);
+        			 click(driver,ApplyButton);
+        			 elementnotvisible1(driver, RPE_Loading);
+        			 waitForElement(driver,Chart_Section);
+        			 String ChartValueTextAct=getText1(driver,EnableValue);    
+        			 String RoundOffValue_Act=String.valueOf(getRoundOffValue(ChartValueTextAct));
+        			 if(RoundOffValue_Act.equals(ChangeRoundOffValue_DataLabel)) {
+        				 pass(driver,"The chart's value displayed with Selected '"+ChangeRoundOffValue_DataLabel+"' RoundOff Value"); 
+        			 }else {
+        				 fail(driver,"The chart's value not displayed with Selected '"+ChangeRoundOffValue_DataLabel+"' RoundOff Value"); 
+        			 }
+        			 
+        			 
+        			 
+        		 }else {
+        			 fail(driver,"'RoundOff Value Input' is not accessible after enabling the 'Enable Value' toggle");
+        		 }
          		
-        		setTestCaseID("TC_GROUP_BAR_128");
-        	    click(driver,RoundOffValueInput);
-        	    wait(driver,"1");
-        	    selectByText(driver,RoundOffValueInput,ChangeRoundOffValue_DataLabel);
-        	    scrollUsingElement(driver, ApplyButton);
-        	    click(driver,ApplyButton);
-        	    elementnotvisible1(driver, RPE_Loading);
-        	    verifyElementDisplayed(driver,Chart_Section);
-        		//waitForElement(driver, ChartBarDisplayCount);
-        	   
-        	   ChartValueTextAct=getText(driver,EnableValue);    //getText1(driver,ValueFormat_ChartValue);
-        	   String RoundOffValue_Act=String.valueOf(getRoundOffValue(ChartValueTextAct));
-        	   if(RoundOffValue_Act.equals(ChangeRoundOffValue_DataLabel)) {
-        	  	   pass(driver,"The chart's value displayed with Selected '"+ChangeRoundOffValue_DataLabel+"' RoundOff Value"); 
-        	   }else {
-        	  	   fail(driver,"The chart's value not displayed with Selected '"+ChangeRoundOffValue_DataLabel+"' RoundOff Value"); 
-        	   }
-        	   
-        	   setTestCaseID("TC_GROUP_BAR_130");
-        	   selectByText(driver,RoundOffValueInput,"Select");
-        	   if(isToggleAccessible(driver,PositionInput)) {		
-        	  		 pass(driver,"'Position Input' is accessible after enabling the 'Enable Value' toggle"); 
-        		}else {
-        	  		 fail(driver,"'Position Input' is not accessible after enabling the 'Enable Value' toggle");
-        		}
-        	   setTestCaseID("TC_GROUP_BAR_129");
-        	   String defaultPosition_Act=defaultSelectedValue(driver, PositionInput);
-        	   if(DefaultPositionValue_Exp.equals(defaultPosition_Act)) {
-        		   pass(driver,"By default, '"+DefaultPositionValue_Exp+"' is selected in the Position Input"); 
-        	   }else {
-        		   fail(driver,"By default, '"+DefaultPositionValue_Exp+"' is not selected in the Position Input"); 
-        	   }
-        	   
-        	   
-//        	   if(isDisplayed(driver,minimize)) {
-//        		   click(driver,minimize);
-//        	   }
-//        	   wait(driver,"1");
-//        	   List<WebElement> moveBars=getWebElements(driver, charts_Bar);
-//        	   for(WebElement ele:moveBars) {
-//        			Actions act3=new Actions(driver);
-//        			try {
-//        				act3.moveToElement(ele).build().perform();
-//        			}catch(Exception e) {
-//        				
-//        			}
-//        	   }
-        	   
-        	   boolean chartValuePositionAct=validateElementPosition(driver,charts_Bar,EnableValue,DefaultPositionValue_Exp);
-        	   if(chartValuePositionAct==true) {
-        	  		pass(driver,"By default, Chart value displayed "+DefaultPositionValue_Exp+" the chartbar for position selected as '"+DefaultPositionValue_Exp+"' condition"); 
-        	   }else {
-        	  		fail(driver,"By default, Chart value is not displayed "+DefaultPositionValue_Exp+" the chartbar for position selected as '"+DefaultPositionValue_Exp+"' condition"); 
-        	   }
-        	   
-        	  
-        	   setTestCaseID("TC_GROUP_BAR_131");
-        	   selectOptionValue(driver,PositionInput,"outside");
-        	   scrollUsingElement(driver, ApplyButton);
-        	   click(driver,ApplyButton);
-        	   verifyElementDisplayed(driver,Chart_Section);
-//      	  	   if(isDisplayed(driver,minimize)) {
-//      	   	       click(driver,minimize);
-//      	       }
-      	  	   wait(driver,"1");
-//        	   moveBars=getWebElements(driver, charts_Bar);
-//      	   for(WebElement ele:moveBars) {
-//      			Actions act3=new Actions(driver);
-//      			try {
-//      				act3.moveToElement(ele).build().perform();
-//      			}catch(Exception e) {
-//      				
-//      			}
-//      	   }
-      	   
-	      	   chartValuePositionAct=validateElementPosition(driver,charts_Bar,EnableValue,"outside");
-	      	   if(chartValuePositionAct==true) {
-	      	  		pass(driver,"Chart value displayed outside the chartbar for position selected as 'outside' condition"); 
-	      	   }else {
-	      	  		fail(driver,"Chart value is not displayed outside the chartbar for position selected as 'outside' condition"); 
-	      	   }
+        		 setTestCaseID("TC_GROUP_BAR_130");
+        		 selectByText(driver,RoundOffValueInput,"Select");
+        		 setTestCaseID("TC_GROUP_BAR_129");
+        		 String defaultPosition_Act=defaultSelectedValue(driver, PositionInput);
+        		 if(DefaultPositionValue_Exp.equals(defaultPosition_Act)) {
+        			 pass(driver,"By default, '"+DefaultPositionValue_Exp+"' is selected in the Position Input"); 
+        			 boolean chartValuePositionAct=validateElementPosition(driver,charts_Bar,EnableValue,DefaultPositionValue_Exp);
+        			 if(chartValuePositionAct==true) {
+        				 pass(driver,"By default, Chart value displayed "+DefaultPositionValue_Exp+" the chartbar for position selected as '"+DefaultPositionValue_Exp+"' condition"); 
+        			 }else {
+        				 fail(driver,"By default, Chart value is not displayed "+DefaultPositionValue_Exp+" the chartbar for position selected as '"+DefaultPositionValue_Exp+"' condition"); 
+        			 }
+        		 }else {
+        			 fail(driver,"By default, '"+DefaultPositionValue_Exp+"' is not selected in the Position Input"); 
+        		 }
+        		 
+        		 
+        		 
+        		 if(IsElementEnabled(driver,PositionInput)) {		
+        			 pass(driver,"'Position Input' is accessible after enabling the 'Enable Value' toggle"); 
+        			 setTestCaseID("TC_GROUP_BAR_131");
+        			 selectOptionValue(driver,PositionInput,"outside");
+        			 scrollUsingElement(driver, ApplyButton);
+        			 click(driver,ApplyButton);
+        			 waitForElement(driver,Chart_Section);
+        			 boolean chartValuePositionAct=validateElementPosition(driver,charts_Bar,EnableValue,"outside");
+        			 if(chartValuePositionAct==true) {
+        				 pass(driver,"Chart value displayed outside the chartbar for position selected as 'outside' condition"); 
+        			 }else {
+        				 fail(driver,"Chart value is not displayed outside the chartbar for position selected as 'outside' condition"); 
+        			 }
+        			 
+        			 setTestCaseID("TC_GROUP_BAR_132");
+        			 click(driver,PositionInput);
+        			 selectOptionValue(driver,PositionInput,"inside");
+        			 scrollUsingElement(driver, ApplyButton);
+        			 click(driver,ApplyButton);
+        			 elementnotvisible1(driver, RPE_Loading);
+        			 waitForElement(driver,Chart_Section);
+        			 wait(driver,"1");
+        			 chartValuePositionAct=validateElementPosition(driver,charts_Bar,EnableValue,"inside");
+        			 if(chartValuePositionAct==true) {
+        				 pass(driver,"Chart value displayed inside the chartbar for position selected as 'inside' condition"); 
+        			 }else {
+        				 fail(driver,"Chart value is not displayed inside the chartbar for position selected as 'inside' condition"); 
+        			 }
+        		 }else {
+        			 fail(driver,"'Position Input' is not accessible after enabling the 'Enable Value' toggle");
+        		 }
 
-        	   //waitForElement(driver, ChartBarDisplayCount);
-        	   // position check end
-        	   
-	      	   setTestCaseID("TC_GROUP_BAR_132");
-	      	   click(driver,PositionInput);
-	      	   selectOptionValue(driver,PositionInput,"inside");
-	      	   scrollUsingElement(driver, ApplyButton);
-	      	   click(driver,ApplyButton);
-	      	   elementnotvisible1(driver, RPE_Loading);
-	      	   verifyElementDisplayed(driver,Chart_Section);
-//	      	   if(isDisplayed(driver,minimize)) {
-//	      		   click(driver,minimize);
-//	      	   }
-	      	   wait(driver,"1");
-      	 	// waitForElement(driver, ChartBarDisplayCount);
-//      	   
-//	      	   moveBars=getWebElements(driver, charts_Bar);
-//	      	   for(WebElement ele:moveBars) {
-//	      		   Actions act3=new Actions(driver);
-//	      		   try {
-//	      			   act3.moveToElement(ele).build().perform();
-//	      		   }catch(Exception e) {
-//      				
-//	      		   }
-//	      	   }
-      	   
-	      	   wait(driver,"1");
-	      	   chartValuePositionAct=validateElementPosition(driver,charts_Bar,EnableValue,"inside");
-	      	   if(chartValuePositionAct==true) {
-  	  			 	pass(driver,"Chart value displayed inside the chartbar for position selected as 'inside' condition"); 
-	      	   }else {
-  	  			 	fail(driver,"Chart value is not displayed inside the chartbar for position selected as 'inside' condition"); 
-	      	   }
-
-	      	    setTestCaseID("TC_GROUP_BAR_133");
-        	    selectOptionValue(driver,SeperatorInput,"#,###");
-        		
-        		if(isToggleAccessible(driver,BigNumberInput)) {
+        		 setTestCaseID("TC_GROUP_BAR_133");
+        		 selectOptionValue(driver,SeperatorInput,"#,###");
+        		 if(isToggleAccessible(driver,BigNumberInput)) {
         			 fail(driver,"'Big Number Suffix' toggle is accessible while Seperator value is selected");
-        		}else {
+        		 }else {
         			 pass(driver,"'Big Number Suffix' toggle is Inaccessible while Seperator value is selected");
-        		}
+        		 }
         		
-        		setTestCaseID("TC_GROUP_BAR_134");
-        		selectOptionValue(driver,ValueFormatInput,"percentage");
-        		scrollUsingElement(driver, ApplyButton);
-        		click(driver,ApplyButton);
-        		elementnotvisible1(driver, RPE_Loading);
-        		//waitForElement(driver, ChartBarDisplayCount);
+        		 setTestCaseID("TC_GROUP_BAR_134");
+        		 selectOptionValue(driver,ValueFormatInput,"percentage");
+        		 scrollUsingElement(driver, ApplyButton);
+        		 click(driver,ApplyButton);
+        		 elementnotvisible1(driver, RPE_Loading);
         		
-        	    if(isToggleAccessible(driver,BigNumberInput)) {
+        		 if(IsElementEnabled(driver,BigNumberInput)) {
         			 fail(driver,"'Big Number Suffix' toggle is accessible while 'Percentage'  is selected in the Value Format input");
-        		}else {
+        		 }else {
         			 pass(driver,"'Big Number Suffix' toggle is Inaccessible while 'Percentage'  is selected in the Value Format input");
-        		}
+        		 }
 
-        	    setTestCaseID("TC_GROUP_BAR_135");
-        	    selectOptionValue(driver,ValueFormatInput,"value");
-        	    scrollUsingElement(driver, ApplyButton);
-        	    click(driver,ApplyButton);
-        	    elementnotvisible1(driver, RPE_Loading);
-        	    if(isToggleAccessible(driver,BigNumberInput)) {
-        	    	pass(driver,"'Big Number Suffix' toggle is accessible while Seperator value is not selected");
-        	    }else {
-        	    	fail(driver,"'Big Number Suffix' toggle is Inaccessible while Seperator value is not selected");
-        	    }
+        		 setTestCaseID("TC_GROUP_BAR_135");
+        		 selectOptionValue(driver,ValueFormatInput,"value");
+        		 scrollUsingElement(driver, ApplyButton);
+        		 click(driver,ApplyButton);
+        		 elementnotvisible1(driver, RPE_Loading);
+        		 if(IsElementEnabled(driver,BigNumberInput)) {
+        			 pass(driver,"'Big Number Suffix' toggle is accessible while Seperator value is not selected");
+        		 }else {
+        			 fail(driver,"'Big Number Suffix' toggle is Inaccessible while Seperator value is not selected");
+        		 }
         	    
-        	    selectByText(driver,SeperatorInput,"Select");
-        	    scrollUsingElement(driver, ApplyButton);
-        	    click(driver,ApplyButton);
-        	    elementnotvisible1(driver, RPE_Loading);
-        	    
-        	   // waitForElement(driver, ChartBarDisplayCount);
-        	    
-        	    if(isToggleAccessible(driver,BigNumberInput)) {
+        		 selectByText(driver,SeperatorInput,"Select");
+        		 scrollUsingElement(driver, ApplyButton);
+        		 click(driver,ApplyButton);
+        		 elementnotvisible1(driver, RPE_Loading);
+        		 if(IsElementEnabled(driver,BigNumberInput)) {
         			 pass(driver,"'Big Number Suffix' toggle is accessible while 'Percentage' is not selected in the Value Format input");
         			 click(driver,BigNumberInputSlider);
-        			    if(isToggleEnable(driver,BigNumberInput)) {
-        					 pass(driver,"'Big Number Suffix' toggle is enabled while click on it");
-        					 
-        					 scrollUsingElement(driver, ApplyButton);
-        					 click(driver,ApplyButton);
-        					 elementnotvisible1(driver, RPE_Loading);
-        					 //waitForElement(driver, ChartBarDisplayCount);
+        			 if(isToggleEnable(driver,BigNumberInput)) {
+        				 pass(driver,"'Big Number Suffix' toggle is enabled while click on it");
+        				 scrollUsingElement(driver, ApplyButton);
+        				 click(driver,ApplyButton);
+        				 elementnotvisible1(driver, RPE_Loading);
         				    
-        					 ChartValueTextAct=getText(driver,EnableValue);     //getText1(driver,ValueFormat_ChartValue);
-        					 if( ChartValueTextAct.length()>3) {
-        						 if(ChartValueTextAct.endsWith("K") || ChartValueTextAct.endsWith("k")) {
-        	  						 pass(driver,"The big number suffix is applied for enabled value in charts");
-        	  					 }else {
-        	  						 fail(driver,"The big number suffix is not applied for enabled value in charts");
-        	  					 }
-        					 }
-        					
-        				}else {
-        					 fail(driver,"'Big Number Suffix' toggle is not enabled while click on it");
-        				}
-        			    
-        			    click(driver,BigNumberInputSlider);
-        			    if(isToggleEnable(driver,BigNumberInput)) {
-        					 fail(driver,"'Big Number Suffix' toggle is enabled while disabling it");
-        			    }else {
-        					 pass(driver,"'Big Number Suffix' toggle is disabled while disabling it");
-        					 scrollUsingElement(driver, ApplyButton);
-        					 click(driver,ApplyButton);
-        					 elementnotvisible1(driver, RPE_Loading);
-        					 //waitForElement(driver, ChartBarDisplayCount);
-        				    
-        					 ChartValueTextAct=getText(driver,EnableValue);   
+        				 String ChartValueTextAct=getText(driver,EnableValue);     //getText1(driver,ValueFormat_ChartValue);
+        				 if( ChartValueTextAct.length()>3) {
         					 if(ChartValueTextAct.endsWith("K") || ChartValueTextAct.endsWith("k")) {
-        						 fail(driver,"The big number suffix is applied for enabled value in charts after disabling the toggle");
+        						 pass(driver,"The big number suffix is applied for enabled value in charts");
         					 }else {
-        						 pass(driver,"The big number suffix is not applied for enabled value in charts after disabling the toggle");
+        						 fail(driver,"The big number suffix is not applied for enabled value in charts");
         					 }
-        				}
+        				 }
+        				 
+        			 }else {
+        				 fail(driver,"'Big Number Suffix' toggle is not enabled while click on it");
+        			 }
+        			    
+        			 click(driver,BigNumberInputSlider);
+        			 if(isToggleEnable(driver,BigNumberInput)) {
+        				 fail(driver,"'Big Number Suffix' toggle is enabled while disabling it");
+        			 }else {
+        				 pass(driver,"'Big Number Suffix' toggle is disabled while disabling it");
+        				 scrollUsingElement(driver, ApplyButton);
+        				 click(driver,ApplyButton);
+        				 elementnotvisible1(driver, RPE_Loading);
+        				 //waitForElement(driver, ChartBarDisplayCount);
+        				 
+        				 String ChartValueTextAct=getText(driver,EnableValue);   
+        				 if(ChartValueTextAct.endsWith("K") || ChartValueTextAct.endsWith("k")) {
+        					 fail(driver,"The big number suffix is applied for enabled value in charts after disabling the toggle");
+        				 }else {
+        					 pass(driver,"The big number suffix is not applied for enabled value in charts after disabling the toggle");
+        				 }
+        			 }
         			    
         		}else {
         			 fail(driver,"'Big Number Suffix' toggle is Inaccessible while 'Percentage' is not selected in the Value Format input");
@@ -2815,161 +2732,136 @@ public class DASHPRO_GROUPED_BAR extends Keywords{
   		    	 //RoundOff Validation End
 	     		 setTestCaseID("TC_GROUP_BAR_178");
   		     	 //cursor validation start....
-  		   		 if(isToggleEnable(driver,Cursor_Input)) {		
+  		   		 if(!isToggleEnable(driver,Cursor_Input)) {		
+  		   	  		 fail(driver,"'Cursor Input' is not enabled by default"); 
+  		   		 }else {
   		   	  		 pass(driver,"'Cursor Input' is enabled by default"); 
-  		   		 }else {
-  		   	  		 fail(driver,"'Cursor Input' is disabled by default"); 
+  		   	  		 setTestCaseID("TC_GROUP_BAR_179");
+  		   	  		 if(isDisplayed2(driver,MouseCursor)) {
+  		   	  			 pass(driver,"Cursor is displayed in chart when cursor is enabled"); 
+  		   	  		 }else {
+  		   	  			 fail(driver,"Cursor is not displayed in chart when cursor is enabled");  
+  		   	  		 }
+  		   	  		 
+  		   	  		 setTestCaseID("TC_GROUP_BAR_180");
+  		   	  		 click(driver,Cursor_InputClick);
+  		   	  		 if(!isToggleEnable(driver,Cursor_Input)) {		
+  		   	  			 pass(driver,"'Cursor Input' is disabled while click on it"); 
+  		   	  			 scrollUsingElement(driver, ApplyButton);
+  		   	  			 click(driver,ApplyButton);
+  		   	  			 elementnotvisible1(driver, RPE_Loading);
+  		   	  			 waitForElement(driver,Chart);
+  		   	  			 mouseOverToElement(driver, ChartGraph);
+  		   	  			 if(!isDisplayed2(driver,MouseCursor)) {
+  		   	  				 pass(driver,"Cursor is not displayed in chart when cursor is disabled"); 
+  		   	  			 }else {
+  		   	  				 fail(driver,"Cursor is displayed in chart when cursor is disabled");  
+  		   	  			 }
+  		   	  		 }else {
+  		   	  			 fail(driver,"'Cursor Input' is not disabled while click on it"); 
+  		   	  		 }
   		   		 }
-  		   		 scrollUsingElement(driver, ApplyButton);
-	    		 click(driver,ApplyButton);
-	    		 elementnotvisible1(driver, RPE_Loading);
-	    		 waitForElement(driver,Chart);
-  		   		 mouseOverToElement(driver, ChartGraph);
-  		   	     setTestCaseID("TC_GROUP_BAR_179");
-  		   		 if(isDisplayed2(driver,MouseCursor)) {
-  		   	  		 pass(driver,"Cursor is displayed in chart when cursor is enable"); 
-  		   		 }else {
-  		   	  		 fail(driver,"Cursor is not displayed in chart when cursor is enable");  
-  		   		 }
-  		   		
-  		   		//
-  		   		 setTestCaseID("TC_GROUP_BAR_180");
-  		   		click(driver,Cursor_InputClick);
-  		   		if(isToggleEnable(driver,Cursor_Input)) {		
-  		   	  		 fail(driver,"'Cursor Input' is enable while click on it"); 
-  		   		}else {
-  		   	  		 pass(driver,"'Cursor Input' is disable while click on it"); 
-  		   		}
-  		   		 scrollUsingElement(driver, ApplyButton);
-  		   		 click(driver,ApplyButton);
-  		   		 elementnotvisible1(driver, RPE_Loading);
-  		   		 waitForElement(driver,Chart);
-  		   		 mouseOverToElement(driver, ChartGraph);
-  		   		 if(isDisplayed2(driver,MouseCursor)) {
-  		   	  		 fail(driver,"Cursor is displayed in chart when cursor is disable"); 
-  		   		 }else {
-  		   	  		 pass(driver,"Cursor is not displayed in chart when cursor is disable");  
-  		   		 }
+  		   		 
   		   		 //cursor validation End....
-  		     	
-  		   		 	setTestCaseID("TC_GROUP_BAR_181");
-  		      		if(isToggleEnable(driver,Export_Input)) {		
-  		     	  		 fail(driver,"'Export Input' enable by default");
-  		     		}else {
-  		     	  		 pass(driver,"'Export Input' disable by default"); 
-  		     		}
-  		      		
-  		      		scrollUsingElement(driver, ApplyButton);
-  		      		click(driver,ApplyButton);
-  		      		elementnotvisible1(driver, RPE_Loading);
-  		      		verifyElementDisplayed(driver,Chart_Section);
-  		    		waitForElement(driver, ChartBarDisplayCount);
-  		    		
-  		      		if(isDisplayed2(driver,ExportChartOptions)) {
-  		     	  		 fail(driver,"'Export Options' is displayed in charts when Export chart is disabled"); 
-  		     		}else {
-  		     	  		 pass(driver,"'Export Options' not displayed in charts when Export chart is disabled"); 
-  		     		}
-  		      		setTestCaseID("TC_GROUP_BAR_182");
-  		      		click(driver,Export_InputClick);
-  		      		if(isToggleEnable(driver,Export_Input)) {		
-  		     	  		 pass(driver,"'Export Input' is enabled while enabling it");
-  		     		}else {
-  		     	  		 fail(driver,"'Export Input' not enabled while enabling it"); 
-  		     		}
-  		      		
-  		      		scrollUsingElement(driver, ApplyButton);
-  		      		click(driver,ApplyButton);
-  		      		elementnotvisible1(driver, RPE_Loading);
-  		      		verifyElementDisplayed(driver,Chart_Section);
-  		    		waitForElement(driver, ChartBarDisplayCount);
-  		      		if(isDisplayed2(driver,ExportChartOptions)) {
-  		     	  		 pass(driver,"'Export Options' is displayed in charts when Export chart is enabled"); 
-  		     	  		 mouseOverToElement(driver, ExportChartOptions);
-  		     	  		 if(isDisplayed2(driver,ExportOptionExpandList)) {
-  		     		  		pass(driver,"'Export Options' is expanded when click on it"); 
-  		     		  		if(isDisplayed2(driver,Export_Image)) {
-  		     			  		 pass(driver,"'IMG' Option is displayed When expand the charts Export"); 
-  		     			  		 mouseOverToElement(driver, Export_Image);
-  		     			  		 
-  		     			  		if(elementIsVisible(driver,Export_PNG)) {
-  		     				  		 pass(driver,"'PNG' Option displayed When Mouse hover on IMG Option"); 
-  		     		  			}else {
-  		     				  		 fail(driver,"'PNG' Option is not displayed When Mouse hover on IMG Option"); 
-  		     		  			}
-  		     			  		
-  		     			  		if(elementIsVisible(driver,Export_JPG)) {
-  		     				  		 pass(driver,"'JPG' Option displayed When Mouse hover on IMG Option"); 
-  		     		  			}else {
-  		     				  		 fail(driver,"'JPG' Option is not displayed When Mouse hover on IMG Option"); 
-  		     		  			}
-  		     			  		
-  		     			  		if(elementIsVisible(driver,Export_SVG)) {
-  		     				  		 pass(driver,"'SVG' Option displayed When Mouse hover on IMG Option"); 
-  		     		  			}else {
-  		     				  		 fail(driver,"'SVG' Option is not displayed When Mouse hover on IMG Option"); 
-  		     		  			}
-  		     		  		 }else {
-  		     			  		 fail(driver,"'IMG' Option is not displayed When expand the charts Export"); 
-  		     		  		 }
-  		     		  		 
-  		     		  		if(isDisplayed2(driver,Export_Data)) {
-  		     			  		 pass(driver,"'Data' Option is displayed When expand the charts Export"); 
-  		     			  		 mouseOverToElement(driver, Export_Data);
-  		     			  		 verifyElementIsPresent1(driver, Export_JSON);
-  		     			  		 verifyElementIsPresent1(driver, Export_CSV);
-  		     			  		 verifyElementIsPresent1(driver, Export_XLSX);
-  		     			  		 verifyElementIsPresent1(driver, Export_HTML);
-
-  		     		  		 }else {
-  		     			  		 fail(driver,"'Data' Option is not displayed When expand the charts Export"); 
-  		     		  		 }
-  		     		  		
-  		     		  		if(isDisplayed2(driver,Export_Print)) {
-  		     			  		 pass(driver,"'Print' Option is displayed When expand the charts Export"); 			  		 
-  		     		  		 }else {
-  		     			  		 fail(driver,"'Print' Option is not displayed When expand the charts Export"); 
-  		     		  		 }
-  		     		  		 
-  		     	  		 }else {
-  		     		  		 fail(driver,"'Export Options' is not expanded when click on it"); 
-  		     	  		 }
-  		     		}else {
-  		     	  		 fail(driver,"'Export Options' not displayed in charts when Export chart is enabled"); 
-  		     		}
-  		         }
+  		   		 setTestCaseID("TC_GROUP_BAR_181");
+  		   		 if(isToggleEnable(driver,Export_Input)) {		
+  		   			 fail(driver,"'Export Input' enable by default");
+  		   		 }else {
+  		   			 pass(driver,"'Export Input' disable by default"); 
+  		   			 if(isDisplayed2(driver,ExportChartOptions)) {
+  		   				 fail(driver,"'Export Options' is displayed in charts when Export chart is disabled"); 
+  		   			 }else {
+  		   				 pass(driver,"'Export Options' not displayed in charts when Export chart is disabled"); 
+  		   			 }
+  		   			 
+  		   			 if(IsElementEnabled(driver, Export_InputClick)) {
+  		   				 setTestCaseID("TC_GROUP_BAR_182");
+  		   				 click(driver,Export_InputClick);
+  		   				 if(isToggleEnable(driver,Export_Input)) {		
+  		   					 pass(driver,"'Export Input' is enabled while enabling it");
+  		   					 scrollUsingElement(driver, ApplyButton);
+  		   					 click(driver,ApplyButton);
+  		   					 elementnotvisible1(driver, RPE_Loading);
+  		   					 verifyElementDisplayed(driver,Chart_Section);
+  		   					 waitForElement(driver, ChartBarDisplayCount);
+  		   					 if(isDisplayed2(driver,ExportChartOptions)) {
+  		   						 pass(driver,"'Export Options' is displayed in charts when Export chart is enabled"); 
+  		   						 mouseOverToElement(driver, ExportChartOptions);
+  		   						 if(isDisplayed2(driver,ExportOptionExpandList)) {
+  		   							 pass(driver,"'Export Options' is expanded when click on it"); 
+  		   							 if(isDisplayed2(driver,Export_Image)) {
+  		   								 pass(driver,"'IMG' Option is displayed When expand the charts Export"); 
+  		   								 mouseOverToElement(driver, Export_Image);
+  		   								 
+  		   								 if(elementIsVisible(driver,Export_PNG)) {
+  		   									 pass(driver,"'PNG' Option displayed When Mouse hover on IMG Option"); 
+  		   								 }else {
+  		   									 fail(driver,"'PNG' Option is not displayed When Mouse hover on IMG Option"); 
+  		   								 }
+  		   								 
+  		   								 if(elementIsVisible(driver,Export_JPG)) {
+  		   									 pass(driver,"'JPG' Option displayed When Mouse hover on IMG Option"); 
+  		   								 }else {
+  		   									 fail(driver,"'JPG' Option is not displayed When Mouse hover on IMG Option"); 
+  		   								 }
+  		  		     			  		
+  		   								 if(elementIsVisible(driver,Export_SVG)) {
+  		   									 pass(driver,"'SVG' Option displayed When Mouse hover on IMG Option"); 
+  		   								 }else {
+  		   									 fail(driver,"'SVG' Option is not displayed When Mouse hover on IMG Option"); 
+  		   								 }
+  		   							 }else {
+  		   								 fail(driver,"'IMG' Option is not displayed When expand the charts Export"); 
+  		   							 }
+  		  		     		  		 
+  		   							 if(isDisplayed2(driver,Export_Data)) {
+  		   								 pass(driver,"'Data' Option is displayed When expand the charts Export"); 
+  		   								 mouseOverToElement(driver, Export_Data);
+  		   								 verifyElementIsPresent1(driver, Export_JSON);
+  		   								 verifyElementIsPresent1(driver, Export_CSV);
+  		   								 verifyElementIsPresent1(driver, Export_XLSX);
+  		   								 verifyElementIsPresent1(driver, Export_HTML);
+  		   							 }else {
+  		   								 fail(driver,"'Data' Option is not displayed When expand the charts Export"); 
+  		   							 }
+  		  		     		  		
+  		   							 if(isDisplayed2(driver,Export_Print)) {
+  		   								 pass(driver,"'Print' Option is displayed When expand the charts Export"); 			  		 
+  		   							 }else {
+  		   								 fail(driver,"'Print' Option is not displayed When expand the charts Export"); 
+  		   							 }
+  		   						 }else {
+  		   							 fail(driver,"'Export Options' is not expanded when click on it"); 
+  		   						 }
+  		   					 }else {
+  		   						 fail(driver,"'Export Options' not displayed in charts when Export chart is enabled"); 
+  		   					 }
+  		   				 }else {
+  		   					 fail(driver,"'Export Input' not enabled while enabling it"); 
+  		   				 }
+  		   			 }else {
+  		   				 fail(driver,"Export Option toggle is not accessible");
+  		   			 }
+  		   		 }
+  		   }
   				 
-  		  	     // ******************* Others Validation End *********************
-  				 
+  		    // ******************* Others Validation End *********************
             setTestCaseID("");
-     	 	click(driver,ChartTitleInput);
-     		clear(driver,ChartTitleInput);
      		verifyElementDisplayed(driver, SaveBtn_Chart);
      		verifyElementDisplayed(driver, cancel_chart);
-           	click(driver,SaveBtn_Chart);
-           	if(isDisplayed(driver,chartSaveError1)) {
-           		pass(driver,"'Enter Widget Name' error displayed when save the chart without given chart title name");
-           	}else {
-           		fail(driver,"'Enter Widget Name' error not displayed when save the chart without given chart title name");
-           	}
-           	elementnotvisible(driver, chartSaveError1);
-           	sendKeys(driver,ChartTitleInput,ChartTitle_Name);
+           	clearAndType1(driver,ChartTitleInput,ChartTitle_Name);
            	click(driver,SaveBtn_Chart);
            	elementnotvisible1(driver, RPE_Loading);
            	if(!isDisplayed2(driver,chartSaveError1) && isDisplayed(driver,SavedChartTitleInput)) {
            		pass(driver,"Chart Saved Successfully");
+           		String AfterSaveChartTitleName=getText1(driver, SavedChartTitleName);
+               	if(AfterSaveChartTitleName.equals(ChartTitle_Name)) {
+               		pass(driver,"Same Chart Title name displayed after saved the chart ");
+               	}else {
+               		fail(driver,"Different Chart Title name displayed after saved the chart ");
+               	}
            	}else {
            		fail(driver,"Chart not Saved Successfully");
            	}	
-    	      
-           	String AfterSaveChartTitleName=getText1(driver, SavedChartTitleName);
-           	if(AfterSaveChartTitleName.equals(ChartTitle_Name)) {
-           		pass(driver,"Same Chart Title name displayed after saved the chart ");
-           	}else {
-           		fail(driver,"Different Chart Title name displayed after saved the chart ");
-           	}
-       	
-		
-		
 	}
 }

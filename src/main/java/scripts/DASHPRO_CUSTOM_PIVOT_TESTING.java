@@ -162,7 +162,7 @@ public class DASHPRO_CUSTOM_PIVOT_TESTING extends Keywords{
 		setTestCaseID("TC_CUSTOM_PIVOT_003");
 		if(TC_CUSTOM_PIVOT_003.equals("Yes")) {
 			click(driver,Custom_Pivot_widget);
-			elementnotvisible(driver, Loading);
+			elementnotvisible1(driver, Loading);
 			String widgetValue=getText1(driver,WidgetValue);
 			if(widgetValue.equals("Custom pivot")) {
 				pass(driver,"Custom pivot displayed as the selected Widget after click on it");
@@ -1701,6 +1701,22 @@ public class DASHPRO_CUSTOM_PIVOT_TESTING extends Keywords{
 			
 			//******************** Axes Validation End ****************
 			
+			 setTestCaseID("");
+		     // ******************** ChartTitle Validation Start *******************
+			 String Custom_Pivot_Chart_Title= getCellValue("TestExecution","Testcase_Selection","Custom_Pivot_Chart_Title",Flag);
+			 if(Custom_Pivot_Chart_Title.equals("Yes")) {
+				//Chart title
+		 		String TypeBackgroundColor1_ChartTitle=Utils.getDataFromTestDataIteration(iteration,"Custom_Pivot_Widget_Testing", "TypeBackgroundColor1_ChartTitle");
+		 		String TypeTextColor1_ChartTitle=Utils.getDataFromTestDataIteration(iteration,"Custom_Pivot_Widget_Testing", "TypeTextColor1_ChartTitle");
+		 		String Change_FontFamily_ChartTitle=Utils.getDataFromTestDataIteration(iteration,"Custom_Pivot_Widget_Testing", "Change_FontFamily_ChartTitle");
+		 		String ChangeFontSize_ChartTitle=Utils.getDataFromTestDataIteration(iteration,"Custom_Pivot_Widget_Testing", "ChangeFontSize_ChartTitle");
+		 		String ChangeChartTitleName=Utils.getDataFromTestDataIteration(iteration,"Custom_Pivot_Widget_Testing", "ChangeChartTitleName");
+			 	
+				 CHART_TITLE chartTitle=new CHART_TITLE();
+				 chartTitle.chartTitleTest(driver, TypeBackgroundColor1_ChartTitle, TypeTextColor1_ChartTitle, Change_FontFamily_ChartTitle, ChangeFontSize_ChartTitle,ChangeChartTitleName);       	
+			 }
+	        // ******************** ChartTitle Validation End *******************
+			
 			// ******************** Table Format Validation Start *******************
 	        String Custom_Pivot_Table_Format= getCellValue("TestExecution","Testcase_Selection","Custom_Pivot_Table_Format",Flag);
 	        if(Custom_Pivot_Table_Format.equals("Yes")) {
@@ -2178,7 +2194,6 @@ public class DASHPRO_CUSTOM_PIVOT_TESTING extends Keywords{
 		 						 }
 		 					}
 		 				}
-		 				
 		 				
 		 				setTestCaseID("TS_CUSTOM_PIVOT _TABLE_FORMAT_007");
 		 				if(verifyElementDisplayed(driver, BodyFontSize_Input_TableFormat)) {
@@ -2890,16 +2905,17 @@ public class DASHPRO_CUSTOM_PIVOT_TESTING extends Keywords{
 	 		 elementnotvisible1(driver, RPE_Loading);
 	 		 if(!isDisplayed2(driver,chartSaveError1) && isDisplayed(driver,SavedChartTitleInput)) {
 	 			 pass(driver,"Chart Saved Successfully");
+	 			 String AfterSaveChartTitleName=getText1(driver, SavedChartTitleName);
+		 		 if(AfterSaveChartTitleName.equalsIgnoreCase("Custom Pivot Chart test")) {
+		 			 pass(driver,"Same Chart Title name displayed after saved the chart ");
+		 		 }else {
+		 			 fail(driver,"Different Chart Title name displayed after saved the chart ");
+		 		 }
 	 		 }else {
 	 			 fail(driver,"Chart not Saved Successfully");
 	 		 }	
 	      
-	 		 String AfterSaveChartTitleName=getText1(driver, SavedChartTitleName);
-	 		 if(AfterSaveChartTitleName.equalsIgnoreCase("Custom Pivot Chart test")) {
-	 			 pass(driver,"Same Chart Title name displayed after saved the chart ");
-	 		 }else {
-	 			 fail(driver,"Different Chart Title name displayed after saved the chart ");
-	 		 }
+	 		 
 	        
 		}// Custom Pivot Click ..
 		

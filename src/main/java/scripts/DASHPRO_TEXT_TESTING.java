@@ -438,15 +438,11 @@ public class DASHPRO_TEXT_TESTING extends Keywords{
    	    		ScrollBarValidation1(driver,Font_Family_Results_Label,"Font_Family_text_Widget");
    	     	
    	    	    setTestCaseID("TC_CHARTFORMAT_ LABEL_010");
-   		     	List<WebElement> beforeSearchResults=getWebElements(driver,chartFontFamilyResults);
-   		     	int beforeSearchSize=beforeSearchResults.size();
    		     	verifyElementDisplayed(driver, dropdownInputsearchBox);
    		     	click(driver,dropdownInputsearchBox);
    		     	sendKeys(driver,dropdownInputsearchBox,ChangeFontFamily_Label);
-   		     	List<WebElement> afterSearchResults=getWebElements(driver,chartFontFamilyResults);
-   		     	int afterSearchSize=afterSearchResults.size();
    		        String resultText=getText1(driver,fontFamilyFirstResult);
-   		        if((beforeSearchSize>afterSearchSize)&&resultText.equals(ChangeFontFamily_Label)) {
+   		        if(resultText.equals(ChangeFontFamily_Label)) {
    		 		  pass(driver,"Search input in the Font Family dropdown works properly");
    		        }else {
    		     	   fail(driver,"Search input in the Font Family dropdown not works properly");

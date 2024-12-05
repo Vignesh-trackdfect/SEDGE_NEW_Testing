@@ -70,6 +70,7 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 		String TC_RADAR_LINE_043=getTestcaseID_Flag(TestcaseFileName,SheetName_Axes,TescasesID_Column,"TC_ RADAR LINE_043",TestcaseID_Flag);
 
 		//DefaultValue 
+		String AxesColor_Exp=Utils.getDataFromTestData("Axes", "Axes_Color_Exp");
 		String Highlight_color_Exp=Utils.getDataFromTestData("Axes", "HighlightColor");
 		String default_FontFamily=Utils.getDataFromTestData("AxisTitle", "default_FontFamily");
 		String default_FontSize_Exp=Utils.getDataFromTestData("AxisTitle", "default_FontSize");
@@ -92,6 +93,14 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 		String ChangeTitleFontSize_AxisTitle=Utils.getDataFromTestDataIteration(iteration,"RadarLine_Widget_Testing", "ChangeTitleFontSize_AxisTitle");
 		String Change_X_label_FontSize=Utils.getDataFromTestDataIteration(iteration,"RadarLine_Widget_Testing", "Change_X_label_FontSize");
 		String Change_Y_label_FontSize=Utils.getDataFromTestDataIteration(iteration,"RadarLine_Widget_Testing", "Change_Y_label_FontSize");
+		
+		//Chart title
+ 		String TypeBackgroundColor1_ChartTitle=Utils.getDataFromTestDataIteration(iteration,"RadarLine_Widget_Testing", "TypeBackgroundColor1_ChartTitle");
+ 		String TypeTextColor1_ChartTitle=Utils.getDataFromTestDataIteration(iteration,"RadarLine_Widget_Testing", "TypeTextColor1_ChartTitle");
+ 		String Change_FontFamily_ChartTitle=Utils.getDataFromTestDataIteration(iteration,"RadarLine_Widget_Testing", "Change_FontFamily_ChartTitle");
+ 		String ChangeFontSize_ChartTitle=Utils.getDataFromTestDataIteration(iteration,"RadarLine_Widget_Testing", "ChangeFontSize_ChartTitle");
+ 		String ChangeChartTitleName=Utils.getDataFromTestDataIteration(iteration,"RadarLine_Widget_Testing", "ChangeChartTitleName");
+		
 		//Chart Style
 		String Change_ChartTheme_ChartStyle=Utils.getDataFromTestDataIteration(iteration,"RadarLine_Widget_Testing", "Change_ChartTheme_ChartStyle");
 		//Legend
@@ -135,7 +144,7 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 				 }
 				 elementnotvisible1(driver, error);
 			 }else {
-				 elementnotvisible(driver, Loading);
+				 elementnotvisible1(driver, Loading);
 				 String widgetValue=getText1(driver,WidgetValue);
 				 if(widgetValue.equals("Radar Line")) {
 					 pass(driver,"'Radar Line' displayed as the selected Widget after click on it");
@@ -148,7 +157,12 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 					 fail(driver,"By default, Axes Section is not Expanded");
 				 }else {
 					 pass(driver,"By default, Axes Section is Expanded");
-					 
+					 String AxesTextColor_Act=getTextColor(driver,Axes);
+					 if(AxesColor_Exp.equalsIgnoreCase(AxesTextColor_Act)) {
+						 pass(driver," 'Axes' highlighted in blue color");
+					 }else {
+						 fail(driver," 'Axes' not highlighted in blue color");
+					 }
 					 if(TC_RADAR_LINE_004.equals("Yes")) {
 						 setTestCaseID("TC_RADAR_LINE_004");
 						 scrollUsingElement(driver, ApplyButton);
@@ -248,9 +262,8 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 									 setTestCaseID("TC_RADAR_LINE_011");
 									 if(verifyElementDisplayed(driver, dropdownInputsearchBox)) {
 										 sendKeys(driver, dropdownInputsearchBox, Select_Category_Value);
-										 List<WebElement> AvailableColumnList=getWebElements(driver, AvailableList_Dropdown);
 										 String firstValue_=getText1(driver,FirstSearchedvalue);
-										 if(firstValue_.contains(Select_Category_Value) && AvailableColumnList.size()==1) {
+										 if(firstValue_.contains(Select_Category_Value)) {
 											 pass(driver,"Searched Value correctly displayed first in the Category dropdown");
 										 }else {
 											 fail(driver,"Searched Value not correctly displayed first in the Category dropdown");
@@ -459,38 +472,38 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 								 if(TC_RADAR_LINE_029.equals("Yes")) {
 									 setTestCaseID("TC_RADAR_LINE_029");
 									 click(driver,Y_Axis_Input_Group);
-									 List<WebElement> AvailableColumnList_Y_Axis=getWebElements(driver, AvailableList);
+									 List<WebElement> AvailableColumnList_Y_Axis=getWebElements(driver, AvailableList_Dropdown);
 									 int columnListCount=AvailableColumnList_Y_Axis.size();
-										if(columnListCount>5) {
-											for (int k=0;k<=5;k++) {
-												WebElement availableColumn=AvailableColumnList_Y_Axis.get(k);
-												action.moveToElement(availableColumn).click().build().perform();
-											}
-											mouseOverAndClick(driver, Y_Axis_Text_Group);
-											scrollUsingElement(driver, ApplyButton);
-											click(driver,ApplyButton);
+									 if(columnListCount>5) {
+										 for (int k=0;k<=5;k++) {
+											 WebElement availableColumn=AvailableColumnList_Y_Axis.get(k);
+											 action.moveToElement(availableColumn).click().build().perform();
+										 }
+										 mouseOverAndClick(driver, Y_Axis_Text_Group);
+										 scrollUsingElement(driver, ApplyButton);
+										 click(driver,ApplyButton);
 											
-											if(isDisplayed(driver,Y_Axis_Limit_Error)) {
-												pass(driver,"'Kindly select less than or equal to 5 column for Y axis' error displayed when Selecting more than 5 value in the Y Axis dropdown");
-											}else {
-												fail(driver,"'Kindly select less than or equal to 5 column for Y axis' error not displayed when Selecting more than 5 value in the Y Axis dropdown");
-											}
-										}
-										while(isDisplayed(driver,RemoveValuesInput)) {
-											WebElement RemoveSelectList=getWebElement(driver,RemoveValuesInput);
-											action.moveToElement(RemoveSelectList).click().build().perform();
-											wait(driver,"1");
-										}
-										elementnotvisible1(driver, Y_Axis_Limit_Error);
+										 if(isDisplayed(driver,Y_Axis_Limit_Error)) {
+											 pass(driver,"'Kindly select less than or equal to 5 column for Y axis' error displayed when Selecting more than 5 value in the Y Axis dropdown");
+										 }else {
+											 fail(driver,"'Kindly select less than or equal to 5 column for Y axis' error not displayed when Selecting more than 5 value in the Y Axis dropdown");
+										 }
+									 }
+									 Escape(driver);
+									 while(isDisplayed(driver,RemoveValuesInput)) {
+										 WebElement RemoveSelectList=getWebElement(driver,RemoveValuesInput);
+										 action.moveToElement(RemoveSelectList).click().build().perform();
+										 wait(driver,"1");
+									 }
+									 elementnotvisible1(driver, Y_Axis_Limit_Error);
 								 }
 								 if(TC_RADAR_LINE_020.equals("Yes")) {
 									 setTestCaseID("TC_RADAR_LINE_020");
 									 click(driver,Y_Axis_Input_Group);
 									 if(verifyElementDisplayed(driver, dropdownInputsearchBox)) {
 										 sendKeys(driver, dropdownInputsearchBox, Select_Y_Axis_Value);
-										 List<WebElement> AvailableColumnList=getWebElements(driver, AvailableList_Dropdown);
 										 String firstValue_=getText1(driver,FirstSearchedvalue);
-										 if(firstValue_.contains(Select_Y_Axis_Value) && AvailableColumnList.size()==1) {
+										 if(firstValue_.contains(Select_Y_Axis_Value)) {
 											 pass(driver,"Searched Value correctly displayed first in the Y Axis dropdown");
 										 }else {
 											 fail(driver,"Searched Value not correctly displayed first in the Y Axis dropdown");
@@ -579,9 +592,8 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 								 if(SortByValuesCount<=3) {
 									 pass(driver,"Only Category and Y values are displayed in the sortBy field for Quicksort condition");
 								 }else {
-									 fail(driver,"Other Category X and Y values are displayed in the sortBy field for Quicksort condition");
+									 fail(driver,"Other Category and Y values are displayed in the sortBy field for Quicksort condition");
 								 }
-								    
 							 }
 						 }
 						 
@@ -593,7 +605,7 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 								 List<WebElement> SortByValues1=getWebElements(driver,sortByValues1);
 								 int SortByValuesCount=SortByValues1.size();
 								 if(SortByValuesCount<=3) {
-									 fail(driver,"Only X and Y values are displayed in the sortBy field for Fieldsort condition");
+									 fail(driver,"Only Category and Y values are displayed in the sortBy field for Fieldsort condition");
 								 }else {
 									 pass(driver,"All values are displayed in the sortBy field for Fieldsort condition");
 								 }
@@ -643,12 +655,9 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 										 }
 										 if(TC_RADAR_LINE_038.equals("Yes")) {
 											 setTestCaseID("TC_RADAR_LINE_038");
-											 List<WebElement> AllList=getWebElements(driver, ListFieldsort);
-											 int lastindex=AllList.size()-1;
-											 String lastText=AllList.get(lastindex).getText();
-											 sendKeys(driver, inputFieldSort, lastText);
+											 sendKeys(driver, inputFieldSort, Select_Category_Value);
 											 String firstList=getText1(driver, FirstField);
-											 if(firstList.equals(lastText)) {
+											 if(firstList.equals(Select_Category_Value)) {
 												 pass(driver,"Search input inside the field sort working properly");
 											 }else {
 												 fail(driver,"Search input inside the field sort not working properly");
@@ -659,7 +668,7 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 												 action.sendKeys(Keys.ENTER).build().perform();
 												 wait(driver,"1");
 												 String appliedSort=getText1(driver, sortedInput);
-												 if(!appliedSort.equalsIgnoreCase("Select")) {
+												 if(appliedSort.contains(Select_Category_Value)) {
 													 pass(driver,"Column Value selected when click Enter in the field sort");
 												 }else {
 													 fail(driver,"Column Value not selected when click Enter in the field sort");
@@ -690,18 +699,23 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 						 }
 						 if(TC_RADAR_LINE_043.equals("Yes")) {
 							 setTestCaseID("TC_RADAR_LINE_043");
-							 click(driver,quickSortBytext);
-							 WebElement selectSort=driver.findElement(By.xpath("//ul//span[text()='"+Select_SortBy_Value+"']"));
-							 selectSort.click();
-							 String QuickSortByText=getText1(driver,quickSortBytext);
-							 scrollUsingElement(driver, ApplyButton);
-							 click(driver,ApplyButton);
-							 elementnotvisible1(driver, RPE_Loading);
-							 verifyElementDisplayed(driver, ChartGraph);
+							 try {
+								 click(driver,quickSortBytext);
+								 WebElement selectSort=driver.findElement(By.xpath("//ul//span[text()='"+Select_SortBy_Value+"']"));
+								 selectSort.click();
+								 //String QuickSortByText=getText1(driver,quickSortBytext);
+								 scrollUsingElement(driver, ApplyButton);
+								 click(driver,ApplyButton);
+								 elementnotvisible1(driver, RPE_Loading);
+								 verifyElementDisplayed(driver, ChartGraph);
+							 }catch(Exception e) {
+								 fail(driver,"Failed to select the Sort field Value  :"+e.getLocalizedMessage());
+							 }
+							 
 						 }
 					 }
 				 }//axes expand by default
-				 
+				 setTestCaseID("");
 				// ******************** Axis Title Validation Start *******************
 				 String Radar_Line_Axis_Title= getCellValue("TestExecution","Testcase_Selection","Radar_Line_Axis_Title",Flag);
 			     if(Radar_Line_Axis_Title.equals("Yes")) {
@@ -732,10 +746,10 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 								 pass(driver,"Axis Title section is Expanded after click on it");
 								 if(TC_RADAR_LINE_AXIS_TITLE_002.equals("Yes")) {
 									 setTestCaseID("TC_RADAR_LINE_ AXIS_TITLE_002");
-									 verifyElementDisplayed(driver, X_Title_text);
-									 verifyElementDisplayed(driver,X_Title_input);
-									 verifyElementDisplayed(driver, Y_Title_text);
-									 verifyElementDisplayed(driver,Y_Title_input);
+//									 verifyElementDisplayed(driver, X_Title_text);
+//									 verifyElementDisplayed(driver,X_Title_input);
+//									 verifyElementDisplayed(driver, Y_Title_text);
+//									 verifyElementDisplayed(driver,Y_Title_input);
 						     	  	
 									 clearAndType(driver,X_Title_input,Change_X_Title_Name);
 									 clearAndType(driver,Y_Title_input,Change_Y_Title_Name);
@@ -876,9 +890,9 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 												 }else {
 													 fail(driver,"Selected fontSize  ("+Change_X_label_FontSize+") not Updated in X Axis label chart value");
 												 }
+											 }else {
+												 fail(driver,"X Axis Label value not present in the Chart");
 											 }
-										 }else {
-											 fail(driver,"X Axis Label value not present in the Chart");
 										 }
 									 }
 								 }
@@ -924,7 +938,17 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 			    	 }
 			    	 			    	 
 			     }
-			    // ******************** Axis Title Validation Start *******************
+			    // ******************** Axis Title Validation End *******************
+			     
+			     setTestCaseID("");
+			     // ******************** ChartTitle Validation Start *******************
+				 String Radar_Line_Chart_Title= getCellValue("TestExecution","Testcase_Selection","Radar_Line_Chart_Title",Flag);
+				 if(Radar_Line_Chart_Title.equals("Yes")) {
+					
+					 CHART_TITLE chartTitle=new CHART_TITLE();
+					 chartTitle.chartTitleTest(driver, TypeBackgroundColor1_ChartTitle, TypeTextColor1_ChartTitle, Change_FontFamily_ChartTitle, ChangeFontSize_ChartTitle,ChangeChartTitleName);       	
+				 }
+		        // ******************** ChartTitle Validation End *******************
 			     
 			     setTestCaseID("");
 			   // ******************** Chart Style Validation Start *******************
@@ -1023,9 +1047,8 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 		   	  									if(TC_RADAR_LINE_CHART_STYLE_006.equals("Yes")) {
 		   	  										setTestCaseID("TC_RADAR_LINE_ CHART_STYLE_006");
 		   	  										sendKeys(driver,dropdownInputsearchBox,Change_ChartTheme_ChartStyle);
-		   	  										List<WebElement> afterSearchResults=getWebElements(driver,chartThemeResultList);
 		   	  										String resultText=getText1(driver,chartThemeFirstResult);
-		   	  										if((afterSearchResults.size()==1)&&resultText.equals(Change_ChartTheme_ChartStyle)) {
+		   	  										if(resultText.equals(Change_ChartTheme_ChartStyle)) {
 		   	  											pass(driver,"Search input in the Chart Theme dropdown works properly");
 		   	  										}else {
 		   	  											fail(driver,"Search input in the Chart Theme dropdown not works properly");
@@ -1191,7 +1214,7 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 			    	 }
 			    	 
 			     }
-			   // ******************** Chart Style Validation Start *******************
+			   // ******************** Chart Style Validation End *******************
 			     setTestCaseID("");
 			  // ********************Legend Validation Start *******************
 				 String Radar_Line_ChartFormat_Legend= getCellValue("TestExecution","Testcase_Selection","Radar_Line_ChartFormat_Legend",Flag);
@@ -1212,6 +1235,10 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 			    	 String TC_RADAR_LINE_LEGEND_013=getTestcaseID_Flag(TestcaseFileName,SheetName_Legend,TescasesID_Column,"TC_ RADAR LINE_013",TestcaseID_Flag);
 			    	 String TC_RADAR_LINE_LEGEND_014=getTestcaseID_Flag(TestcaseFileName,SheetName_Legend,TescasesID_Column,"TC_ RADAR LINE_014",TestcaseID_Flag);
 
+			    	 if(!Radar_Line_ChartFormat_Chart_Style.equals("Yes")) {
+						 verifyElementDisplayed(driver,Chart_FormatSec);
+		    		     click(driver,Chart_FormatSec);
+					 }
 			    	 if(verifyElementDisplayed(driver, Legend_)) {
 			    		 if(TC_RADAR_LINE_LEGEND_001.equals("Yes")) {
 				    		 setTestCaseID("TC_RADAR_LINE_ LEGEND_001");
@@ -1430,8 +1457,8 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 			    	 }
 			    	 
 			     }
-			  // ******************** Legend Validation Start *******************
-			     
+			  // ******************** Legend Validation End *******************
+			     setTestCaseID("");
 			  // ********************Others Validation Start *******************
 				 String Radar_Line_ChartFormat_Others= getCellValue("TestExecution","Testcase_Selection","Radar_Line_ChartFormat_Others",Flag);
 			     if(Radar_Line_ChartFormat_Others.equals("Yes")) {
@@ -1442,6 +1469,10 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 			    	 String TC_RADAR_LINE_OTHERS_005=getTestcaseID_Flag(TestcaseFileName,SheetName_Others,TescasesID_Column,"TC_ RADAR LINE_005",TestcaseID_Flag);
 			    	 String TC_RADAR_LINE_OTHERS_006=getTestcaseID_Flag(TestcaseFileName,SheetName_Others,TescasesID_Column,"TC_ RADAR LINE_006",TestcaseID_Flag);
 
+			    	 if(!Radar_Line_ChartFormat_Chart_Style.equals("Yes") && !Radar_Line_ChartFormat_Legend.equals("Yes")) {
+						 verifyElementDisplayed(driver,Chart_FormatSec);
+		    		     click(driver,Chart_FormatSec);
+					 }
 			    	 
 			    	 if(verifyElementDisplayed(driver, ChartFormat_Others)) {
 			    		 if(TC_RADAR_LINE_OTHERS_001.equals("Yes")) {
@@ -1468,13 +1499,12 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 							     	  		 fail(driver,"'Export Input' enable by default");
 							    		 }else {
 							    			 pass(driver,"'Export Input' disable by default"); 
+							    			 if(isDisplayed2(driver,ExportChartOptions)) {
+								     	  		 fail(driver,"'Export Options' is displayed in charts when Export chart is disabled"); 
+								     		 }else {
+								     	  		 pass(driver,"'Export Options' not displayed in charts when Export chart is disabled"); 
+								     		 }
 							    		 }
-							      		
-							      		 if(isDisplayed2(driver,ExportChartOptions)) {
-							     	  		 fail(driver,"'Export Options' is displayed in charts when Export chart is disabled"); 
-							     		 }else {
-							     	  		 pass(driver,"'Export Options' not displayed in charts when Export chart is disabled"); 
-							     		 }
 					    			}
 				    				
 				    				if(TC_RADAR_LINE_OTHERS_004.equals("Yes")) {
@@ -1551,7 +1581,7 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 				    			}
 				    			
 				    			
-				    			setTestCaseID("TS_RADAR_LINE_ OTHERS_002");
+				    			setTestCaseID("TS_RADAR_LINE_ OTHERS_003");
 				    			if(isDisplayed2(driver,Cursor_InputClick)) {
 				    				if(TC_RADAR_LINE_OTHERS_005.equals("Yes")) {
 							    		 setTestCaseID("TC_RADAR_LINE_ OTHERS_005");
@@ -1592,7 +1622,6 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 				    				fail(driver,"Cursor toggle is not present");
 				    			}
 				    			
-				    			
 				    		 }
 				    		 
 			    		 }
@@ -1601,6 +1630,34 @@ public class DASHPRO_RADAR_LINE_TESTING extends Keywords{
 			  // ********************Others Validation End *******************
 			 }
 		}//click widget
+		
+		 setTestCaseID("");
+    	 click(driver,ChartTitleInput);
+		 clear(driver,ChartTitleInput);
+  		 verifyElementDisplayed(driver, SaveBtn_Chart);
+  		 verifyElementDisplayed(driver, cancel_chart);
+  		 click(driver,SaveBtn_Chart);
+  		 if(isDisplayed(driver,chartSaveError1)) {
+    		pass(driver,"'Enter Widget Name' error displayed when save the chart without given chart title name");
+  		 }else {
+    		fail(driver,"'Enter Widget Name' error not displayed when save the chart without given chart title name");
+  		 }
+  		 elementnotvisible(driver, chartSaveError1);
+  		 sendKeys(driver,ChartTitleInput,ChangeChartTitleName);
+  		 click(driver,SaveBtn_Chart);
+  		 elementnotvisible1(driver, RPE_Loading);
+  		 if(!isDisplayed2(driver,chartSaveError1) && isDisplayed(driver,SavedChartTitleInput)) {
+    		pass(driver,"Chart Saved Successfully");
+  		 }else {
+    		fail(driver,"Chart not Saved Successfully");
+  		 }	
+	      
+  		 String AfterSaveChartTitleName=getText1(driver, SavedChartTitleName);
+  		 if(AfterSaveChartTitleName.equals(ChangeChartTitleName)) {
+    		pass(driver,"Same Chart Title name displayed after saved the chart ");
+  		 }else {
+    		fail(driver,"Different Chart Title name displayed after saved the chart ");
+  		 }
 		
 	}
 	

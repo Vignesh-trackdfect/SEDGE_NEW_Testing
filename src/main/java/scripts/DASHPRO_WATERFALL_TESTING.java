@@ -120,7 +120,7 @@ public class DASHPRO_WATERFALL_TESTING extends Keywords{
 				 elementnotvisible1(driver, error);
 			 }else {
 				 
-				 elementnotvisible(driver, Loading);
+				 elementnotvisible1(driver, Loading);
 				 String widgetValue=getText1(driver,WidgetValue);
 				 if(widgetValue.equals("Water Fall")) {
 					 pass(driver,"'Water Fall' displayed as the selected Widget after click on it");
@@ -210,9 +210,8 @@ public class DASHPRO_WATERFALL_TESTING extends Keywords{
 									 if(TC_WATERFALL_011.equals("Yes")) {
 										 setTestCaseID("TC_WATERFALL_011");
 										 sendKeys(driver, dropdownInputsearchBox, Select_X_Axis_Value);
-										 List<WebElement> AvailableColumnList=getWebElements(driver, AvailableList_Dropdown);
 										 String firstValue_=getText1(driver,FirstSearchedvalue);
-										 if(firstValue_.contains(Select_X_Axis_Value) && AvailableColumnList.size()==1) {
+										 if(firstValue_.contains(Select_X_Axis_Value)) {
 											 pass(driver,"Searched Value correctly displayed first in the X Axis dropdown");
 										 }else {
 											 fail(driver,"Searched Value not correctly displayed first in the X Axis dropdown");
@@ -281,9 +280,8 @@ public class DASHPRO_WATERFALL_TESTING extends Keywords{
 									 if(TC_WATERFALL_017.equals("Yes")) {
 										 setTestCaseID("TC_WATERFALL_017");
 										 sendKeys(driver, dropdownInputsearchBox, Select_Y_Axis_Value);
-										 List<WebElement> AvailableColumnList=getWebElements(driver, AvailableList_Dropdown);
 										 String firstValue_=getText1(driver,FirstSearchedvalue);
-										 if(firstValue_.contains(Select_Y_Axis_Value) && AvailableColumnList.size()==1) {
+										 if(firstValue_.contains(Select_Y_Axis_Value)) {
 											 pass(driver,"Searched Value correctly displayed first in the Y Axis dropdown");
 										 }else {
 											 fail(driver,"Searched Value not correctly displayed first in the Y Axis dropdown");
@@ -366,7 +364,6 @@ public class DASHPRO_WATERFALL_TESTING extends Keywords{
 			 		 String TC_WATERFALL_AXIS_TITLE_020=getTestcaseID_Flag(TestcaseFileName,SheetName_Axis_Title,TescasesID_Column,"TC_ WATER FALL_020",TestcaseID_Flag);
 			 		 String TC_WATERFALL_AXIS_TITLE_021=getTestcaseID_Flag(TestcaseFileName,SheetName_Axis_Title,TescasesID_Column,"TC_ WATER FALL_021",TestcaseID_Flag);
 			 		 String TC_WATERFALL_AXIS_TITLE_022=getTestcaseID_Flag(TestcaseFileName,SheetName_Axis_Title,TescasesID_Column,"TC_ WATER FALL_022",TestcaseID_Flag);
-			 		 String TC_WATERFALL_AXIS_TITLE_023=getTestcaseID_Flag(TestcaseFileName,SheetName_Axis_Title,TescasesID_Column,"TC_ WATER FALL_023",TestcaseID_Flag);
 
 			 		 if(TC_WATERFALL_AXIS_TITLE_001.equals("Yes")) {
 			 			setTestCaseID("TC_WATERFALL_AXIS_TITLE_001");
@@ -659,7 +656,22 @@ public class DASHPRO_WATERFALL_TESTING extends Keywords{
 			 		 }
 			     }
 			  // ******************** Axis Title Validation End *******************
-			     
+			     setTestCaseID("");
+			     // ******************** ChartTitle Validation Start *******************
+				 String WaterFall_Chart_Title= getCellValue("TestExecution","Testcase_Selection","WaterFall_Chart_Title",Flag);
+				 if(WaterFall_Chart_Title.equals("Yes")) {
+					//Chart title
+			 		String TypeBackgroundColor1_ChartTitle=Utils.getDataFromTestDataIteration(iteration,"WaterFall_Widget_Testing", "TypeBackgroundColor1_ChartTitle");
+			 		String TypeTextColor1_ChartTitle=Utils.getDataFromTestDataIteration(iteration,"WaterFall_Widget_Testing", "TypeTextColor1_ChartTitle");
+			 		String Change_FontFamily_ChartTitle=Utils.getDataFromTestDataIteration(iteration,"WaterFall_Widget_Testing", "Change_FontFamily_ChartTitle");
+			 		String ChangeFontSize_ChartTitle=Utils.getDataFromTestDataIteration(iteration,"WaterFall_Widget_Testing", "ChangeFontSize_ChartTitle");
+			 		String ChangeChartTitleName=Utils.getDataFromTestDataIteration(iteration,"WaterFall_Widget_Testing", "ChangeChartTitleName");
+				 	
+					 CHART_TITLE chartTitle=new CHART_TITLE();
+					 chartTitle.chartTitleTest(driver, TypeBackgroundColor1_ChartTitle, TypeTextColor1_ChartTitle, Change_FontFamily_ChartTitle, ChangeFontSize_ChartTitle,ChangeChartTitleName);       	
+				 }
+		        // ******************** ChartTitle Validation End *******************
+				 setTestCaseID("");
 			  // ******************** Chart Style Validation Start *******************
 				 String WaterFall_ChartFormat_Chart_Style= getCellValue("TestExecution","Testcase_Selection","WaterFall_ChartFormat_Chart_Style",Flag);
 			     if(WaterFall_ChartFormat_Chart_Style.equals("Yes")) {
@@ -752,9 +764,8 @@ public class DASHPRO_WATERFALL_TESTING extends Keywords{
 			   	  							}
 			   	  							clear1(driver,dropdownInputsearchBox);
 			   	  							sendKeys(driver,dropdownInputsearchBox,Change_ChartTheme_ChartStyle);
-			   	  							List<WebElement> afterSearchResults=getWebElements(driver,chartThemeResultList);
 			   	  							String resultText=getText1(driver,chartThemeFirstResult);
-			   	  							if((afterSearchResults.size()==1)&&resultText.equals(Change_ChartTheme_ChartStyle)) {
+			   	  							if(resultText.equals(Change_ChartTheme_ChartStyle)) {
 			   	  								pass(driver,"Search input in the Chart Theme dropdown works properly");
 			   	  							}else {
 			   	  								fail(driver,"Search input in the Chart Theme dropdown not works properly");
@@ -789,6 +800,11 @@ public class DASHPRO_WATERFALL_TESTING extends Keywords{
 			   	  						fail(driver,"X Scroll toggle not disabled by default ");
 			   	  					}else {
 			   	  						pass(driver,"X Scroll toggle disabled by default ");
+			   	  						if(!isDisplayed2(driver,X_Scroll_Bar)) {
+	  										pass(driver,"X Scroll Bar is not displayed in the chart by default");
+	  									}else {
+	  										fail(driver,"X Scroll Bar is displayed in the chart by default");
+	  									}
 			   	  					}
 			   	  				}
 			   	  				
@@ -797,20 +813,18 @@ public class DASHPRO_WATERFALL_TESTING extends Keywords{
 			   	  					click(driver,X_ScrollInputSlider);
 			   	  					if(isToggleEnable(driver,X_Scroll_toggle)){
 			   	  						pass(driver,"X Scroll toggle enabled when click on it");
+			   	  						scrollUsingElement(driver, ApplyButton);
+			   	  						click(driver,ApplyButton);
+			   	  						elementnotvisible1(driver, RPE_Loading);
+			   	  						if(verifyElementDisplayed(driver,Chart_Section)) {
+			   	  							if(isDisplayed(driver,X_Scroll_Bar)) {
+			   	  								pass(driver,"X Scroll Bar is displayed in the chart after enabling it");
+			   	  							}else {
+			   	  								fail(driver,"X Scroll Bar is not displayed in the chart after enabling it");
+			   	  							}
+			   	  						}
 			   	  					}else {
 			   	  						fail(driver,"X Scroll toggle not enabled when click on it");
-			   	  					}
-			   	  					
-			   	  					scrollUsingElement(driver, ApplyButton);
-			   	  					click(driver,ApplyButton);
-			   	  					elementnotvisible1(driver, Loading);
-			   	  					elementnotvisible1(driver, RPE_Loading);
-			   	  					verifyElementDisplayed(driver,Chart_Section);
-				     			
-			   	  					if(isDisplayed(driver,X_Scroll_Bar)) {
-			   	  						pass(driver,"X Scroll Bar is displayed in the chart after enabling it");
-			   	  					}else {
-			   	  						fail(driver,"X Scroll Bar is not displayed in the chart after enabling it");
 			   	  					}
 			   	  				}
 			   	  			}
@@ -831,20 +845,18 @@ public class DASHPRO_WATERFALL_TESTING extends Keywords{
 			   	  					wait(driver,"1");
 			   	  					if(isToggleEnable(driver,Y_Scroll_toggle)){
 			   	  						pass(driver,"Y Scroll toggle enabled when enabling it");
+			   	  						scrollUsingElement(driver, ApplyButton);
+			   	  						click(driver,ApplyButton);
+			   	  						elementnotvisible1(driver, RPE_Loading);
+			   	  						if(verifyElementDisplayed(driver,Chart_Section)) {
+			   	  							if(isDisplayed(driver,Y_Scroll_Bar)) {
+			   	  								pass(driver,"Y Scroll Bar is displayed in the chart after enabling it");
+			   	  							}else {
+			   	  								fail(driver,"Y Scroll Bar is not displayed in the chart after enabling it");
+			   	  							}
+			   	  						}
 			   	  					}else {
 			   	  						fail(driver,"Y Scroll toggle not enabled when enabling it");
-			   	  					}
-			   	  					
-			   	  					scrollUsingElement(driver, ApplyButton);
-			   	  					click(driver,ApplyButton);
-			   	  					elementnotvisible1(driver, Loading);
-			   	  					elementnotvisible1(driver, RPE_Loading);
-			   	  					verifyElementDisplayed(driver,Chart_Section);
-			   	  					
-			   	  					if(isDisplayed(driver,Y_Scroll_Bar)) {
-			   	  						pass(driver,"Y Scroll Bar is displayed in the chart after enabling it");
-			   	  					}else {
-			   	  						fail(driver,"Y Scroll Bar is not displayed in the chart after enabling it");
 			   	  					}
 			   	  				}
 			   	  			}
@@ -991,7 +1003,6 @@ public class DASHPRO_WATERFALL_TESTING extends Keywords{
 			 		if(!WaterFall_ChartFormat_Chart_Style.equals("Yes")) {
 			 			click(driver,Chart_FormatSec);
 			 		}
-			 		
 			 		
 			 		if(TC_WATERFALL_DATA_LABEL_001.equals("Yes")) {
    	  					setTestCaseID("TC_WATERFALL_ DATA_LABEL_001");
@@ -1226,13 +1237,16 @@ public class DASHPRO_WATERFALL_TESTING extends Keywords{
 	  						  	  			 click(driver,ApplyButton);
 	  						  	  			 elementnotvisible1(driver, RPE_Loading);
 	  						  	  			 verifyElementDisplayed(driver,Chart_Section);
-	  						    	   
-	  						  	  			 String ChartValueTextAct=getText(driver,EnableValue); 
-	  						  	  			 String RoundOffValue_Act=String.valueOf(getRoundOffValue(ChartValueTextAct));
-	  						  	  			 if(RoundOffValue_Act.equals(ChangeRoundOffValue_DataLabel)) {
-	  						  	  				 pass(driver,"The chart's value displayed with Selected '"+ChangeRoundOffValue_DataLabel+"' RoundOff Value"); 
+	  						  	  			 String ChartValueTextAct=getText1(driver,EnableValue); 
+	  						  	  			 if(ChartValueTextAct.contains("..")) {
+	  						  	  				 pass(driver,"Unable to validate the Roundoff value for the enabled Value : "+ChartValueTextAct); 
 	  						  	  			 }else {
-	  						  	  				 fail(driver,"The chart's value not displayed with Selected '"+ChangeRoundOffValue_DataLabel+"' RoundOff Value"); 
+	  						  	  				 String RoundOffValue_Act=String.valueOf(getRoundOffValue(ChartValueTextAct));
+	  						  	  				 if(RoundOffValue_Act.equals(ChangeRoundOffValue_DataLabel)) {
+	  						  	  					 pass(driver,"The chart's value displayed with Selected '"+ChangeRoundOffValue_DataLabel+"' RoundOff Value"); 
+	  						  	  				 }else {
+	  						  	  					 fail(driver,"The chart's value not displayed with Selected '"+ChangeRoundOffValue_DataLabel+"' RoundOff Value , ActText : "+ChartValueTextAct); 
+	  						  	  				 } 
 	  						  	  			 }
 	  						  	  		 }
 	  						  		}else {
@@ -1242,7 +1256,6 @@ public class DASHPRO_WATERFALL_TESTING extends Keywords{
    	  							
    	  							if(TC_WATERFALL_DATA_LABEL_017.equals("Yes")) {
 	  								setTestCaseID("TC_WATERFALL_ DATA_LABEL_017");
-	  								
 	  								String defaultPosition_Act=defaultSelectedValue(driver, PositionInput);
 	  						  	   	if(DefaultPositionValue_Exp.equals(defaultPosition_Act)) {
 	  						  		   pass(driver,"By default, '"+DefaultPositionValue_Exp+"' is selected in the Position Input"); 

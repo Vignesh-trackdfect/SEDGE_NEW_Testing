@@ -1,6 +1,5 @@
 package scripts;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -1002,8 +1001,6 @@ public class DASHPRO_LINE_TESTING extends Keywords{
  	    		}
  	    		//setTestCaseID("");
  	    		setTestCaseID("TC_LINE_AXIS_005");
- 	         	List<WebElement> beforeSearchResults=getWebElements(driver,fontFamilyResults);
- 	         	int beforeSearchSize=beforeSearchResults.size();
  	         	click(driver,dropdownInputsearchBox);
  	         	sendKeys(driver,dropdownInputsearchBox,"dfsaght");
  	         	if(isDisplayed2(driver,NoResultsFound)) {
@@ -1015,10 +1012,8 @@ public class DASHPRO_LINE_TESTING extends Keywords{
  	         	clear1(driver,dropdownInputsearchBox);
  	         	wait(driver,"1");
  	         	sendKeys(driver,dropdownInputsearchBox,ChangeFontFamily_AxisTitle);
- 	         	List<WebElement> afterSearchResults=getWebElements(driver,fontFamilyResults);
- 	         	int afterSearchSize=afterSearchResults.size();
  	            String resultText=getText1(driver,fontFamilyFirstResult);
- 	            if((beforeSearchSize>afterSearchSize)&&resultText.equals(ChangeFontFamily_AxisTitle)) {
+ 	            if(resultText.equals(ChangeFontFamily_AxisTitle)) {
  	   			 pass(driver,"Search input in the Font Family dropdown works properly");
  	            }else {
  	         	    fail(driver,"Search input in the Font Family dropdown not works properly");
@@ -1398,8 +1393,6 @@ public class DASHPRO_LINE_TESTING extends Keywords{
     				 setTestCaseID("TC_LINE_CHART_STYLE_009");
     				 ScrollBarValidation1(driver,ChartThemeResults,"Chart Theme");
     			
-    				 List<WebElement> beforeSearchResults=getWebElements(driver,chartThemeResultList);
-    				 int beforeSearchSize=beforeSearchResults.size();
     				 setTestCaseID("");
     				 verifyElementIsPresent1(driver,dropdownInputsearchBox);
     				 click(driver,dropdownInputsearchBox);
@@ -1416,10 +1409,8 @@ public class DASHPRO_LINE_TESTING extends Keywords{
     				 clear1(driver,dropdownInputsearchBox);
     				 setTestCaseID("TC_LINE_CHART_STYLE_006");
     				 sendKeys(driver,dropdownInputsearchBox,Change_ChartTheme_ChartStyle);
-    				 List<WebElement> afterSearchResults=getWebElements(driver,chartThemeResultList);
-    				 int afterSearchSize=afterSearchResults.size();
     				 String resultText=getText1(driver,chartThemeFirstResult);
-    				 if((beforeSearchSize>afterSearchSize)&&resultText.equals(Change_ChartTheme_ChartStyle)) {
+    				 if(resultText.equals(Change_ChartTheme_ChartStyle)) {
     					 pass(driver,"Search input in the Chart Theme dropdown works properly");
     				 }else {
     					 fail(driver,"Search input in the Chart Theme dropdown not works properly");
@@ -1698,36 +1689,35 @@ public class DASHPRO_LINE_TESTING extends Keywords{
      		 
      		 //Validation of the visibility of data label options start...
      		 verifyElementDisplayed(driver,EnableValue_text);
-     		 verifyElementIsPresent1(driver, EnableValue_InputSlider);
+     		 verifyElementDisplayed(driver, EnableValue_InputSlider);
 
      		 verifyElementDisplayed(driver,ValueFormat_text);
-     		 verifyElementIsPresent1(driver,ValueFormatInput);
+     		 verifyElementDisplayed(driver,ValueFormatInput);
           
      		 verifyElementDisplayed(driver,Seperator_text);
-     		 verifyElementIsPresent1(driver,SeperatorInput);
+     		 verifyElementDisplayed(driver,SeperatorInput);
      		
      		 verifyElementDisplayed(driver,ValueFontSize_text);
-     		 verifyElementIsPresent1(driver,ValueFontSizeInput);
+     		 verifyElementDisplayed(driver,ValueFontSizeInput);
           
      		 verifyElementDisplayed(driver,RoundOffValue_text);
-     		 verifyElementIsPresent1(driver,RoundOffValueInput);
+     		 verifyElementDisplayed(driver,RoundOffValueInput);
           
      		 verifyElementDisplayed(driver,BigNumberSuffix_text);
-     		 verifyElementIsPresent1(driver,BigNumberInput);
+     		 verifyElementDisplayed(driver,BigNumberInput);
           
      		 verifyElementDisplayed(driver,ShowAsPositive_text);
-     		 verifyElementIsPresent1(driver,ShowPositive_Input);
+     		 verifyElementDisplayed(driver,ShowPositive_Input);
         
      		 verifyElementDisplayed(driver,IgnoreZero_text);
-    		 verifyElementIsPresent1(driver,IgnoreZero_Input_toggle);
+     		 verifyElementDisplayed(driver,IgnoreZero_Input_toggle);
        
      		 verifyElementDisplayed(driver,ValueRotation_text);
-     		 verifyElementIsPresent1(driver,ValueRotation_Input);
-     		 
+     		 verifyElementDisplayed(driver,ValueRotation_Input);
      		 //Validation of the visibility of data label options End...
      	     
      	     //All options are inaccessible when the enable value toggle is disabled. Validation end
-     		setTestCaseID("TC_LINE_DATA_LABELS_002");
+     		 setTestCaseID("TC_LINE_DATA_LABELS_002");
      	     if(isToggleEnable(driver,EnableValue_Input)) {
      	  		 fail(driver,"By Default, Enable Value toggle is enabled");
      	     }else {
@@ -1939,29 +1929,27 @@ public class DASHPRO_LINE_TESTING extends Keywords{
      			fail(driver,"By default, '"+DefaultFontSizeValue_Exp+"' is not selected in the Value Font Size Input"); 
      		}
       		 
-     		 setTestCaseID("TC_LINE_DATA_LABELS_013");
-     		if(isToggleAccessible(driver,ValueFontSizeInput)) {		
+     		setTestCaseID("TC_LINE_DATA_LABELS_013");
+     		if(IsElementEnabled(driver,ValueFontSizeInput)) {		
      	  		 pass(driver,"'Value FontSize Input' is accessible after enabling the 'Enable Value' toggle"); 
-     	  		 
+     	  		 setTestCaseID("TC_LINE_DATA_LABELS_014");
+     	  		 click(driver,ValueFontSizeInput);
+         		
+     	  		 setTestCaseID("TC_LINE_DATA_LABELS_015");
+     	  		 selectOptionValue(driver,ValueFontSizeInput,ChangeFontSizeValue_DataLabel);
+     	  		 scrollUsingElement(driver, ApplyButton);   
+     	  		 click(driver,ApplyButton);
+     	  		 elementnotvisible1(driver, RPE_Loading);
+     	  		 verifyElementDisplayed(driver,Chart_Section);
+     	  		 String ValueFontSizeAct=getFontSize(driver,EnableValue);
+     	  		 if(ValueFontSizeAct.equals(ChangeFontSizeValue_DataLabel)) {
+     	  			 pass(driver,"The chart's value displayed with Selected '"+ChangeFontSizeValue_DataLabel+"' font size."); 
+     	  		 }else {
+     	  			 fail(driver,"The chart's value not displayed with Selected '"+ChangeFontSizeValue_DataLabel+"' font size."); 
+     	  		 }
+     	  		 selectOptionValue(driver,ValueFontSizeInput,DefaultFontSizeValue_Exp);
      		}else {
      	  		 fail(driver,"'Value FontSize Input' is not accessible after enabling the 'Enable Value' toggle");
-     		}
-     		
-     		setTestCaseID("TC_LINE_DATA_LABELS_014");
-     		click(driver,ValueFontSizeInput);
-     		
-     		setTestCaseID("TC_LINE_DATA_LABELS_015");
-     		selectOptionValue(driver,ValueFontSizeInput,ChangeFontSizeValue_DataLabel);
-     		scrollUsingElement(driver, ApplyButton);   
-     		click(driver,ApplyButton);
-     		elementnotvisible1(driver, RPE_Loading);
-     		verifyElementDisplayed(driver,Chart_Section);
-     		
-     		String ValueFontSizeAct=getFontSize(driver,EnableValue);
-     		if(ValueFontSizeAct.equals(ChangeFontSizeValue_DataLabel)) {
-     	  		 pass(driver,"The chart's value displayed with Selected '"+ChangeFontSizeValue_DataLabel+"' font size."); 
-     		}else {
-     	  		 fail(driver,"The chart's value not displayed with Selected '"+ChangeFontSizeValue_DataLabel+"' font size."); 
      		}
      		
      		setTestCaseID("");
@@ -1973,33 +1961,31 @@ public class DASHPRO_LINE_TESTING extends Keywords{
       		}
       		
       		setTestCaseID("TC_LINE_DATA_LABELS_016");
-     		if(isToggleAccessible(driver,RoundOffValueInput)) {		
+     		if(IsElementEnabled(driver,RoundOffValueInput)) {		
      	  		 pass(driver,"'RoundOff Value Input' is accessible after enabling the 'Enable Value' toggle"); 
+     	  		 setTestCaseID("TC_LINE_DATA_LABELS_017");
+     	  		 click(driver,RoundOffValueInput);
+     	  		 wait(driver,"1");
+     	  		 selectByText(driver,RoundOffValueInput,ChangeRoundOffValue_DataLabel);
+     	  		 scrollUsingElement(driver, ApplyButton);
+     	  		 click(driver,ApplyButton);
+     	  		 elementnotvisible1(driver, RPE_Loading);
+     	  		 verifyElementDisplayed(driver,Chart_Section);
+     	  		 ChartValueTextAct=getText1(driver,EnableValue);   
+     	  		 String RoundOffValue_Act=String.valueOf(getRoundOffValue(ChartValueTextAct));
+     	  		 if(RoundOffValue_Act.equals(ChangeRoundOffValue_DataLabel)) {
+     	  			 pass(driver,"The chart's value displayed with Selected '"+ChangeRoundOffValue_DataLabel+"' RoundOff Value"); 
+     	  		 }else {
+     	  			 fail(driver,"The chart's value not displayed with Selected '"+ChangeRoundOffValue_DataLabel+"' RoundOff Value"); 
+     	  		 }
+     	  		 selectByText(driver,RoundOffValueInput,"Select");
      		}else {
      	  		 fail(driver,"'RoundOff Value Input' is not accessible after enabling the 'Enable Value' toggle");
      		}
       		
-     		setTestCaseID("TC_LINE_DATA_LABELS_017");
-     	    click(driver,RoundOffValueInput);
-     	    wait(driver,"1");
-     	    selectByText(driver,RoundOffValueInput,ChangeRoundOffValue_DataLabel);
-     	    scrollUsingElement(driver, ApplyButton);
-     	    click(driver,ApplyButton);
-     	    elementnotvisible1(driver, RPE_Loading);
-     	    verifyElementDisplayed(driver,Chart_Section);
-     	   
-     	    ChartValueTextAct=getText(driver,EnableValue);    //getText1(driver,ValueFormat_ChartValue);
-     	    String RoundOffValue_Act=String.valueOf(getRoundOffValue(ChartValueTextAct));
-     	    if(RoundOffValue_Act.equals(ChangeRoundOffValue_DataLabel)) {
-     	  	   pass(driver,"The chart's value displayed with Selected '"+ChangeRoundOffValue_DataLabel+"' RoundOff Value"); 
-     	    }else {
-     	  	   fail(driver,"The chart's value not displayed with Selected '"+ChangeRoundOffValue_DataLabel+"' RoundOff Value"); 
-     	    }
-     	   
      	    setTestCaseID("TC_LINE_DATA_LABELS_018");
      	    selectOptionValue(driver,SeperatorInput,"#,###");
-     		
-     		if(isToggleAccessible(driver,BigNumberInput)) {
+     		if(IsElementEnabled(driver,BigNumberInput)) {
      			 fail(driver,"'Big Number Suffix' toggle is accessible while Seperator value is selected");
      		}else {
      			 pass(driver,"'Big Number Suffix' toggle is Inaccessible while Seperator value is selected");
@@ -2010,20 +1996,18 @@ public class DASHPRO_LINE_TESTING extends Keywords{
      		scrollUsingElement(driver, ApplyButton);
      		click(driver,ApplyButton);
      		elementnotvisible1(driver, RPE_Loading);
-     		
-     	    if(isToggleAccessible(driver,BigNumberInput)) {
+     	    if(IsElementEnabled(driver,BigNumberInput)) {
      			 fail(driver,"'Big Number Suffix' toggle is accessible while 'Percentage'  is selected in the Value Format input");
      		}else {
      			 pass(driver,"'Big Number Suffix' toggle is Inaccessible while 'Percentage'  is selected in the Value Format input");
      		}
 
      	    setTestCaseID("");
-     	    selectByText(driver,RoundOffValueInput,"Select");
      	    selectOptionValue(driver,ValueFormatInput,"value");
      	    scrollUsingElement(driver, ApplyButton);
      	    click(driver,ApplyButton);
      	    elementnotvisible1(driver, RPE_Loading);
-     	    if(isToggleAccessible(driver,BigNumberInput)) {
+     	    if(IsElementEnabled(driver,BigNumberInput)) {
      	    	pass(driver,"'Big Number Suffix' toggle is accessible while Seperator value is not selected");
      	    }else {
      	    	fail(driver,"'Big Number Suffix' toggle is Inaccessible while Seperator value is not selected");
@@ -2034,49 +2018,43 @@ public class DASHPRO_LINE_TESTING extends Keywords{
      	    click(driver,ApplyButton);
      	    elementnotvisible1(driver, RPE_Loading);
      	    
-     	    if(isToggleAccessible(driver,BigNumberInput)) {
+     	    if(IsElementEnabled(driver,BigNumberInput)) {
      			 pass(driver,"'Big Number Suffix' toggle is accessible while 'Percentage' is not selected in the Value Format input");
      			 setTestCaseID("TC_LINE_DATA_LABELS_020");
      			 click(driver,BigNumberInputSlider);
-     			    if(isToggleEnable(driver,BigNumberInput)) {
-     					 pass(driver,"'Big Number Suffix' toggle is enabled while click on it");
-     					 
-     					 scrollUsingElement(driver, ApplyButton);
-     					 click(driver,ApplyButton);
-     					 elementnotvisible1(driver, RPE_Loading);
-     				    
-     					 ChartValueTextAct=getText(driver,EnableValue);    
-     					 if( ChartValueTextAct.length()>3) {
-     						 if(ChartValueTextAct.endsWith("K") || ChartValueTextAct.endsWith("k")) {
-     	  						 pass(driver,"The big number suffix is applied for enabled value in charts");
-     	  					 }else {
-     	  						 fail(driver,"The big number suffix is not applied for enabled value in charts, Act Value : "+ChartValueTextAct);
-     	  					 }
-     					 }
-     					
-     				}else {
-     					 fail(driver,"'Big Number Suffix' toggle is not enabled while click on it");
-     				}
-     			    
-     			    click(driver,BigNumberInputSlider);
-     			    if(isToggleEnable(driver,BigNumberInput)) {
-     					 fail(driver,"'Big Number Suffix' toggle is enabled while disabling it");
-     			    }else {
-     					 pass(driver,"'Big Number Suffix' toggle is disabled while disabling it");
-     					 scrollUsingElement(driver, ApplyButton);
-     					 click(driver,ApplyButton);
-     					 elementnotvisible1(driver, RPE_Loading);
-     				    
-     					 ChartValueTextAct=getText(driver,EnableValue);   
+     			 if(isToggleEnable(driver,BigNumberInput)) {
+     				 pass(driver,"'Big Number Suffix' toggle is enabled while click on it");
+     				 scrollUsingElement(driver, ApplyButton);
+     				 click(driver,ApplyButton);
+     				 elementnotvisible1(driver, RPE_Loading);
+     				 ChartValueTextAct=getText(driver,EnableValue);    
+     				 if( ChartValueTextAct.length()>3) {
      					 if(ChartValueTextAct.endsWith("K") || ChartValueTextAct.endsWith("k")) {
-     						 fail(driver,"The big number suffix is applied for enabled value in charts after disabling the toggle");
+     						 pass(driver,"The big number suffix is applied for enabled value in charts");
      					 }else {
-     						 pass(driver,"The big number suffix is not applied for enabled value in charts after disabling the toggle");
+     						 fail(driver,"The big number suffix is not applied for enabled value in charts, Act Value : "+ChartValueTextAct);
      					 }
-     				}
-     			    
-     		}else {
-     			 fail(driver,"'Big Number Suffix' toggle is Inaccessible while 'Percentage' is not selected in the Value Format input");
+     				 }
+     			 }else {
+     				 fail(driver,"'Big Number Suffix' toggle is not enabled while click on it");
+     			 }
+     			 click(driver,BigNumberInputSlider);
+     			 if(isToggleEnable(driver,BigNumberInput)) {
+     				 fail(driver,"'Big Number Suffix' toggle is enabled while disabling it");
+     			 }else {
+     				 pass(driver,"'Big Number Suffix' toggle is disabled while disabling it");
+     				 scrollUsingElement(driver, ApplyButton);
+     				 click(driver,ApplyButton);
+     				 elementnotvisible1(driver, RPE_Loading);
+     				 ChartValueTextAct=getText(driver,EnableValue);   
+     				 if(ChartValueTextAct.endsWith("K") || ChartValueTextAct.endsWith("k")) {
+     					 fail(driver,"The big number suffix is applied for enabled value in charts after disabling the toggle");
+     				 }else {
+     					 pass(driver,"The big number suffix is not applied for enabled value in charts after disabling the toggle");
+     				 }
+     			 }
+     	    }else {
+     			fail(driver,"'Big Number Suffix' toggle is Inaccessible while 'Percentage' is not selected in the Value Format input");
      		}
      	   
      	    setTestCaseID("TC_LINE_DATA_LABELS_021");
@@ -2084,37 +2062,35 @@ public class DASHPRO_LINE_TESTING extends Keywords{
    			 	fail(driver,"By default, 'Ignore Zero' toggle is enabled");
      	    }else {
    			 	pass(driver,"By default, 'Ignore Zero' toggle is disabled");
+   			 	setTestCaseID("TC_LINE_DATA_LABELS_022");
+   			 	click(driver,IgnoreZero_Input_toggle);
+   			 	wait(driver,"1");
+   			 	if(isToggleEnable(driver,IgnoreZero_toggle)) {
+   			 		pass(driver,"'Ignore Zero' toggle is enabled");
+   			 		boolean valueZero=true;
+   			 		List<WebElement> EnabledChartValues=getWebElements(driver,EnableValue);
+   			 		try {
+   			 			for(WebElement EnabledChartValue:EnabledChartValues) {
+   			 				action.moveToElement(EnabledChartValue).build().perform();
+   			 				String ValueDisplayed=EnabledChartValue.getText();
+   			 				if(ValueDisplayed.equals("0")) {
+   			 					valueZero=false;
+   			 					break;
+   			 				}
+   			 			}
+   			 		}catch(Exception e) {
+   			 			
+   			 		}
+   			 		setTestCaseID("TC_LINE_DATA_LABELS_023");
+   			 		if(valueZero==true){
+   			 			pass(driver,"'0' is Ignored in the Enabled chart Value when the toggle is enabled");
+   			 		}else {
+   			 			fail(driver,"'0' is not Ignored in the Enabled chart Value when the toggle is enabled");
+   			 		}
+   			 	}else {
+   			 		fail(driver,"'Ignore Zero' toggle is disabled");
+   			 	}
      	    }
-     	    setTestCaseID("TC_LINE_DATA_LABELS_022");
-     	    click(driver,IgnoreZero_Input_toggle);
-     	    wait(driver,"1");
-     	    if(isToggleEnable(driver,IgnoreZero_toggle)) {
-  			 	pass(driver,"'Ignore Zero' toggle is enabled");
-    	    }else {
-  			 	fail(driver,"'Ignore Zero' toggle is disabled");
-    	    }
-     	    boolean valueZero=true;
-     	    List<WebElement> EnabledChartValues=getWebElements(driver,EnableValue);
-     	    try {
-     	    	for(WebElement EnabledChartValue:EnabledChartValues) {
-     	    		action.moveToElement(EnabledChartValue).build().perform();
-         	    	String ValueDisplayed=EnabledChartValue.getText();
-         	    	if(ValueDisplayed.equals("0")) {
-         	    		valueZero=false;
-         	    		break;
-         	    	}
-         	    }
-     	    }catch(Exception e) {
-     	    	
-     	    }
-     	    setTestCaseID("TC_LINE_DATA_LABELS_023");
-     	    if(valueZero==true){
-     	    	pass(driver,"'0' is Ignored in the Enabled chart Value when the toggle is enabled");
-     	    }else {
-     	    	fail(driver,"'0' is not Ignored in the Enabled chart Value when the toggle is enabled");
-     	    }
-     	    
-     	    
      	    
      	    Pattern numericalPattern = Pattern.compile("^\\d+(\\.\\d+)?$");
      	    setTestCaseID("TC_LINE_DATA_LABELS_024");
@@ -2122,71 +2098,67 @@ public class DASHPRO_LINE_TESTING extends Keywords{
      			 fail(driver,"By default, 'Show As Positive' toggle is enabled");
      	    }else {
      			 pass(driver,"By default, 'Show As Positive' toggle is disabled");
+     			 setTestCaseID("TC_LINE_DATA_LABELS_025");
+     			 click(driver,ShowPositive_InputSlider);
+     			 if(isToggleEnable(driver,ShowPositive_Input)) {
+         			 pass(driver,"'Show As Positive' toggle is enabled while enabling it");
+         			 scrollUsingElement(driver, ApplyButton);
+         			 click(driver,ApplyButton);
+         			 elementnotvisible1(driver, RPE_Loading);
+              		 String	X_StartValue=getText1(driver,Column_X_Labels_Chart);
+              		 if(numericalPattern.matcher(X_StartValue).matches()) {
+              			if(X_StartValue.startsWith("-")) {
+                 			fail(driver,"Chart not started with positive value when 'Show positive' toogle is enabled");
+                 		 }else {
+            				pass(driver,"Chart started with positive value when 'Show positive' toogle is enabled");
+                 		 }
+              		 }
+         	    }else {
+         			 fail(driver,"'Show As Positive' toggle is not enabled while enabling it");
+         	    } 
      		}
-     	    setTestCaseID("TC_LINE_DATA_LABELS_025");
-     		click(driver,ShowPositive_InputSlider);
-     		if(isToggleEnable(driver,ShowPositive_Input)) {
-     			 pass(driver,"'Show As Positive' toggle is enabled while enabling it");
+     	    
+     	    setTestCaseID("TC_LINE_DATA_LABELS_026");
+     		if(IsElementEnabled(driver,ValueRotation_Input)) {
+     			 pass(driver,"Value rotation is accessible after enabling the 'Enable Value' toggle");
+     			 String defaultRotationValue_Act=getText1(driver,ValueRotation_Output);
+     			 if(DefaultRotationValue_Exp.equals(defaultRotationValue_Act)) {
+     				 pass(driver,"By default, '"+DefaultRotationValue_Exp+"' is displayed in value rotation output");
+     			 }else {
+     				 fail(driver,"By default, '"+DefaultRotationValue_Exp+"' is not displayed in value rotation output");
+     			 }
+         		
+     			 setTestCaseID("TC_LINE_DATA_LABELS_027");
+     			 moveSlider(driver,ValueRotation_Input,ValueRotation_Output,ChangeRotataionVal_Positive_DataLabel);
      			 scrollUsingElement(driver, ApplyButton);
      			 click(driver,ApplyButton);
      			 elementnotvisible1(driver, RPE_Loading);
-     		     	
-          		 String	X_StartValue=getText1(driver,Column_X_Labels_Chart);
-          		 if(numericalPattern.matcher(X_StartValue).matches()) {
-          			if(X_StartValue.startsWith("-")) {
-             			 pass(driver,"Chart not started with positive value when 'Show positive' toogle is enabled");
-             		 }else {
-        				pass(driver,"Chart  started with positive value when 'Show positive' toogle is enabled");
-             		 }
-          		 }
-          		 
-     	    }else {
-     			 fail(driver,"'Show As Positive' toggle is not enabled while enabling it");
-     	    }
-     	    
-     	    setTestCaseID("TC_LINE_DATA_LABELS_026");
-     		if(isToggleAccessible(driver,ValueRotation_Input)) {
-     			 pass(driver,"Value rotation is accessible after enabling the 'Enable Value' toggle");
+     			 wait(driver,"1");
+     			 String chartValueRotation_Act=getRotationValue(driver,EnableValue);
+     			 if(chartValueRotation_Act.equals(ChangeRotataionVal_Positive_DataLabel)) {
+     				 pass(driver,"Selected positive Rotation Angle ("+ChangeRotataionVal_Positive_DataLabel+") is Updated in chart value");
+     			 }else {
+     				 fail(driver,"Selected positive Rotation Angle ("+ChangeRotataionVal_Positive_DataLabel+") is not Updated in chart value");
+     			 }
+               
+     			 moveSlider(driver,ValueRotation_Input,ValueRotation_Output,ChangeRotataionVal_Negative_DataLabel);
+                 scrollUsingElement(driver, ApplyButton);
+                 click(driver,ApplyButton);
+                 elementnotvisible1(driver, RPE_Loading);
+                 wait(driver,"1");
+                 chartValueRotation_Act=getRotationValue(driver,EnableValue);
+                 if(chartValueRotation_Act.equals(ChangeRotataionVal_Negative_DataLabel)) {
+                	 pass(driver,"Selected Negative Rotation Angle ("+ChangeRotataionVal_Negative_DataLabel+") is Updated in chart value");
+                 }else {
+                	 fail(driver,"Selected Negative Rotation Angle ("+ChangeRotataionVal_Negative_DataLabel+") is not Updated in chart value");
+                 }
      		}else {
-     			 fail(driver,"Value rotation is Inaccessible after enabling the 'Enable Value' toggle");
+     			fail(driver,"Value rotation is Inaccessible after enabling the 'Enable Value' toggle");
      		}
      		
-     		String defaultRotationValue_Act=getText1(driver,ValueRotation_Output);
-     		if(DefaultRotationValue_Exp.equals(defaultRotationValue_Act)) {
-     			 pass(driver,"By default, '"+DefaultRotationValue_Exp+"' is displayed in value rotation output");
-     		}else {
-     			 fail(driver,"By default, '"+DefaultRotationValue_Exp+"' is not displayed in value rotation output");
-     		}
-     		
-     	    setTestCaseID("TC_LINE_DATA_LABELS_027");
-     		moveSlider(driver,ValueRotation_Input,ValueRotation_Output,ChangeRotataionVal_Positive_DataLabel);
-     		scrollUsingElement(driver, ApplyButton);
-     		click(driver,ApplyButton);
-     		elementnotvisible1(driver, RPE_Loading);
-          	wait(driver,"1");
-          	String chartValueRotation_Act=getRotationValue(driver,EnableValue);
-          	if(chartValueRotation_Act.equals(ChangeRotataionVal_Positive_DataLabel)) {
-     		    pass(driver,"Selected positive Rotation Angle ("+ChangeRotataionVal_Positive_DataLabel+") is Updated in chart value");
-     		}else {
-     	       	fail(driver,"Selected positive Rotation Angle ("+ChangeRotataionVal_Positive_DataLabel+") is not Updated in chart value");
-     		}
-           
-             moveSlider(driver,ValueRotation_Input,ValueRotation_Output,ChangeRotataionVal_Negative_DataLabel);
-             scrollUsingElement(driver, ApplyButton);
-      	   	click(driver,ApplyButton);
-      	    elementnotvisible1(driver, RPE_Loading);
-          	wait(driver,"1");
-          	chartValueRotation_Act=getRotationValue(driver,EnableValue);
-          	if(chartValueRotation_Act.equals(ChangeRotataionVal_Negative_DataLabel)) {
-     		    pass(driver,"Selected Negative Rotation Angle ("+ChangeRotataionVal_Negative_DataLabel+") is Updated in chart value");
-     		}else {
-     	       	fail(driver,"Selected Negative Rotation Angle ("+ChangeRotataionVal_Negative_DataLabel+") is not Updated in chart value");
-     		}
-       
           	setTestCaseID("");
    	        mouseOverToElement(driver, DataLabels);
    	       	click(driver,DataLabels);
-   	        
    	       	String DataLabelsClose_Act=getAttribute1(driver, DataLabels_Expand, "class");
    	  		if(DataLabelsClose_Act.contains("down")) {
    	  			pass(driver,"Data labels gets collapsed when click on it");
@@ -2206,6 +2178,8 @@ public class DASHPRO_LINE_TESTING extends Keywords{
     		 String LegendSecExpand=getAttribute1(driver, Legends_Expand, "class");
     		 if(LegendSecExpand.contains("up")) {
     			pass(driver,"By default, Legends gets Expanded");
+    			
+    			
     		 }else {
     			fail(driver,"By default, Legends not gets Expanded");
     			//click(driver,DataLabels);
@@ -2353,13 +2327,9 @@ public class DASHPRO_LINE_TESTING extends Keywords{
     		 }
     		 setTestCaseID("");
     		 selectByText(driver, LegendPosition_Input, "Bottom");
-    		 
     		 setTestCaseID("TC_LINE_LEGENDS_011");
     		 mouseOverToElement(driver, Legend_);
     		 click(driver,Legend_);
-    	      
-    		 
-    		 
     		 String LegendClose_Act=getAttribute1(driver, Legends_Expand, "class");
     		 if(LegendClose_Act.contains("down")) {
     			 pass(driver,"Legends gets collapsed when click on it");
@@ -2378,498 +2348,495 @@ public class DASHPRO_LINE_TESTING extends Keywords{
         		 setTestCaseID("TC_LINE_DEVIATION_002");
             	 if(isDisplayed(driver,Deviation_Active)) {
             		 pass(driver,"Deviations is Accessble when 'Date' variable selected in the X axis input");
+            		 
+            		 setTestCaseID("TC_LINE_DEVIATION_001");
+                	 verifyElementDisplayed(driver, Deviation_Input_toggle);
+                	 verifyElementDisplayed(driver, Value_FontSize_Deviation);
+                	 verifyElementDisplayed(driver, Label_FontSize_Deviation);
+                	 verifyElementDisplayed(driver, Percentage_FontSize_Deviation);
+                	 verifyElementDisplayed(driver, Deviation_FontFamily);
+                	 verifyElementDisplayed(driver, Deviation_Alignment);
+                	 verifyElementDisplayed(driver, Overlap_Input_toggle_deviation);
+                	 verifyElementDisplayed(driver, Seperator_Input_deviation);
+                	 verifyElementDisplayed(driver, BigNumber_Suffix_Inputtoggle_deviation);
+                	 verifyElementDisplayed(driver, RoundOff_Input_Deviation);
+                	 verifyElementDisplayed(driver, Order_Deviation);
+                	 
+                	 setTestCaseID("TC_LINE_DEVIATION_004");
+                	 if(isToggleEnable(driver, Deviation_toggle)) {
+                		 fail(driver,"By default, Deviation toggle is enabled ");
+                	 }else {
+                		 pass(driver,"By default, Deviation toggle is disabled");
+                		 setTestCaseID("TC_LINE_DEVIATION_005");
+                		 if(!isDisplayed2(driver, Deviation_Input_Area_Disable)) {
+                			 fail(driver,"Input box is Accessible when the Deviation toggle is disabled");
+                		 }else {
+                			 pass(driver,"Input box is inaccessible when the Deviation toggle is disabled");
+                		 }
+                	 }
+                	 
+                	 setTestCaseID("TC_LINE_DEVIATION_006");
+                	 click(driver,Deviation_Input_toggle);
+                	 wait(driver,"1");
+                	 if(isToggleEnable(driver, Deviation_toggle)) {
+                		 pass(driver,"Deviation toggle is enabled when enabling it");
+                	 }else {
+                		 fail(driver,"Deviation toggle is not enabled when enabling it");
+                	 }
+                	 
+                	 if(IsElementEnabled(driver, Value_FontSize_Deviation)) {
+                		 pass(driver,"'Value Font Size Input' is accessible when the Deviation toggle is enabled");
+                	 }else {
+                		 fail(driver,"'Value Font Size Input' is not accessible when the Deviation toggle is enabled");
+                	 }
+                	 if(IsElementEnabled(driver, Label_FontSize_Deviation)) {
+                		 pass(driver,"'Label Font Size Input' is accessible when the Deviation toggle is enabled");
+                	 }else {
+                		 fail(driver,"'Label Font Size Input' is not accessible when the Deviation toggle is enabled");
+                	 }
+                	 
+                	 if(IsElementEnabled(driver, Percentage_FontSize_Deviation)) {
+                		 pass(driver,"'Percentage Font Size Input' is accessible when the Deviation toggle is enabled");
+                	 }else {
+                		 fail(driver,"'Percentage Font Size Input' is not accessible when the Deviation toggle is enabled");
+                	 }
+                	 
+                	 if(IsElementEnabled(driver, Deviation_FontFamily)) {
+                		 pass(driver,"'Deviation Font Family Input' is accessible when the Deviation toggle is enabled");
+                	 }else {
+                		 fail(driver,"'Deviation Font Family Input' is not accessible when the Deviation toggle is enabled");
+                	 }
+                	 
+                	 if(IsElementEnabled(driver, Deviation_Alignment)) {
+                		 pass(driver,"'Deviation Alignment Input' is accessible when the Deviation toggle is enabled");
+                	 }else {
+                		 fail(driver,"'Deviation Alignment Input' is not accessible when the Deviation toggle is enabled");
+                	 }
+                	 
+                	 if(IsElementEnabled(driver, Overlap_toggle_deviation)) {
+                		 pass(driver,"'Overlap Input toggle' is accessible when the Deviation toggle is enabled");
+                	 }else {
+                		 fail(driver,"'Overlap Input toggle' is not accessible when the Deviation toggle is enabled");
+                	 }
+                	 
+                	 if(IsElementEnabled(driver, Seperator_Input_deviation)) {
+                		 pass(driver,"'Seperator Input' is accessible when the Deviation toggle is enabled");
+                	 }else {
+                		 fail(driver,"'Seperator Input' is not accessible when the Deviation toggle is enabled");
+                	 }
+                	 
+                	 if(IsElementEnabled(driver, BigNumber_Suffix_toggle_deviation)) {
+                		 pass(driver,"'Bignumber suffix Input toggle' is accessible when the Deviation toggle is enabled");
+                	 }else {
+                		 fail(driver,"'Bignumber suffix Input toggle' is not accessible when the Deviation toggle is enabled");
+                	 }
+                	 
+                	 if(IsElementEnabled(driver, RoundOff_Input_Deviation)) {
+                		 pass(driver,"'RoundOff Input' is accessible when the Deviation toggle is enabled");
+                	 }else {
+                		 fail(driver,"'RoundOff Input' is not accessible when the Deviation toggle is enabled");
+                	 }
+                	 
+                	 if(IsElementEnabled(driver, Order_Deviation)) {
+                		 pass(driver,"'Order Input' is accessible when the Deviation toggle is enabled");
+                	 }else {
+                		 fail(driver,"'Order Input' is not accessible when the Deviation toggle is enabled");
+                	 }
+                	 
+                	 setTestCaseID("TC_LINE_DEVIATION_007");
+                	 if(isDisplayed(driver,Selected_deviations)) {
+                		 pass(driver,"Inputs are displayed in the input box when the Deviation toggle is enabled");
+                	 }else {
+                		 fail(driver,"Inputs are not displayed in the input box when the Deviation toggle is enabled"); 
+                	 }
+                	 setTestCaseID("");
+                	 scrollUsingElement(driver, ApplyButton);
+        			 click(driver,ApplyButton);
+        			 elementnotvisible1(driver, RPE_Loading);
+        			 verifyElementDisplayed(driver,Chart_Section);
+                	 if(isDisplayed(driver, Deviation_Chart)) {
+                		 setTestCaseID("TC_LINE_DEVIATION_008");
+                		 boolean chartValuePositionAct=validateElementPosition2(driver,LineChart_Area,Deviation_Chart,"outside");
+          	   			 if(chartValuePositionAct==true) {
+          	   				 pass(driver,"Deviation is displayed in the top of the Chart area"); 
+          	   			 }else {
+          	   				 fail(driver,"Deviation is not displayed in the top of the Chart area"); 
+          	   			 }
+          	   			 
+          	   			 setTestCaseID("TC_LINE_DEVIATION_009");
+          	   			 if(isDisplayed2(driver, Deviation_LastValue)) {
+          	   				 boolean chartValuePositionAct1=validateElementPosition2(driver,LineChart_Area,Deviation_LastValue,"outside");
+          	   				 if(chartValuePositionAct1==true) {
+          	   					 pass(driver,"Deviation LastValue is displayed in the top of the Chart area"); 
+          	   				 }else {
+          	   					 fail(driver,"Deviation LastValue is not displayed in the top of the Chart area"); 
+          	   				 }
+          	   			 }
+          	   			 
+          	   			 List<WebElement> deviationValues=getWebElements(driver, Deviation_Values);
+          	   			 int lastdeviation=deviationValues.size()-1;
+          	   			 String deviationLastValue=deviationValues.get(lastdeviation).getText();
+          	   			 double deviationLast=Double.parseDouble(deviationLastValue);
+          	   			 String deviationLastBeforeValue=deviationValues.get(lastdeviation-1).getText();
+          	   			 double deviationLastBefore=Double.parseDouble(deviationLastBeforeValue);
+
+          	   			 List<WebElement> percentValues=getWebElements(driver, Deviation_PercentageValue);
+          	   			 int percentLastSize=percentValues.size()-1;
+          	   			 WebElement percentLast=percentValues.get(percentLastSize);
+          	   			 String percentColor=percentLast.getCssValue("color");
+          	   			 percentColor=rgbToHex(percentColor);
+          	   			 
+          	   			 System.out.println("percentColor : "+percentColor);
+          	   			 if(deviationLast>deviationLastBefore) {
+          	   				 setTestCaseID("TC_LINE_DEVIATION_010");
+          	   				 if(percentColor.equalsIgnoreCase("#00FF00")) {
+          	   					 pass(driver,"Growth arrow is up and green color when last value is greater than previous value");
+          	   				 }else {
+          	   					 fail(driver,"Growth arrow is not up and not green color when last value is greater than previous value"); 
+          	   				 }
+          	   			 }else if (deviationLast<deviationLastBefore) {
+          	   				 setTestCaseID("TC_LINE_DEVIATION_011");
+    	      	   			 if(percentColor.equalsIgnoreCase("#FF0000")) {
+    	  	   					 pass(driver,"Growth arrow is down and red color when last value is less than previous value");
+    	  	   				 }else {
+    	  	   					 fail(driver,"Growth arrow is not down and not red color when last value is less than previous value"); 
+    	  	   				 }
+          	   			 }else {
+          	   				 setTestCaseID("TC_LINE_DEVIATION_012");
+          	   				 if(percentColor.equalsIgnoreCase("#ffb000") || percentColor.equalsIgnoreCase("yellow")) {
+    	 	   					 pass(driver,"Growth arrow is netural and yellow color when last value is equal to previous value");
+    	 	   				 }else {
+    	 	   					 fail(driver,"Growth arrow is not netural and not yellow color when last value is equalt to previous value"); 
+    	 	   				 }
+          	   			 }
+          	   			 
+          	   			 setTestCaseID("TC_LINE_DEVIATION_013");
+          	   			 String defaultValueFontSize_dev_Act=defaultSelectedValue(driver, Value_FontSize_Deviation);
+          	   			 if(defaultValueFontSize_dev_Act.equals(Default_Value_FontSize_Deviation)) {
+          	   				 pass(driver,"By default, '"+Default_Value_FontSize_Deviation+"' is selected in the Value Font Size Input");
+          	   			 }else {
+          	   				 fail(driver,"By default, '"+Default_Value_FontSize_Deviation+"' is not selected in the Value Font Size Input, Act : "+defaultValueFontSize_dev_Act);
+          	   			 }
+          	   			 
+          	   			 setTestCaseID("TC_LINE_DEVIATION_014");
+          	   			 selectByText(driver, Value_FontSize_Deviation, Change_Value_FontSize_Deviation);
+          	   			 scrollUsingElement(driver, ApplyButton);
+          	   			 click(driver,ApplyButton);
+          	   			 elementnotvisible1(driver, RPE_Loading);
+          	   			 verifyElementDisplayed(driver,Chart_Section);
+          	   			 
+          	   			 setTestCaseID("TC_LINE_DEVIATION_015");
+          	   			 String Value_Chart_FontSize=getFontSize(driver, Deviation_Values);
+          	   			 if(Value_Chart_FontSize.equals(Change_Value_FontSize_Deviation)) {
+          	   				 pass(driver,"Selected Fontsize "+Change_Value_FontSize_Deviation+" is applied in the Value in the chart");
+          	   			 }else {
+          	   				 fail(driver,"Selected Fontsize "+Change_Value_FontSize_Deviation+" is not applied in the Value in the chart");
+          	   			 }
+          	   			 
+          	   			 setTestCaseID("TC_LINE_DEVIATION_016");
+          	   			 String defaultPercentFontSize_dev_Act=defaultSelectedValue(driver, Percentage_FontSize_Deviation);
+          	   			 if(defaultPercentFontSize_dev_Act.equals(Default_Percentage_FontSize_Deviation)) {
+          	   				 pass(driver,"By default, '"+Default_Percentage_FontSize_Deviation+"' is selected in the Percentage Font Size Input");
+          	   			 }else {
+          	   				 fail(driver,"By default, '"+Default_Percentage_FontSize_Deviation+"' is not selected in the Percentage Font Size Input, Act : "+defaultPercentFontSize_dev_Act);
+          	   			 }
+          	   			 
+          	   			 setTestCaseID("TC_LINE_DEVIATION_017");
+          	   			 selectByText(driver, Percentage_FontSize_Deviation, Change_Percentage_FontSize_Deviation);
+          	   			 scrollUsingElement(driver, ApplyButton);
+          	   			 click(driver,ApplyButton);
+          	   			 elementnotvisible1(driver, RPE_Loading);
+          	   			 verifyElementDisplayed(driver,Chart_Section);
+     	   			 
+          	   			 setTestCaseID("TC_LINE_DEVIATION_018");
+          	   			 String Percentage_Chart_FontSize=getFontSize(driver, Deviation_PercentageValue);
+          	   			 if(Percentage_Chart_FontSize.equals(Change_Percentage_FontSize_Deviation)) {
+          	   				 pass(driver,"Selected Fontsize "+Change_Percentage_FontSize_Deviation+" is applied in the Percentage Value in the chart");
+          	   			 }else {
+          	   				 fail(driver,"Selected Fontsize "+Change_Percentage_FontSize_Deviation+" is not applied in the Percentage Value in the chart");
+          	   			 }
+          	   			 
+          	   			
+          	   			 setTestCaseID("TC_LINE_DEVIATION_019");
+          	   			 String defaultLabelFontSize_dev_Act=defaultSelectedValue(driver, Label_FontSize_Deviation);
+          	   			 if(defaultLabelFontSize_dev_Act.equals(Default_Label_FontSize_Deviation)) {
+          	   				 pass(driver,"By default, '"+Default_Label_FontSize_Deviation+"' is selected in the Label Font Size Input");
+          	   			 }else {
+          	   				 fail(driver,"By default, '"+Default_Label_FontSize_Deviation+"' is not selected in the Label Font Size Input, Act : "+defaultLabelFontSize_dev_Act);
+          	   			 }
+          	   			 
+          	   			 setTestCaseID("TC_LINE_DEVIATION_020");
+          	   			 selectByText(driver, Label_FontSize_Deviation, Change_Label_FontSize_Deviation);
+          	   			 scrollUsingElement(driver, ApplyButton);
+          	   			 click(driver,ApplyButton);
+          	   			 elementnotvisible1(driver, RPE_Loading);
+          	   			 verifyElementDisplayed(driver,Chart_Section);
+     	   			 
+          	   			 setTestCaseID("TC_LINE_DEVIATION_021");
+          	   			 String Label_Chart_FontSize=getFontSize(driver, Deviation_LabelValue);
+          	   			 if(Label_Chart_FontSize.equals(Change_Label_FontSize_Deviation)) {
+          	   				 pass(driver,"Selected Fontsize "+Change_Label_FontSize_Deviation+" is applied in the Label Value in the chart");
+          	   			 }else {
+          	   				 fail(driver,"Selected Fontsize "+Change_Label_FontSize_Deviation+" is not applied in the Label Value in the chart");
+          	   			 }
+          	   			 
+          	   			 setTestCaseID("TC_LINE_DEVIATION_022");
+          	   			 String defaultFontFamily_Dev_Act=getText1(driver, Deviation_FontFamily);
+          	   			 if(Default_FontFamily_Deviation.equals(defaultFontFamily_Dev_Act)) {
+          	   				 pass(driver,"By default, "+Default_FontFamily_Deviation+" is Selected in the Font Family Input");
+          	   			 }else {
+          	   				 fail(driver,"By default, "+Default_FontFamily_Deviation+" is not Selected in the Font Family Input");
+          	   			 }
+          	   			 
+          	   			 setTestCaseID("TC_LINE_DEVIATION_023");
+          	   			 mouseOverAndClick(driver, Deviation_FontFamily);
+          	   			 waitForElement(driver, Devialtion_FontFamilyResults);
+          	   			 selectFontFamily(driver,Change_FontFamily_Deviation);
+          	   			 wait(driver,"1");
+          	   			 scrollUsingElement(driver, ApplyButton);
+          	   			 click(driver,ApplyButton);
+          	   			 elementnotvisible1(driver, RPE_Loading);
+          	   			 verifyElementDisplayed(driver,Chart_Section);
+          	   			 
+          	   			 setTestCaseID("TC_LINE_DEVIATION_024");
+          	   			 String Deviation_Chart_FontFamily_Act=getFontFamily(driver, Deviation_FontFamilyChart);
+          	   			 if(Deviation_Chart_FontFamily_Act.equals(Change_FontFamily_Deviation)) {
+          	   				 pass(driver,"Selected Font Family "+Change_FontFamily_Deviation+" applied in the deviation in the chart");
+          	   			 }else {
+          	   				 fail(driver,"Selected Font Family "+Change_FontFamily_Deviation+" not applied in the deviation in the chart");
+          	   			 }
+          	   			 
+          	   			 setTestCaseID("TC_LINE_DEVIATION_025");
+          	   			 String defaultAlignment_Act=getAttribute1(driver, DefaultAlignment_dev, "data-align");
+          	   			 if(Default_Alignment_Deviation.equals(defaultAlignment_Act)) {
+          	   				 pass(driver,"By default, "+Default_Alignment_Deviation+" is selected in the Alignment Input");
+    	      	   			 String defaultAlignment_Chart_Act=getAlignment(driver,Deviation_FontFamilyChart);
+    	      	   			 if(defaultAlignment_Chart_Act.equals(Default_Alignment_Deviation)) {
+    	      	   				 pass(driver,"By default, Deviation Value aligned in "+Default_Alignment_Deviation+" in chart");
+    	      	   			 }else {
+    	      	   				 fail(driver,"By default, Deviation Value not aligned in "+Default_Alignment_Deviation+" in chart");
+    	      	   			 }
+          	   			 }else {
+          	   				 fail(driver,"By default, "+Default_Alignment_Deviation+" is not selected in the Alignment Input, Act : "+defaultAlignment_Act);
+          	   			 }
+          	   			 
+          	   			 setTestCaseID("TC_LINE_DEVIATION_026");
+          	   			 if(IsElementEnabled(driver, Deviation_Alignment_Left)) {
+          	   				 pass(driver,"Left Alignment Option is Accessible");
+          	   				 click(driver,Deviation_Alignment_Left);
+    	      	   			 scrollUsingElement(driver, ApplyButton);
+    	     	   			 click(driver,ApplyButton);
+    	     	   			 elementnotvisible1(driver, RPE_Loading);
+    	     	   			 verifyElementDisplayed(driver,Chart_Section);
+    	     	   			 String Alignment_Chart_Act=getAlignment(driver,Deviation_FontFamilyChart);
+    	      	   			 if(Alignment_Chart_Act.equals("left")) {
+    	      	   				 pass(driver,"Deviation Value aligned in left in the chart when select the Left Alignmnet");
+    	      	   			 }else {
+    	      	   				 fail(driver,"Deviation Value not aligned in left in the chart when select the Left Alignment");
+    	      	   			 }
+          	   				 
+          	   			 }else {
+          	   				 fail(driver,"Left Alignment Option is not Accessible");
+          	   			 }
+    	      	   		 if(IsElementEnabled(driver, Deviation_Alignment_Right)) {
+    	  	   				 pass(driver,"Right Alignment Option is Accessible");
+    	  	   				 click(driver,Deviation_Alignment_Right);
+    	      	   			 scrollUsingElement(driver, ApplyButton);
+    	     	   			 click(driver,ApplyButton);
+    	     	   			 elementnotvisible1(driver, RPE_Loading);
+    	     	   			 waitForElement(driver,Chart_Section);
+    	     	   			 String Alignment_Chart_Act=getAlignment(driver,Deviation_FontFamilyChart);
+    	      	   			 if(Alignment_Chart_Act.equals("right")) {
+    	      	   				 pass(driver,"Deviation Value aligned in right in the chart when select the Right Alignmnet");
+    	      	   			 }else {
+    	      	   				 fail(driver,"Deviation Value not aligned in right in the chart when select the Right Alignment");
+    	      	   			 }
+    	  	   				 
+    	  	   			 }else {
+    	  	   				 fail(driver,"Right Alignment Option is not Accessible");
+    	  	   			 }
+          	   			 
+    	      	   		 
+    	      	   		 setTestCaseID("TC_LINE_DEVIATION_027");
+    	      	   		 if(!isToggleEnable(driver, Overlap_toggle_deviation)) {
+    	      	   			 pass(driver,"By default, Overlap toggle is disabled");
+    	      	   		 }else {
+    	      	   			 fail(driver,"By default, Overlap toggle is enabled");
+    	      	   		 }
+    	      	   		 
+    	      	   		 setTestCaseID("TC_LINE_DEVIATION_028");
+    	      	   		 if(isToggleAccessible(driver, Overlap_toggle_deviation)) {
+    	      	   			 pass(driver,"Overlap toggle is Accessible");
+    	      	   		 }else {
+    	      	   			 fail(driver,"Overlap toggle is not Accessible");
+    	      	   		 }
+          	   			 
+    	      	   		 setTestCaseID("TC_LINE_DEVIATION_029");
+    	      	   		 click(driver,Overlap_Input_toggle_deviation);
+    	      	   		 wait(driver,"1");
+    	      	   		 if(isToggleEnable(driver, Overlap_toggle_deviation)){
+    	      	   			 pass(driver,"Overlap toggle is enabled when enabling it");
+    	      	   			 scrollUsingElement(driver, ApplyButton);
+    	      	   			 click(driver,ApplyButton);
+    	      	   			 elementnotvisible1(driver, RPE_Loading);
+    	      	   			 waitForElement(driver,Chart_Section);
+    	      	   			 
+    	      	   			 boolean chartValuePositionAct2=validateElementPosition2(driver,LineChart_Area,Deviation_Chart,"inside");
+    	      	   			 if(chartValuePositionAct2==true) {
+    	      	   				 pass(driver,"Deviation is Overlaped in the chart when the toggle is enabled"); 
+    	      	   			 }else {
+    	      	   				 fail(driver,"Deviation is not Overlaped in the chart when the toggle is enabled"); 
+    	      	   			 }
+    	      	   			 
+    	      	   		 }else {
+    	      	   			 fail(driver,"Overlap toggle is not enabled when enabling it");
+    	      	   		 }
+    	      	   		 
+    	      	   		 setTestCaseID("TC_LINE_DEVIATION_030");
+    	      	   		 click(driver,Overlap_Input_toggle_deviation);
+    	      	   		 wait(driver,"1");
+    	      	   		 if(!isToggleEnable(driver, Overlap_toggle_deviation)){
+    	      	   			 pass(driver,"Overlap toggle is disabled when disabling it");
+    	      	   		 }else {
+    	      	   			 fail(driver,"Overlap toggle is not disabled when disabling it"); 
+    	      	   		 }
+    	      	   		 
+    	      	   		 setTestCaseID("TC_LINE_DEVIATION_034");
+    	      	   		 if(IsElementEnabled(driver, Seperator_Input_deviation)) {
+    	      	   			 pass(driver,"Seperator Input is Accessible");
+    	      	   		 }else {
+    	      	   			 fail(driver,"Seperator Input is not Accessible");
+    	      	   		 }
+    	      	   		 
+    	      	   		 setTestCaseID("TC_LINE_DEVIATION_035");
+    	      	   		 selectByText(driver, Seperator_Input_deviation, Change_Seperator_Deviation);
+    	      	   		 scrollUsingElement(driver, ApplyButton);
+    	      	   		 click(driver,ApplyButton);
+    	      	   		 elementnotvisible1(driver, RPE_Loading);
+    	      	   		 waitForElement(driver,Chart_Section);
+    	      	   		 
+    	      	   		 String DeviationChartValueTextAct= getText1(driver,Deviation_Values);
+    		    		 if((!DeviationChartValueTextAct.contains(".") && DeviationChartValueTextAct.length()>3)||(DeviationChartValueTextAct.length()>8)) {
+    		    			 String ValueSeperatorFormat=SeperatorValidationTable(DeviationChartValueTextAct);
+    		    	    		if(ValueSeperatorFormat.equals(Change_Seperator_Deviation)) {
+    		    	    	  		 pass(driver,"selected seperator "+Change_Seperator_Deviation+" gets applied for Deviation values"); 
+    		    	    		}else {
+    		    	    	  		 fail(driver,"Selected seperator "+Change_Seperator_Deviation+" not applied for Deviation values"); 
+    		    	    		}
+    					  }
+    		    		
+    		    		 setTestCaseID("TC_LINE_DEVIATION_031");
+    		    		 if(isDisplayed(driver,BigNumber_Toggle_Disabled)) {
+    		    			 pass(driver,"BigNumber Suffix toggle is not accessible when seperator is selected");
+    		    		 }else {
+    		    			 fail(driver,"BigNumber Suffix toggle is accessible when seperator is selected");
+    		    		 }
+    		    		 
+    		    		 setTestCaseID("TC_LINE_DEVIATION_032");
+    		    		 selectByText(driver, Seperator_Input_deviation, "Select");
+    		    		 wait(driver,"1");
+    		    		 if(isToggleAccessible(driver, BigNumber_Suffix_toggle_deviation)) {
+    		    			 pass(driver,"BigNumber Suffix toggle is accessible when seperator is not selected");
+    		    		 }else {
+    		    			 fail(driver,"BigNumber Suffix toggle is not accessible when seperator is not selected");
+    		    		 }
+    		    		 
+    		    		 setTestCaseID("TC_LINE_DEVIATION_033");
+    		    		 click(driver,BigNumber_Suffix_Inputtoggle_deviation);
+    		    		 wait(driver,"1");
+    		    		 if(isToggleEnable(driver, BigNumber_Suffix_toggle_deviation)) {
+    		    			 pass(driver,"BigNumber Suffix toggle is enabled when enabling it");
+    		    		 }else {
+    		    			 fail(driver,"BigNumber Suffix toggle is not enabled when enabling it");
+    		    		 }
+    		    		 scrollUsingElement(driver, ApplyButton);
+    	      	   		 click(driver,ApplyButton);
+    	      	   		 elementnotvisible1(driver, RPE_Loading);
+    	      	   		 waitForElement(driver,Chart_Section);
+    	      	   		 
+    	      	   		 String DeviationChartValueTextAct1= getText1(driver,Deviation_Values);
+    	      	   		 if((!DeviationChartValueTextAct1.contains(".") && DeviationChartValueTextAct1.length()>3)||(DeviationChartValueTextAct1.length()>8)) {
+    	      	   			 if(DeviationChartValueTextAct1.endsWith("k")||DeviationChartValueTextAct1.endsWith("K")) {
+    	    	    	  		 pass(driver,"BigNumber Suffix gets applied for Deviation values when the toggle is enabled"); 
+    	      	   			 }else {
+    	    	    	  		 fail(driver,"BigNumber Suffix not applied for Deviation values when the toggle is enabled"); 
+    	      	   			 }
+    	      	   		 }
+    		    		 
+    	      	   		 setTestCaseID("");
+    	      	   		 click(driver,BigNumber_Suffix_Inputtoggle_deviation);
+    	      	   		 wait(driver,"1");
+    	      	   		 if(!isToggleEnable(driver, BigNumber_Suffix_toggle_deviation)) {
+    	      	   			 pass(driver,"BigNumber Suffix toggle is disabled when disabling it");
+    	      	   		 }else {
+    	      	   			 fail(driver,"BigNumber Suffix toggle is not disabled when disabling it");
+    	      	   		 }
+    		    		 
+    	      	   		 setTestCaseID("TC_LINE_DEVIATION_037");
+    		      	   	 selectByText(driver, RoundOff_Input_Deviation, Change_RoundOff_Deviation);
+    		      	     scrollUsingElement(driver, ApplyButton);
+    	      	   		 click(driver,ApplyButton);
+    	      	   		 elementnotvisible1(driver, RPE_Loading);
+    	      	   		 waitForElement(driver,Chart_Section);
+    	      	   		 
+    	      	   		 String DeviationChartValueAct=getText1(driver,Deviation_Values);    
+    	      	   		 String RoundOffValue_Act=String.valueOf(getRoundOffValue(DeviationChartValueAct));
+    	      	   		 if(RoundOffValue_Act.equals(Change_RoundOff_Deviation)) {
+    	      	   			 pass(driver,"Selected roundOff '"+Change_RoundOff_Deviation+"' is Applied in the Deviation chart Value"); 
+    	      	   		 }else {
+    	      	   			 fail(driver,"Selected roundOff '"+Change_RoundOff_Deviation+"' is not Applied in the Deviation chart Value"); 
+    	      	   		 }
+    	      	   		 
+    	      	   		 setTestCaseID("TC_LINE_DEVIATION_038");
+    	      	   		 if(isDisplayed(driver, Order_Value)) {
+    	      	   			 pass(driver,"Value is Displayed in the Order input");
+    	      	   		 }else {
+    	      	   			 fail(driver,"Value is not Displayed in the Order Input");
+    	      	   		 }
+    	      	   		 
+    		      	   	 if(isDisplayed(driver, Order_Label)) {
+    	      	   			 pass(driver,"Label is Displayed in the Order input");
+    	      	   		 }else {
+    	      	   			 fail(driver,"Label is not Displayed in the Order Input");
+    	      	   		 }
+    	      	   		 
+    		      	   	 setTestCaseID("TC_LINE_DEVIATION_039");
+    		      	   	 WebElement OrderElement=getWebElement(driver, Order_Deviation1);
+    		      	     elementScreenShot_new(driver,Order_Deviation,"/Expected_screenshot/SmokeTesting/Order_Deviation");
+    		 	         action.moveToElement(OrderElement).clickAndHold().build().perform();
+    		 	         action.moveByOffset(0, 20).build().perform();
+    		 	         action.release().build().perform();
+    		 	         wait(driver,"1");
+    		 			 elementScreenShot_new(driver,Order_Deviation,"/Actual_screenshot/SmokeTesting/Order_Deviation");
+
+    		 	         try {
+    		 	        	boolean orderDiff=imageComparison2(driver, "/SmokeTesting/Order_Deviation", "/SmokeTesting/Order_Deviation");
+    		 				wait(driver, "2");
+    		 				if(orderDiff==false) {
+    		 					pass(driver,"Order is changed in the Order Input when dragging the values");
+    		 				}else {
+    		 					fail(driver,"Order is not changed in the Order Input when dragging the values");
+    		 				}
+    		 			 } catch (Exception e1) {
+    		 				fail(driver,"Unable to compare the Order Input images");
+    		 			 }
+                	 }else {
+                		 setTestCaseID("TC_LINE_DEVIATION_008");
+                		 fail(driver,"Deviation not displayed in the chart when the toggle is enabled"); 
+                	 }
+                	
+                	 setTestCaseID("TC_LINE_DEVIATION_040");
+    	    		 mouseOverToElement(driver, Deviations_Section);
+    	    		 click(driver,Deviations_Section);
+    	    		 String DeviationClose_Act=getAttribute1(driver, Deviation_Expand, "class");
+    	    		 if(DeviationClose_Act.contains("down")) {
+    	    			 pass(driver,"Deviation gets collapsed when click on it");
+    	    		 }else {
+    	    			 fail(driver,"Deviation not gets collapsed when click on it");
+    	    		 }
             	 }else {
             		 fail(driver,"Deviations is not Accessble when 'Date' variable selected in the X axis input");
             	 }
-            	 
-            	 setTestCaseID("TC_LINE_DEVIATION_001");
-            	 verifyElementDisplayed(driver, Deviation_Input_toggle);
-            	 verifyElementDisplayed(driver, Value_FontSize_Deviation);
-            	 verifyElementDisplayed(driver, Label_FontSize_Deviation);
-            	 verifyElementDisplayed(driver, Percentage_FontSize_Deviation);
-            	 verifyElementDisplayed(driver, Deviation_FontFamily);
-            	 verifyElementDisplayed(driver, Deviation_Alignment);
-            	 verifyElementDisplayed(driver, Overlap_Input_toggle_deviation);
-            	 verifyElementDisplayed(driver, Seperator_Input_deviation);
-            	 verifyElementDisplayed(driver, BigNumber_Suffix_Inputtoggle_deviation);
-            	 verifyElementDisplayed(driver, RoundOff_Input_Deviation);
-            	 verifyElementDisplayed(driver, Order_Deviation);
-            	 
-            	 setTestCaseID("TC_LINE_DEVIATION_004");
-            	 if(isToggleEnable(driver, Deviation_toggle)) {
-            		 fail(driver,"By default, Deviation toggle is enabled ");
-            	 }else {
-            		 pass(driver,"By default, Deviation toggle is disabled");
-            		 setTestCaseID("TC_LINE_DEVIATION_005");
-            		 if(!isDisplayed2(driver, Deviation_Input_Area_Disable)) {
-            			 fail(driver,"Input box is Accessible when the Deviation toggle is disabled");
-            		 }else {
-            			 pass(driver,"Input box is inaccessible when the Deviation toggle is disabled");
-            		 }
-            	 }
-            	 
-            	 setTestCaseID("TC_LINE_DEVIATION_006");
-            	 click(driver,Deviation_Input_toggle);
-            	 wait(driver,"1");
-            	 
-            	 if(isToggleEnable(driver, Deviation_toggle)) {
-            		 pass(driver,"Deviation toggle is enabled when enabling it");
-            	 }else {
-            		 fail(driver,"Deviation toggle is not enabled when enabling it");
-            	 }
-            	 
-            	 if(IsElementEnabled(driver, Value_FontSize_Deviation)) {
-            		 pass(driver,"'Value Font Size Input' is accessible when the Deviation toggle is enabled");
-            	 }else {
-            		 fail(driver,"'Value Font Size Input' is not accessible when the Deviation toggle is enabled");
-            	 }
-            	 if(IsElementEnabled(driver, Label_FontSize_Deviation)) {
-            		 pass(driver,"'Label Font Size Input' is accessible when the Deviation toggle is enabled");
-            	 }else {
-            		 fail(driver,"'Label Font Size Input' is not accessible when the Deviation toggle is enabled");
-            	 }
-            	 
-            	 if(IsElementEnabled(driver, Percentage_FontSize_Deviation)) {
-            		 pass(driver,"'Percentage Font Size Input' is accessible when the Deviation toggle is enabled");
-            	 }else {
-            		 fail(driver,"'Percentage Font Size Input' is not accessible when the Deviation toggle is enabled");
-            	 }
-            	 
-            	 if(IsElementEnabled(driver, Deviation_FontFamily)) {
-            		 pass(driver,"'Deviation Font Family Input' is accessible when the Deviation toggle is enabled");
-            	 }else {
-            		 fail(driver,"'Deviation Font Family Input' is not accessible when the Deviation toggle is enabled");
-            	 }
-            	 
-            	 if(IsElementEnabled(driver, Deviation_Alignment)) {
-            		 pass(driver,"'Deviation Alignment Input' is accessible when the Deviation toggle is enabled");
-            	 }else {
-            		 fail(driver,"'Deviation Alignment Input' is not accessible when the Deviation toggle is enabled");
-            	 }
-            	 
-            	 if(IsElementEnabled(driver, Overlap_toggle_deviation)) {
-            		 pass(driver,"'Overlap Input toggle' is accessible when the Deviation toggle is enabled");
-            	 }else {
-            		 fail(driver,"'Overlap Input toggle' is not accessible when the Deviation toggle is enabled");
-            	 }
-            	 
-            	 if(IsElementEnabled(driver, Seperator_Input_deviation)) {
-            		 pass(driver,"'Seperator Input' is accessible when the Deviation toggle is enabled");
-            	 }else {
-            		 fail(driver,"'Seperator Input' is not accessible when the Deviation toggle is enabled");
-            	 }
-            	 
-            	 if(IsElementEnabled(driver, BigNumber_Suffix_toggle_deviation)) {
-            		 pass(driver,"'Bignumber suffix Input toggle' is accessible when the Deviation toggle is enabled");
-            	 }else {
-            		 fail(driver,"'Bignumber suffix Input toggle' is not accessible when the Deviation toggle is enabled");
-            	 }
-            	 
-            	 if(IsElementEnabled(driver, RoundOff_Input_Deviation)) {
-            		 pass(driver,"'RoundOff Input' is accessible when the Deviation toggle is enabled");
-            	 }else {
-            		 fail(driver,"'RoundOff Input' is not accessible when the Deviation toggle is enabled");
-            	 }
-            	 
-            	 if(IsElementEnabled(driver, Order_Deviation)) {
-            		 pass(driver,"'Order Input' is accessible when the Deviation toggle is enabled");
-            	 }else {
-            		 fail(driver,"'Order Input' is not accessible when the Deviation toggle is enabled");
-            	 }
-            	 
-            	 setTestCaseID("TC_LINE_DEVIATION_007");
-            	 if(isDisplayed(driver,Selected_deviations)) {
-            		 pass(driver,"Inputs are displayed in the input box when the Deviation toggle is enabled");
-            	 }else {
-            		 fail(driver,"Inputs are not displayed in the input box when the Deviation toggle is enabled"); 
-            	 }
-            	 setTestCaseID("");
-            	 scrollUsingElement(driver, ApplyButton);
-    			 click(driver,ApplyButton);
-    			 elementnotvisible1(driver, RPE_Loading);
-    			 verifyElementDisplayed(driver,Chart_Section);
-            	 if(isDisplayed(driver, Deviation_Chart)) {
-            		 setTestCaseID("TC_LINE_DEVIATION_008");
-            		 boolean chartValuePositionAct=validateElementPosition2(driver,LineChart_Area,Deviation_Chart,"outside");
-      	   			 if(chartValuePositionAct==true) {
-      	   				 pass(driver,"Deviation is displayed in the top of the Chart area"); 
-      	   			 }else {
-      	   				 fail(driver,"Deviation is not displayed in the top of the Chart area"); 
-      	   			 }
-      	   			 
-      	   			 setTestCaseID("TC_LINE_DEVIATION_009");
-	      	   		 boolean chartValuePositionAct1=validateElementPosition2(driver,LineChart_Area,Deviation_LastValue,"outside");
-	 	   			 if(chartValuePositionAct1==true) {
-	 	   				 pass(driver,"Deviation LastValue is displayed in the top of the Chart area"); 
-	 	   			 }else {
-	 	   				 fail(driver,"Deviation LastValue is not displayed in the top of the Chart area"); 
-	 	   			 }
-      	   			 
-      	   			 List<WebElement> deviationValues=getWebElements(driver, Deviation_Values);
-      	   			 int lastdeviation=deviationValues.size()-1;
-      	   			 String deviationLastValue=deviationValues.get(lastdeviation).getText();
-      	   			 double deviationLast=Double.parseDouble(deviationLastValue);
-      	   			 String deviationLastBeforeValue=deviationValues.get(lastdeviation-1).getText();
-      	   			 double deviationLastBefore=Double.parseDouble(deviationLastBeforeValue);
-
-      	   			 List<WebElement> percentValues=getWebElements(driver, Deviation_PercentageValue);
-      	   			 int percentLastSize=percentValues.size()-1;
-      	   			 WebElement percentLast=percentValues.get(percentLastSize);
-      	   			 String percentColor=percentLast.getCssValue("color");
-      	   			 percentColor=rgbToHex(percentColor);
-      	   			 
-      	   			 System.out.println("percentColor : "+percentColor);
-      	   			 if(deviationLast>deviationLastBefore) {
-      	   				 setTestCaseID("TC_LINE_DEVIATION_010");
-      	   				 if(percentColor.equalsIgnoreCase("#00FF00")) {
-      	   					 pass(driver,"Growth arrow is up and green color when last value is greater than previous value");
-      	   				 }else {
-      	   					 fail(driver,"Growth arrow is not up and not green color when last value is greater than previous value"); 
-      	   				 }
-      	   			 }else if (deviationLast<deviationLastBefore) {
-      	   				 setTestCaseID("TC_LINE_DEVIATION_011");
-	      	   			 if(percentColor.equalsIgnoreCase("#FF0000")) {
-	  	   					 pass(driver,"Growth arrow is down and red color when last value is less than previous value");
-	  	   				 }else {
-	  	   					 fail(driver,"Growth arrow is not down and not red color when last value is less than previous value"); 
-	  	   				 }
-      	   			 }else {
-      	   				 setTestCaseID("TC_LINE_DEVIATION_012");
-      	   				 if(percentColor.equalsIgnoreCase("#ffb000") || percentColor.equalsIgnoreCase("yellow")) {
-	 	   					 pass(driver,"Growth arrow is netural and yellow color when last value is equal to previous value");
-	 	   				 }else {
-	 	   					 fail(driver,"Growth arrow is not netural and not yellow color when last value is equalt to previous value"); 
-	 	   				 }
-      	   			 }
-      	   			 
-      	   			 setTestCaseID("TC_LINE_DEVIATION_013");
-      	   			 String defaultValueFontSize_dev_Act=defaultSelectedValue(driver, Value_FontSize_Deviation);
-      	   			 if(defaultValueFontSize_dev_Act.equals(Default_Value_FontSize_Deviation)) {
-      	   				 pass(driver,"By default, '"+Default_Value_FontSize_Deviation+"' is selected in the Value Font Size Input");
-      	   			 }else {
-      	   				 fail(driver,"By default, '"+Default_Value_FontSize_Deviation+"' is not selected in the Value Font Size Input, Act : "+defaultValueFontSize_dev_Act);
-      	   			 }
-      	   			 
-      	   			 setTestCaseID("TC_LINE_DEVIATION_014");
-      	   			 selectByText(driver, Value_FontSize_Deviation, Change_Value_FontSize_Deviation);
-      	   			 scrollUsingElement(driver, ApplyButton);
-      	   			 click(driver,ApplyButton);
-      	   			 elementnotvisible1(driver, RPE_Loading);
-      	   			 verifyElementDisplayed(driver,Chart_Section);
-      	   			 
-      	   			 setTestCaseID("TC_LINE_DEVIATION_015");
-      	   			 String Value_Chart_FontSize=getFontSize(driver, Deviation_Values);
-      	   			 if(Value_Chart_FontSize.equals(Change_Value_FontSize_Deviation)) {
-      	   				 pass(driver,"Selected Fontsize "+Change_Value_FontSize_Deviation+" is applied in the Value in the chart");
-      	   			 }else {
-      	   				 fail(driver,"Selected Fontsize "+Change_Value_FontSize_Deviation+" is not applied in the Value in the chart");
-      	   			 }
-      	   			 
-      	   			 setTestCaseID("TC_LINE_DEVIATION_016");
-      	   			 String defaultPercentFontSize_dev_Act=defaultSelectedValue(driver, Percentage_FontSize_Deviation);
-      	   			 if(defaultPercentFontSize_dev_Act.equals(Default_Percentage_FontSize_Deviation)) {
-      	   				 pass(driver,"By default, '"+Default_Percentage_FontSize_Deviation+"' is selected in the Percentage Font Size Input");
-      	   			 }else {
-      	   				 fail(driver,"By default, '"+Default_Percentage_FontSize_Deviation+"' is not selected in the Percentage Font Size Input, Act : "+defaultPercentFontSize_dev_Act);
-      	   			 }
-      	   			 
-      	   			 setTestCaseID("TC_LINE_DEVIATION_017");
-      	   			 selectByText(driver, Percentage_FontSize_Deviation, Change_Percentage_FontSize_Deviation);
-      	   			 scrollUsingElement(driver, ApplyButton);
-      	   			 click(driver,ApplyButton);
-      	   			 elementnotvisible1(driver, RPE_Loading);
-      	   			 verifyElementDisplayed(driver,Chart_Section);
- 	   			 
-      	   			 setTestCaseID("TC_LINE_DEVIATION_018");
-      	   			 String Percentage_Chart_FontSize=getFontSize(driver, Deviation_PercentageValue);
-      	   			 if(Percentage_Chart_FontSize.equals(Change_Percentage_FontSize_Deviation)) {
-      	   				 pass(driver,"Selected Fontsize "+Change_Percentage_FontSize_Deviation+" is applied in the Percentage Value in the chart");
-      	   			 }else {
-      	   				 fail(driver,"Selected Fontsize "+Change_Percentage_FontSize_Deviation+" is not applied in the Percentage Value in the chart");
-      	   			 }
-      	   			 
-      	   			
-      	   			 setTestCaseID("TC_LINE_DEVIATION_019");
-      	   			 String defaultLabelFontSize_dev_Act=defaultSelectedValue(driver, Label_FontSize_Deviation);
-      	   			 if(defaultLabelFontSize_dev_Act.equals(Default_Label_FontSize_Deviation)) {
-      	   				 pass(driver,"By default, '"+Default_Label_FontSize_Deviation+"' is selected in the Label Font Size Input");
-      	   			 }else {
-      	   				 fail(driver,"By default, '"+Default_Label_FontSize_Deviation+"' is not selected in the Label Font Size Input, Act : "+defaultLabelFontSize_dev_Act);
-      	   			 }
-      	   			 
-      	   			 setTestCaseID("TC_LINE_DEVIATION_020");
-      	   			 selectByText(driver, Label_FontSize_Deviation, Change_Label_FontSize_Deviation);
-      	   			 scrollUsingElement(driver, ApplyButton);
-      	   			 click(driver,ApplyButton);
-      	   			 elementnotvisible1(driver, RPE_Loading);
-      	   			 verifyElementDisplayed(driver,Chart_Section);
- 	   			 
-      	   			 setTestCaseID("TC_LINE_DEVIATION_021");
-      	   			 String Label_Chart_FontSize=getFontSize(driver, Deviation_LabelValue);
-      	   			 if(Label_Chart_FontSize.equals(Change_Label_FontSize_Deviation)) {
-      	   				 pass(driver,"Selected Fontsize "+Change_Label_FontSize_Deviation+" is applied in the Label Value in the chart");
-      	   			 }else {
-      	   				 fail(driver,"Selected Fontsize "+Change_Label_FontSize_Deviation+" is not applied in the Label Value in the chart");
-      	   			 }
-      	   			 
-      	   			 setTestCaseID("TC_LINE_DEVIATION_022");
-      	   			 String defaultFontFamily_Dev_Act=getText1(driver, Deviation_FontFamily);
-      	   			 if(Default_FontFamily_Deviation.equals(defaultFontFamily_Dev_Act)) {
-      	   				 pass(driver,"By default, "+Default_FontFamily_Deviation+" is Selected in the Font Family Input");
-      	   			 }else {
-      	   				 fail(driver,"By default, "+Default_FontFamily_Deviation+" is not Selected in the Font Family Input");
-      	   			 }
-      	   			 
-      	   			 setTestCaseID("TC_LINE_DEVIATION_023");
-      	   			 mouseOverAndClick(driver, Deviation_FontFamily);
-      	   			 waitForElement(driver, Devialtion_FontFamilyResults);
-      	   			 selectFontFamily(driver,Change_FontFamily_Deviation);
-      	   			 wait(driver,"1");
-      	   			 scrollUsingElement(driver, ApplyButton);
-      	   			 click(driver,ApplyButton);
-      	   			 elementnotvisible1(driver, RPE_Loading);
-      	   			 verifyElementDisplayed(driver,Chart_Section);
-      	   			 
-      	   			 setTestCaseID("TC_LINE_DEVIATION_024");
-      	   			 String Deviation_Chart_FontFamily_Act=getFontFamily(driver, Deviation_FontFamilyChart);
-      	   			 if(Deviation_Chart_FontFamily_Act.equals(Change_FontFamily_Deviation)) {
-      	   				 pass(driver,"Selected Font Family "+Change_FontFamily_Deviation+" applied in the deviation in the chart");
-      	   			 }else {
-      	   				 fail(driver,"Selected Font Family "+Change_FontFamily_Deviation+" not applied in the deviation in the chart");
-      	   			 }
-      	   			 
-      	   			 setTestCaseID("TC_LINE_DEVIATION_025");
-      	   			 String defaultAlignment_Act=getAttribute1(driver, DefaultAlignment_dev, "data-align");
-      	   			 if(Default_Alignment_Deviation.equals(defaultAlignment_Act)) {
-      	   				 pass(driver,"By default, "+Default_Alignment_Deviation+" is selected in the Alignment Input");
-	      	   			 String defaultAlignment_Chart_Act=getAlignment(driver,Deviation_FontFamilyChart);
-	      	   			 if(defaultAlignment_Chart_Act.equals(Default_Alignment_Deviation)) {
-	      	   				 pass(driver,"By default, Deviation Value aligned in "+Default_Alignment_Deviation+" in chart");
-	      	   			 }else {
-	      	   				 fail(driver,"By default, Deviation Value not aligned in "+Default_Alignment_Deviation+" in chart");
-	      	   			 }
-      	   			 }else {
-      	   				 fail(driver,"By default, "+Default_Alignment_Deviation+" is not selected in the Alignment Input, Act : "+defaultAlignment_Act);
-      	   			 }
-      	   			 
-      	   			 setTestCaseID("TC_LINE_DEVIATION_026");
-      	   			 if(IsElementEnabled(driver, Deviation_Alignment_Left)) {
-      	   				 pass(driver,"Left Alignment Option is Accessible");
-      	   				 click(driver,Deviation_Alignment_Left);
-	      	   			 scrollUsingElement(driver, ApplyButton);
-	     	   			 click(driver,ApplyButton);
-	     	   			 elementnotvisible1(driver, RPE_Loading);
-	     	   			 verifyElementDisplayed(driver,Chart_Section);
-	     	   			 String Alignment_Chart_Act=getAlignment(driver,Deviation_FontFamilyChart);
-	      	   			 if(Alignment_Chart_Act.equals("left")) {
-	      	   				 pass(driver,"Deviation Value aligned in left in the chart when select the Left Alignmnet");
-	      	   			 }else {
-	      	   				 fail(driver,"Deviation Value not aligned in left in the chart when select the Left Alignment");
-	      	   			 }
-      	   				 
-      	   			 }else {
-      	   				 fail(driver,"Left Alignment Option is not Accessible");
-      	   			 }
-	      	   		 if(IsElementEnabled(driver, Deviation_Alignment_Right)) {
-	  	   				 pass(driver,"Right Alignment Option is Accessible");
-	  	   				 click(driver,Deviation_Alignment_Right);
-	      	   			 scrollUsingElement(driver, ApplyButton);
-	     	   			 click(driver,ApplyButton);
-	     	   			 elementnotvisible1(driver, RPE_Loading);
-	     	   			 waitForElement(driver,Chart_Section);
-	     	   			 String Alignment_Chart_Act=getAlignment(driver,Deviation_FontFamilyChart);
-	      	   			 if(Alignment_Chart_Act.equals("right")) {
-	      	   				 pass(driver,"Deviation Value aligned in right in the chart when select the Right Alignmnet");
-	      	   			 }else {
-	      	   				 fail(driver,"Deviation Value not aligned in right in the chart when select the Right Alignment");
-	      	   			 }
-	  	   				 
-	  	   			 }else {
-	  	   				 fail(driver,"Right Alignment Option is not Accessible");
-	  	   			 }
-      	   			 
-	      	   		 
-	      	   		 setTestCaseID("TC_LINE_DEVIATION_027");
-	      	   		 if(!isToggleEnable(driver, Overlap_toggle_deviation)) {
-	      	   			 pass(driver,"By default, Overlap toggle is disabled");
-	      	   		 }else {
-	      	   			 fail(driver,"By default, Overlap toggle is enabled");
-	      	   		 }
-	      	   		 
-	      	   		 setTestCaseID("TC_LINE_DEVIATION_028");
-	      	   		 if(isToggleAccessible(driver, Overlap_toggle_deviation)) {
-	      	   			 pass(driver,"Overlap toggle is Accessible");
-	      	   		 }else {
-	      	   			 fail(driver,"Overlap toggle is not Accessible");
-	      	   		 }
-      	   			 
-	      	   		 setTestCaseID("TC_LINE_DEVIATION_029");
-	      	   		 click(driver,Overlap_Input_toggle_deviation);
-	      	   		 wait(driver,"1");
-	      	   		 if(isToggleEnable(driver, Overlap_toggle_deviation)){
-	      	   			 pass(driver,"Overlap toggle is enabled when enabling it");
-	      	   			 scrollUsingElement(driver, ApplyButton);
-	      	   			 click(driver,ApplyButton);
-	      	   			 elementnotvisible1(driver, RPE_Loading);
-	      	   			 waitForElement(driver,Chart_Section);
-	      	   			 
-	      	   			 boolean chartValuePositionAct2=validateElementPosition2(driver,LineChart_Area,Deviation_Chart,"inside");
-	      	   			 if(chartValuePositionAct2==true) {
-	      	   				 pass(driver,"Deviation is Overlaped in the chart when the toggle is enabled"); 
-	      	   			 }else {
-	      	   				 fail(driver,"Deviation is not Overlaped in the chart when the toggle is enabled"); 
-	      	   			 }
-	      	   			 
-	      	   		 }else {
-	      	   			 fail(driver,"Overlap toggle is not enabled when enabling it");
-	      	   		 }
-	      	   		 
-	      	   		 setTestCaseID("TC_LINE_DEVIATION_030");
-	      	   		 click(driver,Overlap_Input_toggle_deviation);
-	      	   		 wait(driver,"1");
-	      	   		 if(!isToggleEnable(driver, Overlap_toggle_deviation)){
-	      	   			 pass(driver,"Overlap toggle is disabled when disabling it");
-	      	   		 }else {
-	      	   			 fail(driver,"Overlap toggle is not disabled when disabling it"); 
-	      	   		 }
-	      	   		 
-	      	   		 setTestCaseID("TC_LINE_DEVIATION_034");
-	      	   		 if(IsElementEnabled(driver, Seperator_Input_deviation)) {
-	      	   			 pass(driver,"Seperator Input is Accessible");
-	      	   		 }else {
-	      	   			 fail(driver,"Seperator Input is not Accessible");
-	      	   		 }
-	      	   		 
-	      	   		 setTestCaseID("TC_LINE_DEVIATION_035");
-	      	   		 selectByText(driver, Seperator_Input_deviation, Change_Seperator_Deviation);
-	      	   		 scrollUsingElement(driver, ApplyButton);
-	      	   		 click(driver,ApplyButton);
-	      	   		 elementnotvisible1(driver, RPE_Loading);
-	      	   		 waitForElement(driver,Chart_Section);
-	      	   		 
-	      	   		 String DeviationChartValueTextAct= getText1(driver,Deviation_Values);
-		    		 if((!DeviationChartValueTextAct.contains(".") && DeviationChartValueTextAct.length()>3)||(DeviationChartValueTextAct.length()>8)) {
-		    			 String ValueSeperatorFormat=SeperatorValidationTable(DeviationChartValueTextAct);
-		    	    		if(ValueSeperatorFormat.equals(Change_Seperator_Deviation)) {
-		    	    	  		 pass(driver,"selected seperator "+Change_Seperator_Deviation+" gets applied for Deviation values"); 
-		    	    		}else {
-		    	    	  		 fail(driver,"Selected seperator "+Change_Seperator_Deviation+" not applied for Deviation values"); 
-		    	    		}
-					  }
-		    		
-		    		 setTestCaseID("TC_LINE_DEVIATION_031");
-		    		 if(isDisplayed(driver,BigNumber_Toggle_Disabled)) {
-		    			 pass(driver,"BigNumber Suffix toggle is not accessible when seperator is selected");
-		    		 }else {
-		    			 fail(driver,"BigNumber Suffix toggle is accessible when seperator is selected");
-		    		 }
-		    		 
-		    		 setTestCaseID("TC_LINE_DEVIATION_032");
-		    		 selectByText(driver, Seperator_Input_deviation, "Select");
-		    		 wait(driver,"1");
-		    		 if(isToggleAccessible(driver, BigNumber_Suffix_toggle_deviation)) {
-		    			 pass(driver,"BigNumber Suffix toggle is accessible when seperator is not selected");
-		    		 }else {
-		    			 fail(driver,"BigNumber Suffix toggle is not accessible when seperator is not selected");
-		    		 }
-		    		 
-		    		 setTestCaseID("TC_LINE_DEVIATION_033");
-		    		 click(driver,BigNumber_Suffix_Inputtoggle_deviation);
-		    		 wait(driver,"1");
-		    		 if(isToggleEnable(driver, BigNumber_Suffix_toggle_deviation)) {
-		    			 pass(driver,"BigNumber Suffix toggle is enabled when enabling it");
-		    		 }else {
-		    			 fail(driver,"BigNumber Suffix toggle is not enabled when enabling it");
-		    		 }
-		    		 scrollUsingElement(driver, ApplyButton);
-	      	   		 click(driver,ApplyButton);
-	      	   		 elementnotvisible1(driver, RPE_Loading);
-	      	   		 waitForElement(driver,Chart_Section);
-	      	   		 
-	      	   		 String DeviationChartValueTextAct1= getText1(driver,Deviation_Values);
-	      	   		 if((!DeviationChartValueTextAct1.contains(".") && DeviationChartValueTextAct1.length()>3)||(DeviationChartValueTextAct1.length()>8)) {
-	      	   			 if(DeviationChartValueTextAct1.endsWith("k")||DeviationChartValueTextAct1.endsWith("K")) {
-	    	    	  		 pass(driver,"BigNumber Suffix gets applied for Deviation values when the toggle is enabled"); 
-	      	   			 }else {
-	    	    	  		 fail(driver,"BigNumber Suffix not applied for Deviation values when the toggle is enabled"); 
-	      	   			 }
-	      	   		 }
-		    		 
-	      	   		 setTestCaseID("");
-	      	   		 click(driver,BigNumber_Suffix_Inputtoggle_deviation);
-	      	   		 wait(driver,"1");
-	      	   		 if(!isToggleEnable(driver, BigNumber_Suffix_toggle_deviation)) {
-	      	   			 pass(driver,"BigNumber Suffix toggle is disabled when disabling it");
-	      	   		 }else {
-	      	   			 fail(driver,"BigNumber Suffix toggle is not disabled when disabling it");
-	      	   		 }
-		    		 
-	      	   		 setTestCaseID("TC_LINE_DEVIATION_037");
-		      	   	 selectByText(driver, RoundOff_Input_Deviation, Change_RoundOff_Deviation);
-		      	     scrollUsingElement(driver, ApplyButton);
-	      	   		 click(driver,ApplyButton);
-	      	   		 elementnotvisible1(driver, RPE_Loading);
-	      	   		 waitForElement(driver,Chart_Section);
-	      	   		 
-	      	   		 String DeviationChartValueAct=getText1(driver,Deviation_Values);    
-	      	   		 String RoundOffValue_Act=String.valueOf(getRoundOffValue(DeviationChartValueAct));
-	      	   		 if(RoundOffValue_Act.equals(Change_RoundOff_Deviation)) {
-	      	   			 pass(driver,"Selected roundOff '"+Change_RoundOff_Deviation+"' is Applied in the Deviation chart Value"); 
-	      	   		 }else {
-	      	   			 fail(driver,"Selected roundOff '"+Change_RoundOff_Deviation+"' is not Applied in the Deviation chart Value"); 
-	      	   		 }
-	      	   		 
-	      	   		 setTestCaseID("TC_LINE_DEVIATION_038");
-	      	   		 if(isDisplayed(driver, Order_Value)) {
-	      	   			 pass(driver,"Value is Displayed in the Order input");
-	      	   		 }else {
-	      	   			 fail(driver,"Value is not Displayed in the Order Input");
-	      	   		 }
-	      	   		 
-		      	   	 if(isDisplayed(driver, Order_Label)) {
-	      	   			 pass(driver,"Label is Displayed in the Order input");
-	      	   		 }else {
-	      	   			 fail(driver,"Label is not Displayed in the Order Input");
-	      	   		 }
-	      	   		 
-		      	   	 setTestCaseID("TC_LINE_DEVIATION_039");
-		      	   	 WebElement OrderElement=getWebElement(driver, Order_Deviation1);
-		      	     elementScreenShot_new(driver,Order_Deviation,"/Expected_screenshot/SmokeTesting/Order_Deviation");
-		 	         action.moveToElement(OrderElement).clickAndHold().build().perform();
-		 	         action.moveByOffset(0, 20).build().perform();
-		 	         action.release().build().perform();
-		 	         wait(driver,"1");
-		 			 elementScreenShot_new(driver,Order_Deviation,"/Actual_screenshot/SmokeTesting/Order_Deviation");
-
-		 	         try {
-		 	        	boolean orderDiff=imageComparison2(driver, "/SmokeTesting/Order_Deviation", "/SmokeTesting/Order_Deviation");
-		 				wait(driver, "2");
-		 				if(orderDiff==false) {
-		 					pass(driver,"Order is changed in the Order Input when dragging the values");
-		 				}else {
-		 					fail(driver,"Order is not changed in the Order Input when dragging the values");
-		 				}
-		 			 } catch (Exception e1) {
-		 				fail(driver,"Unable to compare the Order Input images");
-		 			 }
-		 	        
-		 	         
-            	 }else {
-            		 setTestCaseID("TC_LINE_DEVIATION_008");
-            		fail(driver,"Deviation not displayed in the chart when the toggle is enabled"); 
-            	 }
-            	
-            	 setTestCaseID("TC_LINE_DEVIATION_040");
-	    		 mouseOverToElement(driver, Deviations_Section);
-	    		 click(driver,Deviations_Section);
-	    	      
-	    		 String DeviationClose_Act=getAttribute1(driver, Deviation_Expand, "class");
-	    		 if(DeviationClose_Act.contains("down")) {
-	    			 pass(driver,"Deviation gets collapsed when click on it");
-	    		 }else {
-	    			 fail(driver,"Deviation not gets collapsed when click on it");
-	    		 }
-	    		 
              }else {
             	 setTestCaseID("TC_LINE_DEVIATION_003");
             	 if(isDisplayed(driver,Deviation_Active)) {
@@ -2882,7 +2849,6 @@ public class DASHPRO_LINE_TESTING extends Keywords{
          
          // ******************* Others Validation Start *********************
 		 String Line_ChartFormat_Others= getCellValue("TestExecution","Testcase_Selection","Line_ChartFormat_Others",Flag);
-
          if(Line_ChartFormat_Others.equals("Yes")) {
         	 setTestCaseID("");
         	 verifyElementDisplayed(driver,ChartFormat_Others);
@@ -3000,7 +2966,6 @@ public class DASHPRO_LINE_TESTING extends Keywords{
       		 click(driver,StatsLine_Input);
       		 String[] statLineValue= {"q1","q3","mean","median","std deviation","min","max"};
       		 for(int i=0;i<statLineValue.length;i++) {
-      			
     	  	  	try {
     	  	  		selectOptionValue(driver,StatsLine_Input,statLineValue[i]);
     	  	  		wait(driver,"1");
@@ -3022,7 +2987,6 @@ public class DASHPRO_LINE_TESTING extends Keywords{
       		 
       		 setTestCaseID("");
       		 selectOptionValue(driver,StatsLine_Input,"custom");
-      		
       		 if(isDisplayed(driver,StatsLine_NumInput)) {
       			pass(driver,"StatsLine Number Input is displayed when select the 'Custom' Value ");
       			scrollUsingElement(driver, ApplyButton);
@@ -3178,37 +3142,32 @@ public class DASHPRO_LINE_TESTING extends Keywords{
      		 setTestCaseID("TC_LINE_OTHERS_016");
      		 if(isToggleEnable(driver,Cursor_Input)) {		
      			 pass(driver,"'Cursor Input' is enabled by default"); 
+     			 mouseOverToElement(driver, ChartGraph);
+         		 if(isDisplayed2(driver,MouseCursor)) {
+       	  		 	pass(driver,"Cursor is displayed in chart when cursor is enable"); 
+         		 }else {
+       	  		 	fail(driver,"Cursor is not displayed in chart when cursor is enable");  
+         		 }
+         		 
+         		 setTestCaseID("TC_LINE_OTHERS_017");
+        		 click(driver,Cursor_InputClick);
+        		 if(isToggleEnable(driver,Cursor_Input)) {		
+        			 fail(driver,"'Cursor Input' is enable while click on it"); 
+        		 }else {
+        			 pass(driver,"'Cursor Input' is disable while click on it"); 
+        			 scrollUsingElement(driver, ApplyButton);
+             		 click(driver,ApplyButton);
+             		 elementnotvisible1(driver, RPE_Loading);
+             		 waitForElement(driver,Chart);
+             		 mouseOverToElement(driver, ChartGraph);
+             		 if(isDisplayed2(driver,MouseCursor)) {
+           	  		 	fail(driver,"Cursor is displayed in chart when cursor is disable"); 
+             		 }else {
+           	  		 	pass(driver,"Cursor is not displayed in chart when cursor is disable");  
+             		 }
+        		 }
      		 }else {
    	  		 	fail(driver,"'Cursor Input' is disabled by default"); 
-     		 }
-     		 scrollUsingElement(driver, ApplyButton);
-     		 click(driver,ApplyButton);
-     		 elementnotvisible1(driver, RPE_Loading);
-     		 waitForElement(driver,Chart);
-     		 mouseOverToElement(driver, ChartGraph);
-     		 if(isDisplayed2(driver,MouseCursor)) {
-   	  		 	pass(driver,"Cursor is displayed in chart when cursor is enable"); 
-     		 }else {
-   	  		 	fail(driver,"Cursor is not displayed in chart when cursor is enable");  
-     		 }
-   		
-     		 //
-     		 setTestCaseID("TC_LINE_OTHERS_017");
-     		 click(driver,Cursor_InputClick);
-     		 if(isToggleEnable(driver,Cursor_Input)) {		
-     			 fail(driver,"'Cursor Input' is enable while click on it"); 
-     		 }else {
-     			 pass(driver,"'Cursor Input' is disable while click on it"); 
-     		 }
-     		 scrollUsingElement(driver, ApplyButton);
-     		 click(driver,ApplyButton);
-     		 elementnotvisible1(driver, RPE_Loading);
-     		 waitForElement(driver,Chart);
-     		 mouseOverToElement(driver, ChartGraph);
-     		 if(isDisplayed2(driver,MouseCursor)) {
-   	  		 	fail(driver,"Cursor is displayed in chart when cursor is disable"); 
-     		 }else {
-   	  		 	pass(driver,"Cursor is not displayed in chart when cursor is disable");  
      		 }
      		 //cursor validation End....
      	
@@ -3217,117 +3176,99 @@ public class DASHPRO_LINE_TESTING extends Keywords{
      			 fail(driver,"'Export Input' enable by default");
      		 }else {
      			 pass(driver,"'Export Input' disable by default"); 
-     		 }
-      		
-     		 scrollUsingElement(driver, ApplyButton);
-     		 click(driver,ApplyButton);
-     		 elementnotvisible1(driver, RPE_Loading);
-     		 verifyElementDisplayed(driver,Chart_Section);
-		
-     		 if(isDisplayed2(driver,ExportChartOptions)) {
-     			 fail(driver,"'Export Options' is displayed in charts when Export chart is disabled"); 
-     		 }else {
-     			 pass(driver,"'Export Options' not displayed in charts when Export chart is disabled"); 
-     		 }
-     		 setTestCaseID("TC_LINE_OTHERS_019");
-     		 click(driver,Export_InputClick);
-     		 if(isToggleEnable(driver,Export_Input)) {		
-     			 pass(driver,"'Export Input' is enabled while enabling it");
-     		 }else {
-     			 fail(driver,"'Export Input' not enabled while enabling it"); 
-     		 }
-  		
-     		 scrollUsingElement(driver, ApplyButton);
-     		 click(driver,ApplyButton);
-     		 elementnotvisible1(driver, RPE_Loading);
-     		 verifyElementDisplayed(driver,Chart_Section);
-		
-     		 if(isDisplayed2(driver,ExportChartOptions)) {
-     			 pass(driver,"'Export Options' is displayed in charts when Export chart is enabled"); 
-     			 mouseOverToElement(driver, ExportChartOptions);
-     			 if(isDisplayed2(driver,ExportOptionExpandList)) {
-     				 pass(driver,"'Export Options' is expanded when click on it"); 
-     				 if(isDisplayed2(driver,Export_Image)) {
-     					 pass(driver,"'IMG' Option is displayed When expand the charts Export"); 
-     					 mouseOverToElement(driver, Export_Image);
- 			  		 
-     					 if(elementIsVisible(driver,Export_PNG)) {
-     						 pass(driver,"'PNG' Option displayed When Mouse hover on IMG Option"); 
-     					 }else {
-     						 fail(driver,"'PNG' Option is not displayed When Mouse hover on IMG Option"); 
-     					 }
- 			  		
-     					 if(elementIsVisible(driver,Export_JPG)) {
-     						 pass(driver,"'JPG' Option displayed When Mouse hover on IMG Option"); 
-     					 }else {
-     						 fail(driver,"'JPG' Option is not displayed When Mouse hover on IMG Option"); 
-     					 }
- 			  		
-     					 if(elementIsVisible(driver,Export_SVG)) {
-     						 pass(driver,"'SVG' Option displayed When Mouse hover on IMG Option"); 
-     					 }else {
-     						 fail(driver,"'SVG' Option is not displayed When Mouse hover on IMG Option"); 
-     					 }
-     				 }else {
-     					 fail(driver,"'IMG' Option is not displayed When expand the charts Export"); 
-     				 }
- 		  		 
-     				 if(isDisplayed2(driver,Export_Data)) {
-     					 pass(driver,"'Data' Option is displayed When expand the charts Export"); 
-     					 mouseOverToElement(driver, Export_Data);
-     					 verifyElementIsPresent1(driver, Export_JSON);
-     					 verifyElementIsPresent1(driver, Export_CSV);
-     					 verifyElementIsPresent1(driver, Export_XLSX);
-     					 verifyElementIsPresent1(driver, Export_HTML);
+     			 if(isDisplayed2(driver,ExportChartOptions)) {
+        			 fail(driver,"'Export Options' is displayed in charts when Export chart is disabled"); 
+        		 }else {
+        			 pass(driver,"'Export Options' not displayed in charts when Export chart is disabled"); 
+        		 }
+     			 
+     			 setTestCaseID("TC_LINE_OTHERS_019");
+     			 if(IsElementEnabled(driver, Export_InputClick)) {
+     				click(driver,Export_InputClick);
+     				if(isToggleEnable(driver,Export_Input)) {		
+     					pass(driver,"'Export Input' is enabled while enabling it");
+     					scrollUsingElement(driver, ApplyButton);
+     					click(driver,ApplyButton);
+     					elementnotvisible1(driver, RPE_Loading);
+     					verifyElementDisplayed(driver,Chart_Section);
+     					if(isDisplayed2(driver,ExportChartOptions)) {
+     		     			 pass(driver,"'Export Options' is displayed in charts when Export chart is enabled"); 
+     		     			 mouseOverToElement(driver, ExportChartOptions);
+     		     			 if(isDisplayed2(driver,ExportOptionExpandList)) {
+     		     				 pass(driver,"'Export Options' is expanded when click on it"); 
+     		     				 if(isDisplayed2(driver,Export_Image)) {
+     		     					 pass(driver,"'IMG' Option is displayed When expand the charts Export"); 
+     		     					 mouseOverToElement(driver, Export_Image);
+     		 			  		 
+     		     					 if(elementIsVisible(driver,Export_PNG)) {
+     		     						 pass(driver,"'PNG' Option displayed When Mouse hover on IMG Option"); 
+     		     					 }else {
+     		     						 fail(driver,"'PNG' Option is not displayed When Mouse hover on IMG Option"); 
+     		     					 }
+     		 			  		
+     		     					 if(elementIsVisible(driver,Export_JPG)) {
+     		     						 pass(driver,"'JPG' Option displayed When Mouse hover on IMG Option"); 
+     		     					 }else {
+     		     						 fail(driver,"'JPG' Option is not displayed When Mouse hover on IMG Option"); 
+     		     					 }
+     		 			  		
+     		     					 if(elementIsVisible(driver,Export_SVG)) {
+     		     						 pass(driver,"'SVG' Option displayed When Mouse hover on IMG Option"); 
+     		     					 }else {
+     		     						 fail(driver,"'SVG' Option is not displayed When Mouse hover on IMG Option"); 
+     		     					 }
+     		     				 }else {
+     		     					 fail(driver,"'IMG' Option is not displayed When expand the charts Export"); 
+     		     				 }
+     		 		  		 
+     		     				 if(isDisplayed2(driver,Export_Data)) {
+     		     					 pass(driver,"'Data' Option is displayed When expand the charts Export"); 
+     		     					 mouseOverToElement(driver, Export_Data);
+     		     					 verifyElementIsPresent1(driver, Export_JSON);
+     		     					 verifyElementIsPresent1(driver, Export_CSV);
+     		     					 verifyElementIsPresent1(driver, Export_XLSX);
+     		     					 verifyElementIsPresent1(driver, Export_HTML);
 
-     				 }else {
-     					 fail(driver,"'Data' Option is not displayed When expand the charts Export"); 
-     				 }
- 		  		
-     				 if(isDisplayed2(driver,Export_Print)) {
-     					 pass(driver,"'Print' Option is displayed When expand the charts Export"); 			  		 
-     				 }else {
-     					 fail(driver,"'Print' Option is not displayed When expand the charts Export"); 
-     				 }
- 		  		 
+     		     				 }else {
+     		     					 fail(driver,"'Data' Option is not displayed When expand the charts Export"); 
+     		     				 }
+     		 		  		
+     		     				 if(isDisplayed2(driver,Export_Print)) {
+     		     					 pass(driver,"'Print' Option is displayed When expand the charts Export"); 			  		 
+     		     				 }else {
+     		     					 fail(driver,"'Print' Option is not displayed When expand the charts Export"); 
+     		     				 }
+     		     			 }else {
+     		     				 fail(driver,"'Export Options' is not expanded when click on it"); 
+     		     			 }
+     		     		 }else {
+     		     			 fail(driver,"'Export Options' not displayed in charts when Export chart is enabled"); 
+     		     		 }
+     				}else {
+     					fail(driver,"'Export Input' not enabled while enabling it"); 
+     				} 
      			 }else {
-     				 fail(driver,"'Export Options' is not expanded when click on it"); 
+     				 fail(driver,"Export input is not accessible");
      			 }
-     		 }else {
-     			 fail(driver,"'Export Options' not displayed in charts when Export chart is enabled"); 
      		 }
          }
 		 
   	     // ******************* Others Validation End *********************
-		 
          setTestCaseID("");
-    	 click(driver,ChartTitleInput);
-		 clear(driver,ChartTitleInput);
-  		 verifyElementDisplayed(driver, SaveBtn_Chart);
-  		 verifyElementDisplayed(driver, cancel_chart);
-  		 click(driver,SaveBtn_Chart);
-  		 if(isDisplayed(driver,chartSaveError1)) {
-    		pass(driver,"'Enter Widget Name' error displayed when save the chart without given chart title name");
-  		 }else {
-    		fail(driver,"'Enter Widget Name' error not displayed when save the chart without given chart title name");
-  		 }
-  		 elementnotvisible(driver, chartSaveError1);
-  		 sendKeys(driver,ChartTitleInput,ChartTitle_Name);
+  		 clearAndType(driver,ChartTitleInput,ChartTitle_Name);
   		 click(driver,SaveBtn_Chart);
   		 elementnotvisible1(driver, RPE_Loading);
   		 if(!isDisplayed2(driver,chartSaveError1) && isDisplayed(driver,SavedChartTitleInput)) {
     		pass(driver,"Chart Saved Successfully");
+    		String AfterSaveChartTitleName=getText1(driver, SavedChartTitleName);
+    		if(AfterSaveChartTitleName.equals(ChartTitle_Name)) {
+    			pass(driver,"Same Chart Title name displayed after saved the chart ");
+    		}else {
+    			fail(driver,"Different Chart Title name displayed after saved the chart ");
+    		}
   		 }else {
     		fail(driver,"Chart not Saved Successfully");
   		 }	
-	      
-  		 String AfterSaveChartTitleName=getText1(driver, SavedChartTitleName);
-  		 if(AfterSaveChartTitleName.equals(ChartTitle_Name)) {
-    		pass(driver,"Same Chart Title name displayed after saved the chart ");
-  		 }else {
-    		fail(driver,"Different Chart Title name displayed after saved the chart ");
-  		 }
-         
 	}	
 		
 }

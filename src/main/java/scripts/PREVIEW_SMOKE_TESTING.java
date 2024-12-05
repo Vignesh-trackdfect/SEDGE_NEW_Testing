@@ -77,9 +77,9 @@ public class PREVIEW_SMOKE_TESTING extends Keywords{
 	    wait(driver,"1");
 		verifyElementIsPresent(driver,Sampling_option);
 
-        click(driver,Sampling_option);
+        mouseOverAndClick(driver,Sampling_option);
         elementnotvisible1(driver,Loading);
-        if(isDisplayed1(driver,ProfilingPage)) {
+        if(isDisplayed(driver,ProfilingPage)) {
   			pass(driver,"Sampling is clickable & Profile page is Opened");
   			mouseOverToElement(driver, ProfilingPage);
         }else {
@@ -100,7 +100,7 @@ public class PREVIEW_SMOKE_TESTING extends Keywords{
 			verifyElementDisplayed(driver,target);
 			mouseOverToElement(driver,targetDrop);
 			click(driver,targetDrop);
-			if(isDisplayed1(driver,dropdown_expand)) {
+			if(isDisplayed2(driver,dropdown_expand)) {
 				pass(driver,"Target dropdown is expanded with available columns");
 			}else {
 	  			fail(driver,"Target dropdown not expanded with available columns");
@@ -146,9 +146,9 @@ public class PREVIEW_SMOKE_TESTING extends Keywords{
         waitForElement(driver, dropdown_expand);
 		ScrollBarValidation1(driver,dropdown_expand,"Target_Drop");
 		   
-		if(isDisplayed(driver,Date_Option_dropdown)) {
+		if(isDisplayed2(driver,Date_Option_dropdown)) {
 			click(driver,Date_Option_dropdown);
-        	if(isDisplayed(driver,Date_target_error)) {
+        	if(isDisplayed2(driver,Date_target_error)) {
     			pass(driver,"Validation shows, 'Date column cannot be selected as target'");
 	        	click3(driver,Date_target_error);
         	}else {
@@ -159,7 +159,7 @@ public class PREVIEW_SMOKE_TESTING extends Keywords{
         }
 
 		click3(driver,targetDrop); 
-		if(isDisplayed(driver,categorical)) { 
+		if(isDisplayed2(driver,categorical)) { 
 		   List<WebElement> elements = getWebElements(driver,CategoricalValues);
 			   boolean loop=true;
 			   boolean loop1=true;
@@ -175,7 +175,7 @@ public class PREVIEW_SMOKE_TESTING extends Keywords{
 				            if (number > 200 && loop==true) {
 				                element.click();
 								wait(driver,"2");
-				                if(isDisplayed(driver,Unique_200_error)) {
+				                if(isDisplayed2(driver,Unique_200_error)) {
 				                	pass(driver," 'Kindly select column with unique class less than or equal to 200 as a target' , Validation message displayed  : "+text);
 						        	click3(driver,Unique_200_error);
 									wait(driver,"1");
@@ -190,7 +190,7 @@ public class PREVIEW_SMOKE_TESTING extends Keywords{
 				            }else if(number < 200 && loop1) {
 				            	element.click();
 								wait(driver,"2");
-				            	if(isDisplayed(driver,target_Succes)) {
+				            	if(isDisplayed2(driver,target_Succes)) {
 				                	pass(driver,"  Target  gets selected and message displayed \"target added successfully\" : "+text);
 						        	click3(driver,target_Succes);
 									wait(driver,"1");
@@ -208,7 +208,7 @@ public class PREVIEW_SMOKE_TESTING extends Keywords{
 			            }else if(!text.contains("[") && loop2) {
 			            	element.click();
 							wait(driver,"1");
-			            	if(isDisplayed(driver,target_Succes)) {
+			            	if(isDisplayed2(driver,target_Succes)) {
 			                	pass(driver,"  Target  gets selected and message displayed \"target added successfully\" : "+text);
 					        	click3(driver,target_Succes);
 								wait(driver,"1");
@@ -230,7 +230,7 @@ public class PREVIEW_SMOKE_TESTING extends Keywords{
 		click3(driver,targetDrop); 
 		if(isDisplayed2(driver,Text_Option)) {
     		click(driver,Text_Option);
-        	if(isDisplayed(driver,textError)) {
+        	if(isDisplayed2(driver,textError)) {
     			passReport(driver,"Validation Should show, 'Text column cannot be selected as target'" ,"Validation shows, 'Text column cannot be selected as target'");
 	        	click3(driver,Date_target_error);
         	}else {
@@ -259,7 +259,7 @@ public class PREVIEW_SMOKE_TESTING extends Keywords{
 		            if (number > 200 && loop==true) {
 		                element.click();
 						wait(driver,"2");
-		                if(isDisplayed(driver,Unique_200_error)) {
+		                if(isDisplayed2(driver,Unique_200_error)) {
 		                	pass(driver," 'Kindly select column with unique class less than or equal to 200 as a target' , Validation message displayed : "+text);
 				        	click3(driver,Unique_200_error);
 							wait(driver,"1");
@@ -274,7 +274,7 @@ public class PREVIEW_SMOKE_TESTING extends Keywords{
 		            }else if(number < 200 && loop1){
 		            	element.click();
 						wait(driver,"2");
-		            	if(isDisplayed(driver,target_Succes)) {
+		            	if(isDisplayed2(driver,target_Succes)) {
 		                	pass(driver,"  Target  gets selected and message displayed \"target added successfully\" : "+text);
 				        	click3(driver,target_Succes);
 							wait(driver,"1");
@@ -290,7 +290,7 @@ public class PREVIEW_SMOKE_TESTING extends Keywords{
 	            }else if(!text.contains("[") && loop2){
 	            	element.click();
 					wait(driver,"2");
-	            	if(isDisplayed(driver,target_Succes)) {
+	            	if(isDisplayed2(driver,target_Succes)) {
 	                	pass(driver,"  Target  gets selected and message displayed \"target added successfully\"  : "+text);
 			        	click3(driver,target_Succes);
 						wait(driver,"1");
@@ -421,7 +421,7 @@ public class PREVIEW_SMOKE_TESTING extends Keywords{
    	   
    	   mouseOverToElement(driver,Statistics_icon);
 	   mouseOverAndClick(driver,statisticalTest);
-	   if(isDisplayed1(driver,StatisticalTestPage)) {
+	   if(isDisplayed(driver,StatisticalTestPage)) {
 		   pass(driver,"Statistical Test is accessible after selecting target");
 	   }else {
 		   fail(driver,"Statistical Test is not accessible after selecting target");
@@ -430,14 +430,14 @@ public class PREVIEW_SMOKE_TESTING extends Keywords{
 	   mouseOverToElement(driver,StatisticalTestPage);
 	   wait(driver,"1");
 	   mouseOverToElement(driver,visual_Analytics);
-	   if(isDisplayed(driver,accessible)) {
+	   if(isDisplayed2(driver,accessible)) {
 		   pass(driver,"Visual Analytics accessible after selecting target");
 	   }else {    
 		   fail(driver,"Visual Analytics not accessible after selecting target");
 	   } 
      
 	   mouseOverToElement(driver,predictive_analytics);
-	   if(isDisplayed(driver,accessible)) {
+	   if(isDisplayed2(driver,accessible)) {
 		   pass(driver,"Predictive Analytics accessible after selecting target");
 	   }else { 
 		   fail(driver,"Predictive Analytics not accessible after selecting target");

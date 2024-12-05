@@ -46,6 +46,13 @@ public class DASHPRO_SPARKLINE_TESTING extends Keywords{
 		String Change_Periods_Value=Utils.getDataFromTestDataIteration(iteration,"SparkLine_Widget_Testing", "Change_Periods_Value");
 		String Select_Seperator_TableFormat=Utils.getDataFromTestDataIteration(iteration,"SparkLine_Widget_Testing", "Select_Seperator_TableFormat");
 
+		//Chart title
+ 		String TypeBackgroundColor1_ChartTitle=Utils.getDataFromTestDataIteration(iteration,"SparkLine_Widget_Testing", "TypeBackgroundColor1_ChartTitle");
+ 		String TypeTextColor1_ChartTitle=Utils.getDataFromTestDataIteration(iteration,"SparkLine_Widget_Testing", "TypeTextColor1_ChartTitle");
+ 		String Change_FontFamily_ChartTitle=Utils.getDataFromTestDataIteration(iteration,"SparkLine_Widget_Testing", "Change_FontFamily_ChartTitle");
+ 		String ChangeFontSize_ChartTitle=Utils.getDataFromTestDataIteration(iteration,"SparkLine_Widget_Testing", "ChangeFontSize_ChartTitle");
+ 		String ChangeChartTitleName=Utils.getDataFromTestDataIteration(iteration,"SparkLine_Widget_Testing", "ChangeChartTitleName");
+	 	
 		//Table Format
 		String Select_TableTheme=Utils.getDataFromTestDataIteration(iteration,"SparkLine_Widget_Testing", "Select_TableTheme");
 		String Select_FontFamily_TableFormat=Utils.getDataFromTestDataIteration(iteration,"SparkLine_Widget_Testing", "Select_FontFamily_TableFormat");
@@ -137,7 +144,7 @@ public class DASHPRO_SPARKLINE_TESTING extends Keywords{
 				 }
 				 elementnotvisible1(driver, error);
 			 }else {
-				  elementnotvisible(driver, Loading);
+				  elementnotvisible1(driver, Loading);
 				  elementnotvisible1(driver, RPE_Loading);
 				  String widgetValue=getText1(driver,WidgetValue);
 				  if(widgetValue.equals("Sparkline")) {
@@ -792,8 +799,17 @@ public class DASHPRO_SPARKLINE_TESTING extends Keywords{
 			 }
 		}
       
+		 setTestCaseID("");
+	     // ******************** ChartTitle Validation Start *******************
+		 String SparkLine_Chart_Title= getCellValue("TestExecution","Testcase_Selection","SparkLine_Chart_Title",Flag);
+		 if(SparkLine_Chart_Title.equals("Yes")) {
+			
+			 CHART_TITLE chartTitle=new CHART_TITLE();
+			 chartTitle.chartTitleTest(driver, TypeBackgroundColor1_ChartTitle, TypeTextColor1_ChartTitle, Change_FontFamily_ChartTitle, ChangeFontSize_ChartTitle,ChangeChartTitleName);       	
+		 }
+        // ******************** ChartTitle Validation End *******************
+		 setTestCaseID("");
     	//*********************** SparkLine Table Format validation Start ****************** 
-		
 		String SparkLine_Table_Format= getCellValue("TestExecution","Testcase_Selection","SparkLine_Table_Format",Flag);
         if(SparkLine_Table_Format.equals("Yes")) {
         	
@@ -2429,7 +2445,7 @@ public class DASHPRO_SPARKLINE_TESTING extends Keywords{
  			 fail(driver,"'Enter Widget Name' error not displayed when save the chart without given chart title name");
  		 }
  		 elementnotvisible(driver, chartSaveError1);
- 		 sendKeys(driver,ChartTitleInput,"SparkLine Chart test");
+ 		 sendKeys(driver,ChartTitleInput,ChangeChartTitleName);
  		 click(driver,SaveBtn_Chart);
  		 elementnotvisible1(driver, RPE_Loading);
  		 if(!isDisplayed2(driver,chartSaveError1) && isDisplayed(driver,SavedChartTitleInput)) {
@@ -2439,7 +2455,7 @@ public class DASHPRO_SPARKLINE_TESTING extends Keywords{
  		 }	
       
  		 String AfterSaveChartTitleName=getText1(driver, SavedChartTitleName);
- 		 if(AfterSaveChartTitleName.equalsIgnoreCase("SparkLine Chart test")) {
+ 		 if(AfterSaveChartTitleName.equalsIgnoreCase(ChangeChartTitleName)) {
  			 pass(driver,"Same Chart Title name displayed after saved the chart ");
  		 }else {
  			 fail(driver,"Different Chart Title name displayed after saved the chart ");

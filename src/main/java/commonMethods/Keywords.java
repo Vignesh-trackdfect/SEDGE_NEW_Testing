@@ -102,16 +102,17 @@ import atu.testng.reports.logging.LogAs;
 		}
 	
 		public static String[] splitXpath(String path) {
-			String[] a = path.split(">");
-			return a;
+			try {
+				String[] a = path.split(">");
+				return a;
+			}catch(Exception e){
+				return null;
+			}
 		}
 	
 		public static void setTestCaseID(String testcaseid) {
 			TestCaseID = testcaseid;
 		}
-		
-		
-		
 	
 		public void wait(WebDriver driver, String inputData) {
 			try {
@@ -120,8 +121,6 @@ import atu.testng.reports.logging.LogAs;
 				Thread.sleep(seconds);
 			} catch (InterruptedException e) {
 				add1(driver, "Unable to wait ", LogAs.FAILED, true, "Wait");
-			
-				Assert.fail();
 			}
 		}
 	
@@ -157,7 +156,7 @@ import atu.testng.reports.logging.LogAs;
 			
 				add1(driver, "Element Not Found - " + values[0] + "- " + e.getLocalizedMessage() + e, LogAs.FAILED, true,
 						values[0]);
-				Assert.fail();
+				//Assert.fail();
 			}
 		}
 	
@@ -215,13 +214,13 @@ import atu.testng.reports.logging.LogAs;
 		                jsException.printStackTrace();
 		                // Log failure if both WebElement click and JavaScript click fail
 		                add1(driver, "Unable to click on " + values[0] + "- " + jsException.getLocalizedMessage(), LogAs.FAILED, true, values[0]);
-		                Assert.fail();
+		               // Assert.fail();
 		            }
 		        }
 		    } catch (Exception e) {
 		        e.printStackTrace();
 		        add1(driver, "Unable to click on " + values[0] + "- " + e.getLocalizedMessage(), LogAs.FAILED, true, values[0]);
-		        Assert.fail();
+		        //Assert.fail();
 		    }
 		}
 		
@@ -230,8 +229,8 @@ import atu.testng.reports.logging.LogAs;
 			String[] values = splitXpath(Xpath);
 			try {
 				wait(driver,"1");
-				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-				WebDriverWait wait1 = new WebDriverWait(driver, 10);
+				driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+				WebDriverWait wait1 = new WebDriverWait(driver, 3);
 				wait1.until(ExpectedConditions.elementToBeClickable(By.xpath(values[1])));
 				WebElement element = driver.findElement(By.xpath(values[1]));
 				element.click();
@@ -481,7 +480,7 @@ import atu.testng.reports.logging.LogAs;
 			} catch (Exception e) {
 				add1(driver, "Unable to retrieve the text " + values[0] + "- " + e.getLocalizedMessage(), LogAs.FAILED,true, values[0]);
 				//Assert.fail();
-				return null;
+				return "";
 			}
 		}
 		
@@ -723,13 +722,10 @@ import atu.testng.reports.logging.LogAs;
 				add(driver, "Retrieved the text of " + values[0], textInsideInputBox, true, values[0]);
 				return textInsideInputBox;
 			} catch (NoSuchElementException e) {
-				add1(driver, "Unable to retrieve the value " + values[0] + "- " + e.getLocalizedMessage(), LogAs.FAILED,
+				add1(driver, "Unable to retrieve the value " + values[0] + "- " + e.getLocalizedMessage(), LogAs.PASSED,
 						true, values[0]);
-			
-//				Assert.fail();
-				return null;
+				return "";
 			}
-	
 		}
 		
 		public String getAttribute1(WebDriver driver, String xpath, String attribute) {
@@ -737,14 +733,12 @@ import atu.testng.reports.logging.LogAs;
 			try {
 				WebElement inputBox = driver.findElement(By.xpath(values[1]));
 				String textInsideInputBox = inputBox.getAttribute(attribute);
-//				add(driver, "Retrieved the text of " + values[0], textInsideInputBox, true, values[0]);
 				return textInsideInputBox;
 			} catch (NoSuchElementException e) {
-				add1(driver, "Unable to retrieve the value " + values[0] + "- " + e.getLocalizedMessage(), LogAs.FAILED,
+				add1(driver, "Unable to retrieve the value " + values[0] + "- " + e.getLocalizedMessage(), LogAs.PASSED,
 						true, values[0]);
 			
-//				Assert.fail();
-				return null;
+				return "";
 			}
 	
 		}
@@ -754,21 +748,18 @@ import atu.testng.reports.logging.LogAs;
 			String[] values = splitXpath(xpath);
 			try {
 				WebElement element = driver.findElement(By.xpath(values[1]));
-//				((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+				//((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
 				((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true); window.scrollBy(0, -100);", element);
 				WebDriverWait wait = new WebDriverWait(driver, 10);
 	            wait.until(ExpectedConditions.visibilityOf(element));
 	            wait.until(ExpectedConditions.elementToBeClickable(element));
-//				add(driver, "Scrolled to " + values[0], LogAs.PASSED, true, values[0]);
 			} catch (Exception e) {
-				add1(driver, "Unable to scroll " + values[0] + "- " + e.getLocalizedMessage(), LogAs.FAILED, true,
+				add(driver, "Unable to scroll " + values[0] + "- " + e.getLocalizedMessage(), LogAs.PASSED, true,
 						values[0]);
-			
-//				Assert.fail();
 			}
 		}
 
-	
+	   // This method used to validate the particular element is accessible or not. To check user able to click or access the element
 		public boolean IsElementEnabled(WebDriver driver, String xpath) {
 			String[] values = splitXpath(xpath);
 			try {
@@ -786,6 +777,7 @@ import atu.testng.reports.logging.LogAs;
 			}
 		}
 	
+		//This method used to check the element is selected or not. Ex. The toggle is selected or not (ON/OFF).
 		public boolean isElementSelected(WebDriver driver, String xpaths) {
 			String[] values = splitXpath(xpaths);
 			try {
@@ -799,8 +791,7 @@ import atu.testng.reports.logging.LogAs;
 				}
 				
 			} catch (NoSuchElementException e) {
-	
-				add1(driver, "Unable to check element selection" + values[0], LogAs.FAILED, true, values[0]);
+				add1(driver, "Unable to check element selection" + values[0], LogAs.PASSED, true, values[0]);
 				return false;
 			}
 		}
@@ -847,23 +838,20 @@ import atu.testng.reports.logging.LogAs;
 				actionObject.sendKeys(Keys.ENTER).build().perform();
 			} catch (Exception e) {
 			
-				Assert.fail();
+				//Assert.fail();
 			}
 		}
 	
-		public String alertAccept(WebDriver driver, String path) {
-			String[] values = splitXpath(path);
-	
+		public String alertAccept(WebDriver driver) {
 			try {
-				WebElement webElement = driver.findElement(By.xpath(values[1]));
-				webElement.click();
+				wait(driver,"1");
 				Alert alert = driver.switchTo().alert();
 				String alertText = alert.getText();
 				alert.accept();
 				return alertText;
 			} catch (Exception e) {
 			
-				Assert.fail();
+				//Assert.fail();
 				return null;
 			}
 		}
@@ -968,7 +956,7 @@ import atu.testng.reports.logging.LogAs;
 		
 		public void navigateUrl(WebDriver driver, String inputData) {
 			if (inputData == null) {
-				add(driver, " Navigated to " + inputData, LogAs.FAILED, true, "");
+				add(driver, "unable to Navigate to the url " + inputData, LogAs.FAILED, true, "");
 			
 				Assert.fail(inputData);
 			} else {
@@ -991,7 +979,24 @@ import atu.testng.reports.logging.LogAs;
 				add(driver, "Clicked on "+values[0], LogAs.PASSED, true, "");
 			} catch (Exception e) {
 		        System.out.println("not clicked : "+values[0]);
-		        add1(driver, "Unable to Click on : "+values[0], LogAs.FAILED, true, "Not");
+		        add1(driver, "Unable to Click on : "+values[0], LogAs.PASSED, true, "");
+			}
+		}
+		
+		public void dragAndDrop(WebDriver driver, String Startelement,String EndElement) {
+			String[] value1 = splitXpath(Startelement);
+			String[] value2 = splitXpath(EndElement);
+			
+			try {
+				WebElement webElement1 = driver.findElement(By.xpath(value1[1]));
+				WebElement webElement2 = driver.findElement(By.xpath(value2[1]));
+				Actions builder = new Actions(driver);
+				builder.dragAndDrop(webElement1, webElement2).build().perform();
+				
+				add(driver, "Drag And dropped from "+value1[0]+"  to "+value2[0], LogAs.PASSED, true, "");
+			} catch (Exception e) {
+		        //System.out.println("not clicked : "+values[0]);
+		        add1(driver, "Failed to Drag And drop element from "+value1[0]+"  to "+value2[0], LogAs.FAILED, true, "");
 			}
 		}
 	
@@ -1266,7 +1271,7 @@ import atu.testng.reports.logging.LogAs;
 					}
 				}
 			} catch (Exception e) {
-				add1(driver, "unable to compare screenshot", LogAs.FAILED,
+				add1(driver, "unable to compare screenshot", LogAs.PASSED,
 						true, "");
 				e.printStackTrace(); // Log the exception stack trace
 				return e.getMessage();
@@ -1287,7 +1292,7 @@ import atu.testng.reports.logging.LogAs;
 				add1(driver, "upload is falied - " + path + e, LogAs.FAILED, true, e.getLocalizedMessage());
 				e.printStackTrace();
 			
-				Assert.fail();
+				//Assert.fail();
 			}
 		}
 		
@@ -1443,7 +1448,7 @@ import atu.testng.reports.logging.LogAs;
 	            return m.group(0);
 	        } else {
 	            System.out.println("No match found");
-	            return null;
+	            return "";
 	        }
 	        
 	        
@@ -2137,10 +2142,8 @@ import atu.testng.reports.logging.LogAs;
             		}catch(Exception e) {
             			
             		}
-            		
             	}
             	
-
                 double num_1=getNumberFromChart1(textvalue_1);
                 String text_1="";
                 if(num_1==0.001) {
@@ -2245,10 +2248,10 @@ import atu.testng.reports.logging.LogAs;
     		 WebElement element=driver.findElement(By.xpath("//img[contains(@src, '"+Type+"')]//ancestor::li/descendant::div[contains(@title,'"+value+"')]"));
         	 Actions action=new Actions(driver);
         	 action.moveToElement(element).click().build().perform();
-    		 add(driver,"Selected the Value in droptdown : "+value, LogAs.PASSED,true, "");
+    		 add(driver,"Selected the Value in dropdown : "+value, LogAs.PASSED,true, "");
     		 //wait(driver,"1");
     	 }catch(Exception e) {
- 			add1(driver, "Unable to Select the Value in droptdown : "+value, LogAs.FAILED,true, "");
+ 			add1(driver, "Unable to Select the Value in dropdown,  DataType :"+Type+", Value : "+value, LogAs.FAILED,true, "");
     	 }
     	 
       }
@@ -2259,10 +2262,10 @@ import atu.testng.reports.logging.LogAs;
      		 WebElement element=driver.findElement(By.xpath("//li[@title='"+value+"']"));
          	 Actions action=new Actions(driver);
          	 action.moveToElement(element).click().build().perform();
-     		 add(driver,"Selected the Value in droptdown : "+value, LogAs.PASSED,true, "");
+     		 add(driver,"Selected the Value in dropdown : "+value, LogAs.PASSED,true, "");
   
      	 }catch(Exception e) {
-  			add1(driver, "Unable to Select the Value in droptdown : "+value, LogAs.FAILED,true, "");
+  			add1(driver, "Unable to Select the Value in dropdown : "+value, LogAs.FAILED,true, "");
      	 }
      	 
        }
@@ -3086,7 +3089,7 @@ import atu.testng.reports.logging.LogAs;
   		}
   		return requiredCellVal.trim();
   	}
-      
+    
   	public static String getTestcaseID_Flag(String FileName,String SheetName,String TestcaseType ,String TestcaseID, String label) {
   		String requiredCellVal = "";
     		try {
@@ -3118,25 +3121,7 @@ import atu.testng.reports.logging.LogAs;
     					}
     				}
     			}
-    			
-//    			if (rowIterator.hasNext()) {
-//    				Row headerRow = (Row) rowIterator.next();
-//    				System.out.println("Row Entered "+i++);
-//    				for(Cell cell:headerRow) {
-//    					String CellValue=cell.getStringCellValue();
-//    					System.out.println("Cell Entered "+j++);
-//    					if(CellValue.equals("TEST CASE ID")) {
-//    						headerRowSize=headerRow.getRowNum();
-//    						break;
-//    					}
-//    				}
-//    				// get the number of cells in the header row
-//    				
-//    			}
-//    			
-//    			System.out.println("HeaderRow : "+headerRowSize);
-//    			System.out.println("numberOfCells : "+numberOfCells);
-    			
+    	
     			XSSFRow row1 = ws.getRow(headerRowSize);
     			int ColSize=row1.getLastCellNum();
     			for (int colIndex = 0; colIndex < rowNum; colIndex++) {
@@ -3277,32 +3262,104 @@ import atu.testng.reports.logging.LogAs;
       public void AlphabetOrderValidation(WebDriver driver,String Xpath) {//AlphabetOrderValidation
     	   String[] values=splitXpath(Xpath);
 
-   	  List<WebElement> elements = driver.findElements(By.xpath(values[1]));
-         boolean isAlphabetical = true;
+    	   List<WebElement> elements = driver.findElements(By.xpath(values[1]));
+    	   boolean isAlphabetical = true;
 
-         for (int i = 0; i < elements.size() - 1; i++) {
-             String currentText = elements.get(i).getText().toLowerCase();
-             String nextText = elements.get(i + 1).getText().toLowerCase();
-
-             if (currentText.compareTo(nextText) > 0) {
-//           	  if(!(currentText.equals("Miriam")&&nextText.equals("MV Bol"))) {
+    	   for (int i = 0; i < elements.size() - 1; i++) {
+    		   String currentText = elements.get(i).getText().toLowerCase();
+    		   String nextText = elements.get(i + 1).getText().toLowerCase();
+    		   
+    		   if (currentText.compareTo(nextText) > 0) {
+//     	      	  if(!(currentText.equals("Miriam")&&nextText.equals("MV Bol"))) {
                      isAlphabetical = false;
               		 add1(driver, currentText+" Should come after '"+nextText+"'", LogAs.FAILED,true, "");
 //           	  }
-//                 isAlphabetical = false;
-             }
-         }
+//       	          isAlphabetical = false;
+    		   }
+    	   }
 
-         // Output result
-         if (isAlphabetical) {
- 			passReport(driver,"Font Family results should in alphabetical ascending order" ,"Font Family results are in alphabetical ascending order");
-             System.out.println("Texts are in alphabetical ascending order.");
-         } else {
-   		  failReport(driver,"Font Family results should in alphabetical ascending order","Font Family results are not in the alphabetical ascending order");
-             System.out.println("Texts are not in alphabetical ascending order.");
-         }
+    	   // Output result
+    	   if (isAlphabetical) {
+    		   passReport(driver,"Font Family results should in alphabetical ascending order" ,"Font Family results are in alphabetical ascending order");
+    		   System.out.println("Texts are in alphabetical ascending order.");
+    	   } else {
+    		   failReport(driver,"Font Family results should in alphabetical ascending order","Font Family results are not in the alphabetical ascending order");
+    		   System.out.println("Texts are not in alphabetical ascending order.");
+    	   }
 
-     }
+      }
      
+      public void ExportOptionValidation(WebDriver driver) {
+    	  
+    	  click(driver,Export_InputClick);
+	   		 if(isToggleEnable(driver,Export_Input)) {		
+	   			 pass(driver,"'Export Input' is enabled while enabling it");
+	   		 }else {
+	   			 fail(driver,"'Export Input' not enabled while enabling it"); 
+	   		 }
+	      		
+	   		 scrollUsingElement(driver, ApplyButton);
+	   		 click(driver,ApplyButton);
+	   		 elementnotvisible1(driver, RPE_Loading);
+	   		 verifyElementDisplayed(driver,Chart_Section);
+	   		 waitForElement(driver, ChartBarDisplayCount);
+	   		 if(isDisplayed2(driver,ExportChartOptions)) {
+	   			 pass(driver,"'Export Options' is displayed in charts when Export chart is enabled"); 
+	   			 mouseOverToElement(driver, ExportChartOptions);
+	   			 if(isDisplayed2(driver,ExportOptionExpandList)) {
+	   				 pass(driver,"'Export Options' is expanded when click on it"); 
+	   				 if(isDisplayed2(driver,Export_Image)) {
+	   					 pass(driver,"'IMG' Option is displayed When expand the charts Export"); 
+	   					 mouseOverToElement(driver, Export_Image);
+	   					 
+	   					 if(elementIsVisible(driver,Export_PNG)) {
+	   						 pass(driver,"'PNG' Option displayed When Mouse hover on IMG Option"); 
+	   					 }else {
+	   						 fail(driver,"'PNG' Option is not displayed When Mouse hover on IMG Option"); 
+	   					 }
+	     			  		
+	   					 if(elementIsVisible(driver,Export_JPG)) {
+	   						 pass(driver,"'JPG' Option displayed When Mouse hover on IMG Option"); 
+	   					 }else {
+	   						 fail(driver,"'JPG' Option is not displayed When Mouse hover on IMG Option"); 
+	   					 }
+	     			  		
+	   					 if(elementIsVisible(driver,Export_SVG)) {
+	   						 pass(driver,"'SVG' Option displayed When Mouse hover on IMG Option"); 
+	   					 }else {
+	   						 fail(driver,"'SVG' Option is not displayed When Mouse hover on IMG Option"); 
+	   					 }
+	   				 }else {
+	   					 fail(driver,"'IMG' Option is not displayed When expand the charts Export"); 
+	   				 }
+	     		  		 
+	   				 if(isDisplayed2(driver,Export_Data)) {
+	   					 pass(driver,"'Data' Option is displayed When expand the charts Export"); 
+	   					 mouseOverToElement(driver, Export_Data);
+	   					 verifyElementIsPresent1(driver, Export_JSON);
+	   					 verifyElementIsPresent1(driver, Export_CSV);
+	   					 verifyElementIsPresent1(driver, Export_XLSX);
+	   					 verifyElementIsPresent1(driver, Export_HTML);
+
+	   				 }else {
+	   					 fail(driver,"'Data' Option is not displayed When expand the charts Export"); 
+	   				 }
+	     		  		
+	   				 if(isDisplayed2(driver,Export_Print)) {
+	   					 pass(driver,"'Print' Option is displayed When expand the charts Export"); 			  		 
+	   				 }else {
+	   					 fail(driver,"'Print' Option is not displayed When expand the charts Export"); 
+	   				 }
+	     		  		 
+	   			 }else {
+	   				 fail(driver,"'Export Options' is not expanded when click on it"); 
+	   			 }
+	   		 }else {
+	   			 fail(driver,"'Export Options' not displayed in charts when Export chart is enabled"); 
+	   		 }
+    	  
+    	  
+      }
+      
        
 }

@@ -1,6 +1,7 @@
 package scripts;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 import commonMethods.Keywords;
 import commonMethods.Utils;
@@ -20,21 +21,25 @@ public class LOGIN extends Keywords{
 			click(driver,username_input);
 			//setTestCaseID("TC_002");
 			sendKeys(driver,username_input,Username);
-			
 			//setTestCaseID("TC_003");
 			click(driver,password_input);
 			sendKeys(driver,password_input,Password);
 				
 			click(driver,SignIn_Btn);
 			//setTestCaseID("TC_004");
+			wait(driver,"2");
+			alertAccept(driver);
 			if(isDisplayed(driver,HomePage)) {
 				pass(driver,"Application gets Login");
+				wait(driver,"2");
+				alertAccept(driver);
+				verifyElementDisplayed(driver,Data_Analytics_page_link);
 			}else {
 				fail(driver,"Application not Login");
-				 
+				Assert.fail();
 			}
 			
-			verifyElementDisplayed(driver,Data_Analytics_page_link);
+			
 			
 			
 	}

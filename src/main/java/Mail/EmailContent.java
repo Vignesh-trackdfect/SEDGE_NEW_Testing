@@ -7,7 +7,6 @@ import java.util.List;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 
-import atu.testng.reports.listeners.ATUReportsListener;
 import atu.testng.reports.logging.LogAs;
 import atu.testng.reports.utils.Steps;
 import commonMethods.Utils;
@@ -16,9 +15,10 @@ public class EmailContent {
 
    static String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
    static String mailID = Utils.getDataFromTestConfig("Receiver");
-   static String reportname = Utils.getDataFromTestConfig("Name");
-	
-	public static void sendEmail(List<ITestResult> pass, List<ITestResult> fail,List<ITestResult> skip,List<String> filePaths,List<String> passFilePath) {
+   static String reportname = Utils.getDataFromTestConfig("Project_Name");
+   static String buildVersion = Utils.getDataFromTestConfig("Version_Name");
+   static String Description = Utils.getDataFromTestConfig("Description");
+	public static void sendEmail(List<ITestResult> pass, List<ITestResult> fail,List<ITestResult> skip,List<String> filePaths,List<String> passFilePath) throws Exception {
 		
 		int passedTests=pass.size();
 		int failedTests=fail.size();
@@ -27,7 +27,8 @@ public class EmailContent {
 		
 		  StringBuilder emailContent = new StringBuilder();
 	        emailContent.append("<div style=\"font-family: Arial, sans-serif; text-align: center;\">"); // Center align content and set font-family
-	        emailContent.append("<h2 style=\"color: #34568B;\">"+ reportname +" Test Summary Report - ").append(timeStamp).append("</h2>");
+	        emailContent.append("<h2 style=\"color: #34568B;\">"+ reportname +"_"+buildVersion+" Test Summary Report - ").append(timeStamp).append("</h2>");
+	        emailContent.append("<h3 style=\"color: #34568B;\">"+Description).append("</h3>");
 	        emailContent.append("</div>");
 	        emailContent.append("<br>");
 	        emailContent.append("<table style=\"border-collapse: collapse; width: 80%; margin: auto;\">"); // Table with 80% width and centered
@@ -63,6 +64,7 @@ public class EmailContent {
 	            emailContent.append("<td style=\"border: 1px solid #dddddd; text-align: center; padding: 8px;\"><b>Total Steps</b></td>");
 	            emailContent.append("<td style=\"border: 1px solid #dddddd; text-align: center; padding: 8px;\"><b>Passed Steps</b></td>");
 	            emailContent.append("<td style=\"border: 1px solid #dddddd; text-align: center; padding: 8px;\"><b>Failed Steps</b></td>");
+	            emailContent.append("<td style=\"border: 1px solid #dddddd; text-align: center; padding: 8px;\"><b>Result in Percentage </b></td>");
 	            emailContent.append("</tr>");
 
 	            for (ITestResult test : pass) {
@@ -86,13 +88,19 @@ public class EmailContent {
 	        	            } 
 	        	        }
 	        	    }
-	            	
+	        	    
+	        	   // System.out.println("Pass1 : "+passedSize+",  Fail1 : "+failedSize+" Total : "+totalSteps);
+	        	    int passPercentage = (int) ((double) passedSize / totalSteps * 100);
+	        	    int failPercentage = (int) ((double) failedSize / totalSteps * 100);
+	        	   // System.out.println("Pass : "+passPercentage+"%,  Fail : "+failPercentage+"%");
 	                emailContent.append("<tr>");
 	                emailContent.append("<td style=\"border: 1px solid #dddddd; color: #4CAF50; text-align: left; padding: 8px;\">").append(testName).append("</td>");
 	                emailContent.append("<td style=\"border: 1px solid #dddddd; color: #4CAF50; text-align: left; padding: 8px;\">").append("Passed").append("</td>");
 	                emailContent.append("<td style=\"border: 1px solid #dddddd; color: #000000; text-align: left; padding: 8px;\">").append(totalSteps).append("</td>");
 	                emailContent.append("<td style=\"border: 1px solid #dddddd; color: #4CAF50; text-align: left; padding: 8px;\">").append(passedSize).append("</td>");
 	                emailContent.append("<td style=\"border: 1px solid #dddddd; color: #DD4124; text-align: left; padding: 8px;\">").append(failedSize).append("</td>");
+	                emailContent.append("<td style=\"border: 1px solid #dddddd; color: #000000; text-align: left; padding: 8px;\">").append("Pass : "+passPercentage+"%, Fail : "+failPercentage+"%").append("</td>");
+	        	    
 	                emailContent.append("</tr>");
 	            }
 
@@ -117,12 +125,18 @@ public class EmailContent {
 	        	            } 
 	        	        }
 	        	    }
+	        	    //System.out.println("Pass1 : "+passedSize+",  Fail1 : "+failedSize+" Total : "+totalSteps);
+	        	    int passPercentage = (int) ((double) passedSize / totalSteps * 100);
+	        	    int failPercentage = (int) ((double) failedSize / totalSteps * 100);
+	        	    
 	                emailContent.append("<tr>");
 	                emailContent.append("<td style=\"border: 1px solid #dddddd; color: #DD4124; text-align: left; padding: 8px;\">").append(testName).append("</td>");
 	                emailContent.append("<td style=\"border: 1px solid #dddddd; color: #DD4124; text-align: left; padding: 8px;\">").append("Failed").append("</td>");
 	                emailContent.append("<td style=\"border: 1px solid #dddddd; color: #000000; text-align: left; padding: 8px;\">").append(totalSteps).append("</td>");
 	                emailContent.append("<td style=\"border: 1px solid #dddddd; color: #4CAF50; text-align: left; padding: 8px;\">").append(passedSize).append("</td>");
 	                emailContent.append("<td style=\"border: 1px solid #dddddd; color: #DD4124; text-align: left; padding: 8px;\">").append(failedSize).append("</td>");
+	                emailContent.append("<td style=\"border: 1px solid #dddddd; color: #000000; text-align: left; padding: 8px;\">").append("Pass : "+passPercentage+"%, Fail : "+failPercentage+"%").append("</td>");
+	                //System.out.println("Pass : "+passPercentage+"%,  Fail : "+failPercentage+"%");
 	                emailContent.append("</tr>");
 	            }
 	        }
@@ -135,4 +149,5 @@ public class EmailContent {
 	            e.printStackTrace();
 	        }
 	}
+	
 }

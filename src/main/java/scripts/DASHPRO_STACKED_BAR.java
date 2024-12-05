@@ -10,7 +10,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import commonMethods.Keywords;
-import commonMethods.TestNgXml;
 import commonMethods.Utils;
 
 public class DASHPRO_STACKED_BAR extends Keywords{
@@ -18,7 +17,6 @@ public class DASHPRO_STACKED_BAR extends Keywords{
 	public void StackedBarwidgetTest(WebDriver driver,int iteration,String Flag) throws Exception {
 		
 		String AxesColor_Exp=Utils.getDataFromTestData("Axes", "Axes_Color_Exp");
-		String ApplyBtn_text_Exp=Utils.getDataFromTestData("Axes", "Apply_Btn_Txt");
 		String ApplyBtn_color_Exp=Utils.getDataFromTestData("Axes", "Apply_Btn_Color");
 		String Highlight_color_Exp=Utils.getDataFromTestData("Axes", "HighlightColor");
 		
@@ -106,7 +104,8 @@ public class DASHPRO_STACKED_BAR extends Keywords{
 		String ChangeStatsLine_Color=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_STACKED_BAR_Input", "ChangeStatsLine_Color");
 		String ChangeRoundOff_StatsLine=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_STACKED_BAR_Input", "ChangeRoundOff_StatsLine");
 		String Custom_StatsLine_Input=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_STACKED_BAR_Input", "Custom_StatsLine_Input");
-
+		String Select_StatsLine_Option=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_STACKED_BAR_Input", "Select_StatsLine_Option");
+		
 		Actions action=new Actions(driver);
 		mouseOverToElement(driver, ADDTabPlus);
   	    mouseOverAndClick(driver, ADDTabPlus);
@@ -167,9 +166,7 @@ public class DASHPRO_STACKED_BAR extends Keywords{
 		
 		verifyElementDisplayed(driver,aggregation);
 		verifyElementDisplayed(driver,aggText);
-			
 		verifyElementDisplayed(driver,ApplyButton);
-		String ApplyBtn_textAct=getText1(driver,ApplyButton);
 
 		String ApplyBtn_Color_Act=getTextBackgroundColor(driver,ApplyButton);
 		if(ApplyBtn_color_Exp.equalsIgnoreCase(ApplyBtn_Color_Act)) {
@@ -427,7 +424,7 @@ public class DASHPRO_STACKED_BAR extends Keywords{
 		waitForElement(driver,X_Axis_dropdown);
 		click(driver,X_Axis_dropdown);
 		waitForElement(driver,X_Axis_dropdownResults);
-		selectDropdownValue(driver,X_Axis_dataType,Select_X_Axis_Value);
+		selectDropdownValue1(driver,Select_X_Axis_Value);
 		
 		click(driver,aggregation);
 		verifyElementIsPresent1(driver, Sum);
@@ -488,7 +485,6 @@ public class DASHPRO_STACKED_BAR extends Keywords{
 				fail(driver,"Other than Date,Categorical,Numerical and Text datatype column is displayed in the Color dropdown");
 				break;
 			}
-			
 		}
 		
 		if(isDisplayed2(driver,CategoricalColumnAxisDropdown)) {
@@ -663,6 +659,7 @@ public class DASHPRO_STACKED_BAR extends Keywords{
 		wait(driver,"1");
 		
 		List<WebElement> DefaultCharts=getWebElements(driver,ChartBarDisplayCount);
+		List<WebElement> displaCounts=getWebElements(driver, charts_Bar);
 		int defaultSizeChart=DefaultCharts.size();
 		click(driver,showResult);
 		selectByText(driver, showResult, "Limit");
@@ -672,11 +669,13 @@ public class DASHPRO_STACKED_BAR extends Keywords{
 		verifyElementIsPresent1(driver,Bottom1);
 		verifyElementIsPresent1(driver,limitInput);
 		
+		boolean TopDefault=true;
 		String defaultShowRecordType=defaultSelectedValue(driver,showRecordType);
         if(defaultShowRecordType.equals("Top")) {
         	pass(driver,"'Top' is selected by default in the showRecordType input");
 		}else {
         	fail(driver,"'Top' is not selected by default in the showRecordType input");
+        	TopDefault=false;
 		}
         
 		clear1(driver,limitInput);
@@ -709,38 +708,33 @@ public class DASHPRO_STACKED_BAR extends Keywords{
 	        	fail(driver,"For Selected Limit Value, Stacked bar displayed count mismatched with Limit count value, Exp : "+limit_Number+" Act : "+chartCount);
 	        }
 			
-	        elementScreenShot_new(driver,Chart,"/Expected_screenshot/SmokeTesting/StackedbarChart_Top");
-	        
-			selectByText(driver, showRecordType, "Bottom");
-			wait(driver,"1");
-			clear1(driver,limitInput);
-			sendKeys(driver,limitInput,Limit_Input_Axes);
-			scrollUsingElement(driver, ApplyButton);
-			click(driver,ApplyButton);
-			elementnotvisible1(driver, Loading);
-			elementnotvisible1(driver, RPE_Loading);
-			verifyElementDisplayed(driver,Chart_Section);
-			waitForElement(driver, ChartBarDisplayCount);
-			
-			elementScreenShot_new(driver,Chart,"/Actual_screenshot/SmokeTesting/StackedbarChart_Bottom");
-
-	        try {
-	        	boolean chartDiff=imageComparison2(driver, "/SmokeTesting/StackedbarChart_Top", "/SmokeTesting/StackedbarChart_Bottom");
-				wait(driver, "2");
-				if(chartDiff==false) {
-					pass(driver,"'Bottom' in the Show recordType working properly");
-				}else {
-					fail(driver,"'Bottom' in the Show recordType not working properly");
+	        if(TopDefault==true) {
+	        	elementScreenShot_new(driver,Chart,"/Expected_screenshot/SmokeTesting/StackedbarChart_Top");
+				selectByText(driver, showRecordType, "Bottom");
+				wait(driver,"1");
+				clear1(driver,limitInput);
+				sendKeys(driver,limitInput,Limit_Input_Axes);
+				scrollUsingElement(driver, ApplyButton);
+				click(driver,ApplyButton);
+				elementnotvisible1(driver, Loading);
+				elementnotvisible1(driver, RPE_Loading);
+				verifyElementDisplayed(driver,Chart_Section);
+				waitForElement(driver, ChartBarDisplayCount);
+				elementScreenShot_new(driver,Chart,"/Actual_screenshot/SmokeTesting/StackedbarChart_Bottom");
+		        try {
+		        	boolean chartDiff=imageComparison2(driver, "/SmokeTesting/StackedbarChart_Top", "/SmokeTesting/StackedbarChart_Bottom");
+					wait(driver, "2");
+					if(chartDiff==false) {
+						pass(driver,"'Bottom' in the Show recordType working properly");
+					}else {
+						fail(driver,"'Bottom' in the Show recordType not working properly");
+					}
+				} catch (Exception e1) {
+					fail(driver,"Unable to compare the Images Top and Bottom charts images");
 				}
-			} catch (Exception e1) {
-				fail(driver,"Unable to compare the Images Top and Bottom charts images");
-			}
+	        }
 		}
   
-		if(defaultSizeChart<10) {
-			selectByText(driver, showResult, "All");
-		}
-		
 		verifyElementIsPresent1(driver,sortType);  
 		verifyElementIsPresent1(driver,sortBy);
 		
@@ -936,7 +930,7 @@ public class DASHPRO_STACKED_BAR extends Keywords{
 		click(driver,quickSortBytext);
 		WebElement selectSort=driver.findElement(By.xpath("//ul//span[text()='"+Select_SortBy_Value+"']"));
 		selectSort.click();
-		String QuickSortByText=getText1(driver,quickSortBytext);
+		//String QuickSortByText=getText1(driver,quickSortBytext);
 		scrollUsingElement(driver, ApplyButton);
 		click(driver,ApplyButton);
 		elementnotvisible1(driver, Loading);
@@ -944,25 +938,9 @@ public class DASHPRO_STACKED_BAR extends Keywords{
 		verifyElementDisplayed(driver,Chart_Section);
 		waitForElement(driver, ChartBarDisplayCount);
 		
-//		List<WebElement> moveElements=driver.findElements(By.xpath("//div[@id='RPE_Preview']//*[name()='tspan']"));
-//		for(WebElement ele:moveElements) {
-//			Actions act3=new Actions(driver);
-//			try {
-//				act3.moveToElement(ele).build().perform();
-//			}catch(Exception e) {
-//				
-//			}
-//		}
-		//((//*[name()='g' and @aria-label and @role='group' and @id])//*[name()='g' and contains(@role,'item') and @id ])[1]
-//		List<WebElement> charts=getWebElements(driver,chartBars);
-//		
         String Y_Selected=getText1(driver,Y_SelectedValue);
         String X_Selected=getText1(driver,X_SelectedValue);
-        
-//        System.out.println("X_Selected : "+X_Selected);
-//        System.out.println("Y_Selected : "+Y_Selected);
         String aggreagtionSelected=defaultSelectedValue(driver,aggregation);
-        
         String Y_SelectedString=getStringValue(Y_Selected);
         String X_SelectedString=getStringValue(X_Selected);
          
@@ -1011,6 +989,16 @@ public class DASHPRO_STACKED_BAR extends Keywords{
 			}
 		} catch (Exception e1) {
 			fail(driver,"Unable to compare the Images 'Ascending/Descending' charts images");
+		}
+        
+        click(driver,AscDescButton);
+        if(displaCounts.size()<10) {
+			selectByText(driver, showResult, "All");
+		}else {
+			click(driver,showResult);
+			selectByText(driver, showResult, "Limit");
+			click(driver,ApplyButton);
+			elementnotvisible1(driver, RPE_Loading);
 		}
         
      // *********** Axes Validation End *************
@@ -1316,8 +1304,6 @@ public class DASHPRO_STACKED_BAR extends Keywords{
          	
          	verifyElementDisplayed(driver, switchSliderText);
            	if(verifyElementDisplayed(driver,switchSlider)){
-         		String sliderColor=getTextBackgroundColor(driver,switchSlider);
-         		
          		if(isToggleEnable(driver, switchSliderInput)) {
          			fail(driver,"By default Start axis at 0 toggle enabled");
          		}else {
@@ -1421,7 +1407,6 @@ public class DASHPRO_STACKED_BAR extends Keywords{
     		 
     		 
     		 if(verifyElementDisplayed(driver,ChartStyling)) {
-    			 String ChartStylingText_Act=getText1(driver,ChartStyling);
     			 String ChartStylingExpand=getAttribute1(driver, ChartStyling_Expand, "class");
     			 if(ChartStylingExpand.contains("up")) {
     				pass(driver,"By default, Chart Styling gets Expanded");
@@ -1514,6 +1499,7 @@ public class DASHPRO_STACKED_BAR extends Keywords{
     				 fail(driver,"Chart theme dropdown not opened after click on it");
     			 }
     			
+    			 boolean default_Y_Scroll=false;
     			 if(isToggleEnable(driver,AutoScroll_toggle)) {
     				 pass(driver,"By default, 'AutoScroll' toggle is enabled");
     				 if(isToggleEnable(driver,X_Scroll_toggle)) {
@@ -1521,12 +1507,22 @@ public class DASHPRO_STACKED_BAR extends Keywords{
     				 }else {
     					 pass(driver,"X Scroll toggle disabled when AutoScroll toggle is enabled");
     				 }
-    			  		   
-    				 if(isToggleEnable(driver,Y_Scroll_toggle)) {
-    					 fail(driver,"Y Scroll toggle not disabled when AutoScroll toggle is enabled for the Y_Value : "+Y_Selected);
+    				 
+    				 List<WebElement> displacount=getWebElements(driver, charts_Bar);
+    				 if(displacount.size()>=15) {
+    					 if(isToggleEnable(driver,Y_Scroll_toggle)) {
+    						 pass(driver,"Y Scroll toggle is enabled when AutoScroll toggle is enabled for the larger Y_Value : "+Y_Selected);
+    						 default_Y_Scroll=true;
+    					 }else {
+    						 fail(driver,"Y Scroll toggle is not enabled when AutoScroll toggle is enabled for the larger Y_Value : "+Y_Selected);
+    					 } 
     				 }else {
-    					 pass(driver,"Y Scroll toggle disabled when AutoScroll toggle is enabled for the Y_Value : "+Y_Selected);
-    				 }
+    					 if(isToggleEnable(driver,Y_Scroll_toggle)) {
+    						 fail(driver,"Y Scroll toggle not disabled when AutoScroll toggle is enabled for the Y_Value : "+Y_Selected);
+    					 }else {
+    						 pass(driver,"Y Scroll toggle disabled when AutoScroll toggle is enabled for the Y_Value : "+Y_Selected);
+    					 } 
+		   		   	}
     			  		   
     			 }else {
     				 fail(driver,"By default, 'AutoScroll' toggle is not enabled");
@@ -1557,23 +1553,16 @@ public class DASHPRO_STACKED_BAR extends Keywords{
     			 }else {
     				 fail(driver,"X Scroll toggle not enabled when click on it");
     			 }
-    			   	
-    			 boolean Y_ScrollEnable=false;
-	   			 if(isToggleEnable(driver,Y_Scroll_toggle)){
-	   				 //pass(driver,"Y Scroll toggle enabled when click on it");
-	   				 Y_ScrollEnable=true;
-	   			 }else {
-	   				 //fail(driver,"Y Scroll toggle not enabled when click on it");
-	   				 click(driver,Y_ScrollInputSlider);
-	   				 wait(driver,"1");
-	   				 if(isToggleEnable(driver,Y_Scroll_toggle)){
-	   					 pass(driver,"Y Scroll toggle enabled when enabling it");
-	   					 Y_ScrollEnable=true;
-	   				 }else {
-	   					 fail(driver,"Y Scroll toggle not enabled when enabling it");
-	   				 }
-	   			 }
-	   			   	
+
+    			 if(default_Y_Scroll==false) { 
+    				 click(driver,Y_ScrollInputSlider);
+    				 wait(driver,"1");
+    				 if(isToggleEnable(driver,Y_Scroll_toggle)){
+    					 pass(driver,"Y Scroll toggle enabled when enabling it");
+    				 }else {
+    					 fail(driver,"Y Scroll toggle not enabled when enabling it");
+    				 }
+    			 }
     			   	
     			 scrollUsingElement(driver, ApplyButton);
     			 click(driver,ApplyButton);
@@ -1588,14 +1577,12 @@ public class DASHPRO_STACKED_BAR extends Keywords{
     				 fail(driver,"X Scroll Bar is not displayed in the chart after enabling it");
     			 }
     			 
-    			 if(Y_ScrollEnable==true) {
-    				 if(isDisplayed(driver,Y_Scroll_Bar)) {
-    					 pass(driver,"Y Scroll Bar is displayed in the chart after enabling it");
-    				 }else {
-    					 fail(driver,"Y Scroll Bar is not displayed in the chart after enabling it");
-    				 }
-    			 }
-    			 
+				 if(isDisplayed(driver,Y_Scroll_Bar)) {
+					 pass(driver,"Y Scroll Bar is displayed in the chart after enabling it");
+				 }else {
+					 fail(driver,"Y Scroll Bar is not displayed in the chart after enabling it");
+				 }
+    			
     			 click(driver,Auto_ScrollInputSlider);
     			 wait(driver,"1");
     			   	
@@ -1975,14 +1962,8 @@ public class DASHPRO_STACKED_BAR extends Keywords{
     		elementnotvisible1(driver, RPE_Loading);
     		verifyElementDisplayed(driver,Chart_Section);
     		waitForElement(driver, ChartBarDisplayCount);
-    		
-//    		//new 
-//    		 chartValues=getWebElements(driver, ValueFormat_ChartValue);
-//    		 chartValueSize=chartValues.size();
-//    		 lastChartValue=chartValues.get(chartValueSize-3);
-//    		 //new
-    		
-    		String ChartValueTextAct= getText(driver,EnableValue);//getText1(driver,ValueFormat_ChartValue);
+
+    		String ChartValueTextAct= getText(driver,EnableValue);
     		
     		 if(!ChartValueTextAct.contains(".") && ChartValueTextAct.length()>3) {
     			 String ValueSeperatorFormat=validateNumberFormat(ChartValueTextAct);
@@ -2046,6 +2027,7 @@ public class DASHPRO_STACKED_BAR extends Keywords{
     		}else {
     	  		 fail(driver,"The chart's value not displayed with Selected '"+ChangeFontSizeValue_DataLabel+"' font size."); 
     		}
+    		selectOptionValue(driver,ValueFontSizeInput,DefaultFontSizeValue_Exp);
     		
     		if(isToggleAccessible(driver,RoundOffValueInput)) {		
     	  		 pass(driver,"'RoundOff Value Input' is accessible after enabling the 'Enable Value' toggle"); 
@@ -2352,16 +2334,7 @@ public class DASHPRO_STACKED_BAR extends Keywords{
     		 elementnotvisible1(driver, RPE_Loading);
     		 verifyElementDisplayed(driver,Chart_Section);
     		 waitForElement(driver, ChartBarDisplayCount);
-//    		 moveBars=getWebElements(driver, ChartBars);
-//    		 for(WebElement ele:moveBars) {
-//    			Actions act3=new Actions(driver);
-//    			try {
-//    				act3.moveToElement(ele).build().perform();
-//    			}catch(Exception e) {
-//    				
-//    			}
-//    		 }
-    		   
+
            	 if(isDisplayed(driver, StackTotal_Chart)) {
            		 pass(driver,"Stack Total is displayed in the chart when the toggle is enabled");
            		 
@@ -2849,336 +2822,510 @@ public class DASHPRO_STACKED_BAR extends Keywords{
     	  		 fail(driver,"By default, '"+default_StatslineValueExp+"' is not selected in the StatusLine Input"); 
       		 }
     		 
-      		 click(driver,StatsLine_Input);
-      		 String[] statLineValue= {"q1","q3","mean","median","std deviation","min","max"};
-      		
-      		for(int i=0;i<statLineValue.length;i++) {
-      			
-    	  	  	try {
-    	  	  		selectOptionValue(driver,StatsLine_Input,statLineValue[i]);
-    	  	  		wait(driver,"1");
-    	  	  		String selectedStatsLine=getTextJavascript(driver, StatsLine_Input);
-    	  	  		scrollUsingElement(driver, ApplyButton);
-    	  	  		click(driver,ApplyButton);
-    	  	  		elementnotvisible1(driver, RPE_Loading);
-    	  	  		verifyElementDisplayed(driver,Chart_Section);
-    	  	  		waitForElement(driver, ChartBarDisplayCount);
-    			
-    	  	  		if(isDisplayed(driver,StatsLine_Chart)) {
-    	  	  			pass(driver,"StatsLine is displayed in the chart for the Condition : "+selectedStatsLine);
-    	  	  		}else {
-    	  	  			fail(driver,"StatsLine is not displayed in the chart for the Condition : "+selectedStatsLine);
-    	  	  		}
-      			} catch (Exception e1) {
-      				
-      			}
-      		}
+      		boolean statsLine=false;
+	  		if(IsElementEnabled(driver,StatsLine_Input)) {		
+		  		 pass(driver,"'StatsLine Input' is accessible"); 
+		  		 click(driver,StatsLine_Input);
+		  		 verifyElementIsPresent1(driver, StatsLine_Options);
+		  		 selectOptionValue(driver,StatsLine_Input,"custom");
+		  		 if(isDisplayed(driver,StatsLine_NumInput)) {
+		  			 pass(driver,"StatsLine Number Input is displayed when select the 'Custom' Value ");
+		  			 scrollUsingElement(driver, ApplyButton);
+		  			 click(driver,ApplyButton);
+		  			 if(isDisplayed(driver,StatsLine_Error)) {
+		  				 pass(driver,"'Kindly enter custom value for stats line' error displayed when input not given");
+		  			 }else {
+		  				 fail(driver,"'Kindly enter custom value for stats line' error not displayed when input not given");
+		  			 }
+		  	  		
+		  			 sendKeys(driver,StatsLine_NumInput,Custom_StatsLine_Input);
+		  			 scrollUsingElement(driver, ApplyButton);
+		  			 click(driver,ApplyButton);
+		  			 elementnotvisible1(driver, RPE_Loading);
+		  			 waitForElement(driver,Chart);
+		  			 if(isDisplayed(driver,StatsLine_Chart)) {
+		  				 pass(driver,"StatsLine is displayed in the chart for the Custom Condition ");
+		  			 }else {
+		  				 fail(driver,"StatsLine is not displayed in the chart for the Custom Condition");
+		  			 }
+		  		 }else {
+		  			 fail(driver,"StatsLine Number Input is not displayed when select the 'Custom' Value ");
+		  		 }
+		  		 
+		  		 if(isToggleAccessible(driver,statsLineRoundOff_Input)) {		
+		  			 fail(driver,"'statsLineRoundOff Input' is accessible when 'Custom' is selected in the stats line field"); 
+		  		 }else {
+		  			 pass(driver,"'statsLineRoundOff Input' is InAccessible when 'Custom' is selected in the stats line field"); 
+		  		 }
+		  		 
+		  		 selectOptionValue(driver,StatsLine_Input,Select_StatsLine_Option);
+		  		 scrollUsingElement(driver, ApplyButton);
+		  		 click(driver,ApplyButton);
+		  		 elementnotvisible1(driver, RPE_Loading);
+		  		 waitForElement(driver,Chart);	
+		  		 if(isDisplayed2(driver, StatsLine_Chart)) {
+		  			 pass(driver,"StatsLine is displayed in the Chart For the Selected Option : "+Select_StatsLine_Option);
+		  			 statsLine=true;
+		  		 }else {
+		  			 fail(driver,"StatsLine is not displayed in the Chart For the Selected Option : "+Select_StatsLine_Option);
+		  		 }
+		  		 if(isDisplayed(driver, statsLineColorInput)) {
+		  			 pass(driver,"'StatsLineColor Input' is displayed when selecting the StatsLine Value"); 
+		  			 String defaultStatsLineColor_Act=getTextJavascript(driver, statsLineColorInput);
+			  		 if(defaultStatsLineColor_Exp.equals(defaultStatsLineColor_Act)) {
+				  		 pass(driver,"By default, '"+defaultStatsLineColor_Exp+"' color is display in StatsLine Color Input"); 
+			  		 }else {
+				  		 fail(driver,"By default, '"+defaultStatsLineColor_Exp+"' color is not display in StatsLine Color Input"); 
+			  		 }
+			  		 click(driver,statsLineColorInput);
+			  		 if(isDisplayed(driver, ColorPickerOpen)) {  
+			  			 scrollUsingElement(driver, ColorPickerOpen);
+				  		 pass(driver,"Stats line color is accessible and color picker get opened"); 
+				  		 click(driver,statsLineColor_text);
+				  		 wait(driver,"1");
+				  		 if(isDisplayed2(driver,ColorPickerOpen)) {
+				  			 fail(driver, "Color picker not Closed when click outside the color input");
+				  		 }else {
+				  			 pass(driver, "Color picker Closed when click outside the color input");
+				  		 }
+				  		 
+			  		 }else {
+				  		 fail(driver,"Stats line color is not accessible and color picker not opened"); 
+			  		 }
+			  		 
+			  		 doubleClick(driver,statsLineColorInput);
+			  		 action.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).perform();
+			  		 sendKeys(driver,statsLineColorInput,"#3366ff");
+			  		 wait(driver,"1");
+			  		 if(statsLine==true) {
+			  			 scrollUsingElement(driver, ApplyButton);
+			  			 click(driver,ApplyButton);
+				  		 elementnotvisible1(driver, RPE_Loading);
+				  		 waitForElement(driver,Chart);	
+				  		 if(isDisplayed2(driver, StatsLine_Chart)){
+				  			String ChartStatsLineColorRGB=getWebElement(driver, StatsLine_Chart).getCssValue("stroke");  
+				  			String appliedStatsLineColor=rgbToHex1(ChartStatsLineColorRGB);
+				  			if(appliedStatsLineColor.equalsIgnoreCase("#3366ff")) {
+								 pass(driver,"Selected Color '#3366ff' is applied in the displayed StatsLine in the chart");
+			 				}else {
+								 fail(driver,"Selected Color '#3366ff' is not applied in the displayed StatsLine in the chart");
+			 				}
+				  		 }else {
+				  			 fail(driver,"StatsLine is not displayed in the Chart, unable to validate the StatsLine Color");
+				  		 }
+			  		 }
+			  		 
+			  		 clear1(driver,statsLineColorInput);
+			  		 wait(driver,"1");
+			  		 String StatsColorAfterClear=getTextJavascript(driver, statsLineColorInput);
+			  		 if(StatsColorAfterClear.equalsIgnoreCase(defaultStatsLineColor_Exp)) {
+			  			 pass(driver," Default color is displayed after revert the color ");
+			  			 if(statsLine==true) {
+			  				 scrollUsingElement(driver, ApplyButton);
+					  		 click(driver,ApplyButton);
+					  		 elementnotvisible1(driver, RPE_Loading);
+					  		 waitForElement(driver,Chart);
+					  		 if(isDisplayed2(driver, StatsLine_Chart)){
+					  			String ChartStatsLineColorRGB=getWebElement(driver, StatsLine_Chart).getCssValue("stroke");  
+					  			String appliedStatsLineColor=rgbToHex1(ChartStatsLineColorRGB);
+					  			if(appliedStatsLineColor.equalsIgnoreCase(defaultStatsLineColor_Exp)) {
+									 pass(driver,defaultStatsLineColor_Exp+" is applied in the displayed StatsLine in the chart after revert the Color");
+				  				}else {
+									 fail(driver,defaultStatsLineColor_Exp+" is not applied in the displayed StatsLine in the chart after revert the Color");
+				  				}
+					  		 }else {
+					  			fail(driver,"StatsLine is not displayed in the Chart, unable to validate the StatsLine Color");
+					  		 }
+			  			 }
+			  		 }else {
+			  			 fail(driver," Default color is not displayed after revert the color ");
+			  		 }
+		  		}else {
+			  		 fail(driver,"'StatsLineColor Input' is not displayed when selecting the StatsLine Value : "+Select_StatsLine_Option); 
+		  		}
+		  		 
+	  		}else {
+	  			fail(driver,"'StatsLine Input' is not accessible"); 
+	  		}
+	  		
+	  		// Position Validation start....
+	  		String default_StatslinePosition_Act=defaultSelectedValue(driver, statsLinePosition_Input);
+	  		if(default_StatslinePosition_Exp.equals(default_StatslinePosition_Act)) {
+	  			pass(driver,"By default, '"+default_StatslinePosition_Exp+"' is selected in the StatusLine Position Input"); 
+	  			if(isDisplayed2(driver,StrokeLineBehind)) {
+	  				pass(driver,"StrokeLine displayed '"+default_StatslinePosition_Exp+"' the chart bars for the default selected Position "); 
+	  			}else {
+	  				fail(driver,"StrokeLine not displayed '"+default_StatslinePosition_Exp+"' the chart bars for the default selected Position "); 
+	  			}
+	  		}else {
+	  			fail(driver,"By default, '"+default_StatslinePosition_Exp+"' is not selected in the StatusLine Position Input"); 
+	  		}
+	  		 
+	  		if(IsElementEnabled(driver,statsLinePosition_Input)) {		
+		  		 pass(driver,"'StatsLinePosition Input' accessible when selecting the StatsLine Value"); 
+		  		 selectOptionValue(driver,statsLinePosition_Input,"above");
+		  		 if(statsLine==true) {
+		  			 scrollUsingElement(driver, ApplyButton);
+					 click(driver,ApplyButton);
+					 elementnotvisible1(driver, RPE_Loading);
+					 waitForElement(driver,Chart);
+					 if(isDisplayed2(driver,StrokeLineAbove)) {
+				  		 pass(driver,"StrokeLine displayed Above the chart bars after selected the Position as 'Above'"); 
+					 }else {
+				  		 fail(driver,"StrokeLine not displayed Above the chart bars after selected the Position as 'Above' "); 
+					 }
+		  		 }
+			}else {
+		  		 fail(driver,"'StatsLinePosition Input' Inaccessible when selecting the StatsLine Value"); 
+			}
+	  		 //position Validation End 
+	  		 
+	  		//RoundOff Validation
+	  		String default_RoundOffValue_Act=defaultSelectedValue(driver, statsLineRoundOff_Input);
+	  		if(default_RoundOffValue_Exp.equals(default_RoundOffValue_Act)) {
+	  			pass(driver,"By default, '"+default_RoundOffValue_Exp+"' is selected in the StatusLine RoundOff Input"); 
+	  		}else {
+	  			fail(driver,"By default, '"+default_RoundOffValue_Exp+"' is not selected in the StatusLine RoundOff Input"); 
+	  		}
+	 		 
+	  		if(isToggleAccessible(driver,statsLineRoundOff_Input)) {		
+	  			pass(driver,"'StatsLineRoundOff Input' accessible when selecting the StatsLine Value"); 
+	  			selectOptionValue(driver, statsLineRoundOff_Input, ChangeRoundOff_StatsLine);
+	  			if(statsLine==true) {
+	  				scrollUsingElement(driver, ApplyButton);
+		  			click(driver,ApplyButton);
+		  			elementnotvisible1(driver, RPE_Loading);
+		  			waitForElement(driver,Chart);
+		  			if(verifyElementDisplayed(driver, StatsLineRoundOff_Chart)) {
+		  				String StatsLineString=getText(driver, StatsLineRoundOff_Chart);
+		  				String roundOffStringValueAct=String.valueOf(getRoundOffValue(StatsLineString));
+		  				if(roundOffStringValueAct.equals(ChangeRoundOff_StatsLine)) {
+		  					pass(driver,"StatsLine value displayed with selected '"+ChangeRoundOff_StatsLine+"' RoundOff Value ");  
+		  				}else {
+		  					fail(driver,"StatsLine value not displayed with selected '"+ChangeRoundOff_StatsLine+"' RoundOff Value "); 
+		  				}
+		  			}
+	  			}
+	  		}else {
+	  			fail(driver,"'StatsLineRoundOff Input' Inaccessible when selecting the StatsLine Value"); 
+	  		}
+	 		//RoundOff Validation End..
       		 
       		 
-      		selectOptionValue(driver,StatsLine_Input,"custom");
+//      		 click(driver,StatsLine_Input);
+//      		 verifyElementIsPresent1(driver, StatsLine_Options);
+//      		 selectOptionValue(driver,StatsLine_Input,"custom");
+//      		 if(isDisplayed(driver,StatsLine_NumInput)) {
+//      			pass(driver,"StatsLine Number Input is displayed when select the 'Custom' Value ");
+//      			scrollUsingElement(driver, ApplyButton);
+//      	  		click(driver,ApplyButton);
+//      	  		if(isDisplayed(driver,StatsLine_Error)) {
+//      	  			pass(driver,"'Kindly enter custom value for stats line' error displayed when input not given");
+//      	  		}else {
+//      	  			fail(driver,"'Kindly enter custom value for stats line' error not displayed when input not given");
+//      	  		}
+//      	  		
+//      	  		sendKeys(driver,StatsLine_NumInput,Custom_StatsLine_Input);
+//      	  		scrollUsingElement(driver, ApplyButton);
+//    	  		click(driver,ApplyButton);
+//    	  		elementnotvisible1(driver, RPE_Loading);
+//    	  		waitForElement(driver,Chart_Section);
+//    	  		if(isDisplayed(driver,StatsLine_Chart)) {
+//      	  			pass(driver,"StatsLine is displayed in the chart for the Custom Condition ");
+//      	  		}else {
+//      	  			fail(driver,"StatsLine is not displayed in the chart for the Custom Condition");
+//      	  		}
+//      	  		
+//      		 }else {
+//      			fail(driver,"StatsLine Number Input is not displayed when select the 'Custom' Value ");
+//      		 }
+//      		 
+//      		 if(isToggleAccessible(driver,statsLineRoundOff_Input)) {		
+//    	  		 fail(driver,"'statsLineRoundOff Input' is accessible when 'Custom' is selected in the stats line field"); 
+//      		 }else {
+//    	  		 pass(driver,"'statsLineRoundOff Input' is InAccessible when 'Custom' is selected in the stats line field"); 
+//      		 }
+//     		
+//      		 
+//      		 selectOptionValue(driver,StatsLine_Input,Select_StatsLine_Option);
+//      		 scrollUsingElement(driver, ApplyButton);
+//      		 click(driver,ApplyButton);
+//      		 elementnotvisible1(driver, RPE_Loading);
+//      		 
+//      		 
+//      		 if(!StatsLinePresent.equals("")) {
+//      			selectOptionValue(driver,StatsLine_Input,StatsLinePresent);
+//          		
+//      		 }
+//      		
+//      		 if(isDisplayed(driver, statsLineColorInput)) {
+//    	  		 pass(driver,"'StatsLineColor Input' is displayed when selecting the StatsLine Value"); 
+//    	  		 String defaultStatsLineColor_Act=getTextJavascript(driver, statsLineColorInput);
+//    	  		 if(defaultStatsLineColor_Exp.equals(defaultStatsLineColor_Act)) {
+//    		  		 pass(driver,"By default, '"+defaultStatsLineColor_Exp+"' color is display in StatsLine Color Input"); 
+//    	  		 }else {
+//    		  		 fail(driver,"By default, '"+defaultStatsLineColor_Exp+"' color is not display in StatsLine Color Input"); 
+//    	  		 }
+//    	  		 
+//    	  		 click(driver,statsLineColorInput);
+//    	  		 if(isDisplayed(driver, ColorPickerOpen)) {  
+//    	  			 scrollUsingElement(driver, ColorPickerOpen);
+//    		  		 pass(driver,"Stats line color is accessible and color picker get opened"); 
+//    		  		 click(driver,statsLineColor_text);
+//    		  		 wait(driver,"1");
+//    		  		 if(isDisplayed2(driver,ColorPickerOpen)) {
+//    		  			 fail(driver, "Color picker not Closed when click outside the color input");
+//    		  		 }else {
+//    		  			 pass(driver, "Color picker Closed when click outside the color input");
+//    		  		 }
+//    		  		 
+//    	  		 }else {
+//    		  		 fail(driver,"Stats line color is not accessible and color picker not opened"); 
+//    	  		 }
+//    	  		 
+//    	  		 doubleClick(driver,statsLineColorInput);
+//    	  		 action.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).perform();
+//    	  		 sendKeys(driver,statsLineColorInput,ChangeStatsLine_Color);
+//    	  		 wait(driver,"1");
+//    	  		 if(!StatsLinePresent.equals("")) {
+//    	  			 scrollUsingElement(driver, ApplyButton);
+//        	  		 click(driver,ApplyButton);
+//        	  		 elementnotvisible1(driver, RPE_Loading);
+//        	  		 if(verifyElementDisplayed(driver,Chart_Section)) {
+//        	  			 if(verifyElementDisplayed(driver, StatsLine_Chart)){
+//        	  				 String ChartStatsLineColorRGB=getWebElement(driver, StatsLine_Chart).getCssValue("stroke");  
+//        	  				 String appliedStatsLineColor=rgbToHex1(ChartStatsLineColorRGB);
+//        	  				 if(appliedStatsLineColor.equalsIgnoreCase(ChangeStatsLine_Color)) {
+//        	  					 pass(driver,"Selected Color '"+ChangeStatsLine_Color+"' is applied in the displayed StatsLine in the chart");
+//        	  				 }else {
+//        	  					 fail(driver,"Selected Color '"+ChangeStatsLine_Color+"' is not applied in the displayed StatsLine in the chart");
+//        	  				 }
+//        	  			 }
+//        	  		 }
+//    	  		 }
+//    	  		 clear1(driver,statsLineColorInput);
+//    	  		 wait(driver,"1");
+//    	  		 String StatsColorAfterClear=getTextJavascript(driver, statsLineColorInput);
+//    	  		 if(StatsColorAfterClear.equalsIgnoreCase(defaultStatsLineColor_Exp)) {
+//    	  			 pass(driver," Default color is displayed after revert the color ");
+//    	  			 if(!StatsLinePresent.equals("")) {
+//    	  				scrollUsingElement(driver, ApplyButton);
+//    	  				click(driver,ApplyButton);
+//    	  				elementnotvisible1(driver, RPE_Loading);
+//    	  				verifyElementDisplayed(driver,Chart_Section);
+//    	  				waitForElement(driver, ChartBarDisplayCount);
+//    	  				if(verifyElementDisplayed(driver, StatsLine_Chart)){
+//    	  					String ChartStatsLineColorRGB=getWebElement(driver, StatsLine_Chart).getCssValue("stroke");  
+//    	  					String appliedStatsLineColor=rgbToHex1(ChartStatsLineColorRGB);
+//    	  					if(appliedStatsLineColor.equalsIgnoreCase(defaultStatsLineColor_Exp)) {
+//    	  						pass(driver,defaultStatsLineColor_Exp+" is applied in the displayed StatsLine in the chart after revert the Color");
+//    	  					}else {
+//    	  						fail(driver,defaultStatsLineColor_Exp+" is not applied in the displayed StatsLine in the chart after revert the Color");
+//    	  					}
+//    	  				}
+//    	  			 }
+//    	  		 }else {
+//    	  			 fail(driver," Default color is not displayed after revert the color ");
+//    	  		 }
+//     		}else {
+//    	  		 fail(driver,"'StatsLineColor Input' is not displayed when selecting the StatsLine Value"); 
+//     		}
+//      		
+//      		// Position Validation start....
+//      		if(isToggleAccessible(driver,statsLinePosition_Input)) {		
+//    	  		 pass(driver,"'StatsLinePosition Input' accessible when selecting the StatsLine Value"); 
+//    	  		 String default_StatslinePosition_Act=defaultSelectedValue(driver, statsLinePosition_Input);
+//          		 if(default_StatslinePosition_Exp.equals(default_StatslinePosition_Act)) {
+//        	  		 pass(driver,"By default, '"+default_StatslinePosition_Exp+"' is selected in the StatusLine Position Input"); 
+//        	  		 if(!StatsLinePresent.equals("")) {
+//        	  			 if(isDisplayed2(driver,StrokeLineBehind)) {
+//        	  				 pass(driver,"StrokeLine displayed '"+default_StatslinePosition_Exp+"' the chart bars for the default selected Position "); 
+//        	  			 }else {
+//        	  				 fail(driver,"StrokeLine not displayed '"+default_StatslinePosition_Exp+"' the chart bars for the default selected Position "); 
+//        	  			 }
+//        	  		 }
+//        	  		 
+//          		 }else {
+//        	  		 fail(driver,"By default, '"+default_StatslinePosition_Exp+"' is not selected in the StatusLine Position Input"); 
+//          		 }
+//
+//          		if(!StatsLinePresent.equals("")) {
+//          			selectOptionValue(driver,statsLinePosition_Input,"above");
+//              		 scrollUsingElement(driver, ApplyButton);
+//              		 click(driver,ApplyButton);
+//              		 elementnotvisible1(driver, RPE_Loading);
+//              		 verifyElementDisplayed(driver,Chart_Section);
+//             		 waitForElement(driver, ChartBarDisplayCount);
+//             		 if(isDisplayed2(driver,StrokeLineAbove)) {
+//             			 pass(driver,"StrokeLine displayed Above the chart bars after selected the Position as 'Above'"); 
+//             		 }else {
+//             			 fail(driver,"StrokeLine not displayed Above the chart bars after selected the Position as 'Above'"); 
+//             		 }
+//          		}
+//    		}else {
+//    	  		 fail(driver,"'StatsLinePosition Input' Inaccessible when selecting the StatsLine Value"); 
+//    		}
+//      		
+//      		//RoundOff Validation Start
+//     		 if(isToggleAccessible(driver,statsLineRoundOff_Input)) {		
+//     			 pass(driver,"'StatsLineRoundOff Input' accessible when selecting the StatsLine Value"); 
+//     			 String default_RoundOffValue_Act=defaultSelectedValue(driver, statsLineRoundOff_Input);
+//     			 if(default_RoundOffValue_Exp.equals(default_RoundOffValue_Act)) {
+//     				 pass(driver,"By default, '"+default_RoundOffValue_Exp+"' is selected in the StatusLine RoundOff Input"); 
+//     			 }else {
+//     				 fail(driver,"By default, '"+default_RoundOffValue_Exp+"' is not selected in the StatusLine RoundOff Input"); 
+//     			 }
+//       		 
+//     			 selectOptionValue(driver, statsLineRoundOff_Input, ChangeRoundOff_StatsLine);
+//     			 if(!StatsLinePresent.equals("")) {
+//     				 scrollUsingElement(driver, ApplyButton);
+//        			 click(driver,ApplyButton);
+//        			 elementnotvisible1(driver, RPE_Loading);
+//        			 verifyElementDisplayed(driver,Chart_Section);
+//        			 waitForElement(driver, ChartBarDisplayCount);
+//        			 if(verifyElementDisplayed(driver, StatsLineRoundOff_Chart)) {
+//        				 String StatsLineString=getText(driver, StatsLineRoundOff_Chart);
+//        				 String roundOffStringValueAct=String.valueOf(getRoundOffValue(StatsLineString));
+//        				 if(roundOffStringValueAct.equals(ChangeRoundOff_StatsLine)) {
+//        					 pass(driver,"StatsLine value displayed with selected '"+ChangeRoundOff_StatsLine+"' RoundOff Value ");  
+//        				 }else {
+//        					 fail(driver,"StatsLine value not displayed with selected '"+ChangeRoundOff_StatsLine+"' RoundOff Value "); 
+//        				 }
+//        			 }
+//     			 }
+//     			 
+//     		 }else {
+//     			 fail(driver,"'StatsLineRoundOff Input' Inaccessible when selecting the StatsLine Value"); 
+//     		 }
+//    		 //RoundOff Validation End
       		
-      		if(isDisplayed(driver,StatsLine_NumInput)) {
-      			pass(driver,"StatsLine Number Input is displayed when select the 'Custom' Value ");
-      			scrollUsingElement(driver, ApplyButton);
-      	  		click(driver,ApplyButton);
-      	  		if(isDisplayed(driver,StatsLine_Error)) {
-      	  			pass(driver,"'Kindly enter custom value for stats line' error displayed when input not given");
-      	  		}else {
-      	  			fail(driver,"'Kindly enter custom value for stats line' error not displayed when input not given");
-      	  		}
-      	  		
-      	  		sendKeys(driver,StatsLine_NumInput,Custom_StatsLine_Input);
-      	  		scrollUsingElement(driver, ApplyButton);
-    	  		click(driver,ApplyButton);
-    	  		elementnotvisible1(driver, RPE_Loading);
-    	  		verifyElementDisplayed(driver,Chart_Section);
-    	  		waitForElement(driver, ChartBarDisplayCount);
-    	  		if(isDisplayed(driver,StatsLine_Chart)) {
-      	  			pass(driver,"StatsLine is displayed in the chart for the Custom Condition ");
-      	  		}else {
-      	  			fail(driver,"StatsLine is not displayed in the chart for the Custom Condition");
-      	  		}
-      	  		
-      		}else {
-      			fail(driver,"StatsLine Number Input is not displayed when select the 'Custom' Value ");
-      		}
-      		 
-      		if(isToggleAccessible(driver,statsLineRoundOff_Input)) {		
-    	  		 fail(driver,"'statsLineRoundOff Input' is accessible when 'Custom' is selected in the stats line field"); 
-    		}else {
-    	  		 pass(driver,"'statsLineRoundOff Input' is InAccessible when 'Custom' is selected in the stats line field"); 
-    		}
-     		
-      		selectOptionValue(driver,StatsLine_Input,"q1");
-      		scrollUsingElement(driver, ApplyButton);
-      		click(driver,ApplyButton);
-      		elementnotvisible1(driver, RPE_Loading);
+     		//cursor validation Start....
       		
-      		if(isDisplayed(driver, statsLineColorInput)) {
-    	  		 pass(driver,"'StatsLineColor Input' is displayed when selecting the StatsLine Value"); 
-    	  		 String defaultStatsLineColor_Act=getTextJavascript(driver, statsLineColorInput);
-    	  		 if(defaultStatsLineColor_Exp.equals(defaultStatsLineColor_Act)) {
-    		  		 pass(driver,"By default, '"+defaultStatsLineColor_Exp+"' color is display in StatsLine Color Input"); 
-    	  		 }else {
-    		  		 fail(driver,"By default, '"+defaultStatsLineColor_Exp+"' color is not display in StatsLine Color Input"); 
-    	  		 }
-    	  		 
-    	  		 click(driver,statsLineColorInput);
-    	  		 if(isDisplayed(driver, ColorPickerOpen)) {  
-    	  			 scrollUsingElement(driver, ColorPickerOpen);
-    		  		 pass(driver,"Stats line color is accessible and color picker get opened"); 
-    		  		 click(driver,statsLineColor_text);
-    		  		 wait(driver,"1");
-    		  		 if(isDisplayed2(driver,ColorPickerOpen)) {
-    		  			 fail(driver, "Color picker not Closed when click outside the color input");
-    		  		 }else {
-    		  			 pass(driver, "Color picker Closed when click outside the color input");
-    		  		 }
-    		  		 
-    	  		 }else {
-    		  		 fail(driver,"Stats line color is not accessible and color picker not opened"); 
-    	  		 }
-    	  		 
-    	  		 doubleClick(driver,statsLineColorInput);
-    	  		 action.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).perform();
-    	  		 sendKeys(driver,statsLineColorInput,ChangeStatsLine_Color);
-    	  		 wait(driver,"1");
-    	  		 scrollUsingElement(driver, ApplyButton);
-    	  		 click(driver,ApplyButton);
-    	  		 elementnotvisible1(driver, RPE_Loading);
-    	  		 verifyElementDisplayed(driver,Chart_Section);
-    	  		 waitForElement(driver, ChartBarDisplayCount);
-    	  		 
-    	  		 if(verifyElementDisplayed(driver, StatsLine_Chart)){
-    	  			String ChartStatsLineColorRGB=getWebElement(driver, StatsLine_Chart).getCssValue("stroke");  
-    	  			String appliedStatsLineColor=rgbToHex1(ChartStatsLineColorRGB);
-    	  			if(appliedStatsLineColor.equalsIgnoreCase(ChangeStatsLine_Color)) {
-    					 pass(driver,"Selected Color '"+ChangeStatsLine_Color+"' is applied in the displayed StatsLine in the chart");
-      				}else {
-    					 fail(driver,"Selected Color '"+ChangeStatsLine_Color+"' is not applied in the displayed StatsLine in the chart");
-      				}
-    	  		 }
-    	  		 
-    	  		 clear1(driver,statsLineColorInput);
-    	  		 wait(driver,"1");
-    	  		 String StatsColorAfterClear=getTextJavascript(driver, statsLineColorInput);
-    	  		 if(StatsColorAfterClear.equalsIgnoreCase(defaultStatsLineColor_Exp)) {
-    	  			 pass(driver," Default color is displayed after revert the color ");
-    	  			 scrollUsingElement(driver, ApplyButton);
-    		  		 click(driver,ApplyButton);
-    		  		 elementnotvisible1(driver, RPE_Loading);
-    		  		 verifyElementDisplayed(driver,Chart_Section);
-    		  		 waitForElement(driver, ChartBarDisplayCount);
-    		  		 if(verifyElementDisplayed(driver, StatsLine_Chart)){
-    		  			String ChartStatsLineColorRGB=getWebElement(driver, StatsLine_Chart).getCssValue("stroke");  
-    		  			String appliedStatsLineColor=rgbToHex1(ChartStatsLineColorRGB);
-    		  			if(appliedStatsLineColor.equalsIgnoreCase(defaultStatsLineColor_Exp)) {
-    						 pass(driver,defaultStatsLineColor_Exp+" is applied in the displayed StatsLine in the chart after revert the Color");
-    	  				}else {
-    						 fail(driver,defaultStatsLineColor_Exp+" is not applied in the displayed StatsLine in the chart after revert the Color");
-    	  				}
-    		  		 }
-    		  		 
-    	  		 }else {
-    	  			 fail(driver," Default color is not displayed after revert the color ");
-    	  		 }
-    	  		 
-     		}else {
-    	  		 fail(driver,"'StatsLineColor Input' is not displayed when selecting the StatsLine Value"); 
-     		}
-      		
-      		// Position Validation start....
-      		if(isToggleAccessible(driver,statsLinePosition_Input)) {		
-    	  		 pass(driver,"'StatsLinePosition Input' accessible when selecting the StatsLine Value"); 
-    		}else {
-    	  		 fail(driver,"'StatsLinePosition Input' Inaccessible when selecting the StatsLine Value"); 
-    		}
-      		
-      		 String default_StatslinePosition_Act=defaultSelectedValue(driver, statsLinePosition_Input);
-      		 if(default_StatslinePosition_Exp.equals(default_StatslinePosition_Act)) {
-    	  		 pass(driver,"By default, '"+default_StatslinePosition_Exp+"' is selected in the StatusLine Position Input"); 
-    	  		 if(isDisplayed2(driver,StrokeLineBehind)) {
-    		  		 pass(driver,"StrokeLine displayed '"+default_StatslinePosition_Exp+"' the chart bars for the default selected Position "); 
-    			 }else {
-    		  		 fail(driver,"StrokeLine not displayed '"+default_StatslinePosition_Exp+"' the chart bars for the default selected Position "); 
-    			 }
-      		 }else {
-    	  		 fail(driver,"By default, '"+default_StatslinePosition_Exp+"' is not selected in the StatusLine Position Input"); 
-      		 }
-
-       		 selectOptionValue(driver,statsLinePosition_Input,"above");
-       		 scrollUsingElement(driver, ApplyButton);
-    		 click(driver,ApplyButton);
-    		 elementnotvisible1(driver, RPE_Loading);
-    		 verifyElementDisplayed(driver,Chart_Section);
-      		 waitForElement(driver, ChartBarDisplayCount);
-    		 
-    		 if(isDisplayed2(driver,StrokeLineAbove)) {
-    	  		 pass(driver,"StrokeLine displayed Above the chart bars after selected the Position as 'Above'"); 
-    		 }else {
-    	  		 fail(driver,"StrokeLine not displayed Above the chart bars after selected the Position as 'Above'"); 
-    		 }
-    		 
-      		 //position Validation End
-    		 
-    		 //RoundOff Validation Start
-      		 if(isToggleAccessible(driver,statsLineRoundOff_Input)) {		
-    	  		 pass(driver,"'StatsLineRoundOff Input' accessible when selecting the StatsLine Value"); 
-      		 }else {
-    	  		 fail(driver,"'StatsLineRoundOff Input' Inaccessible when selecting the StatsLine Value"); 
-      		 }
-     		
-     		 String default_RoundOffValue_Act=defaultSelectedValue(driver, statsLineRoundOff_Input);
-     		 if(default_RoundOffValue_Exp.equals(default_RoundOffValue_Act)) {
-    	  		 pass(driver,"By default, '"+default_RoundOffValue_Exp+"' is selected in the StatusLine RoundOff Input"); 
-     		 }else {
-    	  		 fail(driver,"By default, '"+default_RoundOffValue_Exp+"' is not selected in the StatusLine RoundOff Input"); 
-     		 }
-     		 
-     		 selectOptionValue(driver, statsLineRoundOff_Input, ChangeRoundOff_StatsLine);
-     		 scrollUsingElement(driver, ApplyButton);
-      		 click(driver,ApplyButton);
-      		 elementnotvisible1(driver, RPE_Loading);
-      		 verifyElementDisplayed(driver,Chart_Section);
-     		 waitForElement(driver, ChartBarDisplayCount);
-      		 
-     		 if(verifyElementDisplayed(driver, StatsLineRoundOff_Chart)) {
-     			 String StatsLineString=getText(driver, StatsLineRoundOff_Chart);
-     			 String roundOffStringValueAct=String.valueOf(getRoundOffValue(StatsLineString));
-     			 if(roundOffStringValueAct.equals(ChangeRoundOff_StatsLine)) {
-    		  		 pass(driver,"StatsLine value displayed with selected '"+ChangeRoundOff_StatsLine+"' RoundOff Value ");  
-    	 		 }else {
-    		  		 fail(driver,"StatsLine value not displayed with selected '"+ChangeRoundOff_StatsLine+"' RoundOff Value "); 
-    	 		 }
-     		 }
-    		 
-    		 //RoundOff Validation End
-
-     		//cursor validation End....
-      		
+	  		if(isToggleEnable(driver,Cursor_Input)) {		
+	  			fail(driver,"'Cursor Input' is enabled by default"); 
+	  		}else {
+	  			pass(driver,"'Cursor Input' is disabled by default"); 
+	  			if(!isDisplayed2(driver,MouseCursor)) {
+	  				pass(driver,"Cursor is not displayed in chart when cursor is disabled by default"); 
+	  			}else {
+	  				fail(driver,"Cursor is displayed in chart when cursor is disabled by default");  
+	  			}
+	  			click(driver,Cursor_InputClick);
+	  			if(isToggleEnable(driver,Cursor_Input)) {		
+	  				pass(driver,"'Cursor Input' is enabled while click on it"); 
+	  				scrollUsingElement(driver, ApplyButton);
+	  				click(driver,ApplyButton);
+	  				elementnotvisible1(driver, RPE_Loading);
+	  				waitForElement(driver,Chart);
+	  				mouseOverToElement(driver, ChartGraph);
+	  				if(isDisplayed2(driver,MouseCursor)) {
+	  					pass(driver,"Cursor is displayed in chart when cursor input is enabled"); 
+	  				}else {
+	  					fail(driver,"Cursor is not displayed in chart when cursor input is enabled");  
+	  				}
+	  			}else {
+	  				fail(driver,"'Cursor Input' is not enabled while click on it"); 
+	  			}
+	  		}
+	  		//cursor validation End....
+	  		
       		if(isToggleEnable(driver,Export_Input)) {		
      	  		 fail(driver,"'Export Input' enable by default");
      		}else {
      	  		 pass(driver,"'Export Input' disable by default"); 
-     		}
-      		
-      		scrollUsingElement(driver, ApplyButton);
-      		click(driver,ApplyButton);
-      		elementnotvisible1(driver, RPE_Loading);
-      		verifyElementDisplayed(driver,Chart_Section);
-    		waitForElement(driver, ChartBarDisplayCount);
-    		
-      		if(isDisplayed2(driver,ExportChartOptions)) {
-     	  		 fail(driver,"'Export Options' is displayed in charts when Export chart is disabled"); 
-     		}else {
-     	  		 pass(driver,"'Export Options' not displayed in charts when Export chart is disabled"); 
-     		}
-      		
-      		click(driver,Export_InputClick);
-      		if(isToggleEnable(driver,Export_Input)) {		
-     	  		 pass(driver,"'Export Input' is enabled while enabling it");
-     		}else {
-     	  		 fail(driver,"'Export Input' not enabled while enabling it"); 
-     		}
-      		
-      		scrollUsingElement(driver, ApplyButton);
-      		click(driver,ApplyButton);
-      		elementnotvisible1(driver, RPE_Loading);
-      		verifyElementDisplayed(driver,Chart_Section);
-    		waitForElement(driver, ChartBarDisplayCount);
-      		if(isDisplayed2(driver,ExportChartOptions)) {
-     	  		 pass(driver,"'Export Options' is displayed in charts when Export chart is enabled"); 
-     	  		 mouseOverToElement(driver, ExportChartOptions);
-     	  		 if(isDisplayed2(driver,ExportOptionExpandList)) {
-     		  		pass(driver,"'Export Options' is expanded when click on it"); 
-     		  		if(isDisplayed2(driver,Export_Image)) {
-     			  		 pass(driver,"'IMG' Option is displayed When expand the charts Export"); 
-     			  		 mouseOverToElement(driver, Export_Image);
-     			  		 
-     			  		if(elementIsVisible(driver,Export_PNG)) {
-     				  		 pass(driver,"'PNG' Option displayed When Mouse hover on IMG Option"); 
-     		  			}else {
-     				  		 fail(driver,"'PNG' Option is not displayed When Mouse hover on IMG Option"); 
-     		  			}
-     			  		
-     			  		if(elementIsVisible(driver,Export_JPG)) {
-     				  		 pass(driver,"'JPG' Option displayed When Mouse hover on IMG Option"); 
-     		  			}else {
-     				  		 fail(driver,"'JPG' Option is not displayed When Mouse hover on IMG Option"); 
-     		  			}
-     			  		
-     			  		if(elementIsVisible(driver,Export_SVG)) {
-     				  		 pass(driver,"'SVG' Option displayed When Mouse hover on IMG Option"); 
-     		  			}else {
-     				  		 fail(driver,"'SVG' Option is not displayed When Mouse hover on IMG Option"); 
-     		  			}
-     		  		 }else {
-     			  		 fail(driver,"'IMG' Option is not displayed When expand the charts Export"); 
-     		  		 }
-     		  		 
-     		  		if(isDisplayed2(driver,Export_Data)) {
-     			  		 pass(driver,"'Data' Option is displayed When expand the charts Export"); 
-     			  		 mouseOverToElement(driver, Export_Data);
-     			  		 verifyElementIsPresent1(driver, Export_JSON);
-     			  		 verifyElementIsPresent1(driver, Export_CSV);
-     			  		 verifyElementIsPresent1(driver, Export_XLSX);
-     			  		 verifyElementIsPresent1(driver, Export_HTML);
-
-     		  		 }else {
-     			  		 fail(driver,"'Data' Option is not displayed When expand the charts Export"); 
-     		  		 }
-     		  		
-     		  		if(isDisplayed2(driver,Export_Print)) {
-     			  		 pass(driver,"'Print' Option is displayed When expand the charts Export"); 			  		 
-     		  		 }else {
-     			  		 fail(driver,"'Print' Option is not displayed When expand the charts Export"); 
-     		  		 }
-     		  		 
+     	  		 if(isDisplayed2(driver,ExportChartOptions)) {
+     	  			 fail(driver,"'Export Options' is displayed in charts when Export chart is disabled"); 
      	  		 }else {
-     		  		 fail(driver,"'Export Options' is not expanded when click on it"); 
+     	  			 pass(driver,"'Export Options' not displayed in charts when Export chart is disabled"); 
      	  		 }
-     		}else {
-     	  		 fail(driver,"'Export Options' not displayed in charts when Export chart is enabled"); 
+     	  		 
+     	  		 if(IsElementEnabled(driver, Export_InputClick)) {
+     	  			 click(driver,Export_InputClick);
+     	  			 if(isToggleEnable(driver,Export_Input)) {		
+     	  				 pass(driver,"'Export Input' is enabled while enabling it");
+     	  				 scrollUsingElement(driver, ApplyButton);
+     	  				 click(driver,ApplyButton);
+     	  				 elementnotvisible1(driver, RPE_Loading);
+     	  				 waitForElement(driver, Chart_Section);
+     	  				 if(isDisplayed2(driver,ExportChartOptions)) {
+     	  					 pass(driver,"'Export Options' is displayed in charts when Export chart is enabled"); 
+     	  					 mouseOverToElement(driver, ExportChartOptions);
+     	  					 if(isDisplayed2(driver,ExportOptionExpandList)) {
+     	  						 pass(driver,"'Export Options' is expanded when click on it"); 
+     	  						 if(isDisplayed2(driver,Export_Image)) {
+     	  							 pass(driver,"'IMG' Option is displayed When expand the charts Export"); 
+     	  							 mouseOverToElement(driver, Export_Image);
+     	  							 
+     	  							 if(elementIsVisible(driver,Export_PNG)) {
+     	  								 pass(driver,"'PNG' Option displayed When Mouse hover on IMG Option"); 
+     	  							 }else {
+     	  								 fail(driver,"'PNG' Option is not displayed When Mouse hover on IMG Option"); 
+     	  							 }
+     	  							 if(elementIsVisible(driver,Export_JPG)) {
+     	  								 pass(driver,"'JPG' Option displayed When Mouse hover on IMG Option"); 
+     	  							 }else {
+     	  								 fail(driver,"'JPG' Option is not displayed When Mouse hover on IMG Option"); 
+     	  							 }
+     	  							 if(elementIsVisible(driver,Export_SVG)) {
+     	       				  		 pass(driver,"'SVG' Option displayed When Mouse hover on IMG Option"); 
+     	  							 }else {
+     	  								 fail(driver,"'SVG' Option is not displayed When Mouse hover on IMG Option"); 
+     	  							 }
+     	  						 }else {
+     	  							 fail(driver,"'IMG' Option is not displayed When expand the charts Export"); 
+     	  						 }
+     	  						 if(isDisplayed2(driver,Export_Data)) {
+     	  							 pass(driver,"'Data' Option is displayed When expand the charts Export"); 
+     	  							 mouseOverToElement(driver, Export_Data);
+     	  							 verifyElementIsPresent1(driver, Export_JSON);
+     	  							 verifyElementIsPresent1(driver, Export_CSV);
+     	  							 verifyElementIsPresent1(driver, Export_XLSX);
+     	  							 verifyElementIsPresent1(driver, Export_HTML);
+     	  						 }else {
+     	  							 fail(driver,"'Data' Option is not displayed When expand the charts Export"); 
+     	  						 }
+     	       		  		
+     	  						 if(isDisplayed2(driver,Export_Print)) {
+     	  							 pass(driver,"'Print' Option is displayed When expand the charts Export"); 			  		 
+     	  						 }else {
+     	  							 fail(driver,"'Print' Option is not displayed When expand the charts Export"); 
+     	  						 }
+     	  					 }else {
+     	  						 fail(driver,"'Export Options' is not expanded when click on it"); 
+     	  					 }
+     	  				 }else {
+     	  					 fail(driver,"'Export Options' not displayed in charts when Export chart is enabled"); 
+     	  				 }
+     	  			 }else {
+     	  				 fail(driver,"'Export Input' not enabled while enabling it"); 
+     	  			 }
+     	  		 }else {
+     	  			 fail(driver,"Export Input is not accessible");
+     	  		 }
      		}
-         }
-		 
+        }
   	     // ******************* Others Validation End *********************
 		 
-  		click(driver,ChartTitleInput);
- 		clear(driver,ChartTitleInput);
- 		verifyElementDisplayed(driver, SaveBtn_Chart);
- 		verifyElementDisplayed(driver, cancel_chart);
-       	click(driver,SaveBtn_Chart);
-       	if(isDisplayed(driver,chartSaveError1)) {
-       		pass(driver,"'Enter Widget Name' error displayed when save the chart without given chart title name");
-       	}else {
-       		fail(driver,"'Enter Widget Name' error not displayed when save the chart without given chart title name");
-       	}
-       	elementnotvisible(driver, chartSaveError1);
-       	sendKeys(driver,ChartTitleInput,ChangeChartTitleName);
+       	clearAndType1(driver,ChartTitleInput,ChangeChartTitleName);
        	click(driver,SaveBtn_Chart);
        	elementnotvisible1(driver, RPE_Loading);
        	if(!isDisplayed2(driver,chartSaveError1) && isDisplayed(driver,SavedChartTitleInput)) {
        		pass(driver,"Chart Saved Successfully");
+       		String AfterSaveChartTitleName=getText1(driver, SavedChartTitleName);
+           	if(AfterSaveChartTitleName.equals(ChangeChartTitleName)) {
+           		pass(driver,"Same Chart Title name displayed after saved the chart ");
+           	}else {
+           		fail(driver,"Different Chart Title name displayed after saved the chart ");
+           	}
+           	mouseOverToElement(driver, SavedChartTitleInput);
+           	if(isDisplayed2(driver,ExportOption_SavedChart)) {
+           		pass(driver,"Export option get enabled after save chart");
+           	}else {
+           		fail(driver,"Export option not get enabled after save chart");
+           	}
        	}else {
        		fail(driver,"Chart not Saved Successfully");
        	}	
-	      
-       	String AfterSaveChartTitleName=getText1(driver, SavedChartTitleName);
-       	if(AfterSaveChartTitleName.equals(ChangeChartTitleName)) {
-       		pass(driver,"Same Chart Title name displayed after saved the chart ");
-       	}else {
-       		fail(driver,"Different Chart Title name displayed after saved the chart ");
-       	}
-	    	  
-       	mouseOverToElement(driver, SavedChartTitleInput);
-       	
-       	if(isDisplayed2(driver,ExportOption_SavedChart)) {
-       		pass(driver,"Export option get enabled after save chart");
-       	}else {
-       		fail(driver,"Export option not get enabled after save chart");
-       	}
-  		
 	}
 
 }

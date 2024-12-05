@@ -1049,7 +1049,7 @@ public class DASHPRO_BARWITHLINE_TESTING extends Keywords{
 		click(driver,quickSortBytext);
 		WebElement selectSort=driver.findElement(By.xpath("//ul//span[text()='"+Select_SortBy_Value+"']"));
 		selectSort.click();
-		String QuickSortByText=getText1(driver,quickSortBytext);
+		//String QuickSortByText=getText1(driver,quickSortBytext);
 		scrollUsingElement(driver, ApplyButton);
 		click(driver,ApplyButton);
 		elementnotvisible1(driver, RPE_Loading);

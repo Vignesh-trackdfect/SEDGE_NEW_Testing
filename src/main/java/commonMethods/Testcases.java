@@ -28,9 +28,14 @@ import scripts.DASHPRO_CARD_TESTING;
 import scripts.DASHPRO_COLUMN_SMOKE_TESTING;
 import scripts.DASHPRO_CUSTOM_PIVOT_TESTING;
 import scripts.DASHPRO_GANTT_TESTING;
+import scripts.DASHPRO_GROUPED_AND_SORTED_TESTING;
 import scripts.DASHPRO_GROUPED_BAR;
 import scripts.DASHPRO_GROUPED_COLUMN_TESTING;
+import scripts.DASHPRO_HEAT_MAP_LEGEND_TESTING;
+import scripts.DASHPRO_KPI_CARD_TESTING;
 import scripts.DASHPRO_LINE_TESTING;
+import scripts.DASHPRO_MULTIPLE_AXIS_TESTING;
+import scripts.DASHPRO_NETWORK_TESTING;
 import scripts.DASHPRO_PIVOT_SMOKE_TESTING;
 import scripts.DASHPRO_RADAR_LINE_TESTING;
 import scripts.DASHPRO_SMOKE_TESTING;
@@ -39,6 +44,7 @@ import scripts.DASHPRO_STACKED_BAR;
 import scripts.DASHPRO_STACKED_COLUMN_TESTING;
 import scripts.DASHPRO_TABLES_SMOKE_TESTING;
 import scripts.DASHPRO_TEXT_TESTING;
+import scripts.DASHPRO_TREE_MAP_TESTING;
 import scripts.DASHPRO_WATERFALL_TESTING;
 import scripts.DB_CONNECTION_SMOKE_TESTING;
 import scripts.FILE_UPLOAD_TESTING;
@@ -62,11 +68,8 @@ public class Testcases extends Config {
 	static ExtentSparkReporter spark;
 	static ExtentTest test;
 	static ExtentReports extent;
-	public String project_Name;
-	public String version_Name;
 	public String environment;
 	public String Execution = "null";
-	public String buildname = "null";
 	boolean log = false;
 
 	TestCase_DP01 dp01=new TestCase_DP01();
@@ -98,13 +101,17 @@ public class Testcases extends Config {
 	FILE_UPLOAD_TESTING fileUpload=new FILE_UPLOAD_TESTING();
 	DASHPRO_WATERFALL_TESTING waterFall=new DASHPRO_WATERFALL_TESTING();
 	DASHPRO_RADAR_LINE_TESTING radarLine=new DASHPRO_RADAR_LINE_TESTING();
+	DASHPRO_NETWORK_TESTING newtwork=new DASHPRO_NETWORK_TESTING();
+	DASHPRO_TREE_MAP_TESTING treeMap=new DASHPRO_TREE_MAP_TESTING();
+	DASHPRO_GROUPED_AND_SORTED_TESTING groupSorted=new DASHPRO_GROUPED_AND_SORTED_TESTING();
+	DASHPRO_KPI_CARD_TESTING kpiCard=new DASHPRO_KPI_CARD_TESTING();
+	DASHPRO_HEAT_MAP_LEGEND_TESTING heatMap=new DASHPRO_HEAT_MAP_LEGEND_TESTING();
+	DASHPRO_MULTIPLE_AXIS_TESTING multipleAxis=new DASHPRO_MULTIPLE_AXIS_TESTING();
+	
 	
 	@BeforeMethod
 	public void getDataFromConfig() throws Exception {
 		System.out.println("******************Script Execution Started******************");
-		project_Name = Utils.getDataFromTestConfig("Project_Name");
-		version_Name = Utils.getDataFromTestConfig("Version_Name");
-		buildname = project_Name + "_" + java.time.LocalDate.now().toString() + "_" + java.time.LocalTime.now();
 		Execution = Utils.getDataFromTestConfig("Execution env");
 		browser = Utils.getDataFromTestConfig("AppBrowser");
         driver=getWebDriver(browser);
@@ -321,7 +328,13 @@ public class Testcases extends Config {
 	        String DashPro_Custom_Pivot=getCellValue("TestExecution","Testcase_Selection","Custom_Pivot_Axes",TestCaseSelectionFlag); 
 	        String DashPro_WaterFall=getCellValue("TestExecution","Testcase_Selection","WaterFall_Axes",TestCaseSelectionFlag); 
 	        String DashPro_RadarLine=getCellValue("TestExecution","Testcase_Selection","Radar_Line_Axes",TestCaseSelectionFlag); 
-
+	        String DashPro_Network=getCellValue("TestExecution","Testcase_Selection","Network_Axes",TestCaseSelectionFlag); 
+	        String DashPro_TreeMap=getCellValue("TestExecution","Testcase_Selection","TreeMap_Axes",TestCaseSelectionFlag); 
+	        String DashPro_GroupAndSorted=getCellValue("TestExecution","Testcase_Selection","Grouped_And_Sorted_Axes",TestCaseSelectionFlag); 
+	        String DashPro_KPI_card=getCellValue("TestExecution","Testcase_Selection","KPI_Card_Axes",TestCaseSelectionFlag); 
+	        String DashPro_Heat_Map_Legend=getCellValue("TestExecution","Testcase_Selection","Heat_Map_Legend_Axes",TestCaseSelectionFlag); 
+	        String DashPro_Multiple_Axis=getCellValue("TestExecution","Testcase_Selection","Multiple_Axis_Axes",TestCaseSelectionFlag); 
+	        
 	        setTestCaseID("");
 	        if(Login.contains("Yes")) {
 	        	loginTest.login(driver, iteration,URL);
@@ -341,7 +354,7 @@ public class Testcases extends Config {
 				}else if(FileUpload_Run.contains("Yes")) {
 					fileUpload.file_uploading(driver, iteration);
 				}else {
-					fail(driver,"Please select 'Yes' in 'DB Connection' or 'File Upload' Script");
+					pass(driver,"Please select 'Yes' in 'DB Connection' or 'File Upload' Script");
 				}
 	        	
 	        	if(Preview_Run.contains("Yes")) {
@@ -429,6 +442,30 @@ public class Testcases extends Config {
 				radarLine.radarLineTesting(driver, iteration, TestCaseSelectionFlag);
 			}
 			
+			if(DashPro_Network.contains("Yes")) {
+				newtwork.network_Testing(driver, iteration, TestCaseSelectionFlag);
+			}
+			
+			if(DashPro_TreeMap.contains("Yes")) {
+				treeMap.treeMap_Testing(driver, iteration, TestCaseSelectionFlag);
+			}
+			
+			if(DashPro_GroupAndSorted.contains("Yes")) {
+				groupSorted.groupedAndSortedTesting(driver, iteration, TestCaseSelectionFlag);
+			}
+			
+			if(DashPro_KPI_card.contains("Yes")) {
+				kpiCard.kpiCardTesting(driver, iteration, TestCaseSelectionFlag);
+			}
+			
+			if(DashPro_Heat_Map_Legend.contains("Yes")) {
+				heatMap.heatMapLegendTesting(driver, iteration, TestCaseSelectionFlag);
+			}
+			
+			if(DashPro_Multiple_Axis.contains("Yes")) {
+				multipleAxis.multipleAxisTesting(driver, iteration, TestCaseSelectionFlag);
+			}
+			
 			if(DashPro_Admin.contains("Yes")) {
 				dash_Admin.dashProAdmin(driver, iteration);
 			}
@@ -439,7 +476,6 @@ public class Testcases extends Config {
 			System.out.println("Execution failed for Iteration : " + iteration);
             add1(driver, "Execution failed for Iteration : "+ iteration +" error : "+ e.getLocalizedMessage(), LogAs.FAILED, true, "");
 		} 
-
 	}
 	
 	

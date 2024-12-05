@@ -2023,7 +2023,7 @@ public class DASHPRO_GROUPED_COLUMN_TESTING extends Keywords{
          		}else {
          	  		 fail(driver,"'Position Input' is not accessible after enabling the 'Enable Value' toggle");
          		}
-         	  setTestCaseID("TC_GROUPED_COLUMN _DATA_LABEL_026");
+         	   setTestCaseID("TC_GROUPED_COLUMN _DATA_LABEL_026");
          	   String defaultPosition_Act=defaultSelectedValue(driver, PositionInput);
          	   if(DefaultPositionValue_Exp.equals(defaultPosition_Act)) {
          		   pass(driver,"By default, '"+DefaultPositionValue_Exp+"' is selected in the Position Input"); 

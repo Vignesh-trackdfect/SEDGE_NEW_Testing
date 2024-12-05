@@ -1,14 +1,12 @@
 package scripts;
 
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -16,11 +14,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import commonMethods.Keywords;
-import commonMethods.TestNgXml;
 import commonMethods.Utils;
 
 public class DASHPRO_TABLES_SMOKE_TESTING extends Keywords{
-
 	
 	public void tablesDashProTest(WebDriver driver, int iteration,String Flag) throws Exception {
 		
@@ -51,7 +47,7 @@ public class DASHPRO_TABLES_SMOKE_TESTING extends Keywords{
 		String TableFormatExpandColor=Utils.getDataFromTestData("SmokeTesting_UI", "TableFormatExpandColor");
 		
 		//Iteration Inputs
-		String ColumnNameInput_Smoke_131=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input", "ColumnNameInput_Smoke_131");
+//		String ColumnNameInput_Smoke_131=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input", "ColumnNameInput_Smoke_131");
 		String SearchColumInput_Somke_168=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input", "SearchColumInput_Somke_168");
 		String MultipleSearchInput_Smoke_171=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input", "MultipleSearchInput_Smoke_171");
 		String SearchUpperLowerInput_Smoke_172=Utils.getDataFromTestDataIteration(iteration,"SmokeTesting_Input", "SearchUpperLowerInput_Smoke_172");
@@ -978,1904 +974,1721 @@ public class DASHPRO_TABLES_SMOKE_TESTING extends Keywords{
 			}else {
 				fail(driver,"Selected Font Size '"+ChangeFontSize_Smoke_202+"' is not updated in the Chart Title text , Act : "+AppliedChartTitleFontSize_Actual);
 			}
-	        
 	     // TC_Smoketest_203
-
-       	}  // ************** Tables Chart Title Completed *****************
-	       	 
-        String Tables_TableFormat= getCellValue("TestExecution","Testcase_Selection","Tables_TableFormat",Flag);//TestNgXml.getdatafromExecution1("Sheet2",2,3).get("Tables_TableFormat");
+	     
+       	}  
+       // ************** Tables Chart Title Completed *****************
        	
+        String Tables_TableFormat= getCellValue("TestExecution","Testcase_Selection","Tables_TableFormat",Flag);//TestNgXml.getdatafromExecution1("Sheet2",2,3).get("Tables_TableFormat");
        	if(Tables_TableFormat.equals("Yes")) {
        		
        		// TC_Smoketest_204
-	    	
-	        verifyElementDisplayed(driver, TableFormat_Sec);
-	       	click(driver,TableFormat_Sec);
-	        wait(driver,"1");
-			 String TableFormatSecExpand=getAttribute1(driver,TableFormatExpand,"class");
-	    	 if(TableFormatSecExpand.contains("up")) {
-				pass(driver,"Table Format Section is expanded When Click on it");
-	    	 }else {
-	    	    fail(driver,"Table Format Section is not expanded When Click on it");
-	    	 }
-	    	 
-			 verifyElementDisplayed(driver, Table_Theme_Input);
-			 verifyElementDisplayed(driver, TableThemeText);
-			 
-			 verifyElementDisplayed(driver, ODDEven_toggleTableFormat1);
-			 verifyElementDisplayed(driver, OddEven_text_TableFormat);
-			 
-			 verifyElementDisplayed(driver, FontFamily_Input_TableFormat);
-			 verifyElementDisplayed(driver, FontFamilyText_TableFormat);
-			 
-			 verifyElementDisplayed(driver, FontSizeInput_TableFormat);
-			 verifyElementDisplayed(driver, FontSizeText_TableFormat);
-			 
-			 verifyElementDisplayed(driver, HeaderColorInput_TableFormat);
-			 verifyElementDisplayed(driver, HeaderColorText_TableFormat);
-			 
-			 verifyElementDisplayed(driver, WrapHeaded_toggle_TableFormat);
-			 verifyElementDisplayed(driver, WrapHeaders_Text_TableFormat);
-			 
-			 verifyElementDisplayed(driver, BodyFontSize_Input_TableFormat);
-			 verifyElementDisplayed(driver, BodyFontSize_text_TableFormat);
-			 
-			 verifyElementDisplayed(driver, BorderInput_TableFormat);
-			 verifyElementDisplayed(driver, Border_text_TableFormat);
-
-			 verifyElementDisplayed(driver, NegativeHighlight_toggle);
-			 verifyElementDisplayed(driver, NegativeHighlight_text);
-
-			 verifyElementDisplayed(driver, AlignmentLeft_TableFormat);
-			 verifyElementDisplayed(driver, Alignmentcenter_TableFormat);
-			 verifyElementDisplayed(driver, AlignmentRight_TableFormat);
-			 verifyElementDisplayed(driver, AlignmentText_TableFormat);
-
-			 verifyElementDisplayed(driver, RowTotal_toggle_TableFormat);
-			 verifyElementDisplayed(driver, RowTotal_text_TableFormat);
-
-			 verifyElementDisplayed(driver, ColumnTotal_toggle_TableFormat);
-			 verifyElementDisplayed(driver, ColumnTotal_text_TableFormat);
-
-			 verifyElementDisplayed(driver, PinRowTotal_toggle_TableFormat);
-			 verifyElementDisplayed(driver, PinRowTotal_text_TableFormat);
-
-			 verifyElementDisplayed(driver, PinColumnTotal_toggle_TableFormat);
-			 verifyElementDisplayed(driver, PinColumnTotal_text_TableFormat);
-			 
-			 verifyElementDisplayed(driver, HighLightRowTotal_Input);
-			 verifyElementDisplayed(driver, HighLightRowTotal_Text);
-			 
-			 verifyElementDisplayed(driver, HighLightColumnTotal_Input);
-			 verifyElementDisplayed(driver, HighLightColumnTotal_Text);
-			 
-			 verifyElementDisplayed(driver, SeperatorInput_TableFormat);
-			 verifyElementDisplayed(driver, SeperatorText_TableFormat);
-			 
-	     // TC_Smoketest_204
-	        
-		// TC_Smoketest_205
-	    	 String TableFormateSec_Act=getTextColor(driver, TableFormat_Sec);
-	    	 System.out.println("TableFormateSec_Act : "+TableFormateSec_Act);
-			 if(TableFormatExpandColor.equalsIgnoreCase(TableFormateSec_Act)) {
-				 pass(driver,"TableFormat is highlighted in blue color after expand it");
-			 }else {
-				 fail(driver,"TableFormat is not highlighted in blue color after expand it");
-			 }
-	    // TC_Smoketest_205 
-			 
-		// TC_Smoketest_206
-			 		 
-			 String TableThemeAct="";
-			 List<WebElement> ThemeResultValues=getWebElements(driver, Table_Theme_Results);
-			 for(WebElement ThemeResultValue:ThemeResultValues) {
-				 if(ThemeResultValue.isSelected()) {
-					 
-					 String SelectedClass=ThemeResultValue.getAttribute("value");
-					 System.out.println("SelectedClassValue "+SelectedClass);
-					 TableThemeAct=SelectedClass;
-				 }
-			 }
-			 
-			 System.out.println("TableThemeAct : "+TableThemeAct);
-			 if(TableThemeAct.equals("")) {
-				 pass(driver,"By default, Table theme value is selected as 'Default'");
-			 }else {
-				 fail(driver,"By default, Table theme value is not selected as 'Default'");
-			 }
-		// TC_Smoketest_206 
-			 
-		// TC_Smoketest_207
-			 
-			 if(isToggleAccessible(driver,Table_Theme_Input)) {
-				 pass(driver,"Table theme input is Accessible");
-			 }else {
-				 fail(driver,"Table theme input is not Accessible");
-			 }
-		// TC_Smoketest_207 
-			 
-		// TC_Smoketest_211
-			 //click(driver,Table_Theme_Input);
-			 selectByText(driver,Table_Theme_Input,SelectTableTheme_Smoke_211);
-			 wait(driver,"1");
-			 String AfterSelectThemeValue="";
-			 ThemeResultValues=getWebElements(driver, Table_Theme_Results);
-			
-			 for(WebElement ThemeResultValue:ThemeResultValues) {
-				 if(ThemeResultValue.isSelected()) {
-					 String SelectedClass=ThemeResultValue.getAttribute("value");
-					 System.out.println("SelectedClassValue "+SelectedClass);
-					 AfterSelectThemeValue=SelectedClass;
-				 }
-				
-			 }
-			 
-			 try {
-				 SelectTableTheme_Smoke_211=SelectTableTheme_Smoke_211.replace(" ", "");
-			 }catch(Exception e) {
-				 
-			 }
-			 
-			 SelectTableTheme_Smoke_211=SelectTableTheme_Smoke_211.toLowerCase();
-			 if(AfterSelectThemeValue.contains(SelectTableTheme_Smoke_211.toLowerCase())) {
-				 pass(driver,"Selected Value '"+SelectTableTheme_Smoke_211+"' is updated in the Table Theme Input");
-			 }else {
-				 fail(driver,"Selected Value '"+SelectTableTheme_Smoke_211+"' is not updated in the Table Theme Input");
-			 }
-			 
-			 scrollUsingElement(driver, ApplyButton);
-			 wait(driver,"1");
-			 click(driver, ApplyButton); //click Apply change
-			 elementnotvisible1(driver, RPE_Loading);
-			 waitForElement(driver,Table_firstRow);
-			 
-			 String tableAppliedTheme=getAttribute1(driver, TableChart, "class");
-			 if(tableAppliedTheme.contains(SelectTableTheme_Smoke_211)) {
-				 pass(driver,"Selected theme value applied in the Chart");
-			 }else {
-				 fail(driver,"Selected theme value not applied in the Chart");
-			 }
-			 
-			 
-		// TC_Smoketest_211
-			 
-		// TC_Smoketest_213 
-			 if(isToggleEnable(driver,OddEven_toggle_TableFormat)) {
-				 pass(driver,"By default, 'Odd/Even Colors' input toggle is displayed as ON");
-				 scrollUsingElement(driver, ApplyButton);
-				 wait(driver,"1");
-				 click(driver, ApplyButton); //click Apply change
-				 elementnotvisible1(driver, RPE_Loading);
-				 waitForElement(driver,Table_firstRow);
-				 String firstRowBackgroundColor=getTextBackgroundColor(driver, Table_firstRow);
-				 //System.out.println("firstRowBackgroundColor : "+ firstRowBackgroundColor);
-				 String secondRowBackgroundColor=getTextBackgroundColor(driver, Table_SecondRow);
-				 //System.out.println("secondRowBackgroundColor : "+ secondRowBackgroundColor);
-				 if(firstRowBackgroundColor.equalsIgnoreCase(secondRowBackgroundColor)) {
-					 fail(driver,"Odd/Even Colors is not applied in the Table When the toggle is in 'ON' Condition");
-				 }else {
-					 pass(driver,"Odd/Even Colors is applied in the Table When the toggle is in 'ON' Condition");
-				 }
-				 
-			 }else {
-				 fail(driver,"By default, 'Odd/Even Colors' input toggle is displayed as ON");
-			 }
-		// TC_Smoketest_213 
-			 
-		// TC_Smoketest_214
-			 click(driver,ODDEven_toggleTableFormat1);
-			 wait(driver,"1");
-			 if(isToggleEnable(driver,OddEven_toggle_TableFormat)) {
-				 fail(driver,"'Odd/Even Colors' input toggle is not changed to 'OFF' when click on it");
-			 }else {
-				 pass(driver,"'Odd/Even Colors' input toggle is changed to 'OFF' when click on it");
-				 scrollUsingElement(driver, ApplyButton);
-				 wait(driver,"1");
-				 click(driver, ApplyButton);
-				 elementnotvisible1(driver, RPE_Loading);
-				 String firstRowBackgroundColor=getTextBackgroundColor(driver, Table_firstRow);
-				// System.out.println("firstRowBackgroundColor : "+ firstRowBackgroundColor);
-				 String secondRowBackgroundColor=getTextBackgroundColor(driver, Table_SecondRow);
-				// System.out.println("secondRowBackgroundColor : "+ secondRowBackgroundColor);
-				 if(firstRowBackgroundColor.equalsIgnoreCase(secondRowBackgroundColor)) {
-					 pass(driver,"Odd/Even Colors is not applied in the Table When the toggle is in 'OFF' Condition");
-				 }else {
-					 fail(driver,"Odd/Even Colors is applied in the Table When the toggle is in 'OFF' Condition");
-				 }
-				 
-			 }
-			 
-			 click(driver,ODDEven_toggleTableFormat1);
-			 wait(driver,"1");
-			 if(isToggleEnable(driver,OddEven_toggle_TableFormat)) {
-				 pass(driver,"'Odd/Even Colors' input toggle is changed to 'ON' when click on it");
-			 }else {
-				 fail(driver,"'Odd/Even Colors' input toggle is not changed to 'ON' when click on it");
-			 }
-		// TC_Smoketest_214 
-			 
-		// TC_Smoketest_215
-			 String FontFamilyAct_TableFormat=getText1(driver,FontFamily_Input_TableFormat);
-			 System.out.println("FontFamilyAct_TableFormat : "+FontFamilyAct_TableFormat);
-			 if(FontFamilyAct_TableFormat.equals(DefaultFontFamily_TableFormat)) {
-				 pass(driver,"By default, '"+DefaultFontFamily_TableFormat+"' is selected in the Font Family input");
-			 }else {
-				 fail(driver,"By default, '"+DefaultFontFamily_TableFormat+"' is not selected in the Font Family input");
-			 }
-		// TC_Smoketest_215
-			 
-		// TC_Smoketest_216
-			 if(isToggleAccessible(driver,FontFamily_Input_TableFormat)) {
-				 pass(driver,"Font Family Input is Accessible");
-			 }else {
-				 fail(driver,"Font Family Input is not Accessible");
-			 }
-		// TC_Smoketest_216
-			 
-		// TC_Smoketest_217 to TC_Smoketest_221
-			click(driver,FontFamily_Input_TableFormat);
-			if(isDisplayed(driver,FontFamilyExpand_TableFormat)) {
-				pass(driver,"FontFamily dropdown is expanded with results after click on it");
-			}else {
-				fail(driver,"FontFamily dropdown is not expanded with results after click on it");
-			}
-			click(driver,FontFamilyText_TableFormat);
-			wait(driver,"1");
-			if(isDisplayed2(driver, FontFamilyExpand_TableFormat)) {
-				fail(driver,"FontFamily dropdown is not Closed when click outside of it");
-			}else {
-				pass(driver,"FontFamily dropdown is Closed when click outside of it");
-			}
-			
-			click(driver,FontFamily_Input_TableFormat);
-			waitForElement(driver,FontFamilyExpand_TableFormat);
-			if(isDisplayed(driver,SearchInput_FontFamilyDropdown)) {
-				pass(driver,"Search Input is present in the Fontfamily dropdown");
-				click(driver,SearchInput_FontFamilyDropdown);
-				sendKeys(driver,SearchInput_FontFamilyDropdown,SearchFontFamily_Smoke_220);
-				wait(driver,"1");
-				String FirstFontFamilyResult=getText1(driver,FontFamilyResult1);
-				if(FirstFontFamilyResult.equals(SearchFontFamily_Smoke_220)) {
-					pass(driver,"Seach functions works properly in the font family results");
-				}else {
-					fail(driver,"Seach functions not working properly in the font family results");
-				}
-				
-			}else {
-				fail(driver,"Search Input is not present in the Fontfamily dropdown");
-			}
-			
-			String FirstFontFamilyResult=getText1(driver,FontFamilyResult1);
-			click(driver,FontFamilyResult1);
-			wait(driver,"1");
-			if(isDisplayed2(driver,FontFamilyExpand_TableFormat)) {
-				fail(driver,"Font Family dropdown is not closed after selecting value");
-			}else {
-				pass(driver,"Font Family dropdown is closed after selecting value");
-			}
-				
-			String FontFamilyResutValue=getText1(driver,FontFamily_Input_TableFormat);
-			if(FontFamilyResutValue.equals(FirstFontFamilyResult)) {
-				pass(driver,"Selected Font Family Value is updadted in the FontFamily Input");
-			}else {
-				fail(driver,"Selected Font Family Value is not updated in the FontFamily Input");
-			}
-			
-			scrollUsingElement(driver, ApplyButton);
-			wait(driver,"1");
-			click(driver, ApplyButton);
-			elementnotvisible1(driver, RPE_Loading);
-			waitForElement(driver,TableChart);
-			String FonFamilyApplied_Table=getFontFamily(driver,TableChart);
-			if(FonFamilyApplied_Table.equals(FontFamilyResutValue)) {
-				pass(driver,"Selected Font Family is applied in the table chart");
-			}else {
-				fail(driver,"Selected Font Family is not applied in the table chart");
-			}
-			
-		// TC_Smoketest_217 to TC_Smoketest_221
-			
-		//	TC_Smoketest_222
-			String defaultFontSizeHeader=getTextJavascript(driver, FontSizeInput_TableFormat);
-			System.out.println("defaultFontSizeHeader : "+defaultFontSizeHeader);
-			if(DefaultFontSize_TableFormat.equals(defaultFontSizeHeader)) {
-				pass(driver,"Predefined fontsize value '"+DefaultFontSize_TableFormat+"' is updated by default in the Font Size input");
-			}else {
-				fail(driver,"Predefined fontsize value '"+DefaultFontSize_TableFormat+"' is not updated by default in the Font Size input");
-			}
-		//	TC_Smoketest_222
-			
-		//	TC_Smoketest_223
-			if(isToggleAccessible(driver,FontSizeInput_TableFormat)) {
-				pass(driver,"Header Font Size input is Accessible");
-			}else {
-				fail(driver,"Header Font Size input is not Accessible");
-			}
-		//	TC_Smoketest_223
-			
-		// TC_Smoketest_224
-			click(driver,FontSizeInput_TableFormat);
-			List<WebElement> fonSizeResults=getWebElements(driver, FontSize__Results);
-			int fonSizeResultsCount=fonSizeResults.size();
-			if(fonSizeResultsCount==54) {
-				pass(driver,"All the Font Size Values is present ");
-			}else {
-				fail(driver,"Some Font Size Values is not present ");
-			}
-		// TC_Smoketest_224
-			
-		// TC_Smoketest_225 & TC_Smoketest_226
-			click3(driver,FontSizeText_TableFormat);
-			selectByText(driver,FontSizeInput_TableFormat,SelectFontSize_Smoke_225);
-			wait(driver,"1");
-			String selectedFontSizeResult=getTextJavascript(driver, FontSizeInput_TableFormat);
-			System.out.println("selectedFontSizeResult : "+selectedFontSizeResult);
-			if(selectedFontSizeResult.equals(SelectFontSize_Smoke_225)) {
-				pass(driver,"Selected Font size value updated in the Header FontSize input");
-			}else {
-				fail(driver,"Selected Font size value is not updated in the Header FontSize input");
-			}
-			
-			scrollUsingElement(driver, ApplyButton);
-			wait(driver,"1");
-			click(driver, ApplyButton);
-			elementnotvisible1(driver, RPE_Loading);
-			waitForElement(driver,TableChart);
-			String AppliedFontSize_TableHeader=getFontSize(driver, TableHeaderRow);
-			if(AppliedFontSize_TableHeader.equals(SelectFontSize_Smoke_225)) {
-				pass(driver,"Selected Font Size is updated in the Header rows in the resulting Table");
-			}else {
-				fail(driver,"Selected Font Size is not updated in the Header rows in the resulting Table");
-			}
-		// TC_Smoketest_225 & TC_Smoketest_226
-			
-		// TC_Smoketest_227
-			String defaultHeaderColorAct=getTextJavascript(driver,HeaderColorInput_TableFormat);
-			System.out.println("defaultHeaderColorAct : "+defaultHeaderColorAct);
-			if(DefaultHeaderColor_TableFormat.equalsIgnoreCase(defaultHeaderColorAct)) {
-				pass(driver,"By default '"+DefaultHeaderColor_TableFormat+"' color is selected in the Header Color Input");
-			}else {
-				fail(driver,"By default '"+DefaultHeaderColor_TableFormat+"' color is not selected in the Header Color Input");
-			}
-		// TC_Smoketest_227
-			
-		// TC_Smoketest_228
-			if(isToggleAccessible(driver,HeaderColorInput_TableFormat)) {
-				pass(driver,"Header Color input is Accessible");
-			}else {
-				fail(driver,"Header Color input is not Accessible");
-			}
-		// TC_Smoketest_228
-			
-		// TC_Smoketest_229 to TC_Smoketest_231
-			click(driver,HeaderColorInput_TableFormat);
-			if(isDisplayed(driver,ColorPickerOpen)) {
-				pass(driver,"Color picker results opened after click on the Header Color Input");
-				mouseOverToElement(driver, Color1);
-				mouseOverToElement(driver, mouseOverColorHistory);
-				mouseOverToElement(driver, Color1);
-				String MouseHoveredColor=getText1(driver,mouseOverColorHistory);
-				click(driver,Color1);
-				wait(driver,"1");
-				if(isDisplayed2(driver,ColorPickerOpen)) {
-					fail(driver,"Color picker is not closed after selcting the color");
-				}else {
-					pass(driver,"Color picker is closed after selecting the color");
-				}
-				
-				String ColorInputValueAfter=getTextJavascript(driver,HeaderColorInput_TableFormat);
-				if(ColorInputValueAfter.equalsIgnoreCase(MouseHoveredColor)) {
-					pass(driver,"Selected Color Value is updated in the Header Color Input");
-				}else {
-					fail(driver,"Selected Color Value is not updated in the Header Color Input");
-				}
-				
-				scrollUsingElement(driver, ApplyButton);
-				click(driver, ApplyButton);
-				elementnotvisible1(driver, RPE_Loading);
-				String TableHeaderColor=getTextColor(driver, TableHeadingCell);
-				if(TableHeaderColor.equalsIgnoreCase(MouseHoveredColor)) {
-					pass(driver,"Selected Color Value is applied in Table Header value");
-				}else {
-					fail(driver,"Selected Color Value is not applied in Table Header value");
-				}
-				
-			}else {
-				fail(driver,"Color picker results not opened after click on the Header Color Input");
-			}
-			
-			click(driver,HeaderColorInput_TableFormat);
-			action.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).perform();
-			sendKeys(driver,HeaderColorInput_TableFormat,ChangeHeaderColor_Smoke_231);
-			wait(driver,"1");
-			click3(driver,HeaderColorText_TableFormat);
-			String SelectedHeaderColorValue=getTextBackgroundColor(driver, HeaderColorInput_Pointer);
-			if(SelectedHeaderColorValue.equalsIgnoreCase(ChangeHeaderColor_Smoke_231)) {
-				pass(driver,"Manually Entered Color Value is updated in the Header Color input..");
-			}else {
-				fail(driver,"Manually Entered Color Value is not updated in the Header Color input..");
-			}
-	       
-			scrollUsingElement(driver, ApplyButton);
-			wait(driver,"1");
-			click(driver, ApplyButton);
-			elementnotvisible1(driver, RPE_Loading);
-			String Applied_Table_HeaderColor=getTextColor(driver, TableHeadingCell);
-			if(Applied_Table_HeaderColor.equalsIgnoreCase(ChangeHeaderColor_Smoke_231)) {
-				pass(driver,"Manually Entered Color Value is updated in the Table Header values");
-			}else {
-				fail(driver,"Manually Entered Color Value is not updated in the Table Header values");
-			}
-		// TC_Smoketest_229 to TC_Smoketest_231
-			
-		// TC_Smoketest_232
-			mouseOverToElement(driver, TableHeadingCell);
-			String beforeSortingOrder=getAttribute1(driver, TableHeadingCell, "aria-sort");
-			click(driver,TableHeadingCell);
-			wait(driver,"1");
-			String AfterSortingOrder=getAttribute1(driver, TableHeadingCell, "aria-sort");
-			if(beforeSortingOrder.equals(AfterSortingOrder)) {
-				fail(driver,"Changing color affects the sorting functionality of the Header cell");
-			}else {
-				pass(driver,"Changing color not affects the sorting functionality of the Header cell");
-			}
-			
-			ScrollBarValidation1(driver,ResultTableBody,"Resulted Table");
-			HorizontalScrollFull(driver,HorizontalScroll2);
-			
-		// TC_Smoketest_232
-			
-		// TC_Smoketest_233
-			if(isToggleEnable(driver,WrapHeaders_Input_TableFormat)) {
-				fail(driver,"Wrap header toggle is not displayed in 'OFF' by default");
-			}else {
-				pass(driver,"Wrap header toggle is displayed in 'OFF' by default");
-				String TableHeaderWrapOFF_Act=getAttribute1(driver, TableHeadingCell, "class");
-				if(TableHeaderWrapOFF_Act.contains("header-wrap-text")) {
-					fail(driver,"Table Header values are wrapped when the toggle is in the OFF Condition");
-				}else {
-					pass(driver,"Table Header values are not wrapped when the toggle is in the OFF Condition");
-				}
-			}
-		// TC_Smoketest_233
-			
-		// TC_Smoketest_234
-			if(isToggleAccessible(driver,WrapHeaders_Input_TableFormat)) {
-				pass(driver,"Wrap Header input toggle is Accessible");
-			}else {
-				fail(driver,"Wrap Header input toggle is not Accessible");
-			}
-		// TC_Smoketest_234
-			
-		// TC_Smoketest_235
-			click(driver,WrapHeaded_toggle_TableFormat);
-			wait(driver,"1");
-			
-			scrollUsingElement(driver, ApplyButton);
-			click(driver, ApplyButton);
-			elementnotvisible1(driver, RPE_Loading);
-			if(isToggleEnable(driver,WrapHeaders_Input_TableFormat)) {
-				pass(driver,"Wrap header toggle is displayed in 'ON' After click on it");
-				String TableHeaderWrapON_Act=getAttribute1(driver, TableHeadingCell, "class");
-				if(TableHeaderWrapON_Act.contains("header-wrap-text")) {
-					pass(driver,"Table Header values are wrapped when the toggle is in the ON Condition");
-				}else {
-					fail(driver,"Table Header values are not wrapped when the toggle is in the ON Condition");
-				}
-			}else {
-				fail(driver,"Wrap header toggle is not displayed in 'ON' After click on it");
-			}
-			
-			click(driver,WrapHeaded_toggle_TableFormat);
-			wait(driver,"1");
-			scrollUsingElement(driver, ApplyButton);
-			click(driver, ApplyButton);
-			elementnotvisible1(driver, RPE_Loading);
-			if(isToggleEnable(driver,WrapHeaders_Input_TableFormat)) {
-				fail(driver,"Wrap header toggle is not displayed in 'OFF' When again click on it");
-			}else {
-				pass(driver,"Wrap header toggle is displayed in 'OFF' When again click on it");
-			}
-			
-		// TC_Smoketest_235
-			
-			// TC_Smoketest_236
-			
-			String defaultBodyFontSize_Act=getTextJavascript(driver,BodyFontSize_Input_TableFormat);
-			if(defaultBodyFontSize_Act.equals(DefaultBodyFontSize_TableFormat)) {
-				pass(driver,"By defualt, '"+DefaultBodyFontSize_TableFormat+"' is displayed in the Body Font Size Input");
-			}else {
-				fail(driver,"By default,'"+DefaultBodyFontSize_TableFormat+"' is not displayed in the Body Font Size Input");
-			}
-		// TC_Smoketest_236                                  //246--> tablenoneborder
-			
-		// TC_Smoketest_237
-			if(isToggleAccessible(driver,BodyFontSize_Input_TableFormat)) {
-				pass(driver,"Body Font Size Input is Accessible");
-			}else {
-				fail(driver,"Body Font Size Input is not Accessible");
-			}
-		// TC_Smoketest_237
-			
-		// TC_Smoketest_238
-			click(driver,BodyFontSize_Input_TableFormat);
-			List<WebElement> BodyfonSizeResults=getWebElements(driver, BodyFontSize_Results_TableFormat);
-			int BodyfonSizeResultsCount=BodyfonSizeResults.size();
-			String StartingFontSizeValue=BodyfonSizeResults.get(1).getText();
-			//new modification
-			int EndFontSizeValueNum=BodyfonSizeResults.size()-1;
-			String EndFontSizeValue=BodyfonSizeResults.get(EndFontSizeValueNum).getText();
-			//new modification
-			
-			if(BodyfonSizeResultsCount==54&&StartingFontSizeValue.equals("8")&&EndFontSizeValue.equals("60")) {
-				pass(driver,"All the Font Size Values is present ");
-			}else {
-				fail(driver,"Some Font Size Values is not present ");
-			}
-		// TC_Smoketest_238
-			
-		// TC_Smoketest_239 & TC_Smoketest_240
-			click3(driver,BodyFontSize_text_TableFormat);
-			selectByText(driver,BodyFontSize_Input_TableFormat,ChangeBodyFontSize_Smoke_239);
-			wait(driver,"1");
-			String selectedBodyFontSize=getTextJavascript(driver,BodyFontSize_Input_TableFormat);
-			if(selectedBodyFontSize.equals(ChangeBodyFontSize_Smoke_239)) {
-				pass(driver,"Selcted Font Size value updated in the Body Font Size Input");
-			}else {
-				fail(driver,"Selcted Font Size value not updated in the Body Font Size Input");
-			}
-			
-			scrollUsingElement(driver, ApplyButton);
-			click(driver, ApplyButton);
-			elementnotvisible1(driver, RPE_Loading);
-			waitForElement(driver,ResultTableBody);
-			String AppliedTable_BodyFontSize=getFontSize(driver, ResultTableBody);
-			if(AppliedTable_BodyFontSize.equals(ChangeBodyFontSize_Smoke_239)) {
-				pass(driver,"Selected Font Size '"+ChangeBodyFontSize_Smoke_239+"' value Applied in the Table Body values");
-			}else {
-				fail(driver,"Selected Font Size '"+ChangeBodyFontSize_Smoke_239+"' value not Applied in the Table Body values, Act result: "+AppliedTable_BodyFontSize);
-			}
-		// TC_Smoketest_239 & TC_Smoketest_240
-			
-		// TC_Smoketest_241
-			String DefaultBorderType=defaultSelectedValue(driver,BorderInput_TableFormat);
-			System.out.println("DefaultBorderType : "+DefaultBorderType+"  , Exp : "+DefaultBorderType_TableFormat);
-			if(DefaultBorderType_TableFormat.equals(DefaultBorderType)) {
-				pass(driver,"By default, 'Default' is displayed in the Border Input Field");
-			}else {
-				fail(driver,"By default, 'Default' is not displayed in the Border Input Field");
-			}
-		// TC_Smoketest_241
-			
-		// TC_Smoketest_242
-			if(isToggleAccessible(driver,BorderInput_TableFormat)) {
-				pass(driver,"Border Input is Accessible");
-			}else {
-				fail(driver,"Border Input is not Accessible");
-			}
-		// TC_Smoketest_242
-			
-		// TC_Smoketest_243
-			String[] bordersValuesExp= {"Default","None","Double","Dashed","Solid","Dotted"};//need to change
-			boolean AllBorders=true;
-			List<WebElement> BorderResults=getWebElements(driver, BorderResults_TableFormat);
-			List<String> BorderResultValuesAct=new ArrayList<String>();
-			for(WebElement BorderResult:BorderResults) {
-				String bordervalue=BorderResult.getText();
-				BorderResultValuesAct.add(bordervalue);
-			}
-			
-			for(int j=0;j<bordersValuesExp.length;j++) {
-				String Exp=bordersValuesExp[j];
-				if(!BorderResultValuesAct.contains(Exp)) {
-					AllBorders=false;
-					fail(driver,Exp+" is not available in Border input options");
-				}
-			}
-			
-			if(AllBorders==true) {
-				pass(driver,"All the Border input option are present");
-			}else {
-				fail(driver,"Some Border input option are not present");
-			}
-		// TC_Smoketest_243
-			
-		// TC_Smoketest_244 to TC_Smoketest_246
-			click(driver,BorderInput_TableFormat);
-			selectByText(driver,BorderInput_TableFormat,ChangeBorderValue_Smoke_244);
-			wait(driver,"1");
-			
-			String selectedBorder=defaultSelectedValue(driver,BorderInput_TableFormat);
-			System.out.println("selectedBorder : "+selectedBorder);
-			if(selectedBorder.equals(ChangeBorderValue_Smoke_244)) {
-				pass(driver,"Selcted Border value updated in the Border Input");
-			}else {
-				fail(driver,"Selcted Border value not updated in the Border Input");
-			}
-			
-			scrollUsingElement(driver, ApplyButton);
-			click(driver, ApplyButton);
-			elementnotvisible1(driver, RPE_Loading);
-			waitForElement(driver,ResultTableBody);
-			String BorderValidationClass="table"+ChangeBorderValue_Smoke_244.toLowerCase()+"border";
-			String AppliedBorder_Table=getAttribute1(driver, TableChart, "class");
-			if(AppliedBorder_Table.contains(BorderValidationClass)) {
-				pass(driver,"Selected Border '"+ChangeBorderValue_Smoke_244+"' value Applied in the Table Border");
-			}else {
-				fail(driver,"Selected Border '"+ChangeBorderValue_Smoke_244+"' value not Applied in the Table Border");
-			}
-		// TC_Smoketest_244 to TC_Smoketest_246
-			
-		// TC_Smoketest_247 to TC_Smoketest_254
-			
-			if(isToggleEnable(driver,NegativeHighlight_Input)) {
-				fail(driver,"By default, Negaitve Highlight Toggle is not displayed in 'OFF' Condition");
-			}else {
-				pass(driver,"By default, Negaitve Highlight Toggle is displayed in 'OFF' Condition");
-			}
-			
-			if(isToggleAccessible(driver,NegativeHighlight_Input)) {
-				pass(driver,"Negative Highlight Toggle is Accessible");
-				click(driver,NegativeHighlight_toggle);
-				if(isToggleEnable(driver,NegativeHighlight_Input)) {
-					pass(driver,"Negaitve Highlight Toggle is displayed in 'ON' Condition when click on it");
-				}else {
-					fail(driver,"Negaitve Highlight Toggle is not displayed in 'ON' Condition when click on it");
-				}
-				
-				scrollUsingElement(driver, ApplyButton);
-				click(driver, ApplyButton);
-				elementnotvisible1(driver, RPE_Loading);
-				waitForElement(driver,ResultTableBody);
-				boolean negativecell=false;
-				String comp_id="";
-				
-				List<WebElement> resultTableCells=getWebElements(driver, TableCell);
-				for(WebElement resultTableCell:resultTableCells) {
-					String ResultCellvalue=resultTableCell.getText();
-					if(ResultCellvalue.startsWith("-")) {
-						action.moveToElement(resultTableCell).build().perform();
-						String rgbFormatNegativeCell = resultTableCell.getCssValue("background-color");
-						String NegativeCellBackColorAct = rgbToHex(rgbFormatNegativeCell);
-						if(NegativeCellBackColorAct.equalsIgnoreCase(NegativeCellColor_TableFormat)) {
-							pass(driver,"Negative value cell is highlighted when the Negative highlight toggle is 'ON' condition");
-						}else {
-							fail(driver,"Negative value cell is not highlighted when the Negative highlight toggle is 'ON' condition");
-						}
-						negativecell=true;
-						break;
-					}
-				}
-				
-				if(!negativecell==true) {
-					pass(driver,"Negative Highlight validation failed, because Negative Value is not present in the Table");
-				}
-				
-				boolean PositiveCellHighlight=false;
-				if(isDisplayed2(driver,NegativeHighlightCell)) {
-					List<WebElement> HighlightedCells=getWebElements(driver, NegativeHighlightCell);
-					for(WebElement HighlightedCell:HighlightedCells) {
-						String HighlightedCellText=HighlightedCell.getText();
-						if(!HighlightedCellText.startsWith("-")) {
-							action.moveToElement(HighlightedCell).build().perform();
-							PositiveCellHighlight=true;
-							break;
-						}
-					}
-					
-					if(PositiveCellHighlight==true) {
-						fail(driver,"Postive Cell Values also highlighted when Negative highlight toggle is 'ON' condition");
-					}else {
-						pass(driver,"Postive Cell Values are not highlighted when Negative highlight toggle is 'ON' condition");
-					}
-					
-				}
-				
-				click(driver,NegativeHighlight_toggle);
-				if(isToggleEnable(driver,NegativeHighlight_Input)) {
-					fail(driver,"Negaitve Highlight Toggle is not displayed in 'OFF' Condition when disabling it");
-				}else {
-					pass(driver,"Negaitve Highlight Toggle is displayed in 'OFF' Condition when disabling it");
-					scrollUsingElement(driver, ApplyButton);
-					click(driver, ApplyButton);
-					elementnotvisible1(driver, RPE_Loading);
-					waitForElement(driver,ResultTableBody);
-					if(isDisplayed2(driver,NegativeHighlightCell)) {
-						fail(driver,"Some Cell values highlighed when Negaitve Highlight Toggle is in 'OFF' Condition");
-					}else {
-						pass(driver,"All Cell values are not highlighed when Negaitve Highlight Toggle is in 'OFF' Condition");
-					}
-				}
-				
-			}else {
-				fail(driver,"Negative Highlight Toggle is not Accessible");
-			}
-			
-		// TC_Smoketest_247 to TC_Smoketest_254
-			
-		// TC_Smoketest_255 to TC_Smoketest_260
-			//default
-			List<WebElement> AllCellElements=getWebElements(driver,TableCell);
-			
-			Pattern numericalPattern = Pattern.compile("^\\d+(\\.\\d+)?$");
-	        Pattern datePattern = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
-
-	        boolean TextDefaultAlign=true;
-	        boolean NumericalDefaultAlign=true;
-	        String FailedStringCell="";
-	        String FailedNumericCell="";
-	        
-	        for (WebElement cell : AllCellElements) {
-	            String cellText = cell.getText();
-	            String textAlign = cell.getCssValue("text-align");
-	            String ColumnValue=cell.getAttribute("col-id");
-
-	            if (datePattern.matcher(cellText).matches() || cellText.equals("") || cellText.isEmpty()) {
-	                continue;
-	            } else if (numericalPattern.matcher(cellText).matches()) {
-	                if (!textAlign.contains("right")) {
-	                	String FailedNum=ColumnValue+" : "+cellText;
-	                    //System.out.println("Numerical cell not right-aligned: " + FailedNum);
-	                    NumericalDefaultAlign=false;
-	                    FailedNumericCell=FailedNumericCell+", "+FailedNum;
-	                    
-	                }
-	            } else {
-	                // Check if text cells are left-aligned
-	                if (!textAlign.contains("left")) {
-	                	String FailedText=ColumnValue+" : "+cellText;
-	                   // System.out.println("Text cell not left-aligned: " + FailedText);
-	                    TextDefaultAlign=false;
-	                    FailedStringCell=FailedStringCell+", "+FailedText;
-	                }
-	            }
-	        }
-	        
-	        if(TextDefaultAlign==false) {
-	        	fail(driver,"Some Text cell values are not aligned left by default :"+FailedStringCell);
-	        }else {
-	        	pass(driver,"All the text cell values are aligned left by default ");
-	        }
-	        
-	        if(NumericalDefaultAlign==false) {
-	        	fail(driver,"Some Numerical cell values are not aligned right by default :"+FailedNumericCell);
-	        }else {
-	        	pass(driver,"All the Numerical cell values are aligned right by default ");
-	        }
-	        
-		// Left
-			click(driver,AlignmentLeft_TableFormat);
-			scrollUsingElement(driver, ApplyButton);
-			click(driver, ApplyButton);
-			elementnotvisible1(driver, RPE_Loading);
-			String SelectedAlignmentColorAct=getTextBackgroundColor(driver, AlignmentLeft_TableFormat);
-			System.out.println("SelectedAlignmentColorAct : "+SelectedAlignmentColorAct);
-			if(AlignmentSelectedColor_TableFormat.equalsIgnoreCase(SelectedAlignmentColorAct)) {
-				pass(driver,"Left Alignment highlighted in grey color When click on it ");
-			}else {
-				fail(driver,"Left Alignment not highlighted in grey color When click on it ");
-			}
-			
-			AllCellElements=getWebElements(driver,TableCell);
-			boolean AllLeftAlignment=true;
-			String FailedLeftAllign="";
-		//	System.out.println("Cells left-aligned Validation  : ***********");
-			for (WebElement cell : AllCellElements) {
-				String textAlign = cell.getCssValue("text-align");
-				
-				if(!textAlign.contains("left")) {
-					AllLeftAlignment=false;
-					System.out.print(cell.getText());
-					String ColunName=cell.getAttribute("col-id");
-					String cellResult=ColunName+" : "+cell.getText();
-					FailedLeftAllign=FailedLeftAllign+", "+cellResult;
-				}
-			}
-		//	System.out.println("Cells left-aligned  Validation end : ***********");
-			if(AllLeftAlignment==false) {
-				fail(driver,"Some cell valuse are not aligned left when 'Left alignment' is selected  : "+FailedLeftAllign);
-				
-			}else {
-				pass(driver,"All the Cell Values are aligned left when 'Left alignment' is seleted ");
-			}
-			
-			click(driver,AlignmentLeft_TableFormat);
-			wait(driver,"1");
-			SelectedAlignmentColorAct=getTextBackgroundColor(driver, AlignmentLeft_TableFormat);
-			if(AlignmentSelectedColor_TableFormat.equalsIgnoreCase(SelectedAlignmentColorAct)) {
-				fail(driver,"Left Alignment highlighted in grey color When deselect on it ");
-			}else {
-				pass(driver,"Left Alignment not highlighted in grey color When deselect on it ");
-			}
-			
-		// Center
-			click(driver,Alignmentcenter_TableFormat);
-			scrollUsingElement(driver, ApplyButton);
-			click(driver, ApplyButton);
-			elementnotvisible1(driver, RPE_Loading);
-			SelectedAlignmentColorAct=getTextBackgroundColor(driver, Alignmentcenter_TableFormat);
-			if(AlignmentSelectedColor_TableFormat.equalsIgnoreCase(SelectedAlignmentColorAct)) {
-				pass(driver,"Center Alignment highlighted in grey color When click on it ");
-			}else {
-				fail(driver,"Center Alignment not highlighted in grey color When click on it ");
-			}
-			
-			AllCellElements=getWebElements(driver,TableCell);
-			boolean AllCenterAlignment=true;
-			String FailedCenterAllign="";
-			System.out.println("Cells  Center-aligned Validation  : ***********");
-			for (WebElement cell : AllCellElements) {
-				String textAlign = cell.getCssValue("text-align");
-				
-				if(!textAlign.contains("center")) {
-					AllCenterAlignment=false;
-					String ColunName=cell.getAttribute("col-id");
-					String cellResult=ColunName+" : "+cell.getText();
-					System.out.print(cellResult);
-					FailedCenterAllign=FailedCenterAllign+", "+cellResult;
-				}
-			}
-		//	System.out.println("Cells  Center-aligned  Validation end : ***********");
-			if(AllCenterAlignment==false) {
-				fail(driver,"Some cell valuse are not aligned center when 'Center alignment' is selected  : "+FailedCenterAllign);
-			}else {
-				pass(driver,"All the Cell Values are aligned center when 'Center alignment' is seleted ");
-			}
-			click(driver,Alignmentcenter_TableFormat);
-			wait(driver,"1");
-			SelectedAlignmentColorAct=getTextBackgroundColor(driver, Alignmentcenter_TableFormat);
-			if(AlignmentSelectedColor_TableFormat.equalsIgnoreCase(SelectedAlignmentColorAct)) {
-				fail(driver,"Center Alignment highlighted in grey color When deselect on it ");
-			}else {
-				pass(driver,"Center Alignment not highlighted in grey color When deselect on it ");
-			}
-			
-			//Right 
-			click(driver,AlignmentRight_TableFormat);
-			scrollUsingElement(driver, ApplyButton);
-			click(driver, ApplyButton);
-			elementnotvisible1(driver, RPE_Loading);
-			SelectedAlignmentColorAct=getTextBackgroundColor(driver, AlignmentRight_TableFormat);
-			if(AlignmentSelectedColor_TableFormat.equalsIgnoreCase(SelectedAlignmentColorAct)) {
-				pass(driver,"Right Alignment highlighted in grey color When click on it ");
-			}else {
-				fail(driver,"Right Alignment not highlighted in grey color When click on it ");
-			}
-			
-			AllCellElements=getWebElements(driver,TableCell);
-			boolean AllRightAlignment=true;
-			String FailedRightAllign="";
-			System.out.println("Cells  Right-aligned Validation  : ***********");
-			for (WebElement cell : AllCellElements) {
-				String textAlign = cell.getCssValue("text-align");
-				
-				if(!textAlign.contains("right")) {
-					AllRightAlignment=false;
-					String ColunName=cell.getAttribute("col-id");
-					String cellResult=ColunName+" : "+cell.getText();
-					System.out.print(cellResult+" ");
-					FailedRightAllign=FailedRightAllign+", "+cellResult;
-				}
-			}
-		//	System.out.println("Cells  Right-aligned  Validation end : ***********");
-			if(AllRightAlignment==false) {
-				fail(driver,"Some cell valuse are not aligned right when 'Right alignment' is selected  : "+FailedRightAllign);
-			}else {
-				pass(driver,"All the Cell Values are aligned right when 'Right alignment' is seleted ");
-			}
-			click(driver,AlignmentRight_TableFormat);
-			wait(driver,"1");
-			SelectedAlignmentColorAct=getTextBackgroundColor(driver, AlignmentRight_TableFormat);
-			if(AlignmentSelectedColor_TableFormat.equalsIgnoreCase(SelectedAlignmentColorAct)) {
-				fail(driver,"Right Alignment highlighted in grey color When deselect on it ");
-			}else {
-				pass(driver,"Right Alignment not highlighted in grey color When deselect on it ");
-			}
-		
-			VerticalScrollFull(driver,ResultTableBody);
-			HorizontalScrollFull(driver,HorizontalScroll2);
-			
-		// TC_Smoketest_255 to TC_Smoketest_260
-			
-		//	TC_Smoketest_261 to TC_Smoketest_265 && TC_Smoketest_270 to TC_Smoketest_272 and TC_Smoketest_276 to TC_Smoketest_284 Start..
-			if(isToggleEnable(driver,RowTotal_Input_TableFormat)) {
-				fail(driver,"Row Total Toggle is not displayed in 'OFF' Condition by default"); 
-			}else {
-				pass(driver,"Row Total Toggle is displayed in 'OFF' Condition by default");
-			}
-			
-			click(driver,RowTotal_toggle_TableFormat);
-			wait(driver,"1");
-			if(isToggleEnable(driver,RowTotal_Input_TableFormat)) {
-				pass(driver,"Row Total Toggle is displayed in 'ON' Condition When enabling it");
-			}else {
-				fail(driver,"Row Total Toggle is not displayed in 'ON' Condition When enabling it");
-			}
-			
-			scrollUsingElement(driver, ApplyButton);
-			wait(driver,"1");
-			click(driver, ApplyButton);
-			elementnotvisible1(driver, RPE_Loading);
-			waitForElement(driver, TableCell);
-			
-			HorizontalScrollFull(driver,HorizontalScroll2);
-			// grand Total Validations
-			if(isDisplayed(driver,GrandTotalRow)) {
-				pass(driver,"Grand Row total is displayed in the table when the toggle is 'ON' condition");
-				
-				// need to check the count sum
-				List<WebElement> GrandTotalFullRows=getWebElements(driver, GrandTotalRows);
-				List<WebElement> rowsTable=getWebElements(driver, TableRows);
-				int rowsTableSize=rowsTable.size();
-				
-				Pattern numericalPattern1 = Pattern.compile("^-?\\d+(\\.\\d+)?$");
-		        Pattern datePattern1 = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
-	        
-		        boolean grandTotalCheck=true;
-		        String FailResult="";	  
-	        
-				for(int i=1;i<rowsTableSize;i++) {
-					String GrandTotalRowsString=GrandTotalFullRows.get(i-1).getText();
-					double GrandTotalRowsNum=Double.parseDouble(GrandTotalRowsString);
-					double RowSumExp=0;
-					List<WebElement> AllCellsRow=driver.findElements(By.xpath("(//div[@ref='eViewport']//div[@role='row'])["+i+"]//div[@role='gridcell']"));
-					int AllCellsRowLastSize=AllCellsRow.size()-1; // new modification
-					AllCellsRow.remove(AllCellsRowLastSize); // new modification 
-					for(WebElement cellElem:AllCellsRow) {
-						String CellStringValue=cellElem.getText();
-						if (datePattern1.matcher(CellStringValue).matches()) {
-			                continue;
-			            } else if (numericalPattern1.matcher(CellStringValue).matches()) {
-			            	double cellNumValue=Double.parseDouble(CellStringValue);
-			            	RowSumExp=RowSumExp+cellNumValue;
-			            }
-					}
-					
-					if(GrandTotalRowsNum!=RowSumExp) {
-						grandTotalCheck=false;
-						FailResult=FailResult+" || Row : "+i+" , Exp : "+RowSumExp+" , Act : "+GrandTotalRowsNum+" ";
-					}
-					
-				}
-	        
-		        if(grandTotalCheck==true) {
-		        	pass(driver,"Grand Row Total Applied correctly for all the rows");
-		        }else {
-					//fail(driver,"Grand Row Total values are Mismatched : "+FailResult );
-		        }
-	        
-	 		}else {
-				fail(driver,"Grand Row total is not displayed in the table when the toggle is 'ON' condition");
-	 		}
-			
-			click(driver,RowTotal_toggle_TableFormat);
-			if(isToggleEnable(driver,RowTotal_Input_TableFormat)) {
-				fail(driver,"Row Total Toggle is not displayed in 'OFF' Condition When disabling it");
-			}else {
-				pass(driver,"Row Total Toggle is displayed in 'OFF' Condition When disabling it");
-			}
-			
-			scrollUsingElement(driver, ApplyButton);
-			wait(driver,"1");
-			click(driver, ApplyButton);
-			elementnotvisible1(driver, RPE_Loading);
-			waitForElement(driver, TableCell);
-			HorizontalScrollFull(driver,HorizontalScroll2);
-			if(isDisplayed2(driver,GrandTotalRow)) {
-				fail(driver,"Grand Row total is displayed in the table when the toggle is 'OFF' condition");
-	 		}else {
-				pass(driver,"Grand Row total is not displayed in the table when the toggle is 'OFF' condition");
-	 		}
-			
-			
-			click(driver,RowTotal_toggle_TableFormat);
-			wait(driver,"1");
-			if(isToggleAccessible(driver,PinRowTotal_Input_TableFormat)) {
-				pass(driver,"Pin Row Total Toggle Accessible when Row Total toggle is 'ON' Condition");
-			}else {
-				fail(driver,"Pin Row Total Toggle Accessible when Row Total toggle is 'ON' Condition");
-			}
-			// extra validations
-			
-			if(isToggleEnable(driver,PinRowTotal_Input_TableFormat)) {
-				fail(driver,"By deafult, Pin Row Total Toggle is not displayed in 'OFF' Condition");
-			}else {
-				pass(driver,"By deafult, Pin Row Total Toggle is displayed in 'OFF' Condition");
-			}
-			
-			click(driver,PinRowTotal_toggle_TableFormat);
-			wait(driver,"1");
-			if(isToggleEnable(driver,PinRowTotal_Input_TableFormat)) {
-				pass(driver,"Pin Row Total Toggle is displayed in 'ON' Condition when enabling it");
-			}else {
-				fail(driver,"Pin Row Total Toggle is not displayed in 'ON' Condition when enabling it");
-			}
-			scrollUsingElement(driver, ApplyButton);
-			wait(driver,"1");
-			click(driver, ApplyButton);
-			elementnotvisible1(driver, RPE_Loading);
-			waitForElement(driver,TableCell);
-			if(isDisplayed2(driver,GrandTotalRow)) {
-				pass(driver,"Grand Row total is displayed, Pin Row Total function working properly");
-				
-				// Pin grand total row sum validation
-				List<WebElement> GrandTotalFullRows=getWebElements(driver, GrandTotalRows);
-				List<WebElement> rowsTable=getWebElements(driver, TableRows);
-				int rowsTableSize=rowsTable.size();
-				
-				Pattern numericalPattern1 = Pattern.compile("^-?\\d+(\\.\\d+)?$");
-		        Pattern datePattern1 = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
-		        
-		        boolean grandTotalCheckRow2=true;
-		        String FailResultRow2="";	
-		        
-				for(int i=1;i<rowsTableSize;i++) {
-					String GrandTotalRowsString=GrandTotalFullRows.get(i-1).getText();
-					double GrandTotalRowsNum=Double.parseDouble(GrandTotalRowsString);
-					double RowSumExp=0;
-					List<WebElement> AllCellsRow=driver.findElements(By.xpath("(//div[@ref='eViewport']//div[@role='row'])["+i+"]//div[@role='gridcell']"));
-					for(WebElement cellElem:AllCellsRow) {
-						String CellStringValue=cellElem.getText();
-						if (datePattern1.matcher(CellStringValue).matches()) {
-			                continue;
-			            } else if (numericalPattern1.matcher(CellStringValue).matches()) {
-			            	double cellNumValue=Double.parseDouble(CellStringValue);
-			            	RowSumExp=RowSumExp+cellNumValue;
-			            }
-					}
-					
-					if(GrandTotalRowsNum!=RowSumExp) {
-						grandTotalCheckRow2=false;
-						FailResultRow2=FailResultRow2+" || Row : "+i+" , Exp : "+RowSumExp+" , Act : "+GrandTotalRowsNum+" ";
-					}
-					
-				}
-				
-				if(grandTotalCheckRow2==true) {
-		        	pass(driver,"Pin Grand Row Total Applied correctly for all the rows");
-		        }else {
-					//fail(driver,"Pin Grand Row Total values are Mismatched : "+FailResultRow2 );
-		        }
-				
-				
-				// Pin grand total row sum validation
-				
-				// TC_Smoketest_276 to TC_Smoketest_284
-				String DefaultRowTotalColorAct=getTextJavascript(driver, HighLightRowTotal_Input);
-				System.out.println("DefaultRowTotalColorAct : "+DefaultRowTotalColorAct);
-				if(DefaultGrandTotalColor_TableFormat.equalsIgnoreCase(DefaultRowTotalColorAct)) {
-					pass(driver,"By default, '"+DefaultGrandTotalColor_TableFormat+"' color is displayed in the Row total color input");
-				}else {
-					fail(driver,"By default, '"+DefaultGrandTotalColor_TableFormat+"' color is not displayed in the Row total color input");
-				}
-				
-				String TableAppliedGrantTotalColor=getTextBackgroundColor(driver, GrandTotalRows);
-				if(DefaultGrandTotalColor_TableFormat.equalsIgnoreCase(TableAppliedGrantTotalColor)) {
-					pass(driver,"By deafult, Grant Row total cells displayed with deafult selected color, Exp : "+DefaultGrandTotalColor_TableFormat+", Act : "+ TableAppliedGrantTotalColor);
-				}else {
-					fail(driver,"By deafult, Grant Row total cells not displayed with deafult selected color, Exp : "+DefaultGrandTotalColor_TableFormat+", Act : "+ TableAppliedGrantTotalColor);
-				}
-				
-				click(driver,HighLightRowTotal_Input);
-		        if(isDisplayed(driver,ColorPickerOpen)) {
-					pass(driver,"The color pickers opened promptly after clicking HighLight RowTotal Input");
-					mouseOverToElement(driver, Color1);
-					String mouseOveredColorText=getText1(driver,mouseOverColorHistory);
-					if(mouseOveredColorText!=null) {
-						mouseOverToElement(driver, mouseOverColorHistory);
-						wait(driver,"1");
-						mouseOverToElement(driver, Color1);
-						doubleClick(driver,mouseOverColorHistory);
-						action.keyDown(Keys.CONTROL).sendKeys("c").keyUp(Keys.CONTROL).perform();
-				        doubleClick(driver,HighLightRowTotal_Input);
-				        wait(driver,"1");
-				        action.keyDown(Keys.CONTROL).sendKeys("v").keyUp(Keys.CONTROL).perform();
-				        wait(driver,"1");
-						String AfterCopyPasteColor=getTextJavascript(driver, HighLightRowTotal_Input);
-						System.out.println("AAfterCopyPasteColor : "+AfterCopyPasteColor);
-						if(mouseOveredColorText.equals(AfterCopyPasteColor)) {
-							pass(driver,"Copy paste color value works properly in Highlight Row Toata Input");
-						}else {
-							fail(driver,"Copy paste color value not working properly in Highlight Row Toata Input");
-						}
-						
-					}else {
-						fail(driver,"MouseOveredColor Value not displayed in the history");
-					}
-					
-		        }else {
-					fail(driver,"The color pickers not opened promptly after clicking HighLight RowTotal Input");
-		        }
-				
-		        //click(driver,HighLightRowTotal_Text);
-			    click(driver,HighLightRowTotal_Input);
-			    waitForElement(driver,ColorPickerOpen);
-			    mouseOverAndClick(driver,Color1);
-				wait(driver,"1");
-				if(isDisplayed2(driver,ColorPickerOpen)){
-					fail(driver,"Colorpicker not closed promptly After selecting the color");
-				}else {
-					pass(driver,"Colorpicker closed promptly After selecting the color");
-				}
-				
-				String SelectedColorInput=getTextJavascript(driver, HighLightRowTotal_Input);
-				scrollUsingElement(driver, ApplyButton);
-				wait(driver,"1");
-				click(driver, ApplyButton);
-				elementnotvisible1(driver, RPE_Loading);
-				waitForElement(driver, GrandTotalRows);
-			    TableAppliedGrantTotalColor=getTextBackgroundColor(driver, GrandTotalRows);
-				if(TableAppliedGrantTotalColor.equalsIgnoreCase(SelectedColorInput)) {
-					pass(driver,"Selected Color is applied in the Grand total Row cells");
-				}else {
-					fail(driver,"Selected Color is not applied in the Grand total Row cells");
-				}
-		        
-		       
-		        click(driver,HighLightRowTotal_Input);
-		        action.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).perform();
-		        sendKeys(driver,HighLightRowTotal_Input,ChangeRowTotalColor_Smoke_282);
-		        scrollUsingElement(driver, ApplyButton);
+	        if(verifyElementDisplayed(driver, TableFormat_Sec)) {
+		       	click(driver,TableFormat_Sec);
 		        wait(driver,"1");
-		        click(driver, ApplyButton);
-		        elementnotvisible1(driver, RPE_Loading);
-		        waitForElement(driver, GrandTotalRows);
-			    TableAppliedGrantTotalColor=getTextBackgroundColor(driver, GrandTotalRows);
-				if(TableAppliedGrantTotalColor.equalsIgnoreCase(ChangeRowTotalColor_Smoke_282)) {
-					pass(driver,"Manually Entered Color is applied in the Grand total Row cells");
-				}else {
-					fail(driver,"Manually Entered Color is not applied in the Grand total Row cells");
-				}
-		        
-				clear1(driver,HighLightRowTotal_Input);
-				wait(driver,"1");
-				String AfterRevertColor=getTextJavascript(driver, HighLightRowTotal_Input);
-				if(AfterRevertColor.equalsIgnoreCase(DefaultGrandTotalColor_TableFormat)) {
-					pass(driver,"Default color is displayed after revert the color value");
-					scrollUsingElement(driver, ApplyButton);
-					wait(driver,"1");
-					click(driver, ApplyButton);
-					elementnotvisible1(driver, RPE_Loading);
-					waitForElement(driver, GrandTotalRows);
-				    TableAppliedGrantTotalColor=getTextBackgroundColor(driver, GrandTotalRows);
-					if(TableAppliedGrantTotalColor.equalsIgnoreCase(DefaultGrandTotalColor_TableFormat)) {
-						pass(driver,"Default color is applied in the Grand total Row cells after revert the color");
-					}else {
-						fail(driver,"Default color is not applied in the Grand total Row cells after revert the color");
-					}
-					
-				}else {
-					fail(driver,"Default color is not displayed after revert the color value");
-				}
-		        
-	 		}else {
-				fail(driver,"Grand Row total is not displayed,  Row Total function not working properly");
-	 		}
-			
-			click(driver,RowTotal_toggle_TableFormat);
-			wait(driver,"1");
-			if(isToggleEnable(driver,PinRowTotal_Input_TableFormat)) {
-				fail(driver,"Pin Row Total Toggle is not automatically changed to 'OFF' Condition When disabling the Row Total toggle");
-			}else {
-				pass(driver,"Pin Row Total Toggle is automatically changed to 'OFF' Condition When disabling the Row Total toggle");
-				scrollUsingElement(driver, ApplyButton);
-				wait(driver,"1");
-				click(driver, ApplyButton);
-				elementnotvisible1(driver, RPE_Loading);
-				waitForElement(driver,TableCell);
-				if(isDisplayed2(driver,GrandTotalRow)) {
-					fail(driver,"Grand total row is displayed when the toggle is 'OFF' condition");
-				}else {
-					pass(driver,"Grand total row is not displayed when the toggle is 'OFF' condition");
-				}
-			}
-		//	(TC_Smoketest_261 to TC_Smoketest_265) && (TC_Smoketest_270 to TC_Smoketest_272) and TC_Smoketest_276 to TC_Smoketest_284 End....
-			
-		//	(TC_Smoketest_266 to TC_Smoketest_269) && (TC_Smoketest_273 to TC_Smoketest_275) and TC_Smoketest_285 to TC_Smoketest_290 Start....
-			if(isToggleEnable(driver,ColumnTotal_Input_TableFormat)) {
-				fail(driver,"Column Total Toggle is not displayed in 'OFF' Condition by default");
-			}else {
-				pass(driver,"Column Total Toggle is displayed in 'OFF' Condition by default");
-			}
-			
-			click(driver,ColumnTotal_toggle_TableFormat);
-			wait(driver,"1");
-			if(isToggleEnable(driver,ColumnTotal_Input_TableFormat)) {
-				pass(driver,"Column Total Toggle is displayed in 'ON' Condition When enabling it");
-			}else {
-				fail(driver,"Column Total Toggle is not displayed in 'ON' Condition When enabling it");
-			}
-			
-			scrollUsingElement(driver, ApplyButton);
-			click(driver, ApplyButton);
-			elementnotvisible1(driver, RPE_Loading);
-			waitForElement(driver, TableCell);
-			VerticalScrollFull(driver,ResultTableBody);
-			if(isDisplayed(driver,GrandTotalColumns)) {
-				pass(driver,"Grand Column total is displayed in the table when the toggle is 'ON' condition");
-				
-				//  Grand total Column sum validation
-				wait(driver,"1");
-				List<WebElement> FirstRowCellElements=getWebElements(driver,FirstRowCells);
-				Pattern numericalPatternCol = Pattern.compile("^-?\\d+(\\.\\d+)?$");
-		        Pattern datePatternCol = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
-				
-				boolean grandTotalCheckColum1=true;
-		        String FailResultColumn1="";	  
-		        
-				for(WebElement FirstRowCellElement:FirstRowCellElements) {
-					String FirstRowCellElementString=FirstRowCellElement.getText();
-					if(datePatternCol.matcher(FirstRowCellElementString).matches()) {
-						continue;
-					}else if(numericalPatternCol.matcher(FirstRowCellElementString).matches()) {
-						String Col_id=FirstRowCellElement.getAttribute("col-id");
-						if(!Col_id.equals("GrandTotal")) {
-							List<WebElement> NumericalCells=driver.findElements(By.xpath("//div[@col-id='"+Col_id+"' and @role='gridcell']"));
-							int NumericalCellsLastSize=NumericalCells.size()-1;
-							//System.out.println("NumericalCells.getLast().getText() : "+NumericalCells.get(NumericalCellsLastSize).getText());
-							double ActColoumnTotal=0;
-							String lastText=NumericalCells.get(NumericalCellsLastSize).getText();
-							if(!lastText.isEmpty()) {
-								ActColoumnTotal= Double.parseDouble(lastText);
-							}
-							//double ActColoumnTotal= Double.parseDouble(NumericalCells.get(NumericalCellsLastSize).getText());  // new modification
-							NumericalCells.remove(NumericalCellsLastSize); // new modification
-							double ColoumnTotal_Exp=0;
-							for(WebElement NumericalCell:NumericalCells) {
-								if(!NumericalCell.getText().isEmpty()) {
-								  double cellValue=Double.parseDouble(NumericalCell.getText());
-								  ColoumnTotal_Exp=ColoumnTotal_Exp+cellValue;
-								}
-							}
-							
-							if(ColoumnTotal_Exp!=ActColoumnTotal) {
-								grandTotalCheckColum1=false;
-								FailResultColumn1=FailResultColumn1+" || Column id : "+Col_id+" , Exp : "+ColoumnTotal_Exp+" , Act : "+ActColoumnTotal+" ";
-							}
-							
-						 }
-					   }
-					
-				 	}
-				
-					if(grandTotalCheckColum1==true) {
-			        	pass(driver,"Column Grand Total Applied correctly for all the columns");
-			        }else {
-						//fail(driver,"Column Grand Total values are Mismatched : "+FailResultColumn1 );
-			        }
-				
-				
-				
-			}else {
-				fail(driver,"Grand Column total is not displayed in the table when the toggle is 'ON' condition");
-			}
-			
-			click(driver,ColumnTotal_toggle_TableFormat);
-			wait(driver,"1");
-			if(isToggleEnable(driver,ColumnTotal_Input_TableFormat)) {
-				fail(driver,"Column Total Toggle is not displayed in 'OFF' Condition When disabling it");
-			}else {
-				pass(driver,"Column Total Toggle is displayed in 'OFF' Condition When disabling it");
-			}
-			
-			scrollUsingElement(driver, ApplyButton);
-			wait(driver,"1");
-			click(driver, ApplyButton);
-			elementnotvisible1(driver, RPE_Loading);
-			waitForElement(driver, TableCell);
-			VerticalScrollFull(driver,ResultTableBody);
-			if(isDisplayed2(driver,GrandTotalColumns)) {
-				fail(driver,"Grand Column total is displayed in the table when the toggle is 'OFF' condition");
-	 		}else {
-				pass(driver,"Grand Column total is not displayed in the table when the toggle is 'OFF' condition");
-	 		}
-			
-				click(driver,ColumnTotal_toggle_TableFormat);
-				wait(driver,"1");
-				if(isToggleAccessible(driver,PinColumnTotal_Input_TableFormat)) {
-					pass(driver,"Pin Column Total Toggle Accessible when Column Total toggle is 'ON' Condition");
-				}else {
-					fail(driver,"Pin Column Total Toggle Accessible when Column Total toggle is 'ON' Condition");
-				}
-		
-				if(isToggleEnable(driver,PinColumnTotal_Input_TableFormat)) {
-					fail(driver,"By deafult, Pin Column Total Toggle is not displayed in 'OFF' Condition");
-				}else {
-					pass(driver,"By deafult, Pin Column Total Toggle is displayed in 'OFF' Condition");
-				}
-				
-				click(driver,PinColumnTotal_toggle_TableFormat);
-				wait(driver,"1");
-				if(isToggleEnable(driver,PinColumnTotal_Input_TableFormat)) {
-					pass(driver,"Pin Column Total Toggle is displayed in 'ON' Condition when enabling it");
-				}else {
-					fail(driver,"Pin Column Total Toggle is not displayed in 'ON' Condition when enabling it");
-				}
-				scrollUsingElement(driver, ApplyButton);
-				click(driver, ApplyButton);
-				elementnotvisible1(driver, RPE_Loading);
-				waitForElement(driver,TableCell);
-				if(isDisplayed(driver,GrandTotalColumns)) {
-					pass(driver,"Grand Column total is displayed, Pin Column Total function Applied properly");
-					
-				//  Pin Grand total Column sum validation
-					List<WebElement> FirstRowCellElements=getWebElements(driver,FirstRowCells);
-					Pattern numericalPatternCol = Pattern.compile("^-?\\d+(\\.\\d+)?$");
-			        Pattern datePatternCol = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
-					
-					boolean grandTotalCheckColum2=true;
-			        String FailResultColumn2="";
-			        
-					for(WebElement FirstRowCellElement:FirstRowCellElements) {
-						String FirstRowCellElementString=FirstRowCellElement.getText();
-						action.moveToElement(FirstRowCellElement).build().perform();
-						if(datePatternCol.matcher(FirstRowCellElementString).matches()) {
-							continue;
-						}else if(numericalPatternCol.matcher(FirstRowCellElementString).matches()) {
-							String Col_id=FirstRowCellElement.getAttribute("col-id");
-							if(!Col_id.equals("GrandTotal")) {
-								wait(driver,"1");
-								List<WebElement> NumericalCells=driver.findElements(By.xpath("//div[@col-id='"+Col_id+"' and @role='gridcell']//span"));
-								int NumericalCellsLastSize=NumericalCells.size()-1;
-								//System.out.println("NumericalCells.getLast().getText() : "+NumericalCells.get(NumericalCellsLastSize).getText()+"  NumericalCells.size"+NumericalCells.size());// new modification
-								double ActColoumnTotal=0;
-								try {
-									String LastCellValue=NumericalCells.get(NumericalCellsLastSize).getText(); // new modification
-								  ActColoumnTotal= Double.parseDouble(LastCellValue);
-								}catch(Exception e) {
-									
-								}
-								NumericalCells.remove(NumericalCellsLastSize); // new modification
-								double ColoumnTotal_Exp=0;
-								for(WebElement NumericalCell:NumericalCells) {
-									if(!NumericalCell.getText().isEmpty()) {
-									  double cellValue=Double.parseDouble(NumericalCell.getText());
-									  ColoumnTotal_Exp=ColoumnTotal_Exp+cellValue;
-									}
-								}
-								
-								if(ColoumnTotal_Exp!=ActColoumnTotal) {
-									grandTotalCheckColum2=false;
-									FailResultColumn2=FailResultColumn2+" || Column id : "+Col_id+" , Exp : "+ColoumnTotal_Exp+" , Act : "+ActColoumnTotal+" ";
-								}
-								
-							 }
-						   }
-					 	}
-					
-						if(grandTotalCheckColum2==true) {
-				        	pass(driver,"Pin Column Grand Total Applied correctly for all the columns");
-				        }else {
-							//fail(driver,"Pin Column Grand Total values are Mismatched : "+FailResultColumn2 );
-				        }
-					
-					
-					// pin grand column total sum validation end
-					String DefaultColumnTotalColorAct=getTextJavascript(driver, HighLightColumnTotal_Input);
-					System.out.println("DefaultRowTotalColorAct : "+DefaultColumnTotalColorAct);
-					if(DefaultGrandTotalColor_TableFormat.equalsIgnoreCase(DefaultColumnTotalColorAct)) {
-						pass(driver,"By default, '"+DefaultGrandTotalColor_TableFormat+"' color is displayed in the Coloumn total color input");
-					}else {
-						fail(driver,"By default, '"+DefaultGrandTotalColor_TableFormat+"' color is not displayed in the Column total color input");
-					}
-					
-					String TableColumndGrantTotalColor=getTextBackgroundColor(driver, GrandTotalColumns);
-					if(DefaultColumnTotalColorAct.equalsIgnoreCase(TableColumndGrantTotalColor)) {
-						pass(driver,"By deafult, Grant Column total cells displayed with deafult selected color, Exp : "+DefaultColumnTotalColorAct+", Act : "+ TableColumndGrantTotalColor);
-					}else {
-						fail(driver,"By deafult, Grant Column total cells not displayed with deafult selected color, Exp : "+DefaultColumnTotalColorAct+", Act : "+ TableColumndGrantTotalColor);
-					}
-					
-					click(driver,HighLightColumnTotal_Input);
-			        if(isDisplayed(driver,ColorPickerOpen)) {
-						pass(driver,"The color pickers opened promptly after clicking HighLight Column Total Input");
-						mouseOverToElement(driver, Color1);
-						String mouseOveredColorText=getText1(driver,mouseOverColorHistory);
-						if(mouseOveredColorText!=null) {
-							mouseOverToElement(driver,mouseOverColorHistory);
-							wait(driver,"1");
-							mouseOverToElement(driver, Color1);
-							doubleClick(driver,mouseOverColorHistory);
-							action.keyDown(Keys.CONTROL).sendKeys("c").keyUp(Keys.CONTROL).perform();
-					        doubleClick(driver,HighLightColumnTotal_Input);
-					        wait(driver,"1");
-					        action.keyDown(Keys.CONTROL).sendKeys("v").keyUp(Keys.CONTROL).perform();
-					        wait(driver,"1");
-							String AfterCopyPasteColor=getTextJavascript(driver, HighLightColumnTotal_Input);
-							System.out.println("AfterCopyPasteColor : "+AfterCopyPasteColor);
-							if(mouseOveredColorText.equalsIgnoreCase(AfterCopyPasteColor)) {
-								pass(driver,"Copy paste color value works properly in Highlight Column Total Input");
-							}else {
-								fail(driver,"Copy paste color value not working properly in Highlight Column Total Input , Exp : "+mouseOveredColorText+", Act : "+AfterCopyPasteColor);
-							}
-							
-						}else {
-							fail(driver,"MouseOveredColor Value not displayed in the history");
-						}
-						
-						mouseOverAndClick(driver, Color1);
-						wait(driver,"1");
-						if(isDisplayed2(driver,ColorPickerOpen)){
-							fail(driver,"Colorpicker not closed promptly After selecting the color");
-						}else {
-							pass(driver,"Colorpicker closed promptly After selecting the color");
-						}
-						
-						String SelectedColorInput=getTextJavascript(driver, HighLightColumnTotal_Input);
-						scrollUsingElement(driver, ApplyButton);
-						wait(driver,"1");
-						click(driver, ApplyButton);
-						elementnotvisible1(driver, RPE_Loading);
-						waitForElement(driver, GrandTotalColumns);
-						TableColumndGrantTotalColor=getTextBackgroundColor(driver, GrandTotalColumns);
-						if(TableColumndGrantTotalColor.equalsIgnoreCase(SelectedColorInput)) {
-							pass(driver,"Selected Color is applied in the Grand total Column cells");
-						}else {
-							fail(driver,"Selected Color is not applied in the Grand total Column cells");
-						}
-						
-			        }else {
-						fail(driver,"The color pickers not opened promptly after clicking HighLight Column Total Input");
-			        }
-					
-					click(driver,HighLightColumnTotal_Input);
-			        action.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).perform();
-			        sendKeys(driver,HighLightColumnTotal_Input,ChangeColumnTotalColor_Smoke_290);
-			        scrollUsingElement(driver, ApplyButton);
-			        wait(driver,"1");
-			        click(driver, ApplyButton);
-			        elementnotvisible1(driver, RPE_Loading);
-			        waitForElement(driver, GrandTotalColumns);
-			        TableColumndGrantTotalColor=getTextBackgroundColor(driver, GrandTotalColumns);
-					if(TableColumndGrantTotalColor.equalsIgnoreCase(ChangeColumnTotalColor_Smoke_290)) {
-						pass(driver,"Manually Entered Color is applied in the Grand total Column cells");
-					}else {
-						fail(driver,"Manually Entered Color is not applied in the Grand total Column cells");
-					}
-			        
-					clear1(driver,HighLightColumnTotal_Input);
-					wait(driver,"1");
-					String AfterRevertColor=getTextJavascript(driver, HighLightColumnTotal_Input);
-					if(AfterRevertColor.equalsIgnoreCase(DefaultGrandTotalColor_TableFormat)) {
-						pass(driver,"Default color is displayed after revert the color value");
-						scrollUsingElement(driver, ApplyButton);
-						wait(driver,"1");
-						click(driver, ApplyButton);
-						elementnotvisible1(driver, RPE_Loading);
-						waitForElement(driver, GrandTotalColumns);
-						TableColumndGrantTotalColor=getTextBackgroundColor(driver, GrandTotalColumns);
-						if(TableColumndGrantTotalColor.equalsIgnoreCase(DefaultGrandTotalColor_TableFormat)) {
-							pass(driver,"Default color is applied in the Grand total Column cells after revert the color");
-						}else {
-							fail(driver,"Default color is not applied in the Grand total Column cells after revert the color");
-						}
-						
-					}else {
-						fail(driver,"Default color is not displayed after revert the color value");
-					}
-					
+		        String TableFormatSecExpand=getAttribute1(driver,TableFormatExpand,"class");
+		        if(!TableFormatSecExpand.contains("up")) {
+		        	fail(driver,"Table Format Section is not expanded When Click on it");
+		        }else {
+		        	pass(driver,"Table Format Section is expanded When Click on it");
+		        	
+		        	// TC_Smoketest_205
+			    	 String TableFormateSec_Act=getTextColor(driver, TableFormat_Sec);
+			    	 System.out.println("TableFormateSec_Act : "+TableFormateSec_Act);
+					 if(TableFormatExpandColor.equalsIgnoreCase(TableFormateSec_Act)) {
+						 pass(driver,"TableFormat is highlighted in blue color after expand it");
+					 }else {
+						 fail(driver,"TableFormat is not highlighted in blue color after expand it");
+					 }
+			        // TC_Smoketest_205 
+		        	
+		        	verifyElementDisplayed(driver, Table_Theme_Input);
+		        	verifyElementDisplayed(driver, TableThemeText);
+					 
+		        	verifyElementDisplayed(driver, ODDEven_toggleTableFormat1);
+		        	verifyElementDisplayed(driver, OddEven_text_TableFormat);
+					 
+		        	verifyElementDisplayed(driver, FontFamily_Input_TableFormat);
+		        	verifyElementDisplayed(driver, FontFamilyText_TableFormat);
+					 
+		        	verifyElementDisplayed(driver, FontSizeInput_TableFormat);
+		        	verifyElementDisplayed(driver, FontSizeText_TableFormat);
+					 
+		        	verifyElementDisplayed(driver, HeaderColorInput_TableFormat);
+		        	verifyElementDisplayed(driver, HeaderColorText_TableFormat);
+				 
+		        	verifyElementDisplayed(driver, WrapHeaded_toggle_TableFormat);
+		        	verifyElementDisplayed(driver, WrapHeaders_Text_TableFormat);
+					 
+		        	verifyElementDisplayed(driver, BodyFontSize_Input_TableFormat);
+		        	verifyElementDisplayed(driver, BodyFontSize_text_TableFormat);
+					 
+		        	verifyElementDisplayed(driver, BorderInput_TableFormat);
+		        	verifyElementDisplayed(driver, Border_text_TableFormat);
 
-				}else {
-					fail(driver,"Grand Column total is not displayed, Pin Column Total function not Applied properly");
-				}
-				
-				click(driver,ColumnTotal_toggle_TableFormat);
-				wait(driver,"1");
-				if(isToggleEnable(driver,PinColumnTotal_Input_TableFormat)) {
-					fail(driver,"Pin Column Total Toggle is not automatically changed to 'OFF' Condition When disabling the Column Total toggle");
-				}else {
-					pass(driver,"Pin Column Total Toggle is automatically changed to 'OFF' Condition When disabling the Column Total toggle");
-					scrollUsingElement(driver, ApplyButton);
-					wait(driver,"1");
-					click(driver, ApplyButton);
-					elementnotvisible1(driver, RPE_Loading);
-					waitForElement(driver,TableCell);
-					if(isDisplayed2(driver,GrandTotalColumns)) {
-						fail(driver,"Grand total Column is displayed when the toggle is 'OFF' condition");
+		        	verifyElementDisplayed(driver, NegativeHighlight_toggle);
+		        	verifyElementDisplayed(driver, NegativeHighlight_text);
+
+		        	verifyElementDisplayed(driver, AlignmentLeft_TableFormat);
+		        	verifyElementDisplayed(driver, Alignmentcenter_TableFormat);
+		        	verifyElementDisplayed(driver, AlignmentRight_TableFormat);
+		        	verifyElementDisplayed(driver, AlignmentText_TableFormat);
+
+		        	verifyElementDisplayed(driver, RowTotal_toggle_TableFormat);
+		        	verifyElementDisplayed(driver, RowTotal_text_TableFormat);
+
+		        	verifyElementDisplayed(driver, ColumnTotal_toggle_TableFormat);
+		        	verifyElementDisplayed(driver, ColumnTotal_text_TableFormat);
+
+		        	verifyElementDisplayed(driver, PinRowTotal_toggle_TableFormat);
+		        	verifyElementDisplayed(driver, PinRowTotal_text_TableFormat);
+
+		        	verifyElementDisplayed(driver, PinColumnTotal_toggle_TableFormat);
+		        	verifyElementDisplayed(driver, PinColumnTotal_text_TableFormat);
+					 
+		        	verifyElementDisplayed(driver, HighLightRowTotal_Input);
+		        	verifyElementDisplayed(driver, HighLightRowTotal_Text);
+					 
+		        	verifyElementDisplayed(driver, HighLightColumnTotal_Input);
+		        	verifyElementDisplayed(driver, HighLightColumnTotal_Text);
+					 
+		        	verifyElementDisplayed(driver, SeperatorInput_TableFormat);
+		        	verifyElementDisplayed(driver, SeperatorText_TableFormat);
+		        	// TC_Smoketest_204
+		        	
+		        	// TC_Smoketest_207
+					 if(!isToggleAccessible(driver,Table_Theme_Input)) {
+						 fail(driver,"Table theme input is not Accessible");
+					 }else {
+						 pass(driver,"Table theme input is Accessible");
+						// TC_Smoketest_206
+						 String TableThemeAct="";
+						 List<WebElement> ThemeResultValues=getWebElements(driver, Table_Theme_Results);
+						 for(WebElement ThemeResultValue:ThemeResultValues) {
+							 if(ThemeResultValue.isSelected()) {
+								 
+								 String SelectedClass=ThemeResultValue.getAttribute("value");
+								 System.out.println("SelectedClassValue "+SelectedClass);
+								 TableThemeAct=SelectedClass;
+							 }
+						 }
+						 
+						 System.out.println("TableThemeAct : "+TableThemeAct);
+						 if(TableThemeAct.equals("")) {
+							 pass(driver,"By default, Table theme value is selected as 'Default'");
+						 }else {
+							 fail(driver,"By default, Table theme value is not selected as 'Default'");
+						 }
+					// TC_Smoketest_206 
+					// TC_Smoketest_211
+						 //click(driver,Table_Theme_Input);
+						 selectByText(driver,Table_Theme_Input,SelectTableTheme_Smoke_211);
+						 wait(driver,"1");
+						 String AfterSelectThemeValue="";
+						 ThemeResultValues=getWebElements(driver, Table_Theme_Results);
+						
+						 for(WebElement ThemeResultValue:ThemeResultValues) {
+							 if(ThemeResultValue.isSelected()) {
+								 String SelectedClass=ThemeResultValue.getAttribute("value");
+								 System.out.println("SelectedClassValue "+SelectedClass);
+								 AfterSelectThemeValue=SelectedClass;
+							 }
+						 }
+						 
+						 try {
+							 SelectTableTheme_Smoke_211=SelectTableTheme_Smoke_211.replace(" ", "");
+						 }catch(Exception e) {
+							 
+						 }
+						 
+						 SelectTableTheme_Smoke_211=SelectTableTheme_Smoke_211.toLowerCase();
+						 if(AfterSelectThemeValue.contains(SelectTableTheme_Smoke_211.toLowerCase())) {
+							 pass(driver,"Selected Value '"+SelectTableTheme_Smoke_211+"' is updated in the Table Theme Input");
+						 }else {
+							 fail(driver,"Selected Value '"+SelectTableTheme_Smoke_211+"' is not updated in the Table Theme Input");
+						 }
+						 
+						 scrollUsingElement(driver, ApplyButton);
+						 wait(driver,"1");
+						 click(driver, ApplyButton); //click Apply change
+						 elementnotvisible1(driver, RPE_Loading);
+						 waitForElement(driver,Table_firstRow);
+						 
+						 String tableAppliedTheme=getAttribute1(driver, TableChart, "class");
+						 if(tableAppliedTheme.contains(SelectTableTheme_Smoke_211)) {
+							 pass(driver,"Selected theme value applied in the Chart");
+						 }else {
+							 fail(driver,"Selected theme value not applied in the Chart");
+						 }
+					// TC_Smoketest_211 
+						 
+					 }
+				// TC_Smoketest_207 
+		        	
+						// TC_Smoketest_213 
+					 if(isToggleEnable(driver,OddEven_toggle_TableFormat)) {
+						 pass(driver,"By default, 'Odd/Even Colors' input toggle is displayed as ON");
+						 scrollUsingElement(driver, ApplyButton);
+						 wait(driver,"1");
+						 click(driver, ApplyButton); //click Apply change
+						 elementnotvisible1(driver, RPE_Loading);
+						 waitForElement(driver,Table_firstRow);
+						 String firstRowBackgroundColor=getTextBackgroundColor(driver, Table_firstRow);
+						 //System.out.println("firstRowBackgroundColor : "+ firstRowBackgroundColor);
+						 String secondRowBackgroundColor=getTextBackgroundColor(driver, Table_SecondRow);
+						 //System.out.println("secondRowBackgroundColor : "+ secondRowBackgroundColor);
+						 if(firstRowBackgroundColor.equalsIgnoreCase(secondRowBackgroundColor)) {
+							 fail(driver,"Odd/Even Colors is not applied in the Table When the toggle is in 'ON' Condition");
+						 }else {
+							 pass(driver,"Odd/Even Colors is applied in the Table When the toggle is in 'ON' Condition");
+						 }
+						 
+					 }else {
+						 fail(driver,"By default, 'Odd/Even Colors' input toggle is displayed as ON");
+					 }
+				// TC_Smoketest_213 
+					 
+					if(IsElementEnabled(driver, OddEven_toggle_TableFormat)) { 
+						// TC_Smoketest_214
+						 click(driver,ODDEven_toggleTableFormat1);
+						 wait(driver,"1");
+						 if(isToggleEnable(driver,OddEven_toggle_TableFormat)) {
+							 fail(driver,"'Odd/Even Colors' input toggle is not changed to 'OFF' when click on it");
+						 }else {
+							 pass(driver,"'Odd/Even Colors' input toggle is changed to 'OFF' when click on it");
+							 scrollUsingElement(driver, ApplyButton);
+							 wait(driver,"1");
+							 click(driver, ApplyButton);
+							 elementnotvisible1(driver, RPE_Loading);
+							 String firstRowBackgroundColor=getTextBackgroundColor(driver, Table_firstRow);
+							// System.out.println("firstRowBackgroundColor : "+ firstRowBackgroundColor);
+							 String secondRowBackgroundColor=getTextBackgroundColor(driver, Table_SecondRow);
+							// System.out.println("secondRowBackgroundColor : "+ secondRowBackgroundColor);
+							 if(firstRowBackgroundColor.equalsIgnoreCase(secondRowBackgroundColor)) {
+								 pass(driver,"Odd/Even Colors is not applied in the Table When the toggle is in 'OFF' Condition");
+							 }else {
+								 fail(driver,"Odd/Even Colors is applied in the Table When the toggle is in 'OFF' Condition");
+							 }
+						 }
+						 
+						 click(driver,ODDEven_toggleTableFormat1);
+						 wait(driver,"1");
+						 if(isToggleEnable(driver,OddEven_toggle_TableFormat)) {
+							 pass(driver,"'Odd/Even Colors' input toggle is changed to 'ON' when click on it");
+						 }else {
+							 fail(driver,"'Odd/Even Colors' input toggle is not changed to 'ON' when click on it");
+						 }
+					// TC_Smoketest_214 
 					}else {
-						pass(driver,"Grand total Column is not displayed when the toggle is 'OFF' condition");
+						fail(driver,"Odd/Even input toggle is not Accessible");
 					}
-				}
-			
-			//	(TC_Smoketest_266 to TC_Smoketest_269) && (TC_Smoketest_273 to TC_Smoketest_275) and TC_Smoketest_285 to TC_Smoketest_290 End....
-			
-				// TC_Smoketest_290 to TC_Smoketest_300 start....
-				verifyElementIsPresent(driver, SeperatorInput_TableFormat);
-				String defaultSeperatorSelect=defaultSelectedValue(driver, SeperatorInput_TableFormat);
-				System.out.println("defaultSeperatorSelect : "+defaultSeperatorSelect);
-				if(defaultSeperatorSelect.equals("")||defaultSeperatorSelect.equals(DefaultSeperator_TableFormat)) {
-					pass(driver,"By default, 'Select' is displayed in the seperater input");
-				}else {
-					fail(driver,"By default, 'Select' is not displayed in the seperater input");
-				}
-				
-			    click(driver,SeperatorInput_TableFormat);
-			    verifyElementIsPresent(driver, SeparatorOption1);
-			    verifyElementIsPresent(driver, SeperatorOption2);
-		        
-			    selectByText(driver, SeperatorInput_TableFormat, ChangeSeperator_Smoke_293);
-			    wait(driver,"1");
-			    String AfterSelectSeperatorValue=getTextJavascript(driver, SeperatorInput_TableFormat);
-			    System.out.println("AfterSelectSeperatorValue : "+AfterSelectSeperatorValue);
-			    if(AfterSelectSeperatorValue.equals(ChangeSeperator_Smoke_293)) {
-			    	pass(driver,"Selected seperator value is correctly displayed in the Seperator Input");
-			    }else {
-			    	fail(driver,"Selected seperator value is not correctly displayed in the Seperator Input");
-			    }
-			    
-			    if(isDisplayed(driver,SeperatorSelectedColumnBox)) {
-					pass(driver,"Seperator Selected Column box is displayed after selecting the seperator value");
-				}else {
-					fail(driver,"Seperator Selected Column box is displayed after selecting the seperator value");
-				}
-			    
-				if(isDisplayed(driver,SelectAllOption_Seperator)) {
-					pass(driver,"Select All Checkbox is displayed after selecting the seperter value");
-					if(!isElementSelected(driver,SelectAllCheckBox_Seperator)) {
-						pass(driver,"By default Select All checkbox is not selected");
-						if(isDisplayed2(driver,AppliedSeperatorColoumn)) {
-							fail(driver,"Column Names displayed in the seperator selected column when the 'Select All checkbox' is not selected");
-						}else {
-							pass(driver,"Column Names not displayed in the seperator selected column when the 'Select All checkbox' is not selected");
-						}
-						
-						click(driver,SeperatorSelectedColumnBox);
-						List<WebElement> availableSeperatorColoumnList=getWebElements(driver, SepertorAvailableColumns);
-						int availableSeperatorColoumnCount=availableSeperatorColoumnList.size();
-						
-						List<String> availableNumList=new ArrayList<String>();
-						for(WebElement ele:availableSeperatorColoumnList) {
-							String listtext=ele.getText();
-							availableNumList.add(listtext);
-						}
-						
-						click3(driver,SeperatorText_TableFormat);
-						mouseOverToElement(driver, SelectAllCheckBox_Seperator);
-						mouseOverAndClick(driver, SelectAllCheckBox_Seperator);
-						if(isElementSelected(driver,SelectAllCheckBox_Seperator)) {
-							pass(driver,"'Select All checkbox' in the seperator is selected after clicking it");
-							List<WebElement> selectedList=getWebElements(driver, AppliedSeperatorColoumn);
-							int selectedListCout=selectedList.size();
-							if(availableSeperatorColoumnCount==selectedListCout) {
-								pass(driver,"All the available Columns are displayed in the Seperator Column input box when click the 'Select All' Checkbox ");
+					 
+					// TC_Smoketest_215
+					 String FontFamilyAct_TableFormat=getText1(driver,FontFamily_Input_TableFormat);
+					 System.out.println("FontFamilyAct_TableFormat : "+FontFamilyAct_TableFormat);
+					 if(FontFamilyAct_TableFormat.equals(DefaultFontFamily_TableFormat)) {
+						 pass(driver,"By default, '"+DefaultFontFamily_TableFormat+"' is selected in the Font Family input");
+					 }else {
+						 fail(driver,"By default, '"+DefaultFontFamily_TableFormat+"' is not selected in the Font Family input");
+					 }
+				// TC_Smoketest_215
+					 
+				// TC_Smoketest_216
+					 if(!isToggleAccessible(driver,FontFamily_Input_TableFormat)) {
+						 fail(driver,"Font Family Input is not Accessible");
+					 }else {
+						 pass(driver,"Font Family Input is Accessible");
+						// TC_Smoketest_217 to TC_Smoketest_221
+							click(driver,FontFamily_Input_TableFormat);
+							if(isDisplayed(driver,FontFamilyExpand_TableFormat)) {
+								pass(driver,"FontFamily dropdown is expanded with results after click on it");
 							}else {
-								fail(driver,"Some available Columns are not displayed in the Seperator Column input box when click the 'Select All' Checkbox ");
+								fail(driver,"FontFamily dropdown is not expanded with results after click on it");
+							}
+							click(driver,FontFamilyText_TableFormat);
+							wait(driver,"1");
+							if(isDisplayed2(driver, FontFamilyExpand_TableFormat)) {
+								fail(driver,"FontFamily dropdown is not Closed when click outside of it");
+							}else {
+								pass(driver,"FontFamily dropdown is Closed when click outside of it");
+							}
+							
+							click(driver,FontFamily_Input_TableFormat);
+							waitForElement(driver,FontFamilyExpand_TableFormat);
+							if(isDisplayed(driver,SearchInput_FontFamilyDropdown)) {
+								pass(driver,"Search Input is present in the Fontfamily dropdown");
+								click(driver,SearchInput_FontFamilyDropdown);
+								sendKeys(driver,SearchInput_FontFamilyDropdown,SearchFontFamily_Smoke_220);
+								wait(driver,"1");
+								String FirstFontFamilyResult=getText1(driver,FontFamilyResult1);
+								if(FirstFontFamilyResult.equals(SearchFontFamily_Smoke_220)) {
+									pass(driver,"Seach functions works properly in the font family results");
+								}else {
+									fail(driver,"Seach functions not working properly in the font family results");
+								}
+								
+							}else {
+								fail(driver,"Search Input is not present in the Fontfamily dropdown");
+							}
+							
+							String FirstFontFamilyResult=getText1(driver,FontFamilyResult1);
+							click(driver,FontFamilyResult1);
+							wait(driver,"1");
+							if(isDisplayed2(driver,FontFamilyExpand_TableFormat)) {
+								fail(driver,"Font Family dropdown is not closed after selecting value");
+							}else {
+								pass(driver,"Font Family dropdown is closed after selecting value");
+							}
+								
+							String FontFamilyResutValue=getText1(driver,FontFamily_Input_TableFormat);
+							if(FontFamilyResutValue.equals(FirstFontFamilyResult)) {
+								pass(driver,"Selected Font Family Value is updadted in the FontFamily Input");
+							}else {
+								fail(driver,"Selected Font Family Value is not updated in the FontFamily Input");
 							}
 							
 							scrollUsingElement(driver, ApplyButton);
 							wait(driver,"1");
 							click(driver, ApplyButton);
 							elementnotvisible1(driver, RPE_Loading);
-							waitForElement(driver,TableCell);
-							
-							Pattern numericalPattern1 = Pattern.compile("^(\\d{1,3}(,\\d{3})*|\\d{1,2}(,\\d{2}){2,})(\\.\\d+)?$");
-					        datePattern = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
-					        
-							boolean seperatorCheck=true;
-					        String FailResultSeperator="";
-					        
-					        for(String availabelList:availableNumList) {
-					        	
-								List<WebElement> AllCellElements1=getWebElements(driver,TableCell);
-
-					        	for (WebElement cell : AllCellElements1) {
-					        		String Col_ID=cell.getAttribute("col-id");
-					        		if(Col_ID.contains(availabelList)) {
-					        			 String cellText = cell.getText();
-								            int Explength=6;
-								            if(cellText.contains(".")) {
-								            	Explength=10;
-								            }
-				                            
-								            if (datePattern.matcher(cellText).matches() || cellText.equals("") || cellText.isEmpty() || cellText.equals("0")) {
-								                continue;
-								            } else if (numericalPattern1.matcher(cellText).matches()) {
-								            	if(!cellText.contains(",")) {
-								            		seperatorCheck=false;
-								            		FailResultSeperator=FailResultSeperator+" || Column : "+Col_ID+", cellValue : "+cellText;
-								            	}
-								            	if(cellText.length()>=Explength) {
-								            		String cellFormat=SeperatorValidationTable(cellText);
-									            	if(!cellFormat.equals(ChangeSeperator_Smoke_293)) {
-									            		seperatorCheck=false;
-									            		FailResultSeperator=FailResultSeperator+" || Column : "+Col_ID+", cellValue : "+cellText;
-									            	}
-								            	}
-								           } 
-					        		}
-						        }
-					        }
-					        
-					        
-					        
-					        if(seperatorCheck==true) {
-					        	pass(driver,"Seperator correctly applied in all the cell values..");
-					        }else {
-			            		fail(driver,"Seperator not correctly applied in this cell : "+FailResultSeperator);
-					        }
-					        
-					        
-					        click(driver,SelectAllCheckBox_Seperator);
-					        wait(driver,"1");
-					        if(isDisplayed2(driver,AppliedSeperatorColoumn)) {
-								fail(driver,"Column Names displayed in the seperator selected column After deSelecting 'Select All checkbox' ");
+							waitForElement(driver,TableChart);
+							String FonFamilyApplied_Table=getFontFamily(driver,TableChart);
+							if(FonFamilyApplied_Table.equals(FontFamilyResutValue)) {
+								pass(driver,"Selected Font Family is applied in the table chart");
 							}else {
-								pass(driver,"Column Names not displayed in the seperator selected column After deSelecting 'Select All checkbox' ");
-								click(driver,SeperatorSelectedColumnBox);
-								sendKeys(driver,SearchSeperatorColumnInput,SelectColumnSeperator_Smoke_299);
-								WebElement searchedColumn=driver.findElement(By.xpath("//li//div[@title='"+SelectColumnSeperator_Smoke_299+"']"));
-								searchedColumn.click();
+								fail(driver,"Selected Font Family is not applied in the table chart");
+							}
+							
+						// TC_Smoketest_217 to TC_Smoketest_221
+					 }
+					 // TC_Smoketest_216 
+					
+					//TC_Smoketest_222
+					 String defaultFontSizeHeader=getTextJavascript(driver, FontSizeInput_TableFormat);
+					 System.out.println("defaultFontSizeHeader : "+defaultFontSizeHeader);
+					 if(DefaultFontSize_TableFormat.equals(defaultFontSizeHeader)) {
+						 pass(driver,"Predefined fontsize value '"+DefaultFontSize_TableFormat+"' is updated by default in the Font Size input");
+					 }else {
+						 fail(driver,"Predefined fontsize value '"+DefaultFontSize_TableFormat+"' is not updated by default in the Font Size input");
+					 }
+					//TC_Smoketest_222
+				   //TC_Smoketest_223
+					 if(!isToggleAccessible(driver,FontSizeInput_TableFormat)) {
+						 fail(driver,"Header Font Size input is not Accessible");
+					 }else {
+						 pass(driver,"Header Font Size input is Accessible");
+						 
+						// TC_Smoketest_224
+						click(driver,FontSizeInput_TableFormat);
+						List<WebElement> fonSizeResults=getWebElements(driver, FontSize__Results);
+						int fonSizeResultsCount=fonSizeResults.size();
+						if(fonSizeResultsCount==54) {
+							pass(driver,"All the Font Size Values is present ");
+						}else {
+							fail(driver,"Some Font Size Values is not present ");
+						}
+						// TC_Smoketest_224
+							
+						// TC_Smoketest_225 & TC_Smoketest_226
+						//click(driver,FontSizeText_TableFormat);
+						selectByText(driver,FontSizeInput_TableFormat,SelectFontSize_Smoke_225);
+						wait(driver,"1");
+						String selectedFontSizeResult=getTextJavascript(driver, FontSizeInput_TableFormat);
+						System.out.println("selectedFontSizeResult : "+selectedFontSizeResult);
+						if(selectedFontSizeResult.equals(SelectFontSize_Smoke_225)) {
+							pass(driver,"Selected Font size value updated in the Header FontSize input");
+						}else {
+							fail(driver,"Selected Font size value is not updated in the Header FontSize input");
+						}
+						
+						scrollUsingElement(driver, ApplyButton);
+						wait(driver,"1");
+						click(driver, ApplyButton);
+						elementnotvisible1(driver, RPE_Loading);
+						waitForElement(driver,TableChart);
+						String AppliedFontSize_TableHeader=getFontSize(driver, TableHeaderRow);
+						if(AppliedFontSize_TableHeader.equals(SelectFontSize_Smoke_225)) {
+							pass(driver,"Selected Font Size is updated in the Header rows in the resulting Table");
+						}else {
+							fail(driver,"Selected Font Size is not updated in the Header rows in the resulting Table");
+						}
+						// TC_Smoketest_225 & TC_Smoketest_226
+						 
+					 }
+					//	TC_Smoketest_223
+					 
+					// TC_Smoketest_227
+					String defaultHeaderColorAct=getTextJavascript(driver,HeaderColorInput_TableFormat);
+					System.out.println("defaultHeaderColorAct : "+defaultHeaderColorAct);
+					if(DefaultHeaderColor_TableFormat.equalsIgnoreCase(defaultHeaderColorAct)) {
+						pass(driver,"By default '"+DefaultHeaderColor_TableFormat+"' color is selected in the Header Color Input");
+					}else {
+						fail(driver,"By default '"+DefaultHeaderColor_TableFormat+"' color is not selected in the Header Color Input");
+					}
+					// TC_Smoketest_227
+					
+				// TC_Smoketest_228
+					if(!isToggleAccessible(driver,HeaderColorInput_TableFormat)) {
+						fail(driver,"Header Color input is not Accessible");
+					}else {
+						pass(driver,"Header Color input is Accessible");
+						//TC_Smoketest_229 to TC_Smoketest_231
+						click(driver,HeaderColorInput_TableFormat);
+						if(isDisplayed(driver,ColorPickerOpen)) {
+							pass(driver,"Color picker results opened after click on the Header Color Input");
+							mouseOverToElement(driver, Color1);
+							mouseOverToElement(driver, mouseOverColorHistory);
+							mouseOverToElement(driver, Color1);
+							String MouseHoveredColor=getText1(driver,mouseOverColorHistory);
+							click(driver,Color1);
+							wait(driver,"1");
+							if(isDisplayed2(driver,ColorPickerOpen)) {
+								fail(driver,"Color picker is not closed after selcting the color");
+							}else {
+								pass(driver,"Color picker is closed after selecting the color");
+							}
+							
+							String ColorInputValueAfter=getTextJavascript(driver,HeaderColorInput_TableFormat);
+							if(ColorInputValueAfter.equalsIgnoreCase(MouseHoveredColor)) {
+								pass(driver,"Selected Color Value is updated in the Header Color Input");
+							}else {
+								fail(driver,"Selected Color Value is not updated in the Header Color Input");
+							}
+							
+							scrollUsingElement(driver, ApplyButton);
+							click(driver, ApplyButton);
+							elementnotvisible1(driver, RPE_Loading);
+							String TableHeaderColor=getTextColor(driver, TableHeadingCell);
+							if(TableHeaderColor.equalsIgnoreCase(MouseHoveredColor)) {
+								pass(driver,"Selected Color Value is applied in Table Header value");
+							}else {
+								fail(driver,"Selected Color Value is not applied in Table Header value");
+							}
+							
+						}else {
+							fail(driver,"Color picker results not opened after click on the Header Color Input");
+						}
+						
+						click(driver,HeaderColorInput_TableFormat);
+						action.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).perform();
+						sendKeys(driver,HeaderColorInput_TableFormat,ChangeHeaderColor_Smoke_231);
+						wait(driver,"1");
+						click3(driver,HeaderColorText_TableFormat);
+						String SelectedHeaderColorValue=getTextBackgroundColor(driver, HeaderColorInput_Pointer);
+						if(SelectedHeaderColorValue.equalsIgnoreCase(ChangeHeaderColor_Smoke_231)) {
+							pass(driver,"Manually Entered Color Value is updated in the Header Color input..");
+						}else {
+							fail(driver,"Manually Entered Color Value is not updated in the Header Color input..");
+						}
+				       
+						scrollUsingElement(driver, ApplyButton);
+						wait(driver,"1");
+						click(driver, ApplyButton);
+						elementnotvisible1(driver, RPE_Loading);
+						String Applied_Table_HeaderColor=getTextColor(driver, TableHeadingCell);
+						if(Applied_Table_HeaderColor.equalsIgnoreCase(ChangeHeaderColor_Smoke_231)) {
+							pass(driver,"Manually Entered Color Value is updated in the Table Header values");
+						}else {
+							fail(driver,"Manually Entered Color Value is not updated in the Table Header values");
+						}
+					// TC_Smoketest_229 to TC_Smoketest_231
+						
+						// TC_Smoketest_232
+						mouseOverToElement(driver, TableHeadingCell);
+						String beforeSortingOrder=getAttribute1(driver, TableHeadingCell, "aria-sort");
+						click(driver,TableHeadingCell);
+						wait(driver,"1");
+						String AfterSortingOrder=getAttribute1(driver, TableHeadingCell, "aria-sort");
+						if(beforeSortingOrder.equals(AfterSortingOrder)) {
+							fail(driver,"Changing color affects the sorting functionality of the Header cell");
+						}else {
+							pass(driver,"Changing color not affects the sorting functionality of the Header cell");
+						}
+						
+						ScrollBarValidation1(driver,ResultTableBody,"Resulted Table");
+						HorizontalScrollFull(driver,HorizontalScroll2);
+					// TC_Smoketest_232
+					}
+				// TC_Smoketest_228
+					 
+				 // TC_Smoketest_233
+					if(isToggleEnable(driver,WrapHeaders_Input_TableFormat)) {
+						fail(driver,"Wrap header toggle is not displayed in 'OFF' by default");
+					}else {
+						pass(driver,"Wrap header toggle is displayed in 'OFF' by default");
+						String TableHeaderWrapOFF_Act=getAttribute1(driver, TableHeadingCell, "class");
+						if(TableHeaderWrapOFF_Act.contains("header-wrap-text")) {
+							fail(driver,"Table Header values are wrapped when the toggle is in the OFF Condition");
+						}else {
+							pass(driver,"Table Header values are not wrapped when the toggle is in the OFF Condition");
+						}
+					}
+				   // TC_Smoketest_233
+					
+				// TC_Smoketest_234
+					if(!isToggleAccessible(driver,WrapHeaders_Input_TableFormat)) {
+						fail(driver,"Wrap Header input toggle is not Accessible");
+					}else {
+						pass(driver,"Wrap Header input toggle is Accessible");
+						// TC_Smoketest_235
+						click(driver,WrapHeaded_toggle_TableFormat);
+						wait(driver,"1");
+						scrollUsingElement(driver, ApplyButton);
+						click(driver, ApplyButton);
+						elementnotvisible1(driver, RPE_Loading);
+						if(isToggleEnable(driver,WrapHeaders_Input_TableFormat)) {
+							pass(driver,"Wrap header toggle is displayed in 'ON' After click on it");
+							String TableHeaderWrapON_Act=getAttribute1(driver, TableHeadingCell, "class");
+							if(TableHeaderWrapON_Act.contains("header-wrap-text")) {
+								pass(driver,"Table Header values are wrapped when the toggle is in the ON Condition");
+							}else {
+								fail(driver,"Table Header values are not wrapped when the toggle is in the ON Condition");
+							}
+						}else {
+							fail(driver,"Wrap header toggle is not displayed in 'ON' After click on it");
+						}
+						
+						click(driver,WrapHeaded_toggle_TableFormat);
+						wait(driver,"1");
+						scrollUsingElement(driver, ApplyButton);
+						click(driver, ApplyButton);
+						elementnotvisible1(driver, RPE_Loading);
+						if(isToggleEnable(driver,WrapHeaders_Input_TableFormat)) {
+							fail(driver,"Wrap header toggle is not displayed in 'OFF' When again click on it");
+						}else {
+							pass(driver,"Wrap header toggle is displayed in 'OFF' When again click on it");
+						}
+					// TC_Smoketest_235
+						
+					}
+				// TC_Smoketest_234
+					
+				// TC_Smoketest_236
+					String defaultBodyFontSize_Act=getTextJavascript(driver,BodyFontSize_Input_TableFormat);
+					if(defaultBodyFontSize_Act.equals(DefaultBodyFontSize_TableFormat)) {
+						pass(driver,"By defualt, '"+DefaultBodyFontSize_TableFormat+"' is displayed in the Body Font Size Input");
+					}else {
+						fail(driver,"By default,'"+DefaultBodyFontSize_TableFormat+"' is not displayed in the Body Font Size Input");
+					}
+				// TC_Smoketest_236 
+				 // TC_Smoketest_237
+					if(!isToggleAccessible(driver,BodyFontSize_Input_TableFormat)) {
+						fail(driver,"Body Font Size Input is not Accessible");
+					}else {
+						pass(driver,"Body Font Size Input is Accessible");
+						
+						// TC_Smoketest_238
+						click(driver,BodyFontSize_Input_TableFormat);
+						List<WebElement> BodyfonSizeResults=getWebElements(driver, BodyFontSize_Results_TableFormat);
+						int BodyfonSizeResultsCount=BodyfonSizeResults.size();
+						String StartingFontSizeValue=BodyfonSizeResults.get(1).getText();
+						//new modification
+						int EndFontSizeValueNum=BodyfonSizeResults.size()-1;
+						String EndFontSizeValue=BodyfonSizeResults.get(EndFontSizeValueNum).getText();
+						//new modification
+						
+						if(BodyfonSizeResultsCount==54&&StartingFontSizeValue.equals("8")&&EndFontSizeValue.equals("60")) {
+							pass(driver,"All the Font Size Values is present ");
+						}else {
+							fail(driver,"Some Font Size Values is not present ");
+						}
+					     // TC_Smoketest_238
+						
+					     // TC_Smoketest_239 & TC_Smoketest_240
+						//click3(driver,BodyFontSize_text_TableFormat);
+						selectByText(driver,BodyFontSize_Input_TableFormat,ChangeBodyFontSize_Smoke_239);
+						wait(driver,"1");
+						String selectedBodyFontSize=getTextJavascript(driver,BodyFontSize_Input_TableFormat);
+						if(selectedBodyFontSize.equals(ChangeBodyFontSize_Smoke_239)) {
+							pass(driver,"Selcted Font Size value updated in the Body Font Size Input");
+						}else {
+							fail(driver,"Selcted Font Size value not updated in the Body Font Size Input");
+						}
+						
+						scrollUsingElement(driver, ApplyButton);
+						click(driver, ApplyButton);
+						elementnotvisible1(driver, RPE_Loading);
+						waitForElement(driver,ResultTableBody);
+						String AppliedTable_BodyFontSize=getFontSize(driver, ResultTableBody);
+						if(AppliedTable_BodyFontSize.equals(ChangeBodyFontSize_Smoke_239)) {
+							pass(driver,"Selected Font Size '"+ChangeBodyFontSize_Smoke_239+"' value Applied in the Table Body values");
+						}else {
+							fail(driver,"Selected Font Size '"+ChangeBodyFontSize_Smoke_239+"' value not Applied in the Table Body values, Act result: "+AppliedTable_BodyFontSize);
+						}
+					// TC_Smoketest_239 & TC_Smoketest_240
+					}
+				// TC_Smoketest_237
+					
+				// TC_Smoketest_241
+					String DefaultBorderType=defaultSelectedValue(driver,BorderInput_TableFormat);
+					System.out.println("DefaultBorderType : "+DefaultBorderType+"  , Exp : "+DefaultBorderType_TableFormat);
+					if(DefaultBorderType_TableFormat.equals(DefaultBorderType)) {
+						pass(driver,"By default, 'Default' is displayed in the Border Input Field");
+					}else {
+						fail(driver,"By default, 'Default' is not displayed in the Border Input Field");
+					}
+				// TC_Smoketest_241
+				// TC_Smoketest_242
+					if(!isToggleAccessible(driver,BorderInput_TableFormat)) {
+						fail(driver,"Border Input is not Accessible");
+					}else {
+						pass(driver,"Border Input is Accessible");
+						 //TC_Smoketest_243
+						String[] bordersValuesExp= {"Default","None","Double","Dashed","Solid","Dotted"};//need to change
+						boolean AllBorders=true;
+						List<WebElement> BorderResults=getWebElements(driver, BorderResults_TableFormat);
+						List<String> BorderResultValuesAct=new ArrayList<String>();
+						for(WebElement BorderResult:BorderResults) {
+							String bordervalue=BorderResult.getText();
+							BorderResultValuesAct.add(bordervalue);
+						}
+						
+						for(int j=0;j<bordersValuesExp.length;j++) {
+							String Exp=bordersValuesExp[j];
+							if(!BorderResultValuesAct.contains(Exp)) {
+								AllBorders=false;
+								fail(driver,Exp+" is not available in Border input options");
+							}
+						}
+						
+						if(AllBorders==true) {
+							pass(driver,"All the Border input option are present");
+						}else {
+							fail(driver,"Some Border input option are not present");
+						}
+					// TC_Smoketest_243
+						
+					// TC_Smoketest_244 to TC_Smoketest_246
+						click(driver,BorderInput_TableFormat);
+						selectByText(driver,BorderInput_TableFormat,ChangeBorderValue_Smoke_244);
+						wait(driver,"1");
+						
+						String selectedBorder=defaultSelectedValue(driver,BorderInput_TableFormat);
+						System.out.println("selectedBorder : "+selectedBorder);
+						if(selectedBorder.equals(ChangeBorderValue_Smoke_244)) {
+							pass(driver,"Selcted Border value updated in the Border Input");
+						}else {
+							fail(driver,"Selcted Border value not updated in the Border Input");
+						}
+						
+						scrollUsingElement(driver, ApplyButton);
+						click(driver, ApplyButton);
+						elementnotvisible1(driver, RPE_Loading);
+						waitForElement(driver,ResultTableBody);
+						String BorderValidationClass="table"+ChangeBorderValue_Smoke_244.toLowerCase()+"border";
+						String AppliedBorder_Table=getAttribute1(driver, TableChart, "class");
+						if(AppliedBorder_Table.contains(BorderValidationClass)) {
+							pass(driver,"Selected Border '"+ChangeBorderValue_Smoke_244+"' value Applied in the Table Border");
+						}else {
+							fail(driver,"Selected Border '"+ChangeBorderValue_Smoke_244+"' value not Applied in the Table Border");
+						}
+					// TC_Smoketest_244 to TC_Smoketest_246
+					}
+				// TC_Smoketest_242
+					
+				// TC_Smoketest_247 to TC_Smoketest_254
+					if(isToggleEnable(driver,NegativeHighlight_Input)) {
+						fail(driver,"By default, Negaitve Highlight Toggle is not displayed in 'OFF' Condition");
+					}else {
+						pass(driver,"By default, Negaitve Highlight Toggle is displayed in 'OFF' Condition");
+					}
+					
+					if(isToggleAccessible(driver,NegativeHighlight_Input)) {
+						pass(driver,"Negative Highlight Toggle is Accessible");
+						click(driver,NegativeHighlight_toggle);
+						if(isToggleEnable(driver,NegativeHighlight_Input)) {
+							pass(driver,"Negaitve Highlight Toggle is displayed in 'ON' Condition when click on it");
+						}else {
+							fail(driver,"Negaitve Highlight Toggle is not displayed in 'ON' Condition when click on it");
+						}
+						
+						scrollUsingElement(driver, ApplyButton);
+						click(driver, ApplyButton);
+						elementnotvisible1(driver, RPE_Loading);
+						waitForElement(driver,ResultTableBody);
+						boolean negativecell=false;
+						String comp_id="";
+						
+						List<WebElement> resultTableCells=getWebElements(driver, TableCell);
+						for(WebElement resultTableCell:resultTableCells) {
+							String ResultCellvalue=resultTableCell.getText();
+							if(ResultCellvalue.startsWith("-")) {
+								action.moveToElement(resultTableCell).build().perform();
+								String rgbFormatNegativeCell = resultTableCell.getCssValue("background-color");
+								String NegativeCellBackColorAct = rgbToHex(rgbFormatNegativeCell);
+								if(NegativeCellBackColorAct.equalsIgnoreCase(NegativeCellColor_TableFormat)) {
+									pass(driver,"Negative value cell is highlighted when the Negative highlight toggle is 'ON' condition");
+								}else {
+									fail(driver,"Negative value cell is not highlighted when the Negative highlight toggle is 'ON' condition");
+								}
+								negativecell=true;
+								break;
+							}
+						}
+						
+						if(!negativecell==true) {
+							pass(driver,"Negative Highlight validation failed, because Negative Value is not present in the Table");
+						}
+						
+						boolean PositiveCellHighlight=false;
+						if(isDisplayed2(driver,NegativeHighlightCell)) {
+							List<WebElement> HighlightedCells=getWebElements(driver, NegativeHighlightCell);
+							for(WebElement HighlightedCell:HighlightedCells) {
+								String HighlightedCellText=HighlightedCell.getText();
+								if(!HighlightedCellText.startsWith("-")) {
+									action.moveToElement(HighlightedCell).build().perform();
+									PositiveCellHighlight=true;
+									break;
+								}
+							}
+							
+							if(PositiveCellHighlight==true) {
+								fail(driver,"Postive Cell Values also highlighted when Negative highlight toggle is 'ON' condition");
+							}else {
+								pass(driver,"Postive Cell Values are not highlighted when Negative highlight toggle is 'ON' condition");
+							}
+							
+						}
+						
+						click(driver,NegativeHighlight_toggle);
+						if(isToggleEnable(driver,NegativeHighlight_Input)) {
+							fail(driver,"Negaitve Highlight Toggle is not displayed in 'OFF' Condition when disabling it");
+						}else {
+							pass(driver,"Negaitve Highlight Toggle is displayed in 'OFF' Condition when disabling it");
+							scrollUsingElement(driver, ApplyButton);
+							click(driver, ApplyButton);
+							elementnotvisible1(driver, RPE_Loading);
+							waitForElement(driver,ResultTableBody);
+							if(isDisplayed2(driver,NegativeHighlightCell)) {
+								fail(driver,"Some Cell values highlighed when Negaitve Highlight Toggle is in 'OFF' Condition");
+							}else {
+								pass(driver,"All Cell values are not highlighed when Negaitve Highlight Toggle is in 'OFF' Condition");
+							}
+						}
+						
+					}else {
+						fail(driver,"Negative Highlight Toggle is not Accessible");
+					}
+				// TC_Smoketest_247 to TC_Smoketest_254
+					
+					// TC_Smoketest_255 to TC_Smoketest_260
+					//default
+					List<WebElement> AllCellElements=getWebElements(driver,TableCell);
+					
+					Pattern numericalPattern = Pattern.compile("^\\d+(\\.\\d+)?$");
+			        Pattern datePattern = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
+
+			        boolean TextDefaultAlign=true;
+			        boolean NumericalDefaultAlign=true;
+			        String FailedStringCell="";
+			        String FailedNumericCell="";
+			        
+			        for (WebElement cell : AllCellElements) {
+			            String cellText = cell.getText();
+			            String textAlign = cell.getCssValue("text-align");
+			            String ColumnValue=cell.getAttribute("col-id");
+
+			            if (datePattern.matcher(cellText).matches() || cellText.equals("") || cellText.isEmpty()) {
+			                continue;
+			            } else if (numericalPattern.matcher(cellText).matches()) {
+			                if (!textAlign.contains("right")) {
+			                	String FailedNum=ColumnValue+" : "+cellText;
+			                    //System.out.println("Numerical cell not right-aligned: " + FailedNum);
+			                    NumericalDefaultAlign=false;
+			                    FailedNumericCell=FailedNumericCell+", "+FailedNum;
+			                    
+			                }
+			            } else {
+			                // Check if text cells are left-aligned
+			                if (!textAlign.contains("left")) {
+			                	String FailedText=ColumnValue+" : "+cellText;
+			                   // System.out.println("Text cell not left-aligned: " + FailedText);
+			                    TextDefaultAlign=false;
+			                    FailedStringCell=FailedStringCell+", "+FailedText;
+			                }
+			            }
+			        }
+			        
+			        if(TextDefaultAlign==false) {
+			        	fail(driver,"Some Text cell values are not aligned left by default :"+FailedStringCell);
+			        }else {
+			        	pass(driver,"All the text cell values are aligned left by default ");
+			        }
+			        
+			        if(NumericalDefaultAlign==false) {
+			        	fail(driver,"Some Numerical cell values are not aligned right by default :"+FailedNumericCell);
+			        }else {
+			        	pass(driver,"All the Numerical cell values are aligned right by default ");
+			        }
+					
+					if(IsElementEnabled(driver, AlignmentLeft_TableFormat)) {
+						// Left
+						click(driver,AlignmentLeft_TableFormat);
+						scrollUsingElement(driver, ApplyButton);
+						click(driver, ApplyButton);
+						elementnotvisible1(driver, RPE_Loading);
+						String SelectedAlignmentColorAct=getTextBackgroundColor(driver, AlignmentLeft_TableFormat);
+						System.out.println("SelectedAlignmentColorAct : "+SelectedAlignmentColorAct);
+						if(AlignmentSelectedColor_TableFormat.equalsIgnoreCase(SelectedAlignmentColorAct)) {
+							pass(driver,"Left Alignment highlighted in grey color When click on it ");
+						}else {
+							fail(driver,"Left Alignment not highlighted in grey color When click on it ");
+						}
+						
+						AllCellElements=getWebElements(driver,TableCell);
+						boolean AllLeftAlignment=true;
+						String FailedLeftAllign="";
+					//	System.out.println("Cells left-aligned Validation  : ***********");
+						for (WebElement cell : AllCellElements) {
+							String textAlign = cell.getCssValue("text-align");
+							
+							if(!textAlign.contains("left")) {
+								AllLeftAlignment=false;
+								System.out.print(cell.getText());
+								String ColunName=cell.getAttribute("col-id");
+								String cellResult=ColunName+" : "+cell.getText();
+								FailedLeftAllign=FailedLeftAllign+", "+cellResult;
+							}
+						}
+					//	System.out.println("Cells left-aligned  Validation end : ***********");
+						if(AllLeftAlignment==false) {
+							fail(driver,"Some cell valuse are not aligned left when 'Left alignment' is selected  : "+FailedLeftAllign);
+							
+						}else {
+							pass(driver,"All the Cell Values are aligned left when 'Left alignment' is seleted ");
+						}
+						
+						click(driver,AlignmentLeft_TableFormat);
+						wait(driver,"1");
+						SelectedAlignmentColorAct=getTextBackgroundColor(driver, AlignmentLeft_TableFormat);
+						if(AlignmentSelectedColor_TableFormat.equalsIgnoreCase(SelectedAlignmentColorAct)) {
+							fail(driver,"Left Alignment highlighted in grey color When deselect on it ");
+						}else {
+							pass(driver,"Left Alignment not highlighted in grey color When deselect on it ");
+						}
+						
+					}else {
+						fail(driver,"Left Allignment is not accessible");
+					}
+					
+					if(IsElementEnabled(driver, Alignmentcenter_TableFormat)) {
+						// Center
+						click(driver,Alignmentcenter_TableFormat);
+						scrollUsingElement(driver, ApplyButton);
+						click(driver, ApplyButton);
+						elementnotvisible1(driver, RPE_Loading);
+						String SelectedAlignmentColorAct=getTextBackgroundColor(driver, Alignmentcenter_TableFormat);
+						if(AlignmentSelectedColor_TableFormat.equalsIgnoreCase(SelectedAlignmentColorAct)) {
+							pass(driver,"Center Alignment highlighted in grey color When click on it ");
+						}else {
+							fail(driver,"Center Alignment not highlighted in grey color When click on it ");
+						}
+						
+						AllCellElements=getWebElements(driver,TableCell);
+						boolean AllCenterAlignment=true;
+						String FailedCenterAllign="";
+						System.out.println("Cells  Center-aligned Validation  : ***********");
+						for (WebElement cell : AllCellElements) {
+							String textAlign = cell.getCssValue("text-align");
+							
+							if(!textAlign.contains("center")) {
+								AllCenterAlignment=false;
+								String ColunName=cell.getAttribute("col-id");
+								String cellResult=ColunName+" : "+cell.getText();
+								System.out.print(cellResult);
+								FailedCenterAllign=FailedCenterAllign+", "+cellResult;
+							}
+						}
+					//	System.out.println("Cells  Center-aligned  Validation end : ***********");
+						if(AllCenterAlignment==false) {
+							fail(driver,"Some cell valuse are not aligned center when 'Center alignment' is selected  : "+FailedCenterAllign);
+						}else {
+							pass(driver,"All the Cell Values are aligned center when 'Center alignment' is seleted ");
+						}
+						click(driver,Alignmentcenter_TableFormat);
+						wait(driver,"1");
+						SelectedAlignmentColorAct=getTextBackgroundColor(driver, Alignmentcenter_TableFormat);
+						if(AlignmentSelectedColor_TableFormat.equalsIgnoreCase(SelectedAlignmentColorAct)) {
+							fail(driver,"Center Alignment highlighted in grey color When deselect on it ");
+						}else {
+							pass(driver,"Center Alignment not highlighted in grey color When deselect on it ");
+						}
+						
+					}else {
+						fail(driver,"Center Allignment is not accessible");
+					}
+					 
+					if(IsElementEnabled(driver, AlignmentRight_TableFormat)) {
+						
+						//Right 
+						click(driver,AlignmentRight_TableFormat);
+						scrollUsingElement(driver, ApplyButton);
+						click(driver, ApplyButton);
+						elementnotvisible1(driver, RPE_Loading);
+						String SelectedAlignmentColorAct=getTextBackgroundColor(driver, AlignmentRight_TableFormat);
+						if(AlignmentSelectedColor_TableFormat.equalsIgnoreCase(SelectedAlignmentColorAct)) {
+							pass(driver,"Right Alignment highlighted in grey color When click on it ");
+						}else {
+							fail(driver,"Right Alignment not highlighted in grey color When click on it ");
+						}
+						
+						AllCellElements=getWebElements(driver,TableCell);
+						boolean AllRightAlignment=true;
+						String FailedRightAllign="";
+						System.out.println("Cells  Right-aligned Validation  : ***********");
+						for (WebElement cell : AllCellElements) {
+							String textAlign = cell.getCssValue("text-align");
+							
+							if(!textAlign.contains("right")) {
+								AllRightAlignment=false;
+								String ColunName=cell.getAttribute("col-id");
+								String cellResult=ColunName+" : "+cell.getText();
+								System.out.print(cellResult+" ");
+								FailedRightAllign=FailedRightAllign+", "+cellResult;
+							}
+						}
+					//	System.out.println("Cells  Right-aligned  Validation end : ***********");
+						if(AllRightAlignment==false) {
+							fail(driver,"Some cell valuse are not aligned right when 'Right alignment' is selected  : "+FailedRightAllign);
+						}else {
+							pass(driver,"All the Cell Values are aligned right when 'Right alignment' is seleted ");
+						}
+						click(driver,AlignmentRight_TableFormat);
+						wait(driver,"1");
+						SelectedAlignmentColorAct=getTextBackgroundColor(driver, AlignmentRight_TableFormat);
+						if(AlignmentSelectedColor_TableFormat.equalsIgnoreCase(SelectedAlignmentColorAct)) {
+							fail(driver,"Right Alignment highlighted in grey color When deselect on it ");
+						}else {
+							pass(driver,"Right Alignment not highlighted in grey color When deselect on it ");
+						}
+					 // TC_Smoketest_255 to TC_Smoketest_260
+					}else {
+						fail(driver,"Right Allignment is not accessible");
+					}
+					
+					VerticalScrollFull(driver,ResultTableBody);
+					HorizontalScrollFull(driver,HorizontalScroll2);
+					
+					if(IsElementEnabled(driver, RowTotal_toggle_TableFormat)) {
+						 //TC_Smoketest_261 to TC_Smoketest_265 && TC_Smoketest_270 to TC_Smoketest_272 and TC_Smoketest_276 to TC_Smoketest_284 Start..
+						if(isToggleEnable(driver,RowTotal_Input_TableFormat)) {
+							fail(driver,"Row Total Toggle is not displayed in 'OFF' Condition by default"); 
+						}else {
+							pass(driver,"Row Total Toggle is displayed in 'OFF' Condition by default");
+						}
+						
+						click(driver,RowTotal_toggle_TableFormat);
+						wait(driver,"1");
+						if(isToggleEnable(driver,RowTotal_Input_TableFormat)) {
+							pass(driver,"Row Total Toggle is displayed in 'ON' Condition When enabling it");
+						}else {
+							fail(driver,"Row Total Toggle is not displayed in 'ON' Condition When enabling it");
+						}
+						
+						scrollUsingElement(driver, ApplyButton);
+						wait(driver,"1");
+						click(driver, ApplyButton);
+						elementnotvisible1(driver, RPE_Loading);
+						waitForElement(driver, TableCell);
+						
+						HorizontalScrollFull(driver,HorizontalScroll2);
+						// grand Total Validations
+						if(isDisplayed(driver,GrandTotalRow)) {
+							pass(driver,"Grand Row total is displayed in the table when the toggle is 'ON' condition");
+				 		}else {
+							fail(driver,"Grand Row total is not displayed in the table when the toggle is 'ON' condition");
+				 		}
+						
+						click(driver,RowTotal_toggle_TableFormat);
+						if(isToggleEnable(driver,RowTotal_Input_TableFormat)) {
+							fail(driver,"Row Total Toggle is not displayed in 'OFF' Condition When disabling it");
+						}else {
+							pass(driver,"Row Total Toggle is displayed in 'OFF' Condition When disabling it");
+						}
+						
+						scrollUsingElement(driver, ApplyButton);
+						wait(driver,"1");
+						click(driver, ApplyButton);
+						elementnotvisible1(driver, RPE_Loading);
+						waitForElement(driver, TableCell);
+						HorizontalScrollFull(driver,HorizontalScroll2);
+						if(isDisplayed2(driver,GrandTotalRow)) {
+							fail(driver,"Grand Row total is displayed in the table when the toggle is 'OFF' condition");
+				 		}else {
+							pass(driver,"Grand Row total is not displayed in the table when the toggle is 'OFF' condition");
+				 		}
+						
+						
+						click(driver,RowTotal_toggle_TableFormat);
+						wait(driver,"1");
+						if(isToggleAccessible(driver,PinRowTotal_Input_TableFormat)) {
+							pass(driver,"Pin Row Total Toggle Accessible when Row Total toggle is 'ON' Condition");
+							// extra validations
+							if(isToggleEnable(driver,PinRowTotal_Input_TableFormat)) {
+								fail(driver,"By deafult, Pin Row Total Toggle is not displayed in 'OFF' Condition");
+							}else {
+								pass(driver,"By deafult, Pin Row Total Toggle is displayed in 'OFF' Condition");
+							}
+							
+							click(driver,PinRowTotal_toggle_TableFormat);
+							wait(driver,"1");
+							if(isToggleEnable(driver,PinRowTotal_Input_TableFormat)) {
+								pass(driver,"Pin Row Total Toggle is displayed in 'ON' Condition when enabling it");
+							}else {
+								fail(driver,"Pin Row Total Toggle is not displayed in 'ON' Condition when enabling it");
+							}
+							scrollUsingElement(driver, ApplyButton);
+							wait(driver,"1");
+							click(driver, ApplyButton);
+							elementnotvisible1(driver, RPE_Loading);
+							waitForElement(driver,TableCell);
+							if(isDisplayed2(driver,GrandTotalRow)) {
+								pass(driver,"Grand Row total is displayed, Pin Row Total function working properly");
+								// Pin grand total row sum validation
+								
+								// TC_Smoketest_276 to TC_Smoketest_284
+								String DefaultRowTotalColorAct=getTextJavascript(driver, HighLightRowTotal_Input);
+								System.out.println("DefaultRowTotalColorAct : "+DefaultRowTotalColorAct);
+								if(DefaultGrandTotalColor_TableFormat.equalsIgnoreCase(DefaultRowTotalColorAct)) {
+									pass(driver,"By default, '"+DefaultGrandTotalColor_TableFormat+"' color is displayed in the Row total color input");
+								}else {
+									fail(driver,"By default, '"+DefaultGrandTotalColor_TableFormat+"' color is not displayed in the Row total color input");
+								}
+								
+								String TableAppliedGrantTotalColor=getTextBackgroundColor(driver, GrandTotalRows);
+								if(DefaultGrandTotalColor_TableFormat.equalsIgnoreCase(TableAppliedGrantTotalColor)) {
+									pass(driver,"By deafult, Grant Row total cells displayed with deafult selected color, Exp : "+DefaultGrandTotalColor_TableFormat+", Act : "+ TableAppliedGrantTotalColor);
+								}else {
+									fail(driver,"By deafult, Grant Row total cells not displayed with deafult selected color, Exp : "+DefaultGrandTotalColor_TableFormat+", Act : "+ TableAppliedGrantTotalColor);
+								}
+								
+								click(driver,HighLightRowTotal_Input);
+						        if(isDisplayed(driver,ColorPickerOpen)) {
+									pass(driver,"The color pickers opened promptly after clicking HighLight RowTotal Input");
+									mouseOverToElement(driver, Color1);
+									String mouseOveredColorText=getText1(driver,mouseOverColorHistory);
+									if(mouseOveredColorText!=null) {
+										mouseOverToElement(driver, mouseOverColorHistory);
+										wait(driver,"1");
+										mouseOverToElement(driver, Color1);
+										doubleClick(driver,mouseOverColorHistory);
+										action.keyDown(Keys.CONTROL).sendKeys("c").keyUp(Keys.CONTROL).perform();
+								        doubleClick(driver,HighLightRowTotal_Input);
+								        wait(driver,"1");
+								        action.keyDown(Keys.CONTROL).sendKeys("v").keyUp(Keys.CONTROL).perform();
+								        wait(driver,"1");
+										String AfterCopyPasteColor=getTextJavascript(driver, HighLightRowTotal_Input);
+										System.out.println("AAfterCopyPasteColor : "+AfterCopyPasteColor);
+										if(mouseOveredColorText.equals(AfterCopyPasteColor)) {
+											pass(driver,"Copy paste color value works properly in Highlight Row Toata Input");
+										}else {
+											fail(driver,"Copy paste color value not working properly in Highlight Row Toata Input");
+										}
+										
+									}else {
+										fail(driver,"MouseOveredColor Value not displayed in the history");
+									}
+									
+						        }else {
+									fail(driver,"The color pickers not opened promptly after clicking HighLight RowTotal Input");
+						        }
+								
+						        //click(driver,HighLightRowTotal_Text);
+							    click(driver,HighLightRowTotal_Input);
+							    waitForElement(driver,ColorPickerOpen);
+							    mouseOverAndClick(driver,Color1);
 								wait(driver,"1");
-								String SelectedSeperatorColumnName=getAttribute1(driver, AppliedSeperatorColoumn, "data-value");
-								if(SelectedSeperatorColumnName.equals(SelectColumnSeperator_Smoke_299)) {
-									pass(driver,"Selected Column Name updated in the Seperator column input box");
+								if(isDisplayed2(driver,ColorPickerOpen)){
+									fail(driver,"Colorpicker not closed promptly After selecting the color");
+								}else {
+									pass(driver,"Colorpicker closed promptly After selecting the color");
+								}
+								
+								String SelectedColorInput=getTextJavascript(driver, HighLightRowTotal_Input);
+								scrollUsingElement(driver, ApplyButton);
+								wait(driver,"1");
+								click(driver, ApplyButton);
+								elementnotvisible1(driver, RPE_Loading);
+								//waitForElement(driver, GrandTotalRows);
+							    TableAppliedGrantTotalColor=getTextBackgroundColor(driver, GrandTotalRows);
+								if(TableAppliedGrantTotalColor.equalsIgnoreCase(SelectedColorInput)) {
+									pass(driver,"Selected Color is applied in the Grand total Row cells");
+								}else {
+									fail(driver,"Selected Color is not applied in the Grand total Row cells");
+								}
+						        
+						       
+						        click(driver,HighLightRowTotal_Input);
+						        action.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).perform();
+						        sendKeys(driver,HighLightRowTotal_Input,ChangeRowTotalColor_Smoke_282);
+						        scrollUsingElement(driver, ApplyButton);
+						        wait(driver,"1");
+						        click(driver, ApplyButton);
+						        elementnotvisible1(driver, RPE_Loading);
+						        //waitForElement(driver, GrandTotalRows);
+							    TableAppliedGrantTotalColor=getTextBackgroundColor(driver, GrandTotalRows);
+								if(TableAppliedGrantTotalColor.equalsIgnoreCase(ChangeRowTotalColor_Smoke_282)) {
+									pass(driver,"Manually Entered Color is applied in the Grand total Row cells");
+								}else {
+									fail(driver,"Manually Entered Color is not applied in the Grand total Row cells");
+								}
+						        
+								clear1(driver,HighLightRowTotal_Input);
+								wait(driver,"1");
+								String AfterRevertColor=getTextJavascript(driver, HighLightRowTotal_Input);
+								if(AfterRevertColor.equalsIgnoreCase(DefaultGrandTotalColor_TableFormat)) {
+									pass(driver,"Default color is displayed after revert the color value");
 									scrollUsingElement(driver, ApplyButton);
 									wait(driver,"1");
 									click(driver, ApplyButton);
 									elementnotvisible1(driver, RPE_Loading);
-									waitForElement(driver,TableCell);
-									List<WebElement> AllCellElements2=driver.findElements(By.xpath("//div[@col-id='"+SelectColumnSeperator_Smoke_299+"' and @role='gridcell']"));
+									//waitForElement(driver, GrandTotalRows);
+								    TableAppliedGrantTotalColor=getTextBackgroundColor(driver, GrandTotalRows);
+									if(TableAppliedGrantTotalColor.equalsIgnoreCase(DefaultGrandTotalColor_TableFormat)) {
+										pass(driver,"Default color is applied in the Grand total Row cells after revert the color");
+									}else {
+										fail(driver,"Default color is not applied in the Grand total Row cells after revert the color");
+									}
 									
-									numericalPattern1 = Pattern.compile("^(\\d{1,3}(,\\d{3})*|\\d{1,2}(,\\d{2}){2,})(\\.\\d+)?$");
-							        datePattern = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
-							        
-							        boolean seperatorCheck2=true;
-							        String FailResultSeperator2="";
-							        
-							        for (WebElement cell : AllCellElements2) {
-							            String cellText = cell.getText();
-			                            String Col_ID=cell.getAttribute("col-id");
-			                            int Explength=5;
-							            if(cellText.contains(".")) {
-							            	Explength=10;
-							            }
-							            if (datePattern.matcher(cellText).matches() || cellText.equals("") || cellText.isEmpty()|| cellText.equals("0")) {
-							                continue;
-							            } else if (numericalPattern1.matcher(cellText).matches() && cellText.length()>=Explength) {
-							            	
-							            	String cellFormat=SeperatorValidationTable(cellText);
-							            	
-							            	if(!cellFormat.equals(ChangeSeperator_Smoke_293)) {
-							            		seperatorCheck2=false;
-							            		FailResultSeperator2=FailResultSeperator2+" || Column : "+Col_ID+", cellValue : "+cellText;
-							            	}
-							            	
-							            } 
-							        }
-							        
-							        if(seperatorCheck2==true) {
-							        	pass(driver,"Seperator correctly applied in all the cell values..");
-							        }else {
-					            		fail(driver,"Seperator not correctly applied in this cell : "+FailResultSeperator2);
-							        }
-							        
-											
 								}else {
-									fail(driver,"Selected Column Name not updated in the Seperator column input box");
+									fail(driver,"Default color is not displayed after revert the color value");
 								}
-								
-							}
-//							SeperatorValidationTable
+						        
+					 		}else {
+								fail(driver,"Grand Row total is not displayed,  Row Total function not working properly");
+					 		}
 							
-						}else {
-							fail(driver,"'Select All checkbox' in the seperator is not selected after clicking it");
-						}
-						
-					}else {
-						fail(driver,"By default Select All checkbox is selected");
-					}
-				}else {
-					fail(driver,"Select All Checkbox is not displayed after selecting the seperter value");
-				}
-			    
-				wait(driver,"1");
-				selectByText(driver, SeperatorInput_TableFormat, DefaultSeperator_TableFormat);
-				wait(driver,"1");
-				click(driver, ApplyButton);
-				elementnotvisible1(driver, RPE_Loading);
-				waitForElement(driver,TableCell);
-				// TC_Smoketest_290 to TC_Smoketest_300 End....
-				
-		 // TC_Smoketest_301 to TC_Smoketest_304 Start...
-				
-				verifyElementIsPresent(driver, RoundOffInput_TableFormat);
-				String defaultRoundOffSelect=defaultSelectedValue(driver, RoundOffInput_TableFormat);
-				System.out.println("defaultRoundOffSelect : "+defaultRoundOffSelect);
-				if(defaultRoundOffSelect.equals("")||defaultRoundOffSelect.equals(DefaultRoundOff_TableFormat)) {
-					pass(driver,"By default, 'Select' is displayed in the RoundOff input");
-				}else {
-					fail(driver,"By default, 'Select' is not displayed in the RoundOff input");
-				}
-				
-				click(driver,RoundOffInput_TableFormat);
-				List<WebElement> RoundOffInputValues=getWebElements(driver, RountOffValueOptions_TableFormat);
-				int RoundOffInputValuesCount=RoundOffInputValues.size();
-				String StartRoundOffInputValue=RoundOffInputValues.get(1).getText();
-				//new modification
-				int RoundOffInputValuelast=RoundOffInputValues.size()-1;
-				String EndRoundOffInputValue=RoundOffInputValues.get(RoundOffInputValuelast).getText();
-				//new modification
-				
-				if(RoundOffInputValuesCount==7&&StartRoundOffInputValue.equals("0")&&EndRoundOffInputValue.equals("5")) {
-					pass(driver,"All the RoundOff Value options are present ");
-				}else {
-					fail(driver,"Some RoundOff Value options are not present ");
-				}
-				
-				selectByText(driver, RoundOffInput_TableFormat, ChangeRoundOff_Smoke_304);
-			    wait(driver,"1");
-			    String AfterSelectRoundOffValue=getTextJavascript(driver, RoundOffInput_TableFormat);
-			    System.out.println("AfterSelectRoundOffValue : "+AfterSelectRoundOffValue);
-			    if(AfterSelectRoundOffValue.equals(ChangeRoundOff_Smoke_304)) {
-			    	pass(driver,"Selected RoundOff value is correctly displayed in the RoundOff Input");
-			    }else {
-			    	fail(driver,"Selected RoundOff value is not correctly displayed in the RoundOff Input");
-			    }
-				
-			    if(isDisplayed(driver,RoundOffSelectColumnBox)) {
-					pass(driver,"RoundOff Selected Column box is displayed after selecting the RoundOff value");
-				}else {
-					fail(driver,"RoundOff Selected Column box is displayed after selecting the RoundOff value");
-				}
-			    
-			    if(isDisplayed(driver,SelectAllCheckbox_RoundOff)) {
-			    	pass(driver,"Select All Checkbox is displayed after selecting the RoundOff value");
-			    	if(!isElementSelected(driver,SelectAllCheckbox_RoundOff)) {
-			    		pass(driver,"By default Select All checkbox is not selected in RoundOff");
-						if(isDisplayed2(driver,AppliedRoundOffColumns)) {
-							fail(driver,"Column Names displayed in the RoundOff selected column when the 'Select All checkbox' is not selected");
-						}else {
-							pass(driver,"Column Names not displayed in the RoundOff selected column when the 'Select All checkbox' is not selected");
-						}
-			    		
-			    		click(driver,RoundOffSelectColumnBox);
-			    		wait(driver,"1");
-						List<WebElement> availableRoundOffColoumnList=getWebElements(driver, AvailableRoundOffSelectColumn);
-						int availableRoundOffColoumnCount=availableRoundOffColoumnList.size();
-						click3(driver,SeperatorText_TableFormat);
-						mouseOverToElement(driver, SelectAllCheckbox_RoundOff);
-						mouseOverAndClick(driver, SelectAllCheckbox_RoundOff);
-						
-						if(isElementSelected(driver,SelectAllCheckbox_RoundOff)) {
-							pass(driver,"'Select All checkbox' in the RoundOff is selected after clicking it");
-							List<WebElement> selectedList=getWebElements(driver, AppliedRoundOffColumns);
-							int selectedListCout=selectedList.size();
-							if(availableRoundOffColoumnCount==selectedListCout) {
-								pass(driver,"All the available Columns are displayed in the RoundOff Column input box when click the 'Select All' Checkbox ");
+							click(driver,RowTotal_toggle_TableFormat);
+							wait(driver,"1");
+							if(isToggleEnable(driver,PinRowTotal_Input_TableFormat)) {
+								fail(driver,"Pin Row Total Toggle is not automatically changed to 'OFF' Condition When disabling the Row Total toggle");
 							}else {
-								fail(driver,"Some available Columns are not displayed in the RoundOff Column input box when click the 'Select All' Checkbox ");
-							}
-							
-							scrollUsingElement(driver, ApplyButton);
-							wait(driver,"1");
-							click(driver, ApplyButton);
-							elementnotvisible1(driver, RPE_Loading);
-							waitForElement(driver,TableCell);
-	                        List<WebElement> AllCellElements1=getWebElements(driver,TableCell);
-							
-							Pattern numericalPattern1 = Pattern.compile("^(\\d{1,3}(,\\d{3})*|\\d{1,2}(,\\d{2}){2,})(\\.\\d+)?$");
-					        datePattern = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$"); // need to delete Pattern
-							
-					        boolean RoundOffCheck1=true;
-					        String FailResultRoundOff1="";
-					        
-							for (WebElement cell : AllCellElements1) {
-					            String cellText = cell.getText();
-	                            String Col_ID=cell.getAttribute("col-id");
-					            if (datePattern.matcher(cellText).matches() || cellText.equals("") || cellText.isEmpty() || cellText.equals("0")) {
-					                continue;
-					            } else if (numericalPattern1.matcher(cellText).matches()) {
-					            	
-					            	int CellRoundOffValueNum=getRoundOffValue(cellText);
-					            	String CellRoundOffValue=String.valueOf(CellRoundOffValueNum);
-					            	if(!CellRoundOffValue.equals(ChangeRoundOff_Smoke_304)) {
-					            		RoundOffCheck1=false;
-					            		FailResultRoundOff1=FailResultRoundOff1+" || Column : "+Col_ID+", cellValue : "+cellText;
-					            	}
-					            	
-					            } 
-					        }
-							
-							if(RoundOffCheck1==true) {
-								pass(driver,"RoundOff correctly Applied for all the cells");
-							}else {
-								fail(driver,"RoundOff not correctly Applied in this cell : "+FailResultRoundOff1);
-							}
-							
-						click(driver,SelectAllCheckbox_RoundOff);
-				        wait(driver,"1");
-				        if(isDisplayed2(driver,AppliedRoundOffColumns)) {
-							fail(driver,"Column Names displayed in the RoundOff selected column After deSelecting 'Select All checkbox' ");
-						}else {
-							pass(driver,"Column Names not displayed in the RoundOff selected column After deSelecting 'Select All checkbox' ");
-							scrollUsingElement(driver, ApplyButton);
-							wait(driver,"1");
-							click(driver, ApplyButton);
-							elementnotvisible1(driver, RPE_Loading);
-							click(driver,RoundOffSelectColumnBox);
-							sendKeys(driver,SearchRoundOffColumnInput,SelectColumnRoundOff_Smoke_303);
-							WebElement searchedColumn=driver.findElement(By.xpath("//li//div[@title='"+SelectColumnRoundOff_Smoke_303+"']"));
-							searchedColumn.click();
-							wait(driver,"1");
-							String SelectedRoundOffColumnName=getAttribute1(driver, AppliedRoundOffColumns, "data-value");
-							if(SelectedRoundOffColumnName.equals(SelectColumnRoundOff_Smoke_303)) {
-								
-								pass(driver,"Selected Column Name updated in the RoundOff column input box");
+								pass(driver,"Pin Row Total Toggle is automatically changed to 'OFF' Condition When disabling the Row Total toggle");
 								scrollUsingElement(driver, ApplyButton);
 								wait(driver,"1");
 								click(driver, ApplyButton);
 								elementnotvisible1(driver, RPE_Loading);
 								waitForElement(driver,TableCell);
-								List<WebElement> AllCellElements2=driver.findElements(By.xpath("//div[@col-id='"+SelectColumnRoundOff_Smoke_303+"' and @role='gridcell']"));
-								
-								numericalPattern1 = Pattern.compile("^(\\d{1,3}(,\\d{3})*|\\d{1,2}(,\\d{2}){2,})(\\.\\d+)?$");
-						        datePattern = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
-								
-						        boolean RoundOffCheck2=true;
-						        String FailResultRoundOff2="";
-						        
-								for (WebElement cell : AllCellElements2) {
-						            String cellText = cell.getText();
-		                            String Col_ID=cell.getAttribute("col-id");
-						            if (datePattern.matcher(cellText).matches() || cellText.equals("") || cellText.isEmpty() || cellText.equals("0") ) {
-						                continue;
-						            } else if (numericalPattern1.matcher(cellText).matches()) {
-						            	
-						            	int CellRoundOffValueNum=getRoundOffValue(cellText);
-						            	String CellRoundOffValue=String.valueOf(CellRoundOffValueNum);
-						            	
-						            	if(!CellRoundOffValue.equals(ChangeRoundOff_Smoke_304)) {
-						            		RoundOffCheck2=false;
-						            		FailResultRoundOff2=FailResultRoundOff2+" || Column : "+Col_ID+", cellValue : "+cellText;
-						            	}
-						            	
-						            }
-						        }
-								
-									if(RoundOffCheck2==true) {
-										pass(driver,"RoundOff correctly Applied for all the cells");
-									}else {
-										fail(driver,"RoundOff not correctly Applied in this cell : "+RoundOffCheck2);
-									}
-									
-									
+								if(isDisplayed2(driver,GrandTotalRow)) {
+									fail(driver,"Grand total row is displayed when the toggle is 'OFF' condition");
 								}else {
-									fail(driver,"Selected Column Name not updated in the RoundOff column input box");
+									pass(driver,"Grand total row is not displayed when the toggle is 'OFF' condition");
+								}
+							}
+						//	(TC_Smoketest_261 to TC_Smoketest_265) && (TC_Smoketest_270 to TC_Smoketest_272) and TC_Smoketest_276 to TC_Smoketest_284 End....
+							
+						}else {
+							fail(driver,"Pin Row Total Toggle Accessible when Row Total toggle is 'ON' Condition");
+						}
+					}else {
+						fail(driver,"Row Total toggle is not Accessible");
+					}
+					
+					if(IsElementEnabled(driver, ColumnTotal_Input_TableFormat)) {
+						//(TC_Smoketest_266 to TC_Smoketest_269) && (TC_Smoketest_273 to TC_Smoketest_275) and TC_Smoketest_285 to TC_Smoketest_290 Start....
+						if(isToggleEnable(driver,ColumnTotal_Input_TableFormat)) {
+							fail(driver,"Column Total Toggle is not displayed in 'OFF' Condition by default");
+						}else {
+							pass(driver,"Column Total Toggle is displayed in 'OFF' Condition by default");
+						}
+						
+						click(driver,ColumnTotal_toggle_TableFormat);
+						wait(driver,"1");
+						if(isToggleEnable(driver,ColumnTotal_Input_TableFormat)) {
+							pass(driver,"Column Total Toggle is displayed in 'ON' Condition When enabling it");
+						}else {
+							fail(driver,"Column Total Toggle is not displayed in 'ON' Condition When enabling it");
+						}
+						
+						scrollUsingElement(driver, ApplyButton);
+						click(driver, ApplyButton);
+						elementnotvisible1(driver, RPE_Loading);
+						waitForElement(driver, TableCell);
+						VerticalScrollFull(driver,ResultTableBody);
+						if(isDisplayed(driver,GrandTotalColumns)) {
+							pass(driver,"Grand Column total is displayed in the table when the toggle is 'ON' condition");
+						}else {
+							fail(driver,"Grand Column total is not displayed in the table when the toggle is 'ON' condition");
+						}
+						
+						click(driver,ColumnTotal_toggle_TableFormat);
+						wait(driver,"1");
+						if(isToggleEnable(driver,ColumnTotal_Input_TableFormat)) {
+							fail(driver,"Column Total Toggle is not displayed in 'OFF' Condition When disabling it");
+						}else {
+							pass(driver,"Column Total Toggle is displayed in 'OFF' Condition When disabling it");
+						}
+						
+						scrollUsingElement(driver, ApplyButton);
+						wait(driver,"1");
+						click(driver, ApplyButton);
+						elementnotvisible1(driver, RPE_Loading);
+						waitForElement(driver, TableCell);
+						VerticalScrollFull(driver,ResultTableBody);
+						if(isDisplayed2(driver,GrandTotalColumns)) {
+							fail(driver,"Grand Column total is displayed in the table when the toggle is 'OFF' condition");
+				 		}else {
+							pass(driver,"Grand Column total is not displayed in the table when the toggle is 'OFF' condition");
+				 		}
+						
+						click(driver,ColumnTotal_toggle_TableFormat);
+						wait(driver,"1");
+						if(isToggleAccessible(driver,PinColumnTotal_Input_TableFormat)) {
+							pass(driver,"Pin Column Total Toggle Accessible when Column Total toggle is 'ON' Condition");
+							if(isToggleEnable(driver,PinColumnTotal_Input_TableFormat)) {
+								fail(driver,"By deafult, Pin Column Total Toggle is not displayed in 'OFF' Condition");
+							}else {
+								pass(driver,"By deafult, Pin Column Total Toggle is displayed in 'OFF' Condition");
+							}
+							
+							click(driver,PinColumnTotal_toggle_TableFormat);
+							wait(driver,"1");
+							if(isToggleEnable(driver,PinColumnTotal_Input_TableFormat)) {
+								pass(driver,"Pin Column Total Toggle is displayed in 'ON' Condition when enabling it");
+							}else {
+								fail(driver,"Pin Column Total Toggle is not displayed in 'ON' Condition when enabling it");
+							}
+							scrollUsingElement(driver, ApplyButton);
+							click(driver, ApplyButton);
+							elementnotvisible1(driver, RPE_Loading);
+							waitForElement(driver,TableCell);
+							if(isDisplayed(driver,GrandTotalColumns)) {
+								pass(driver,"Grand Column total is displayed, Pin Column Total function Applied properly");
+								// pin grand column total sum validation end
+								String DefaultColumnTotalColorAct=getTextJavascript(driver, HighLightColumnTotal_Input);
+								System.out.println("DefaultRowTotalColorAct : "+DefaultColumnTotalColorAct);
+								if(DefaultGrandTotalColor_TableFormat.equalsIgnoreCase(DefaultColumnTotalColorAct)) {
+									pass(driver,"By default, '"+DefaultGrandTotalColor_TableFormat+"' color is displayed in the Coloumn total color input");
+								}else {
+									fail(driver,"By default, '"+DefaultGrandTotalColor_TableFormat+"' color is not displayed in the Column total color input");
 								}
 								
+								String TableColumndGrantTotalColor=getTextBackgroundColor(driver, GrandTotalColumns);
+								if(DefaultColumnTotalColorAct.equalsIgnoreCase(TableColumndGrantTotalColor)) {
+									pass(driver,"By deafult, Grant Column total cells displayed with deafult selected color, Exp : "+DefaultColumnTotalColorAct+", Act : "+ TableColumndGrantTotalColor);
+								}else {
+									fail(driver,"By deafult, Grant Column total cells not displayed with deafult selected color, Exp : "+DefaultColumnTotalColorAct+", Act : "+ TableColumndGrantTotalColor);
+								}
+								
+								click(driver,HighLightColumnTotal_Input);
+						        if(isDisplayed(driver,ColorPickerOpen)) {
+									pass(driver,"The color pickers opened promptly after clicking HighLight Column Total Input");
+									mouseOverToElement(driver, Color1);
+									String mouseOveredColorText=getText1(driver,mouseOverColorHistory);
+									if(mouseOveredColorText!=null) {
+										mouseOverToElement(driver,mouseOverColorHistory);
+										wait(driver,"1");
+										mouseOverToElement(driver, Color1);
+										doubleClick(driver,mouseOverColorHistory);
+										action.keyDown(Keys.CONTROL).sendKeys("c").keyUp(Keys.CONTROL).perform();
+								        doubleClick(driver,HighLightColumnTotal_Input);
+								        wait(driver,"1");
+								        action.keyDown(Keys.CONTROL).sendKeys("v").keyUp(Keys.CONTROL).perform();
+								        wait(driver,"1");
+										String AfterCopyPasteColor=getTextJavascript(driver, HighLightColumnTotal_Input);
+										System.out.println("AfterCopyPasteColor : "+AfterCopyPasteColor);
+										if(mouseOveredColorText.equalsIgnoreCase(AfterCopyPasteColor)) {
+											pass(driver,"Copy paste color value works properly in Highlight Column Total Input");
+										}else {
+											fail(driver,"Copy paste color value not working properly in Highlight Column Total Input , Exp : "+mouseOveredColorText+", Act : "+AfterCopyPasteColor);
+										}
+										
+									}else {
+										fail(driver,"MouseOveredColor Value not displayed in the history");
+									}
+									
+									mouseOverAndClick(driver, Color1);
+									wait(driver,"1");
+									if(isDisplayed2(driver,ColorPickerOpen)){
+										fail(driver,"Colorpicker not closed promptly After selecting the color");
+									}else {
+										pass(driver,"Colorpicker closed promptly After selecting the color");
+									}
+									
+									String SelectedColorInput=getTextJavascript(driver, HighLightColumnTotal_Input);
+									scrollUsingElement(driver, ApplyButton);
+									wait(driver,"1");
+									click(driver, ApplyButton);
+									elementnotvisible1(driver, RPE_Loading);
+									waitForElement(driver, GrandTotalColumns);
+									TableColumndGrantTotalColor=getTextBackgroundColor(driver, GrandTotalColumns);
+									if(TableColumndGrantTotalColor.equalsIgnoreCase(SelectedColorInput)) {
+										pass(driver,"Selected Color is applied in the Grand total Column cells");
+									}else {
+										fail(driver,"Selected Color is not applied in the Grand total Column cells");
+									}
+									
+						        }else {
+									fail(driver,"The color pickers not opened promptly after clicking HighLight Column Total Input");
+						        }
+								
+								click(driver,HighLightColumnTotal_Input);
+						        action.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).perform();
+						        sendKeys(driver,HighLightColumnTotal_Input,ChangeColumnTotalColor_Smoke_290);
+						        scrollUsingElement(driver, ApplyButton);
+						        wait(driver,"1");
+						        click(driver, ApplyButton);
+						        elementnotvisible1(driver, RPE_Loading);
+						        waitForElement(driver, GrandTotalColumns);
+						        TableColumndGrantTotalColor=getTextBackgroundColor(driver, GrandTotalColumns);
+								if(TableColumndGrantTotalColor.equalsIgnoreCase(ChangeColumnTotalColor_Smoke_290)) {
+									pass(driver,"Manually Entered Color is applied in the Grand total Column cells");
+								}else {
+									fail(driver,"Manually Entered Color is not applied in the Grand total Column cells");
+								}
+						        
+								clear1(driver,HighLightColumnTotal_Input);
+								wait(driver,"1");
+								String AfterRevertColor=getTextJavascript(driver, HighLightColumnTotal_Input);
+								if(AfterRevertColor.equalsIgnoreCase(DefaultGrandTotalColor_TableFormat)) {
+									pass(driver,"Default color is displayed after revert the color value");
+									scrollUsingElement(driver, ApplyButton);
+									wait(driver,"1");
+									click(driver, ApplyButton);
+									elementnotvisible1(driver, RPE_Loading);
+									waitForElement(driver, GrandTotalColumns);
+									TableColumndGrantTotalColor=getTextBackgroundColor(driver, GrandTotalColumns);
+									if(TableColumndGrantTotalColor.equalsIgnoreCase(DefaultGrandTotalColor_TableFormat)) {
+										pass(driver,"Default color is applied in the Grand total Column cells after revert the color");
+									}else {
+										fail(driver,"Default color is not applied in the Grand total Column cells after revert the color");
+									}
+									
+								}else {
+									fail(driver,"Default color is not displayed after revert the color value");
+								}
+							}else {
+								fail(driver,"Grand Column total is not displayed, Pin Column Total function not Applied properly");
 							}
-						
+							
+							click(driver,ColumnTotal_toggle_TableFormat);
+							wait(driver,"1");
+							if(isToggleEnable(driver,PinColumnTotal_Input_TableFormat)) {
+								fail(driver,"Pin Column Total Toggle is not automatically changed to 'OFF' Condition When disabling the Column Total toggle");
+							}else {
+								pass(driver,"Pin Column Total Toggle is automatically changed to 'OFF' Condition When disabling the Column Total toggle");
+								scrollUsingElement(driver, ApplyButton);
+								wait(driver,"1");
+								click(driver, ApplyButton);
+								elementnotvisible1(driver, RPE_Loading);
+								waitForElement(driver,TableCell);
+								if(isDisplayed2(driver,GrandTotalColumns)) {
+									fail(driver,"Grand total Column is displayed when the toggle is 'OFF' condition");
+								}else {
+									pass(driver,"Grand total Column is not displayed when the toggle is 'OFF' condition");
+								}
+							}
+						    // (TC_Smoketest_266 to TC_Smoketest_269) && (TC_Smoketest_273 to TC_Smoketest_275) and TC_Smoketest_285 to TC_Smoketest_290 End....
 						}else {
-							fail(driver,"'Select All checkbox' in the RoundOff is not selected after clicking it");
+							fail(driver,"Pin Column Total Toggle Accessible when Column Total toggle is 'ON' Condition");
 						}
-			    	}else {
-			    		fail(driver,"By default Select All checkbox is selected in RoundOff");
-			    	}
-			    }else {
-			    	fail(driver,"Select All Checkbox is not displayed after selecting the RoundOff value");
-			    }
-			// TC_Smoketest_301 to TC_Smoketest_304 End...  
-			
-		   // TC_Smoketest_305
-			    scrollUsingElement(driver, ApplyButton);
-			    wait(driver,"1");
-	       	    click(driver, ApplyButton); //for dryrun
-	       	    elementnotvisible1(driver, RPE_Loading);
-	          	waitForElement(driver,TableCell);
-			    VerticalScrollFull(driver,ResultTableBody);
-				HorizontalScrollFull(driver,HorizontalScroll2);
-				try {
-		    		  WebElement element = getWebElement(driver, HorizontalScroll2);
-		              JavascriptExecutor js = (JavascriptExecutor) driver;
-		              js.executeScript("arguments[0].scrollLeft = 0;", element);
-		              pass(driver,"Horizontal scroll moved to left end");
-				}catch(Exception e) {
-					  fail(driver,"Horizontal scroll moved to left end");
+						
+					}else {
+					    fail(driver,"Column Total toggle is not Accessible");
+					}
+					
+					// TC_Smoketest_290 to TC_Smoketest_300 start....
+					if(IsElementEnabled(driver, SeperatorInput_TableFormat)) {
+						String defaultSeperatorSelect=defaultSelectedValue(driver, SeperatorInput_TableFormat);
+						System.out.println("defaultSeperatorSelect : "+defaultSeperatorSelect);
+						if(defaultSeperatorSelect.equals("")||defaultSeperatorSelect.equals(DefaultSeperator_TableFormat)) {
+							pass(driver,"By default, 'Select' is displayed in the seperater input");
+						}else {
+							fail(driver,"By default, 'Select' is not displayed in the seperater input");
+						}
+						
+					    click(driver,SeperatorInput_TableFormat);
+					    verifyElementIsPresent(driver, SeparatorOption1);
+					    verifyElementIsPresent(driver, SeperatorOption2);
+				        
+					    selectByText(driver, SeperatorInput_TableFormat, ChangeSeperator_Smoke_293);
+					    wait(driver,"1");
+					    String AfterSelectSeperatorValue=getTextJavascript(driver, SeperatorInput_TableFormat);
+					    System.out.println("AfterSelectSeperatorValue : "+AfterSelectSeperatorValue);
+					    if(AfterSelectSeperatorValue.equals(ChangeSeperator_Smoke_293)) {
+					    	pass(driver,"Selected seperator value is correctly displayed in the Seperator Input");
+					    }else {
+					    	fail(driver,"Selected seperator value is not correctly displayed in the Seperator Input");
+					    }
+					    
+					    if(isDisplayed(driver,SeperatorSelectedColumnBox)) {
+							pass(driver,"Seperator Selected Column box is displayed after selecting the seperator value");
+							if(isDisplayed(driver,SelectAllOption_Seperator)) {
+								pass(driver,"Select All Checkbox is displayed after selecting the seperter value");
+								if(!isElementSelected(driver,SelectAllCheckBox_Seperator)) {
+									pass(driver,"By default Select All checkbox is not selected");
+									if(isDisplayed2(driver,AppliedSeperatorColoumn)) {
+										fail(driver,"Column Names displayed in the seperator selected column when the 'Select All checkbox' is not selected");
+									}else {
+										pass(driver,"Column Names not displayed in the seperator selected column when the 'Select All checkbox' is not selected");
+									}
+									
+									click(driver,SeperatorSelectedColumnBox);
+									List<WebElement> availableSeperatorColoumnList=getWebElements(driver, SepertorAvailableColumns);
+									int availableSeperatorColoumnCount=availableSeperatorColoumnList.size();
+									
+									List<String> availableNumList=new ArrayList<String>();
+									for(WebElement ele:availableSeperatorColoumnList) {
+										String listtext=ele.getText();
+										availableNumList.add(listtext);
+									}
+									
+									click3(driver,SeperatorText_TableFormat);
+									mouseOverToElement(driver, SelectAllCheckBox_Seperator);
+									mouseOverAndClick(driver, SelectAllCheckBox_Seperator);
+									if(isElementSelected(driver,SelectAllCheckBox_Seperator)) {
+										pass(driver,"'Select All checkbox' in the seperator is selected after clicking it");
+										List<WebElement> selectedList=getWebElements(driver, AppliedSeperatorColoumn);
+										int selectedListCout=selectedList.size();
+										if(availableSeperatorColoumnCount==selectedListCout) {
+											pass(driver,"All the available Columns are displayed in the Seperator Column input box when click the 'Select All' Checkbox ");
+										}else {
+											fail(driver,"Some available Columns are not displayed in the Seperator Column input box when click the 'Select All' Checkbox ");
+										}
+										
+										scrollUsingElement(driver, ApplyButton);
+										wait(driver,"1");
+										click(driver, ApplyButton);
+										elementnotvisible1(driver, RPE_Loading);
+										waitForElement(driver,TableCell);
+										
+										Pattern numericalPattern1 = Pattern.compile("^(\\d{1,3}(,\\d{3})*|\\d{1,2}(,\\d{2}){2,})(\\.\\d+)?$");
+										 datePattern = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
+								        
+										boolean seperatorCheck=true;
+								        String FailResultSeperator="";
+								        
+								        for(String availabelList:availableNumList) {
+								        	
+											List<WebElement> AllCellElements1=getWebElements(driver,TableCell);
+
+								        	for (WebElement cell : AllCellElements1) {
+								        		String Col_ID=cell.getAttribute("col-id");
+								        		if(Col_ID.contains(availabelList)) {
+								        			 String cellText = cell.getText();
+											            int Explength=6;
+											            if(cellText.contains(".")) {
+											            	Explength=10;
+											            }
+							                            
+											            if (datePattern.matcher(cellText).matches() || cellText.equals("") || cellText.isEmpty() || cellText.equals("0")) {
+											                continue;
+											            } else if (numericalPattern1.matcher(cellText).matches()) {
+											            	if(!cellText.contains(",")) {
+											            		seperatorCheck=false;
+											            		FailResultSeperator=FailResultSeperator+" || Column : "+Col_ID+", cellValue : "+cellText;
+											            	}
+											            	if(cellText.length()>=Explength) {
+											            		String cellFormat=SeperatorValidationTable(cellText);
+												            	if(!cellFormat.equals(ChangeSeperator_Smoke_293)) {
+												            		seperatorCheck=false;
+												            		FailResultSeperator=FailResultSeperator+" || Column : "+Col_ID+", cellValue : "+cellText;
+												            	}
+											            	}
+											           } 
+								        		}
+									        }
+								        }
+								        
+								        
+								        
+								        if(seperatorCheck==true) {
+								        	pass(driver,"Seperator correctly applied in all the cell values..");
+								        }else {
+						            		fail(driver,"Seperator not correctly applied in this cell : "+FailResultSeperator);
+								        }
+								        
+								        click(driver,SelectAllCheckBox_Seperator);
+								        wait(driver,"1");
+								        if(isDisplayed2(driver,AppliedSeperatorColoumn)) {
+											fail(driver,"Column Names displayed in the seperator selected column After deSelecting 'Select All checkbox' ");
+										}else {
+											pass(driver,"Column Names not displayed in the seperator selected column After deSelecting 'Select All checkbox' ");
+											click(driver,SeperatorSelectedColumnBox);
+											sendKeys(driver,SearchSeperatorColumnInput,SelectColumnSeperator_Smoke_299);
+											WebElement searchedColumn=driver.findElement(By.xpath("//li//div[@title='"+SelectColumnSeperator_Smoke_299+"']"));
+											searchedColumn.click();
+											wait(driver,"1");
+											String SelectedSeperatorColumnName=getAttribute1(driver, AppliedSeperatorColoumn, "data-value");
+											if(SelectedSeperatorColumnName.equals(SelectColumnSeperator_Smoke_299)) {
+												pass(driver,"Selected Column Name updated in the Seperator column input box");
+												scrollUsingElement(driver, ApplyButton);
+												wait(driver,"1");
+												click(driver, ApplyButton);
+												elementnotvisible1(driver, RPE_Loading);
+												waitForElement(driver,TableCell);
+												List<WebElement> AllCellElements2=driver.findElements(By.xpath("//div[@col-id='"+SelectColumnSeperator_Smoke_299+"' and @role='gridcell']"));
+												
+												numericalPattern1 = Pattern.compile("^(\\d{1,3}(,\\d{3})*|\\d{1,2}(,\\d{2}){2,})(\\.\\d+)?$");
+										        datePattern = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
+										        
+										        boolean seperatorCheck2=true;
+										        String FailResultSeperator2="";
+										        
+										        for (WebElement cell : AllCellElements2) {
+										            String cellText = cell.getText();
+						                            String Col_ID=cell.getAttribute("col-id");
+						                            int Explength=5;
+										            if(cellText.contains(".")) {
+										            	Explength=10;
+										            }
+										            if (datePattern.matcher(cellText).matches() || cellText.equals("") || cellText.isEmpty()|| cellText.equals("0")) {
+										                continue;
+										            } else if (numericalPattern1.matcher(cellText).matches() && cellText.length()>=Explength) {
+										            	
+										            	String cellFormat=SeperatorValidationTable(cellText);
+										            	
+										            	if(!cellFormat.equals(ChangeSeperator_Smoke_293)) {
+										            		seperatorCheck2=false;
+										            		FailResultSeperator2=FailResultSeperator2+" || Column : "+Col_ID+", cellValue : "+cellText;
+										            	}
+										            	
+										            } 
+										        }
+										        
+										        if(seperatorCheck2==true) {
+										        	pass(driver,"Seperator correctly applied in all the cell values..");
+										        }else {
+								            		fail(driver,"Seperator not correctly applied in this cell : "+FailResultSeperator2);
+										        }
+										        
+														
+											}else {
+												fail(driver,"Selected Column Name not updated in the Seperator column input box");
+											}
+											
+										}
+//										SeperatorValidationTable
+										
+									}else {
+										fail(driver,"'Select All checkbox' in the seperator is not selected after clicking it");
+									}
+									
+								}else {
+									fail(driver,"By default Select All checkbox is selected");
+								}
+							}else {
+								fail(driver,"Select All Checkbox is not displayed after selecting the seperter value");
+							}
+						    
+							wait(driver,"1");
+							selectByText(driver, SeperatorInput_TableFormat, DefaultSeperator_TableFormat);
+							wait(driver,"1");
+							click(driver, ApplyButton);
+							elementnotvisible1(driver, RPE_Loading);
+							waitForElement(driver,TableCell);
+							
+						}else {
+							fail(driver,"Seperator Selected Column box is displayed after selecting the seperator value");
+						}
+					}else {
+						fail(driver,"Seperator input is not accessible in the Table Format");
+					}
+					
+			  // TC_Smoketest_290 to TC_Smoketest_300 End....
+					
+			  // TC_Smoketest_301 to TC_Smoketest_304 Start...
+					
+				if(IsElementEnabled(driver, RoundOffInput_TableFormat)) {
+					String defaultRoundOffSelect=defaultSelectedValue(driver, RoundOffInput_TableFormat);
+					System.out.println("defaultRoundOffSelect : "+defaultRoundOffSelect);
+					if(defaultRoundOffSelect.equals("")||defaultRoundOffSelect.equals(DefaultRoundOff_TableFormat)) {
+						pass(driver,"By default, 'Select' is displayed in the RoundOff input");
+					}else {
+						fail(driver,"By default, 'Select' is not displayed in the RoundOff input");
+					}
+					
+					click(driver,RoundOffInput_TableFormat);
+					List<WebElement> RoundOffInputValues=getWebElements(driver, RountOffValueOptions_TableFormat);
+					int RoundOffInputValuesCount=RoundOffInputValues.size();
+					String StartRoundOffInputValue=RoundOffInputValues.get(1).getText();
+					//new modification
+					int RoundOffInputValuelast=RoundOffInputValues.size()-1;
+					String EndRoundOffInputValue=RoundOffInputValues.get(RoundOffInputValuelast).getText();
+					//new modification
+					
+					if(RoundOffInputValuesCount==7&&StartRoundOffInputValue.equals("0")&&EndRoundOffInputValue.equals("5")) {
+						pass(driver,"All the RoundOff Value options are present ");
+					}else {
+						fail(driver,"Some RoundOff Value options are not present ");
+					}
+					
+					selectByText(driver, RoundOffInput_TableFormat, ChangeRoundOff_Smoke_304);
+				    wait(driver,"1");
+				    String AfterSelectRoundOffValue=getTextJavascript(driver, RoundOffInput_TableFormat);
+				    System.out.println("AfterSelectRoundOffValue : "+AfterSelectRoundOffValue);
+				    if(AfterSelectRoundOffValue.equals(ChangeRoundOff_Smoke_304)) {
+				    	pass(driver,"Selected RoundOff value is correctly displayed in the RoundOff Input");
+				    }else {
+				    	fail(driver,"Selected RoundOff value is not correctly displayed in the RoundOff Input");
+				    }
+					
+				    if(isDisplayed(driver,RoundOffSelectColumnBox)) {
+						pass(driver,"RoundOff Selected Column box is displayed after selecting the RoundOff value");
+						 if(isDisplayed(driver,SelectAllCheckbox_RoundOff)) {
+						    	pass(driver,"Select All Checkbox is displayed after selecting the RoundOff value");
+						    	if(!isElementSelected(driver,SelectAllCheckbox_RoundOff)) {
+						    		pass(driver,"By default Select All checkbox is not selected in RoundOff");
+									if(isDisplayed2(driver,AppliedRoundOffColumns)) {
+										fail(driver,"Column Names displayed in the RoundOff selected column when the 'Select All checkbox' is not selected");
+									}else {
+										pass(driver,"Column Names not displayed in the RoundOff selected column when the 'Select All checkbox' is not selected");
+									}
+						    		
+						    		click(driver,RoundOffSelectColumnBox);
+						    		wait(driver,"1");
+									List<WebElement> availableRoundOffColoumnList=getWebElements(driver, AvailableRoundOffSelectColumn);
+									int availableRoundOffColoumnCount=availableRoundOffColoumnList.size();
+									click3(driver,SeperatorText_TableFormat);
+									mouseOverToElement(driver, SelectAllCheckbox_RoundOff);
+									mouseOverAndClick(driver, SelectAllCheckbox_RoundOff);
+									
+									if(isElementSelected(driver,SelectAllCheckbox_RoundOff)) {
+										pass(driver,"'Select All checkbox' in the RoundOff is selected after clicking it");
+										List<WebElement> selectedList=getWebElements(driver, AppliedRoundOffColumns);
+										int selectedListCout=selectedList.size();
+										if(availableRoundOffColoumnCount==selectedListCout) {
+											pass(driver,"All the available Columns are displayed in the RoundOff Column input box when click the 'Select All' Checkbox ");
+										}else {
+											fail(driver,"Some available Columns are not displayed in the RoundOff Column input box when click the 'Select All' Checkbox ");
+										}
+										
+										scrollUsingElement(driver, ApplyButton);
+										wait(driver,"1");
+										click(driver, ApplyButton);
+										elementnotvisible1(driver, RPE_Loading);
+										waitForElement(driver,TableCell);
+				                        List<WebElement> AllCellElements1=getWebElements(driver,TableCell);
+										
+										Pattern numericalPattern1 = Pattern.compile("^(\\d{1,3}(,\\d{3})*|\\d{1,2}(,\\d{2}){2,})(\\.\\d+)?$");
+										datePattern = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$"); // need to delete Pattern
+										
+								        boolean RoundOffCheck1=true;
+								        String FailResultRoundOff1="";
+								        
+										for (WebElement cell : AllCellElements1) {
+								            String cellText = cell.getText();
+				                            String Col_ID=cell.getAttribute("col-id");
+								            if (datePattern.matcher(cellText).matches() || cellText.equals("") || cellText.isEmpty() || cellText.equals("0")) {
+								                continue;
+								            } else if (numericalPattern1.matcher(cellText).matches()) {
+								            	
+								            	int CellRoundOffValueNum=getRoundOffValue(cellText);
+								            	String CellRoundOffValue=String.valueOf(CellRoundOffValueNum);
+								            	if(!CellRoundOffValue.equals(ChangeRoundOff_Smoke_304)) {
+								            		RoundOffCheck1=false;
+								            		FailResultRoundOff1=FailResultRoundOff1+" || Column : "+Col_ID+", cellValue : "+cellText;
+								            	}
+								            	
+								            } 
+								        }
+										
+										if(RoundOffCheck1==true) {
+											pass(driver,"RoundOff correctly Applied for all the cells");
+										}else {
+											fail(driver,"RoundOff not correctly Applied in this cell : "+FailResultRoundOff1);
+										}
+										
+									click(driver,SelectAllCheckbox_RoundOff);
+							        wait(driver,"1");
+							        if(isDisplayed2(driver,AppliedRoundOffColumns)) {
+										fail(driver,"Column Names displayed in the RoundOff selected column After deSelecting 'Select All checkbox' ");
+									}else {
+										pass(driver,"Column Names not displayed in the RoundOff selected column After deSelecting 'Select All checkbox' ");
+										scrollUsingElement(driver, ApplyButton);
+										wait(driver,"1");
+										click(driver, ApplyButton);
+										elementnotvisible1(driver, RPE_Loading);
+										click(driver,RoundOffSelectColumnBox);
+										sendKeys(driver,SearchRoundOffColumnInput,SelectColumnRoundOff_Smoke_303);
+										WebElement searchedColumn=driver.findElement(By.xpath("//li//div[@title='"+SelectColumnRoundOff_Smoke_303+"']"));
+										searchedColumn.click();
+										wait(driver,"1");
+										String SelectedRoundOffColumnName=getAttribute1(driver, AppliedRoundOffColumns, "data-value");
+										if(SelectedRoundOffColumnName.equals(SelectColumnRoundOff_Smoke_303)) {
+											
+											pass(driver,"Selected Column Name updated in the RoundOff column input box");
+											scrollUsingElement(driver, ApplyButton);
+											wait(driver,"1");
+											click(driver, ApplyButton);
+											elementnotvisible1(driver, RPE_Loading);
+											waitForElement(driver,TableCell);
+											List<WebElement> AllCellElements2=driver.findElements(By.xpath("//div[@col-id='"+SelectColumnRoundOff_Smoke_303+"' and @role='gridcell']"));
+											
+											numericalPattern1 = Pattern.compile("^(\\d{1,3}(,\\d{3})*|\\d{1,2}(,\\d{2}){2,})(\\.\\d+)?$");
+									        datePattern = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
+											
+									        boolean RoundOffCheck2=true;
+									        String FailResultRoundOff2="";
+									        
+											for (WebElement cell : AllCellElements2) {
+									            String cellText = cell.getText();
+					                            String Col_ID=cell.getAttribute("col-id");
+									            if (datePattern.matcher(cellText).matches() || cellText.equals("") || cellText.isEmpty() || cellText.equals("0") ) {
+									                continue;
+									            } else if (numericalPattern1.matcher(cellText).matches()) {
+									            	
+									            	int CellRoundOffValueNum=getRoundOffValue(cellText);
+									            	String CellRoundOffValue=String.valueOf(CellRoundOffValueNum);
+									            	
+									            	if(!CellRoundOffValue.equals(ChangeRoundOff_Smoke_304)) {
+									            		RoundOffCheck2=false;
+									            		FailResultRoundOff2=FailResultRoundOff2+" || Column : "+Col_ID+", cellValue : "+cellText;
+									            	}
+									            	
+									            }
+									        }
+											
+												if(RoundOffCheck2==true) {
+													pass(driver,"RoundOff correctly Applied for all the cells");
+												}else {
+													fail(driver,"RoundOff not correctly Applied in this cell : "+RoundOffCheck2);
+												}
+												
+												
+											}else {
+												fail(driver,"Selected Column Name not updated in the RoundOff column input box");
+											}
+											
+										}
+									
+									}else {
+										fail(driver,"'Select All checkbox' in the RoundOff is not selected after clicking it");
+									}
+						    	}else {
+						    		fail(driver,"By default Select All checkbox is selected in RoundOff");
+						    	}
+						    }else {
+						    	fail(driver,"Select All Checkbox is not displayed after selecting the RoundOff value");
+						    }
+					}else {
+						fail(driver,"RoundOff Selected Column box is displayed after selecting the RoundOff value");
+					}
+				}else {
+					fail(driver,"RoundOff input is not Accessible in the Table Format");
 				}
-		  // TC_Smoketest_305
-				
-		 // TC_Smoketest_306
-				
+				// TC_Smoketest_301 to TC_Smoketest_304 End... 
+		      }//Table Format expand
+		    	 
+//			   // TC_Smoketest_305
+//			    scrollUsingElement(driver, ApplyButton);
+//			    wait(driver,"1");
+//	       	    click(driver, ApplyButton); //for dryrun
+//	       	    elementnotvisible1(driver, RPE_Loading);
+//	          	waitForElement(driver,TableCell);
+//			    VerticalScrollFull(driver,ResultTableBody);
+//				HorizontalScrollFull(driver,HorizontalScroll2);
+//				try {
+//		    		  WebElement element = getWebElement(driver, HorizontalScroll2);
+//		              JavascriptExecutor js = (JavascriptExecutor) driver;
+//		              js.executeScript("arguments[0].scrollLeft = 0;", element);
+//		              pass(driver,"Horizontal scroll moved to left end");
+//				}catch(Exception e) {
+//					  fail(driver,"Horizontal scroll moved to left end");
+//				}
+//			  // TC_Smoketest_305
+					
+			 // TC_Smoketest_306
 				String beforeExpandWidth=getElementWidth(driver,TableHeadingCell);
 				System.out.println("beforeExpandWidth : "+beforeExpandWidth);
 				int beforeExpandWidthNum=Integer.parseInt(beforeExpandWidth);
@@ -2899,9 +2712,9 @@ public class DASHPRO_TABLES_SMOKE_TESTING extends Keywords{
 				}else {
 					fail(driver,"Expanding of column section not works properly");
 				}
-		  // TC_Smoketest_306   
-				
-		 // TC_Smoketest_307   
+			  // TC_Smoketest_306   
+					
+			 // TC_Smoketest_307   
 				WebElement tableHeadElement2=getWebElement(driver, TableHeadingCell2);
 				String beforeSwapColumnNum=getAttribute1(driver, TableHeadingCell2, "aria-colindex");
 				System.out.println("beforeSwapColumnNum : "+beforeSwapColumnNum);
@@ -2917,9 +2730,9 @@ public class DASHPRO_TABLES_SMOKE_TESTING extends Keywords{
 				}else {
 					fail(driver,"Drag columns not works properly");
 				}
-		 // TC_Smoketest_307 	
-				
-		// TC_Smoketest_308
+			 // TC_Smoketest_307 	
+					
+			// TC_Smoketest_308
 				List<WebElement> headingCells=getWebElements(driver, TableHeadingCells);
 				List<WebElement> sortIcons=getWebElements(driver, sortingIcon);
 				List<WebElement> menuIcons=getWebElements(driver, menuOption);
@@ -2934,9 +2747,9 @@ public class DASHPRO_TABLES_SMOKE_TESTING extends Keywords{
 				}else {
 					fail(driver,"Menu Icon not present in some Columns");
 				}
-		 // TC_Smoketest_308 
-			
-	     // TC_Smoketest_309 
+			 // TC_Smoketest_308 
+				
+		     // TC_Smoketest_309 
 				mouseOverToElement(driver, TableHeadingCell);
 				String beforeSortingOrder1=getAttribute1(driver, TableHeadingCell, "aria-sort");
 				click(driver,TableHeadingCell);
@@ -2947,9 +2760,9 @@ public class DASHPRO_TABLES_SMOKE_TESTING extends Keywords{
 				}else {
 					pass(driver,"Sorting Function works properly");
 				}
-		 // TC_Smoketest_309 
-				
-		// TC_Smoketest_310 to TC_Smoketest_313 Start
+			 // TC_Smoketest_309 
+					
+			// TC_Smoketest_310 to TC_Smoketest_313 Start
 				mouseOverToElement(driver, TableHeadingCell);
 				String BeforeRenameColumnName=getText1(driver, ColumnName2);
 				String secondCell_Id=getAttribute1(driver, TableHeadingCell, "col-id");
@@ -3000,7 +2813,7 @@ public class DASHPRO_TABLES_SMOKE_TESTING extends Keywords{
 						clearAndType1(driver,RenameInput,ColumnRename_Smoke_311+"23");
 						click(driver,Rename_Cancel_Button);
 						wait(driver,"1");
-//						String 
+//							String 
 						SecondHeadCellTextElement=driver.findElement(By.xpath(HeadCellTextXpath));//changed
 						String AfterCancelRenameColumnName=SecondHeadCellTextElement.getText();//getText1(driver, ColumnName2); //old changed
 						if(!AfterCancelRenameColumnName.equals(ColumnRename_Smoke_311+"23")) {
@@ -3043,7 +2856,9 @@ public class DASHPRO_TABLES_SMOKE_TESTING extends Keywords{
 				}else {
 					fail(driver,"Menu Option is not displpayed when mouse hover to column");
 				}
-		 // TC_Smoketest_310 to TC_Smoketest_313 End
+			 // TC_Smoketest_310 to TC_Smoketest_313 End
+	        }
+
        		
        	}   //************ TableFormat Completed ******************
 	     
